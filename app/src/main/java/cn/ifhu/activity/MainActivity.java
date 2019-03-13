@@ -15,6 +15,8 @@ import cn.ifhu.base.BaseFragment;
 import cn.ifhu.base.ViewManager;
 import cn.ifhu.fragments.me.MeFragment;
 import cn.ifhu.fragments.neworder.NewOrderFragment;
+import cn.ifhu.fragments.operation.OperationFragment;
+import cn.ifhu.fragments.orders.OrdersFragment;
 
 /**
  * @author fuhongliang
@@ -60,8 +62,8 @@ public class MainActivity extends BaseActivity {
 
     private void initViewPager() {
         ViewManager.getInstance().addFragment(0, NewOrderFragment.newInstance());
-        ViewManager.getInstance().addFragment(1, MeFragment.newInstance());
-        ViewManager.getInstance().addFragment(2, MeFragment.newInstance());
+        ViewManager.getInstance().addFragment(1, OrdersFragment.newInstance());
+        ViewManager.getInstance().addFragment(2, OperationFragment.newInstance());
         ViewManager.getInstance().addFragment(3, MeFragment.newInstance());
         mFragments = ViewManager.getInstance().getAllFragment();
         mPager = findViewById(R.id.container_pager);

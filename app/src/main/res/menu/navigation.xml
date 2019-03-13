@@ -3,16 +3,16 @@
     <item
         android:id="@+id/navigation_data"
         android:icon="@drawable/tab_data"
-        android:title="数据" />
+        android:title="待处理" />
     <item
         android:id="@+id/navigation_meetings"
         android:icon="@drawable/tab_icon_meetingr_gray"
-        android:title="会议" />
+        android:title="订单管理" />
 
     <item
         android:id="@+id/navigation_investors"
         android:icon="@drawable/tab_icon_investor_gray"
-        android:title="投资者" />
+        android:title="门店运营" />
 
     <item
         android:id="@+id/navigation_me"
