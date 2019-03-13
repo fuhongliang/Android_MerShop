@@ -45,4 +45,9 @@ dependencies {
      */
     implementation project(':glideImageView')
     implementation 'com.android.support:design:28.0.0'
+    /**
+     * Loading加载对话框
+     */
+    implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
+
 }

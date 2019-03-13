@@ -6,8 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.base.ActivityCollector;
 import cn.ifhu.base.BaseFragment;
+import cn.ifhu.dialog.loading.LoadingDialog;
 import cn.ifhu.utils.Utils;
 
 /**
@@ -119,6 +121,18 @@ public class BaseActivity extends AppCompatActivity {
             getSupportFragmentManager().popBackStack();
         } else {
             finish();
+        }
+    }
+
+    /**
+     * 是否显示加载提示
+     * @param active 是否激活
+     */
+    public void setLoadingMessageIndicator(boolean active) {
+        if (active) {
+            LoadingDialog.progressShow(BaseActivity.this);
+        } else {
+            LoadingDialog.progressCancel();
         }
     }
 }
