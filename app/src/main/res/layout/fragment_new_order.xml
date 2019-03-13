@@ -1,15 +1,29 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:text="新订单"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/layout_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:text=" 我是新订单Fragment " />
+            android:background="@color/white"
+            tools:listitem="@layout/item_neworder" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 
-    </LinearLayout>
-</FrameLayout>
+</LinearLayout>
