@@ -81,7 +81,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
     @OnClick(R.id.btn_login)
-    public void onViewClicked() {
+    public void onClick() {
         setLoadingMessageIndicator(true);
         new Handler().postDelayed(() -> {
             setLoadingMessageIndicator(false);
