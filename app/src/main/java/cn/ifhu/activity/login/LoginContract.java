@@ -21,12 +21,6 @@ public interface LoginContract {
         void showLastTimePhoneNumber();
 
         /**
-         * 是否显示加载提示
-         * @param active 是否激活
-         */
-        void setLoadingMessageIndicator(boolean active);
-
-        /**
          * 提示信息
          * @param msg 内容
          */
