@@ -67,6 +67,7 @@ public class MainActivity extends BaseActivity {
         ViewManager.getInstance().addFragment(3, MeFragment.newInstance());
         mFragments = ViewManager.getInstance().getAllFragment();
         mPager = findViewById(R.id.container_pager);
+        mPager.setOffscreenPageLimit(8);
         mAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
         mPager.setAdapter(mAdapter);
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

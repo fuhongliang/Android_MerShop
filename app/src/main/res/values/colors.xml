@@ -7,5 +7,6 @@
     <color name="line">#EDEDED</color>
     <color name="selected_color">#1871FA</color>
     <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
 
 </resources>
