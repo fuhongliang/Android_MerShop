@@ -1,0 +1,7 @@
+package cn.ifhu.base;
+
+public interface BaseView<T> {
+
+    void setPresenter(T presenter);
+
+}

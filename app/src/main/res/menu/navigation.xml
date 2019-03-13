@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_data"
+        android:icon="@drawable/tab_data"
+        android:title="数据" />
+    <item
+        android:id="@+id/navigation_meetings"
+        android:icon="@drawable/tab_icon_meetingr_gray"
+        android:title="会议" />
+
+    <item
+        android:id="@+id/navigation_investors"
+        android:icon="@drawable/tab_icon_investor_gray"
+        android:title="投资者" />
+
+    <item
+        android:id="@+id/navigation_me"
+        android:icon="@drawable/tab_icon_me_gray"
+        android:title="我的" />
+
+</menu>
