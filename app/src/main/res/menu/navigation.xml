@@ -2,21 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_data"
-        android:icon="@drawable/tab_data"
+        android:icon="@drawable/status_ic_dclx"
         android:title="待处理" />
     <item
         android:id="@+id/navigation_meetings"
-        android:icon="@drawable/tab_icon_meetingr_gray"
+        android:icon="@drawable/status_ic_ddglm"
         android:title="订单管理" />
 
     <item
         android:id="@+id/navigation_investors"
-        android:icon="@drawable/tab_icon_investor_gray"
+        android:icon="@drawable/status_ic_yyx"
         android:title="门店运营" />
 
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/tab_icon_me_gray"
+        android:icon="@drawable/status_ic_wdx"
         android:title="我的" />
 
 </menu>
