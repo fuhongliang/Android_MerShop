@@ -45,7 +45,7 @@ public class DialogListFragment  extends BaseDialogFragment{
         super.onStart();
         DisplayMetrics dm = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        getDialog().getWindow().setLayout(dm.widthPixels- DeviceUtil.dip2px(20), ViewGroup.LayoutParams.WRAP_CONTENT);
+        getDialog().getWindow().setLayout(dm.widthPixels- DeviceUtil.dip2px(0), ViewGroup.LayoutParams.WRAP_CONTENT);
         getDialog().getWindow().setGravity(Gravity.BOTTOM);
     }
 
@@ -83,13 +83,10 @@ public class DialogListFragment  extends BaseDialogFragment{
                     sepLine.setVisibility(View.VISIBLE);
                 }
                 tvContent.setText(stringList.get(i));
-                view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if(confirmListner!=null){
-                            confirmListner.onClickTextView(tvContent.getText().toString());
-                            dismiss();
-                        }
+                view.setOnClickListener(view1 -> {
+                    if(confirmListner!=null){
+                        confirmListner.onClickTextView(tvContent.getText().toString());
+                        dismiss();
                     }
                 });
                 llContent.addView(view);

@@ -76,6 +76,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             setLoadingMessageIndicator(false);
             ToastHelper.makeText("登录成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
         },1000);
 
     }

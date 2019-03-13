@@ -26,6 +26,7 @@ import cn.ifhu.activity.MainActivity;
 import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.adapter.NewOrdersAdapter;
 import cn.ifhu.base.BaseFragment;
+import cn.ifhu.dialog.DialogListFragment;
 import cn.ifhu.utils.ToastHelper;
 
 /**
@@ -42,7 +43,7 @@ public class NewOrderFragment extends BaseFragment {
     NewOrdersAdapter newOrdersAdapter;
     //模拟数据
     private List<String> mDatas;
-
+    private ArrayList<String> reasonList;
     public static NewOrderFragment newInstance() {
         return new NewOrderFragment();
     }
@@ -57,6 +58,10 @@ public class NewOrderFragment extends BaseFragment {
         for (int i = 1; i < 80; i++) {
             mDatas.add("#" +  i);
         }
+        reasonList = new ArrayList<>();
+        reasonList.add("商品已售罄");
+        reasonList.add("商家已打样");
+        reasonList.add("其他");
     }
 
     @Override
@@ -74,7 +79,22 @@ public class NewOrderFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         initData();
         recyclerList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        newOrdersAdapter = new NewOrdersAdapter(mDatas,getContext());
+        newOrdersAdapter = new NewOrdersAdapter(mDatas, getContext(), new NewOrdersAdapter.OnclickButton() {
+            @Override
+            public void refuse(int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("title", "请选择拒单理由");
+                bundle.putStringArrayList("stringList", reasonList);
+                showOptionDialog(bundle);
+            }
+
+            @Override
+            public void accept(int position) {
+                mDatas.remove(position);
+                newOrdersAdapter.updateData(mDatas);
+                ToastHelper.makeText("接单成功",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            }
+        });
         recyclerList.setAdapter(newOrdersAdapter);
         setRefreshLayout();
     }
@@ -92,6 +112,15 @@ public class NewOrderFragment extends BaseFragment {
                 initData();
                 newOrdersAdapter.notifyDataSetChanged();
             },1000);
+        });
+    }
+
+    /**
+     * @param bundle 携带参数
+     */
+    public void showOptionDialog(Bundle bundle) {
+        DialogListFragment.showOperateDialog(getActivity().getSupportFragmentManager(), bundle, string -> {
+
         });
     }
 

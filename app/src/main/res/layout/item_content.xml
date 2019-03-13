@@ -11,11 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="22dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginTop="17dp"
         android:drawablePadding="8dp"
-        android:textColor="#1871FA"
-        android:textSize="18dp"
+        android:textColor="#ff000000"
+        android:textSize="18sp"
         android:gravity="center"
         />
 
