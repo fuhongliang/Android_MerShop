@@ -1,36 +1,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <include
         android:id="@+id/navigation_header_container"
         layout="@layout/layout_header" />
 
-    <LinearLayout
-        android:id="@+id/ll_content"
+    <ListView
+        android:layout_below="@+id/navigation_header_container"
+        android:id="@+id/lv_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:layout_above="@+id/ll_bottom"
-        android:layout_below="@+id/navigation_header_container"
-        android:orientation="horizontal">
-
-        <ListView
-            android:id="@+id/lv_category"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:background="#F5F5F5"
-            android:scrollbars="none" />
-
-        <ListView
-            android:id="@+id/lv_product"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:scrollbars="none"
-            />
-
-    </LinearLayout>
+        android:scrollbars="none"
+        tools:listitem="@layout/item_manage_category"
+        />
 
     <LinearLayout
         android:id="@+id/ll_bottom"
@@ -55,13 +42,13 @@
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:background="@drawable/editmenu_glfl"
+                    android:background="@drawable/editmenu_px"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="管理分类"
+                    android:text="排序/批量操作"
                     android:layout_marginLeft="10dp"
                     android:textColor="#ff000000"
                     android:textSize="17sp"
@@ -99,5 +86,6 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
+
 </RelativeLayout>
 
