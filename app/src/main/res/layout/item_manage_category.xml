@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_content"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:id="@+id/tv_categroy"
+        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:textColor="#ff000000"
+        android:textSize="17sp"
+        android:layout_marginLeft="15dp"
+        android:gravity="center_vertical"
+        android:text="热销"
+        />
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:text="编辑"
+        android:layout_width="68dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_grey_line"/>
+
+    <TextView
+        android:id="@+id/tv_add_product"
+        android:text="新建商品"
+        android:layout_width="68dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_grey_line"/>
+</LinearLayout>

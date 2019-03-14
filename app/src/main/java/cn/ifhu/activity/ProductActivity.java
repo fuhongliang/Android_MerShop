@@ -1,10 +1,12 @@
 package cn.ifhu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,10 @@ public class ProductActivity extends BaseActivity {
     ArrayList<String> mProductArray = new ArrayList<>();
     CategoryAdapter mCategoryAdapter;
     ProductAdapter mProductAdapter;
+    @BindView(R.id.rl_manage_category)
+    RelativeLayout rlManageCategory;
+    @BindView(R.id.rl_add_product)
+    RelativeLayout rlAddProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +87,20 @@ public class ProductActivity extends BaseActivity {
         }
     }
 
+
     @OnClick(R.id.iv_back)
-    public void onViewClicked() {
+    public void onIvBackClicked() {
         finish();
+    }
+
+    @OnClick(R.id.rl_manage_category)
+    public void onRlManageCategoryClicked() {
+        startActivity(new Intent(ProductActivity.this,ManageProductCategoryActivity.class));
+
+    }
+
+    @OnClick(R.id.rl_add_product)
+    public void onRlAddProductClicked() {
+        startActivity(new Intent(ProductActivity.this,AddOrEditProductActivity.class));
     }
 }

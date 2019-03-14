@@ -62,11 +62,9 @@ public class CategoryAdapter extends BaseAdapter {
         if (mCurPosition == position) {
             viewHolder.imageView.setVisibility(View.VISIBLE);
             viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.selected_black));
-//            viewHolder.linearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.white));
         } else {
             viewHolder.imageView.setVisibility(View.GONE);
             viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.unselect_grey));
-//            viewHolder.linearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.category_color));
         }
         viewHolder.textView.setText(mDataList.get(position));
         viewHolder.linearLayout.setOnClickListener(v -> {
