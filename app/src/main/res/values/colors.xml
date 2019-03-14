@@ -8,5 +8,7 @@
     <color name="selected_color">#1871FA</color>
     <color name="transparent">#00000000</color>
     <color name="black">#000000</color>
-
+    <color name="selected_black">#000000</color>
+    <color name="unselect_grey">#ff666666</color>
+    <color name="category_color">#F5F5F5</color>
 </resources>
