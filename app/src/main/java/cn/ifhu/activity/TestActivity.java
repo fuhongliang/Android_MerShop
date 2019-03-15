@@ -10,6 +10,6 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.restaurant_announcement);
+        setContentView(R.layout.change_password);
     }
 }
