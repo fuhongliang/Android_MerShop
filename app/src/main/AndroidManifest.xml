@@ -20,14 +20,14 @@
         <activity android:name=".activity.AddOrEditProductActivity" />
         <activity android:name=".activity.ManageProductCategoryActivity" />
         <activity android:name=".activity.login.LoginActivity">
+
+        </activity>
+        <activity android:name=".activity.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".activity.TestActivity">
-           
         </activity>
 
     </application>
