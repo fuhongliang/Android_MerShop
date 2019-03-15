@@ -17,19 +17,21 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".activity.ProductActivity"></activity>
         <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.AddOrEditProductActivity" />
+        <activity
+            android:name=".activity.AddOrEditProductActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.ManageProductCategoryActivity" />
-        <activity android:name=".activity.login.LoginActivity">
+        <activity android:name=".activity.SortCategoryActivity" />
+        <activity
+            android:name=".activity.login.LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TestActivity">
-           
-        </activity>
-
+        <activity android:name=".activity.TestActivity"></activity>
     </application>
 
 </manifest>

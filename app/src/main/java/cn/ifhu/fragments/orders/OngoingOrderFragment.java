@@ -27,12 +27,13 @@ import cn.ifhu.base.BaseFragment;
 import cn.ifhu.dialog.DialogListFragment;
 import cn.ifhu.dialog.NormalTextDialog;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.utils.DialogUtils;
 import cn.ifhu.utils.ToastHelper;
 
 /**
  * @author tony
  */
-public class OngoingOrderFragment extends BaseFragment {
+public class OngoingOrderFragment extends BaseFragment{
 
     @BindView(R.id.recycler_list)
     RecyclerView recyclerList;
@@ -104,10 +105,17 @@ public class OngoingOrderFragment extends BaseFragment {
 
 
     public void showPrintDialog(int position) {
-        ConfirmDialog.newInstance("1")
-                .setMargin(60)
-                .setOutCancel(false)
-                .show(getActivity().getSupportFragmentManager());
+        DialogUtils.showConfirmDialog("提示","确定打印小票？", getActivity().getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+            @Override
+            public void cancel() {
+                    ToastHelper.makeText("点击了取消按钮",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            }
+
+            @Override
+            public void ok() {
+                ToastHelper.makeText("点击了确定按钮",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            }
+        });
     }
 
     @Override

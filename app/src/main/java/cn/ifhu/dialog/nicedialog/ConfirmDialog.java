@@ -7,14 +7,21 @@ import android.view.View;
 import cn.ifhu.R;
 
 public class ConfirmDialog extends BaseNiceDialog {
-    private String type;
+    public ButtonOnclick buttonOnclick;
+    public String title;
+    public String message;
 
-    public static ConfirmDialog newInstance(String type) {
+    public static ConfirmDialog newInstance(String title, String message) {
         Bundle bundle = new Bundle();
-        bundle.putString("type", type);
+        bundle.putString("title", title);
+        bundle.putString("message", message);
         ConfirmDialog dialog = new ConfirmDialog();
         dialog.setArguments(bundle);
         return dialog;
+    }
+
+    public void setButtonOnclick(ButtonOnclick buttonOnclick) {
+        this.buttonOnclick = buttonOnclick;
     }
 
     @Override
@@ -24,7 +31,8 @@ public class ConfirmDialog extends BaseNiceDialog {
         if (bundle == null) {
             return;
         }
-        type = bundle.getString("type");
+        title = bundle.getString("title");
+        message = bundle.getString("message");
     }
 
     @Override
@@ -34,17 +42,16 @@ public class ConfirmDialog extends BaseNiceDialog {
 
     @Override
     public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
-        if ("1".equals(type)) {
-            holder.setText(R.id.title, "提示");
-            holder.setText(R.id.message, "是否打印小票？！");
-        } else if ("2".equals(type)) {
-            holder.setText(R.id.title, "警告");
-            holder.setText(R.id.message, "您的账号已被冻结！");
-        }
+        holder.setText(R.id.title, title);
+        holder.setText(R.id.message, message);
+
         holder.setOnClickListener(R.id.cancel, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                if (buttonOnclick != null){
+                    buttonOnclick.cancel();
+                }
             }
         });
 
@@ -52,7 +59,16 @@ public class ConfirmDialog extends BaseNiceDialog {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                if (buttonOnclick != null){
+                    buttonOnclick.ok();
+                }
             }
         });
+    }
+
+
+    public interface ButtonOnclick{
+        void cancel();
+        void ok();
     }
 }

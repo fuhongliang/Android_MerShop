@@ -76,7 +76,7 @@ public class ManageProductCategoryActivity extends BaseActivity {
 
     @OnClick(R.id.rl_manage_category)
     public void onRlManageCategoryClicked() {
-
+        startActivity(new Intent(ManageProductCategoryActivity.this,SortCategoryActivity.class));
     }
 
     @OnClick(R.id.rl_add_product)
