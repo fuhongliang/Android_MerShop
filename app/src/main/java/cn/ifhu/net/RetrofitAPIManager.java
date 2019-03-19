@@ -59,6 +59,4 @@ public class RetrofitAPIManager {
         OkHttpClient httpClient = builder.build();
         return httpClient;
     }
-
-
 }

@@ -31,6 +31,7 @@
                 android:layout_marginLeft="15dp"
                 />
             <TextView
+                android:id="@+id/tv_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="188****8765"
@@ -64,6 +65,7 @@
                 android:layout_marginLeft="15dp"
                 />
             <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="gg****ui"
@@ -81,6 +83,7 @@
             android:layout_marginLeft="15dp"/>
         <!--修改密码-->
         <RelativeLayout
+            android:id="@+id/rl_change_password"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#ffffff"

@@ -18,5 +18,12 @@ public class DialogUtils {
         confirmDialog.show(manager);
     }
 
+    public static void showConfirmDialog(String title, String message, String cancel, String ok, FragmentManager manager, ConfirmDialog.ButtonOnclick buttonOnclick) {
+        ConfirmDialog confirmDialog = ConfirmDialog.newInstance(title, message,cancel,ok);
+        confirmDialog.setMargin(60);
+        confirmDialog.setOutCancel(false);
+        confirmDialog.setButtonOnclick(buttonOnclick);
+        confirmDialog.show(manager);
+    }
 
 }

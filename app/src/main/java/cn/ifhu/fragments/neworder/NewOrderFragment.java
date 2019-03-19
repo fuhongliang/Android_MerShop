@@ -98,29 +98,40 @@ public class NewOrderFragment extends BaseFragment {
         });
     }
 
-    public void receiveOrder(String orderId){
+    public void receiveOrder(String orderId,int position){
 
         RetrofitAPIManager.create(OrderService.class).receiveOrder(orderId)
-                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
 
             @Override
             protected void onApiComplete() {
-                Logger.d("onApiComplete");
-                layoutSwipeRefresh.setRefreshing(false);
+
             }
 
             @Override
-            protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
-                Logger.d("onSuccees"+t);
-                if (t.getData().isEmpty()){
-//                    recyclerList
-                }else {
-                    mDatas.clear();
-                    mDatas.addAll(t.getData());
-                    newOrdersAdapter.updateData(mDatas);
-                }
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                mDatas.remove(position);
+                newOrdersAdapter.updateData(mDatas);
+                ToastHelper.makeText("接单成功",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            }
+        });
+    }
 
-                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+    public void refuseOrder(int orderId,int position,String reason){
+
+        RetrofitAPIManager.create(OrderService.class).refuseOrder(orderId,reason)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+
+            @Override
+            protected void onApiComplete() {
+
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                mDatas.remove(position);
+                newOrdersAdapter.updateData(mDatas);
+                ToastHelper.makeText("已拒绝！",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             }
         });
     }
@@ -147,14 +158,12 @@ public class NewOrderFragment extends BaseFragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("title", "请选择拒单理由");
                 bundle.putStringArrayList("stringList", reasonList);
-                showOptionDialog(bundle);
+                showOptionDialog(bundle,position);
             }
 
             @Override
             public void accept(int position) {
-                mDatas.remove(position);
-                newOrdersAdapter.updateData(mDatas);
-                ToastHelper.makeText("接单成功",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                receiveOrder(mDatas.get(position).getOrder_id()+"",position);
             }
         });
         recyclerList.setAdapter(newOrdersAdapter);
@@ -176,9 +185,9 @@ public class NewOrderFragment extends BaseFragment {
     /**
      * @param bundle 携带参数
      */
-    public void showOptionDialog(Bundle bundle) {
+    public void showOptionDialog(Bundle bundle,int position) {
         DialogListFragment.showOperateDialog(getActivity().getSupportFragmentManager(), bundle, string -> {
-
+            refuseOrder(mDatas.get(position).getOrder_id(),position,string);
         });
     }
 

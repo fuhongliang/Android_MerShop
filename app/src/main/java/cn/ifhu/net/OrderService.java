@@ -21,6 +21,10 @@ public interface OrderService {
 
     @FormUrlEncoded
     @POST("receive_order")
-    public Observable<BaseEntity<ArrayList<OrderBean>>> receiveOrder(@Field("order_id") String order_id);
+    public Observable<BaseEntity<Object>> receiveOrder(@Field("order_id") String order_id);
+
+    @FormUrlEncoded
+    @POST("refuse_order")
+    public Observable<BaseEntity<Object>> refuseOrder(@Field("order_id") int order_id,@Field("refuse_reason") String refuse_reason);
 
 }

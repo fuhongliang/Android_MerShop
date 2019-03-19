@@ -1,9 +1,9 @@
 package cn.ifhu.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -15,7 +15,7 @@ import cn.ifhu.base.BaseActivity;
 /**
  * @author fuhongliang
  */
-public class AccountAndSafeActivity extends BaseActivity {
+public class ChangePassWordActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -23,17 +23,23 @@ public class AccountAndSafeActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.tv_phone)
     TextView tvPhone;
-    @BindView(R.id.tv_name)
-    TextView tvName;
-    @BindView(R.id.rl_change_password)
-    RelativeLayout rlChangePassword;
+    @BindView(R.id.tv_get_code)
+    TextView tvGetCode;
+    @BindView(R.id.et_code)
+    EditText etCode;
+    @BindView(R.id.et_new_password)
+    EditText etNewPassword;
+    @BindView(R.id.et_password_again)
+    EditText etPasswordAgain;
+    @BindView(R.id.btn_ok)
+    Button btnOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accountandsafe);
+        setContentView(R.layout.activity_change_password);
         ButterKnife.bind(this);
-        tvTitle.setText("账号与安全");
+        tvTitle.setText("修改密码");
     }
 
     @OnClick(R.id.iv_back)
@@ -41,8 +47,14 @@ public class AccountAndSafeActivity extends BaseActivity {
         finish();
     }
 
-    @OnClick(R.id.rl_change_password)
-    public void onRlChangePasswordClicked() {
-        startActivity(new Intent(AccountAndSafeActivity.this,ChangePassWordActivity.class));
+    @OnClick(R.id.tv_get_code)
+    public void onTvGetCodeClicked() {
+
     }
+
+    @OnClick(R.id.btn_ok)
+    public void onBtnOkClicked() {
+
+    }
+
 }

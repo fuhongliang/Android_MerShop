@@ -5,11 +5,14 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import cn.ifhu.R;
+import cn.ifhu.utils.StringUtils;
 
 public class ConfirmDialog extends BaseNiceDialog {
     public ButtonOnclick buttonOnclick;
     public String title;
     public String message;
+    public String cancel;
+    public String ok;
 
     public static ConfirmDialog newInstance(String title, String message) {
         Bundle bundle = new Bundle();
@@ -20,6 +23,16 @@ public class ConfirmDialog extends BaseNiceDialog {
         return dialog;
     }
 
+    public static ConfirmDialog newInstance(String title, String message,String cancel,String ok) {
+        Bundle bundle = new Bundle();
+        bundle.putString("title", title);
+        bundle.putString("message", message);
+        bundle.putString("cancel", cancel);
+        bundle.putString("ok", ok);
+        ConfirmDialog dialog = new ConfirmDialog();
+        dialog.setArguments(bundle);
+        return dialog;
+    }
     public void setButtonOnclick(ButtonOnclick buttonOnclick) {
         this.buttonOnclick = buttonOnclick;
     }
@@ -33,6 +46,8 @@ public class ConfirmDialog extends BaseNiceDialog {
         }
         title = bundle.getString("title");
         message = bundle.getString("message");
+        cancel = bundle.getString("cancel");
+        ok = bundle.getString("ok");
     }
 
     @Override
@@ -44,24 +59,21 @@ public class ConfirmDialog extends BaseNiceDialog {
     public void convertView(ViewHolder holder, final BaseNiceDialog dialog) {
         holder.setText(R.id.title, title);
         holder.setText(R.id.message, message);
-
-        holder.setOnClickListener(R.id.cancel, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                if (buttonOnclick != null){
-                    buttonOnclick.cancel();
-                }
+        if (!StringUtils.isEmpty(ok) && !StringUtils.isEmpty(cancel)){
+            holder.setText(R.id.cancel, cancel);
+            holder.setText(R.id.ok, ok);
+        }
+        holder.setOnClickListener(R.id.cancel, v -> {
+            dialog.dismiss();
+            if (buttonOnclick != null){
+                buttonOnclick.cancel();
             }
         });
 
-        holder.setOnClickListener(R.id.ok, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                if (buttonOnclick != null){
-                    buttonOnclick.ok();
-                }
+        holder.setOnClickListener(R.id.ok, v -> {
+            dialog.dismiss();
+            if (buttonOnclick != null){
+                buttonOnclick.ok();
             }
         });
     }
