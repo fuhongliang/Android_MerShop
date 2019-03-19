@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -17,6 +18,9 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
 
+/**
+ * @author fuhongliang
+ */
 public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
 
     private static final String TAG = "BaseObserver";
@@ -36,6 +40,7 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
 
     @Override
     public void onNext(BaseEntity<T> tLinkBaseEntity) {
+        Logger.d(tLinkBaseEntity.getMessage());
         if (tLinkBaseEntity.isSuccess()) {
             try {
                 onSuccees(tLinkBaseEntity);
@@ -48,6 +53,7 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
                 onCodeError(tLinkBaseEntity);
                 if (needShowErroToast) {
                     if (tLinkBaseEntity != null && !TextUtils.isEmpty(tLinkBaseEntity.getMessage())) {
+                        Logger.d(tLinkBaseEntity.getMessage());
                         ToastHelper.makeText(tLinkBaseEntity.getMessage(), Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();
                     }
                 }
@@ -59,7 +65,8 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
 
     @Override
     public void onError(Throwable e) {
-        Log.w(TAG, "onError: " + e.toString());
+        Logger.d("onError: " + e.toString());
+
         onAPIError();
         try {
             if (e instanceof ConnectException
@@ -78,14 +85,7 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
                     if (400 <= error.code() && error.code() < 500) {
                         Gson gson = new Gson();
                         BaseEntity<T> linkBaseEntity = gson.fromJson(error.response().errorBody().string(), BaseEntity.class);
-                        if (linkBaseEntity != null && linkBaseEntity.getCode() != null && linkBaseEntity.getCode().equals("authentication_failed")) {
-//                            UserLogic.isLinkTokenUpdate.set(!UserLogic.isLinkTokenUpdate.get());
-                        }
-                        if (linkBaseEntity != null && linkBaseEntity.getCode() != null && (linkBaseEntity.getCode().equals("token_missing")
-                                || linkBaseEntity.getCode().equals("token_expired") || linkBaseEntity.getCode().equals("token_invalid"))) {
-//                            UserLogic.apiDataToken.set(false);
-//                            UserLogic.fetchToken();
-                        }
+
                         onCodeError(linkBaseEntity);
                         if (needShowErroToast) {
                             if (linkBaseEntity != null && !TextUtils.isEmpty(linkBaseEntity.getMessage())) {

@@ -26,10 +26,13 @@ public interface LoginContract {
          */
         void showToast(String msg);
 
+        void setLoadingMessageIndicator(boolean indicator);
+
+        void loginSuccess();
     }
 
     interface Presenter extends BasePresenter {
-        boolean checkPhoneNumber(String phoneNo);
+        boolean checkPhoneNumber(String phoneNo,String passWord);
         void loginWithCode(String phone, String code);
     }
 }

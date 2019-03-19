@@ -35,6 +35,9 @@ dependencies {
     /**
      * 网络库
      */
+    /**
+     * 网络库
+     */
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -52,4 +55,5 @@ dependencies {
      */
     implementation 'com.github.rahatarmanahmed:circularprogressview:2.5.0'
 
+    implementation 'com.orhanobut:logger:2.2.0'
 }
