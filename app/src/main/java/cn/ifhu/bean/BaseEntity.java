@@ -5,33 +5,33 @@ package cn.ifhu.bean;
  */
 public class BaseEntity<T> {
 
-    private static String SUCCESS_CODE = "ok";
-    private String code;
-    private String message;
+    private static int SUCCESS_CODE = 200;
+    private int code = 0;
+    private String msg;
     private T data;
 
 
     public boolean isSuccess() {
-        if (code != null && code.equals(SUCCESS_CODE)) {
+        if (code == SUCCESS_CODE) {
             return true;
         }
         return false;
     }
 
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
     public String getMessage() {
-        return message;
+        return msg;
     }
 
     public void setMessage(String message) {
-        this.message = message;
+        this.msg = message;
     }
 
     public T getData() {
