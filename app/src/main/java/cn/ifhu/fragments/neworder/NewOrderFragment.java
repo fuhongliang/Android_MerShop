@@ -1,6 +1,5 @@
 package cn.ifhu.fragments.neworder;
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +27,20 @@ import cn.ifhu.activity.MainActivity;
 import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.adapter.NewOrdersAdapter;
 import cn.ifhu.base.BaseFragment;
+import cn.ifhu.base.BaseObserver;
+import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.OrderBean;
+import cn.ifhu.bean.UserServiceBean;
 import cn.ifhu.dialog.DialogListFragment;
+import cn.ifhu.net.OrderService;
+import cn.ifhu.net.RetrofitAPIManager;
+import cn.ifhu.net.SchedulerUtils;
+import cn.ifhu.net.UserService;
 import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.UserLogic;
 
 /**
- * @author tony
+ * @author fuhongliang
  */
 public class NewOrderFragment extends BaseFragment {
 
@@ -41,8 +51,7 @@ public class NewOrderFragment extends BaseFragment {
     Unbinder unbinder;
 
     NewOrdersAdapter newOrdersAdapter;
-    //模拟数据
-    private List<String> mDatas;
+    private List<OrderBean> mDatas;
     private ArrayList<String> reasonList;
     public static NewOrderFragment newInstance() {
         return new NewOrderFragment();
@@ -54,14 +63,66 @@ public class NewOrderFragment extends BaseFragment {
     }
 
     protected void initData() {
-        mDatas = new ArrayList<String>();
-        for (int i = 1; i < 80; i++) {
-            mDatas.add("#" +  i);
-        }
+        mDatas = new ArrayList<>();
         reasonList = new ArrayList<>();
         reasonList.add("商品已售罄");
         reasonList.add("商家已打样");
         reasonList.add("其他");
+    }
+
+    public void getNewOrders(){
+        Logger.d("getNewOrders");
+        layoutSwipeRefresh.setRefreshing(true);
+        RetrofitAPIManager.create(OrderService.class).getNewOrder(UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
+
+            @Override
+            protected void onApiComplete() {
+                Logger.d("onApiComplete");
+                layoutSwipeRefresh.setRefreshing(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
+                Logger.d("onSuccees"+t);
+                if (t.getData().isEmpty()){
+//                    recyclerList
+                }else {
+                    mDatas.clear();
+                    mDatas.addAll(t.getData());
+                    newOrdersAdapter.updateData(mDatas);
+                }
+
+                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            }
+        });
+    }
+
+    public void receiveOrder(String orderId){
+
+        RetrofitAPIManager.create(OrderService.class).receiveOrder(orderId)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
+
+            @Override
+            protected void onApiComplete() {
+                Logger.d("onApiComplete");
+                layoutSwipeRefresh.setRefreshing(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
+                Logger.d("onSuccees"+t);
+                if (t.getData().isEmpty()){
+//                    recyclerList
+                }else {
+                    mDatas.clear();
+                    mDatas.addAll(t.getData());
+                    newOrdersAdapter.updateData(mDatas);
+                }
+
+                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            }
+        });
     }
 
     @Override
@@ -77,6 +138,7 @@ public class NewOrderFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Logger.d("onViewCreated");
         initData();
         recyclerList.setLayoutManager(new LinearLayoutManager(getActivity()));
         newOrdersAdapter = new NewOrdersAdapter(mDatas, getContext(), new NewOrdersAdapter.OnclickButton() {
@@ -105,13 +167,9 @@ public class NewOrderFragment extends BaseFragment {
                 R.color.colorPrimaryDark,
                 R.color.colorPrimaryDark,
                 R.color.colorPrimaryDark);
+
         layoutSwipeRefresh.setOnRefreshListener(() -> {
-            new Handler().postDelayed(() -> {
-                layoutSwipeRefresh.setRefreshing(false);
-                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
-                initData();
-                newOrdersAdapter.notifyDataSetChanged();
-            },1000);
+            getNewOrders();
         });
     }
 

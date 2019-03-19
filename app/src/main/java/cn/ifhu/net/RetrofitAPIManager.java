@@ -7,15 +7,8 @@ import android.util.Log;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.orhanobut.logger.Logger;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-import cn.ifhu.R;
-import cn.ifhu.utils.DeviceUtil;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -28,7 +21,7 @@ public class RetrofitAPIManager {
 
     private static final long TIMEOUT = 1000;
     private static Retrofit retrofit;
-    public static String baseURL = "http://master.api.ifhu.cn/index.php/";
+    public static String baseDevURL = "http://develop.api.ifhu.cn/index.php/";
 
     private RetrofitAPIManager() {
 
@@ -37,7 +30,7 @@ public class RetrofitAPIManager {
     public static Retrofit getClientApi() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(baseURL)
+                    .baseUrl(baseDevURL)
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(genericClient())

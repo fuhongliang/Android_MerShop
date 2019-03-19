@@ -19,6 +19,7 @@ import cn.ifhu.base.BaseActivity;
 import cn.ifhu.dialog.loading.LoadingDialog;
 import cn.ifhu.utils.StringUtils;
 import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.UserLogic;
 
 /**
  * @author fuhongliang
@@ -52,6 +53,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 setLoadingMessageIndicator(false);
             }
         });
+
+        if (UserLogic.isLogin()){
+            loginSuccess();
+        }
     }
 
 

@@ -10,8 +10,7 @@ import cn.ifhu.MyApplication;
 import static cn.ifhu.utils.Constants.APP_PREFERENCE;
 
 /**
- * date:   On 2018/8/9
- * @author tommy
+ * @author fuhongliang
  */
 public class IrReference {
 

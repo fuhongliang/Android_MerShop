@@ -67,8 +67,13 @@ public class LoginPresenter implements LoginContract.Presenter {
             @Override
             protected void onSuccees(BaseEntity<UserServiceBean.LoginResponse> t) throws Exception {
                 loginView.showToast("登录成功！");
-                UserLogic.saveUser(t.getData().getData());
+                UserLogic.saveUser(t.getData());
                 loginView.loginSuccess();
+            }
+
+            @Override
+            protected void onCodeError(BaseEntity<UserServiceBean.LoginResponse> t) throws Exception {
+                super.onCodeError(t);
             }
         });
     }

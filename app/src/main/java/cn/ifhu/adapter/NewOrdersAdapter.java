@@ -11,26 +11,30 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.BindView;
 import cn.ifhu.R;
+import cn.ifhu.bean.OrderBean;
 
 /**
  * @author fuhongliang
  */
 public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyViewHolder> {
 
-    private List<String> mDatas;
+    private List<OrderBean> mDatas;
     private Context mContext;
     public OnclickButton onclickButton;
-    public NewOrdersAdapter(List<String> mDatas, Context mContext,OnclickButton onclickButton) {
+
+    public NewOrdersAdapter(List<OrderBean> mDatas, Context mContext, OnclickButton onclickButton) {
         this.mDatas = mDatas;
         this.mContext = mContext;
         this.onclickButton = onclickButton;
     }
 
-    public void updateData(List<String> mDatas){
+    public void updateData(List<OrderBean> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -42,7 +46,10 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tv.setText(mDatas.get(position));
+        holder.tvOrderNumber.setText(mDatas.get(position).getOrder_id() + "");
+        holder.tvCustomerName.setText(mDatas.get(position).getExtend_order_common().getReciver_name() + "");
+        holder.tvCustomerPhone.setText(mDatas.get(position).getExtend_order_common().getPhone() + "");
+        holder.tvCustomerAdd.setText(mDatas.get(position).getExtend_order_common().getAddress() + "");
         holder.btn_refuse.setOnClickListener(v -> onclickButton.refuse(position));
         holder.btn_accept.setOnClickListener(v -> onclickButton.accept(position));
     }
@@ -53,18 +60,38 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv;
         Button btn_refuse;
         Button btn_accept;
+        TextView tvOrderNumber;
+        TextView tvCustomerName;
+        TextView tvCustomerPhone;
+        TextView tvCustomerAdd;
+        TextView tvTotal;
+        TextView tvServiceFee;
+        TextView tvEarnMoney;
+
+        TextView tvOrderTime;
+        TextView tvOrderSn;
+
         public MyViewHolder(View view) {
             super(view);
-            tv = view.findViewById(R.id.tv_order_number);
+            tvOrderNumber = view.findViewById(R.id.tv_order_number);
+            tvCustomerName = view.findViewById(R.id.tv_customer_name);
+            tvCustomerPhone = view.findViewById(R.id.tv_customer_phone);
+            tvCustomerAdd = view.findViewById(R.id.tv_customer_add);
+            tvTotal = view.findViewById(R.id.tv_total);
+            tvServiceFee = view.findViewById(R.id.tv_service_fee);
+            tvEarnMoney = view.findViewById(R.id.tv_earn_money);
+
+            tvOrderTime = view.findViewById(R.id.tv_order_time);
+            tvOrderSn = view.findViewById(R.id.tv_order_sn);
+
             btn_refuse = view.findViewById(R.id.btn_refuse);
             btn_accept = view.findViewById(R.id.btn_accept);
         }
     }
 
-    public interface OnclickButton{
+    public interface OnclickButton {
         void refuse(int position);
         void accept(int position);
     }

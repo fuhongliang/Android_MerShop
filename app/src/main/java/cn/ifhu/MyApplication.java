@@ -5,6 +5,8 @@ import android.app.Application;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import cn.ifhu.utils.IrReference;
+
 /**
  * @author fuhongliang
  */
@@ -20,6 +22,7 @@ public class MyApplication extends Application {
         super.onCreate();
         instance = this;
         Logger.addLogAdapter(new AndroidLogAdapter());
+        IrReference.getInstance();
     }
 
 }
