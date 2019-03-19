@@ -27,7 +27,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="15dp"
-                android:background="@drawable/bg_button_orange"
+                android:background="@drawable/bg_button_bule_white"
                 android:gravity="center"
                 android:text="已停止营业"
                 android:textColor="#ffffff"
