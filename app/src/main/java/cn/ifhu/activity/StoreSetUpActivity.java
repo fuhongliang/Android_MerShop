@@ -77,5 +77,6 @@ public class StoreSetUpActivity extends BaseActivity {
 
     @OnClick(R.id.rl_store_license)
     public void onRlStoreLicenseClicked() {
+        startActivity(new Intent(StoreSetUpActivity.this,BusinessQualificationActivity.class));
     }
 }

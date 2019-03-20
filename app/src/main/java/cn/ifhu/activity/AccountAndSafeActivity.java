@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
+import cn.ifhu.utils.UserLogic;
 
 /**
  * @author fuhongliang
@@ -34,6 +35,8 @@ public class AccountAndSafeActivity extends BaseActivity {
         setContentView(R.layout.activity_accountandsafe);
         ButterKnife.bind(this);
         tvTitle.setText("账号与安全");
+        tvPhone.setText(UserLogic.getUser().getMember_mobile());
+//        tvName.setText(UserLogic.getUser().getStore_name());
     }
 
     @OnClick(R.id.iv_back)
