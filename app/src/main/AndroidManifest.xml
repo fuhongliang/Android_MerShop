@@ -47,6 +47,9 @@
         <activity android:name=".activity.StoreStateActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
 
+        <activity android:name=".activity.ChangeStorePhoneActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
     </application>
 
 </manifest>

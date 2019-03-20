@@ -22,4 +22,8 @@ public interface MeService {
     @POST("store_set_workstate")
     public Observable<BaseEntity<Object>> storeSetWorkstate(@Field("store_id") int store_id,@Field("store_state") int store_state);
 
+    @FormUrlEncoded
+    @POST("store_set_phone")
+    public Observable<BaseEntity<Object>> storeSetPhone(@Field("store_id") int store_id,@Field("phone_number") String phone_number);
+
 }

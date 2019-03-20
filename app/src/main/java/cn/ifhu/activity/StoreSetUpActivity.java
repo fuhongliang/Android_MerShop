@@ -69,6 +69,8 @@ public class StoreSetUpActivity extends BaseActivity {
 
     @OnClick(R.id.ll_store_phone)
     public void onLlStorePhoneClicked() {
+        startActivity(new Intent(StoreSetUpActivity.this,ChangeStorePhoneActivity.class));
+
     }
 
     @OnClick(R.id.tv_store_time)

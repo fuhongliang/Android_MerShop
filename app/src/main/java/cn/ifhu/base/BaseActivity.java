@@ -18,7 +18,7 @@ import cn.ifhu.utils.Utils;
 public class BaseActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {     //创建时的回调函数onCreate
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this);
     }
