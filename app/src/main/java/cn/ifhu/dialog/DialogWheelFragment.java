@@ -70,16 +70,13 @@ public class DialogWheelFragment extends BaseDialogFragment{
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
-        TextView title = view.findViewById(R.id.tv_title);
         Bundle bundle = getArguments();
-        title.setText(bundle.getString("title"));
         stringList = bundle.getStringArrayList("stringList");
         llContent = view.findViewById(R.id.ll_content);
         timePickerBegin = view.findViewById(R.id.time_picker);
         timePickerEnd = view.findViewById(R.id.time_picker2);
         addOptionalView();
-//        changeTimePickerColor(view);
+//      changeTimePickerColor(view);
     }
 
     public void addOptionalView() {

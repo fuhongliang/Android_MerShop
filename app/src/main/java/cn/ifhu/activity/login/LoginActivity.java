@@ -54,9 +54,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
 
-        if (UserLogic.isLogin()){
-            loginSuccess();
-        }
+//        if (UserLogic.isLogin()){
+//            loginSuccess();
+//        }
     }
 
 

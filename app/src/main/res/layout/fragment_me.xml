@@ -98,7 +98,8 @@
 
             <LinearLayout
                 android:id="@+id/ll_print_setup"
-                style="@style/me_layout">
+                style="@style/me_layout"
+                >
 
                 <ImageView
                     android:layout_width="20dp"

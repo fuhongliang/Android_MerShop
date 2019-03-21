@@ -19,6 +19,7 @@
 
         <activity android:name=".activity.ProductActivity"/>
         <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.RingSettingsActivity"></activity>
         <activity
             android:name=".activity.AddOrEditProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -38,20 +39,20 @@
         <activity
             android:name=".activity.StoreSetUpActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity android:name=".activity.AboutUsActivity" />
         <activity android:name=".activity.AccountAndSafeActivity" />
         <activity
             android:name=".activity.FeedBackActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity
             android:name=".activity.ChangePassWordActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activity.StoreStateActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
+        <activity
+            android:name=".activity.ChangeStorePhoneActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activity.BusinessQualificationActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />

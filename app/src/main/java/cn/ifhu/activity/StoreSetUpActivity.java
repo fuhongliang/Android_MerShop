@@ -72,6 +72,8 @@ public class StoreSetUpActivity extends BaseActivity {
 
     @OnClick(R.id.ll_store_phone)
     public void onLlStorePhoneClicked() {
+        startActivity(new Intent(StoreSetUpActivity.this,ChangeStorePhoneActivity.class));
+
     }
 
     private ArrayList<String> hours = new ArrayList<>();

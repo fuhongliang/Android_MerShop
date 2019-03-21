@@ -5,52 +5,30 @@
     android:background="#F5F5F5"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_header" />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff">
-
-        <EditText
-            android:id="@+id/et_feedback"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="14dp"
-            android:background="@null"
-            android:gravity="left"
-            android:hint="请留下您的宝贵意见或建议，我们将努力改进"
-            android:textColor="#999999"
-            android:textSize="17sp" />
-
-    </RelativeLayout>
+    <include layout="@layout/layout_header"/>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:background="#ffffff">
 
         <EditText
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:background="@null"
-            android:gravity="center_vertical"
-            android:hint="@string/phone_tips"
-            android:textColor="#999999"
+            android:gravity="left"
+            android:hint="请输入餐厅电话"
+            android:textColor="#666666"
             android:textSize="17sp" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -64,7 +42,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/bg_button_blue"
-        android:text="@string/save"
+        android:text="保存"
         android:textColor="#ffffff"
         android:textSize="17sp" />
+
 </LinearLayout>
