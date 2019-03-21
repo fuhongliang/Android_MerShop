@@ -23,6 +23,7 @@ import butterknife.Unbinder;
 import cn.ifhu.R;
 import cn.ifhu.activity.AccountAndSafeActivity;
 import cn.ifhu.activity.FeedBackActivity;
+import cn.ifhu.activity.RingSettingsActivity;
 import cn.ifhu.activity.StoreSetUpActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
@@ -100,7 +101,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.ll_notice)
     public void onLlNoticeClicked() {
-
+        startActivity(new Intent(getActivity(), RingSettingsActivity.class));
     }
 
     @OnClick(R.id.ll_account_safe)
