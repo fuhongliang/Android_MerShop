@@ -58,5 +58,4 @@ dependencies {
 
     implementation 'com.orhanobut:logger:2.2.0'
 
-    implementation 'com.contrarywind:wheelview:4.0.9'
 }
