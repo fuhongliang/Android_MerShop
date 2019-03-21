@@ -87,4 +87,13 @@
         <item name="android:layout_weight">1</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="Theme.picker" parent="android:Theme.Holo.NoActionBar">
+        <item name="android:editTextStyle">@style/Widget.EditText.White</item>
+    </style>
+
+    <style name="Widget.EditText.White" parent="@android:style/Widget.EditText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#b3b3b3</item>
+    </style>
 </resources>

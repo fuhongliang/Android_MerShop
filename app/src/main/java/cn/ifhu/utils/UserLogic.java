@@ -28,7 +28,7 @@ public class UserLogic {
             UserServiceBean.LoginResponse mUser = gson.fromJson(json, UserServiceBean.LoginResponse.class);
             return mUser;
         }
-        return new UserServiceBean.LoginResponse();
+        return null;
     }
 
     public static boolean isLogin() {
