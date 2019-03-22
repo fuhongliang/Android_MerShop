@@ -30,6 +30,7 @@ public class RingSettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ring_settings);
         ButterKnife.bind(this);
+        tvTitle.setText("消息和铃声设置");
         initSwitch();
         settingSwitch();
     }
