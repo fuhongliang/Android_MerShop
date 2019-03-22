@@ -132,7 +132,7 @@ public class StoreSetUpActivity extends BaseActivity {
     public void setStoreTime(String beginTime,String endTime){
         tvStoreTime.setText(beginTime+endTime);
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(),beginTime,endTime,UserLogic.getUser().getToken())
+        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(),beginTime,endTime)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {

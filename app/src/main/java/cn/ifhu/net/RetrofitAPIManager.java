@@ -56,17 +56,16 @@ public class RetrofitAPIManager {
     private static OkHttpClient genericClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addNetworkInterceptor(new StethoInterceptor())
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        String token = UserLogic.getUser().getToken();
-                        Request request = chain.request()
-                                .newBuilder()
-                                .addHeader("token", token)
-                                .build();
-                        return chain.proceed(request);
+                .addInterceptor(chain -> {
+                    String token = "";
+                    if (UserLogic.isLogin()) {
+                        token = UserLogic.getUser().getToken();
                     }
-
+                    Request request = chain.request()
+                            .newBuilder()
+                            .addHeader("token", token)
+                            .build();
+                    return chain.proceed(request);
                 })
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)

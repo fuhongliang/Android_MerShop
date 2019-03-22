@@ -35,8 +35,15 @@ public interface MeService {
 
     @FormUrlEncoded
     @POST("store_set_worktime")
-    public Observable<BaseEntity<Object>> storeSetWorktime(@Field("store_id") int store_id,@Field("work_start_time") String work_start_time,@Field("work_end_time") String work_end_time,@Field("token") String token);
+    public Observable<BaseEntity<Object>> storeSetWorktime(@Field("store_id") int store_id,@Field("work_start_time") String work_start_time,@Field("work_end_time") String work_end_time);
 
+    @FormUrlEncoded
+    @POST("get_sms")
+    public Observable<BaseEntity<Object>> getSms(@Field("phone_number") String phone_number);
+
+    @FormUrlEncoded
+    @POST("edit_passwd")
+    public Observable<BaseEntity<Object>> editPasswd(@Field("member_id") String member_id,@Field("phone_number") String phone_number,@Field("verify_code") String verify_code,@Field("new_passwd") String new_passwd,@Field("con_new_passwd") String con_new_passwd);
 
 
 }
