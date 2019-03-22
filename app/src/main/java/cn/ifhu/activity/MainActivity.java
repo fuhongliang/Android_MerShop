@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void logout(){
-        UserLogic.isLogin();
+        UserLogic.loginOut();
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
     }

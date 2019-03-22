@@ -7,6 +7,9 @@ import android.view.View;
 import cn.ifhu.R;
 import cn.ifhu.utils.StringUtils;
 
+/**
+ * @author fuhongliang
+ */
 public class ConfirmDialog extends BaseNiceDialog {
     public ButtonOnclick buttonOnclick;
     public String title;

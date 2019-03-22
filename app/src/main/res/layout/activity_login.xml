@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:maxLines="1"
-            android:text="000000"
+            android:text="1111111"
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:layout_toRightOf="@id/tv_password"

@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
 import cn.ifhu.utils.Constants;
@@ -30,7 +32,7 @@ public class RingSettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ring_settings);
         ButterKnife.bind(this);
-        tvTitle.setText("消息和铃声设置");
+        tvTitle.setText("消息与铃声设置");
         initSwitch();
         settingSwitch();
     }
@@ -62,4 +64,8 @@ public class RingSettingsActivity extends BaseActivity {
         swhStatus.setChecked(isRingMost);
     }
 
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }

@@ -10,24 +10,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.R;
+import cn.ifhu.bean.ProductManageBean;
 
 /**
  * @author fuhongliang
  */
 public class ProductAdapter extends BaseAdapter {
-    public ArrayList<String> mDataList;
+    public List<ProductManageBean.GoodsListBean> mDataList;
     public Context mContext;
 
-    public void updateData(ArrayList<String> mDataList){
+    public void setmDataList(List<ProductManageBean.GoodsListBean> mDataList) {
         this.mDataList = mDataList;
         notifyDataSetChanged();
     }
 
-    public ProductAdapter(ArrayList<String> mDataList, Context mContext) {
+    public ProductAdapter(List<ProductManageBean.GoodsListBean> mDataList, Context mContext) {
         this.mDataList = mDataList;
         this.mContext = mContext;
     }
@@ -62,7 +64,7 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvPrice.setText(mDataList.get(position));
+        viewHolder.tvPrice.setText(mDataList.get(position).getGoods_price());
         viewHolder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         return convertView;
     }

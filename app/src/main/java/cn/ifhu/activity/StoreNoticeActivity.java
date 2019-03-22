@@ -25,7 +25,7 @@ import cn.ifhu.utils.UserLogic;
 /**
  * @author fuhongliang
  */
-public class PublishNoticeActivity extends BaseActivity {
+public class StoreNoticeActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -41,43 +41,37 @@ public class PublishNoticeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_announcement);
         ButterKnife.bind(this);
-        setStoreNotice();
+        tvTitle.setText("餐厅公告");
+        etNotice.setText(UserLogic.getUser().getStore_description()+"");
     }
+
 
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
         finish();
     }
 
-    public void setStoreNotice(){
-        etNotice.setText(UserLogic.getUser().getStore_description());
-    }
-
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
-        if (!isNoticeEmpty()){
+        if (!StringUtils.isEmpty(etNotice.getText().toString().trim())) {
             setLoadingMessageIndicator(true);
             RetrofitAPIManager.create(MeService.class).storeSetDesc(UserLogic.getUser().getStore_id(),etNotice.getText().toString().trim())
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+
                 @Override
                 protected void onApiComplete() {
                     setLoadingMessageIndicator(false);
                 }
 
                 @Override
-                protected void onSuccees(BaseEntity t) throws Exception {
+                protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                    ToastHelper.makeText(t.getMessage()+"", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
                     UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
                     loginResponse.setStore_description(etNotice.getText().toString().trim());
                     UserLogic.saveUser(loginResponse);
-                    setStoreNotice();
-                    ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                 }
             });
         }
-
     }
 
-    public boolean isNoticeEmpty(){
-        return StringUtils.isEmpty(etNotice.getText().toString().trim());
-    }
 }
