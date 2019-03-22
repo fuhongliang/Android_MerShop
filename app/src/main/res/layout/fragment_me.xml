@@ -18,6 +18,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv_store_state"
             android:layout_width="74dp"
             android:layout_height="25dp"
             android:layout_alignParentRight="true"

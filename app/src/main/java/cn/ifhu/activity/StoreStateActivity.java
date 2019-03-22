@@ -45,6 +45,7 @@ public class StoreStateActivity extends BaseActivity {
         ButterKnife.bind(this);
         setBtnChangeState(UserLogic.getUser().getStore_state());
         tvTitle.setText("营业状态");
+        tvStoreTime.setText(UserLogic.getUser().getWork_start_time() + "~" + UserLogic.getUser().getWork_end_time());
     }
 
     public void setBtnChangeState(int state) {

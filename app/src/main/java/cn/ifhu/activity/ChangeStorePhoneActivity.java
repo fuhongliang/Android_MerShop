@@ -13,6 +13,7 @@ import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.UserServiceBean;
 import cn.ifhu.net.MeService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
@@ -37,6 +38,7 @@ public class ChangeStorePhoneActivity extends BaseActivity {
         setContentView(R.layout.activity_restaurant_phone);
         ButterKnife.bind(this);
         tvTitle.setText("餐厅电话");
+        etPhone.setText(UserLogic.getUser().getStore_phone()+"");
     }
 
     public void changeStorePhone() {
@@ -52,7 +54,9 @@ public class ChangeStorePhoneActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 ToastHelper.makeText(t.getMessage()+"", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
-                clearEdit();
+                UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
+                loginResponse.setStore_phone(etPhone.getText().toString().trim());
+                UserLogic.saveUser(loginResponse);
             }
         });
     }
@@ -78,8 +82,9 @@ public class ChangeStorePhoneActivity extends BaseActivity {
         if (StringUtils.isEmpty(etPhone.getText().toString().trim())){
             return false;
         }
-
-//        if (etPhone.getText().toString().trim().equals(UserLogic.getUser().get))
+        if (etPhone.getText().toString().trim().equals(UserLogic.getUser().getStore_phone())){
+            return false;
+        }
         return true;
     }
 }

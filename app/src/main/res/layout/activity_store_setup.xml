@@ -29,9 +29,10 @@
                 android:layout_marginLeft="15dp"
                 />
             <TextView
+                android:id="@+id/tv_store_state"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="待开始营业"
+                android:text=""
                 android:layout_weight="1"
                 android:textSize="17sp"
                 android:textColor="#666666"
@@ -75,6 +76,7 @@
                 android:layout_marginTop="15dp"
                 />
             <TextView
+                android:id="@+id/tv_store_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="您还没发布餐厅公告"
@@ -104,10 +106,10 @@
                 android:layout_marginLeft="15dp"
                 android:gravity="center_vertical"
                 />
-            <ImageView
+            <com.baba.GlideImageView
+                android:id="@+id/iv_logo"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:background="#1C98F6"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
@@ -140,7 +142,6 @@
                 android:id="@+id/tv_store_phone"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="18877665454"
                 android:layout_weight="1"
                 android:textSize="17sp"
                 android:textColor="#666666"
@@ -194,6 +195,7 @@
             android:layout_marginLeft="15dp"/>
         <!--营业时间-->
         <LinearLayout
+            android:id="@+id/ll_store_time"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#ffffff"

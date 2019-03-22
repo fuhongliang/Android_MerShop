@@ -21,6 +21,8 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.orhanobut.logger.Logger;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +44,9 @@ public class DialogWheelFragment extends BaseDialogFragment{
     String beginTime;
     String endTime;
 
-    public static void showOperateDialog(FragmentManager fragmentManager,OperateDialogConfirmListner confirmListner){
+    public static void showOperateDialog(FragmentManager fragmentManager,Bundle bundle,OperateDialogConfirmListner confirmListner){
         DialogWheelFragment dialogFragment = new DialogWheelFragment();
+        dialogFragment.setArguments(bundle);
         dialogFragment.setDialogConfirmListner(confirmListner);
         dialogFragment.show(fragmentManager,"AlertDialogFragment");
     }
@@ -71,6 +74,8 @@ public class DialogWheelFragment extends BaseDialogFragment{
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
+
         tvCancel = view.findViewById(R.id.tv_cancel);
         tvOk = view.findViewById(R.id.tv_ok);
         timePickerBegin = view.findViewById(R.id.time_picker);
@@ -86,41 +91,70 @@ public class DialogWheelFragment extends BaseDialogFragment{
         });
 
 
-        addOptionalView();
+        addOptionalView(bundle.getString("startTime"),bundle.getString("endTime"));
 //      changeTimePickerColor(view);
     }
 
-    public void addOptionalView() {
+    public void addOptionalView(String startTime,String end_time) {
+        beginTime = startTime;
+        endTime = end_time;
+
+        Logger.d(startTime+"---"+end_time);
+        String[] start =  startTime.split(":");
+        String[] end =  end_time.split(":");
+        int startHour = Integer.parseInt(start[0]);
+        int startMins = Integer.parseInt(start[1]);
+
+        int endHour = Integer.parseInt(end[0]);
+        int endMins = Integer.parseInt(end[1]);
+
         timePickerBegin.setIs24HourView(true);
         //设置为24小时显示格式
-        timePickerBegin.setCurrentHour(0);
+        timePickerBegin.setCurrentHour(startHour);
         //当前小时
-        timePickerBegin.setCurrentMinute(30);
+        timePickerBegin.setCurrentMinute(startMins);
         //当前分钟
 
         timePickerEnd.setIs24HourView(true);
-        timePickerEnd.setCurrentHour(0);
-        timePickerEnd.setCurrentMinute(30);
+        timePickerEnd.setCurrentHour(endHour);
+        timePickerEnd.setCurrentMinute(endMins);
 
         timePickerBegin.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
         timePickerEnd.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
 
-        timePickerBegin.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                String hour = hourOfDay+"";
-                String min = minute+"";
-                beginTime = hour + min + "";
+        timePickerBegin.setOnTimeChangedListener((view, hourOfDay, minute) -> {
+            String hour;
+            String min ;
+            if (hourOfDay>9){
+                hour = hourOfDay+"";
+            }else {
+                hour ="0" + hourOfDay;
             }
+
+            if (minute>9){
+                min = minute+"";
+            }else {
+                min ="0" + minute;
+            }
+            beginTime = hour + ":" + min;
         });
 
-        timePickerEnd.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-            @Override
-            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                String hour = hourOfDay+"";
-                String min = minute+"";
-                endTime = hour + min + "";
+        timePickerEnd.setOnTimeChangedListener((view, hourOfDay, minute) -> {
+            String hour;
+            String min ;
+            if (hourOfDay>9){
+                hour = hourOfDay+"";
+            }else {
+                hour ="0" + hourOfDay;
             }
+
+            if (minute>9){
+                min = minute+"";
+            }else {
+                min ="0" + minute;
+            }
+
+            endTime = hour + ":" +  min ;
         });
     }
 

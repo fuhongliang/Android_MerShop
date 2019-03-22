@@ -11,22 +11,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.ifhu.R;
+import cn.ifhu.bean.ProductManageBean;
 
 /**
  * @author fuhongliang
  */
 public class CategoryAdapter extends BaseAdapter {
-    public ArrayList<String> mDataList;
+    public List<ProductManageBean.ClassListBean> mDataList;
     public Context mContext;
     public int mCurPosition = 0;
     ItemOnclick itemOnclick;
 
-    public CategoryAdapter(ArrayList<String> mDataList, Context mContext,  ItemOnclick itemOnclick) {
+    public CategoryAdapter(List<ProductManageBean.ClassListBean> mDataList, Context mContext,  ItemOnclick itemOnclick) {
         this.mDataList = mDataList;
         this.mContext = mContext;
         this.itemOnclick = itemOnclick;
+    }
+
+    public void setmDataList(List<ProductManageBean.ClassListBean> mDataList) {
+        this.mDataList = mDataList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -66,7 +73,7 @@ public class CategoryAdapter extends BaseAdapter {
             viewHolder.imageView.setVisibility(View.GONE);
             viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.unselect_grey));
         }
-        viewHolder.textView.setText(mDataList.get(position));
+        viewHolder.textView.setText(mDataList.get(position).getStc_name());
         viewHolder.linearLayout.setOnClickListener(v -> {
             mCurPosition = position;
             itemOnclick.onClickItem(position);

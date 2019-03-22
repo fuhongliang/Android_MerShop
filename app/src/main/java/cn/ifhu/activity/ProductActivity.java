@@ -19,7 +19,16 @@ import cn.ifhu.R;
 import cn.ifhu.adapter.CategoryAdapter;
 import cn.ifhu.adapter.ProductAdapter;
 import cn.ifhu.base.BaseActivity;
+import cn.ifhu.base.BaseObserver;
+import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.ProductManageBean;
+import cn.ifhu.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.net.OperationService;
+import cn.ifhu.net.RetrofitAPIManager;
+import cn.ifhu.net.SchedulerUtils;
+import cn.ifhu.utils.DialogUtils;
 import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.UserLogic;
 
 /**
  * @author fuhongliang
@@ -34,8 +43,8 @@ public class ProductActivity extends BaseActivity {
     ListView lvCategory;
     @BindView(R.id.lv_product)
     ListView lvProduct;
-    ArrayList<String> mDataArray = new ArrayList<>();
-    ArrayList<String> mProductArray = new ArrayList<>();
+    ArrayList<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
+    ArrayList<ProductManageBean.GoodsListBean> mProductArray = new ArrayList<>();
     CategoryAdapter mCategoryAdapter;
     ProductAdapter mProductAdapter;
     @BindView(R.id.rl_manage_category)
@@ -48,43 +57,63 @@ public class ProductActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
         ButterKnife.bind(this);
-        mockData();
         View emptyView = LayoutInflater.from(this).inflate(R.layout.neworder_empty, null);
         lvProduct.setEmptyView(emptyView);
         mCategoryAdapter = new CategoryAdapter(mDataArray, this, new CategoryAdapter.ItemOnclick() {
             @Override
             public void onClickItem(int position) {
-                mockProductData(mDataArray.get(position));
+                mProductData(mDataArray.get(position).getStc_id());
                 mCategoryAdapter.notifyDataSetChanged();
-                mProductAdapter.updateData(mProductArray);
-                ToastHelper.makeText("点击的位置是：" + position, Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
         lvCategory.setAdapter(mCategoryAdapter);
-        mProductAdapter = new ProductAdapter(mDataArray, this);
+
+        mProductAdapter = new ProductAdapter(mProductArray, this);
         lvProduct.setAdapter(mProductAdapter);
     }
 
-
-    public void mockData() {
-        mDataArray.add("热销");
-        mDataArray.add("特殊套餐");
-        mDataArray.add("单人套餐");
-        mDataArray.add("米饭");
-        mDataArray.add("主食类");
-        mDataArray.add("精美小吃");
-        mDataArray.add("汤类");
-        mDataArray.add("饮料");
-        mDataArray.add("必买");
-        mDataArray.add("点心");
-        mDataArray.add("其他");
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData(0);
     }
 
-    public void mockProductData(String category) {
+    public void getData(int class_id){
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).goodsList(UserLogic.getUser().getStore_id(),class_id)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ProductManageBean>(true) {
+
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<ProductManageBean> t) throws Exception {
+                if (t.getData().getClass_list().isEmpty()){
+                    DialogUtils.showConfirmDialog("温馨提示", "您的店铺还没有商品分类 \n 是否新建商品分类？", "否", "是",getSupportFragmentManager(),  new ConfirmDialog.ButtonOnclick() {
+                        @Override
+                        public void cancel() {
+                            finish();
+                        }
+
+                        @Override
+                        public void ok() {
+                            startActivity(new Intent(ProductActivity.this,AddOrEditProductActivity.class));
+                        }
+                    });
+                }else {
+                    mCategoryAdapter.setmDataList(t.getData().getClass_list());
+                    mProductAdapter.setmDataList(t.getData().getGoods_list());
+                }
+            }
+        });
+    }
+
+
+    public void mProductData(int class_id) {
         mProductArray.clear();
-        for (int i = 0; i < 10; i++) {
-            mProductArray.add(category);
-        }
+        getData(class_id);
     }
 
 

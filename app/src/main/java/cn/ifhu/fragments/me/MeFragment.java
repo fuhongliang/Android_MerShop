@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,7 +25,6 @@ import cn.ifhu.activity.FeedBackActivity;
 import cn.ifhu.activity.MainActivity;
 import cn.ifhu.activity.RingSettingsActivity;
 import cn.ifhu.activity.StoreSetUpActivity;
-import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.utils.DialogUtils;
@@ -56,6 +56,9 @@ public class MeFragment extends BaseFragment {
     TextView tvStoreName;
     @BindView(R.id.tv_store_add)
     TextView tvStoreAdd;
+    @BindView(R.id.tv_store_state)
+    TextView tvStoreState;
+
 
     public static MeFragment newInstance() {
         return new MeFragment();
@@ -79,7 +82,7 @@ public class MeFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setStoreInfo();
+        ivStoreLogo.loadCircle(UserLogic.getUser().getStore_avatar());
     }
 
     @Override
@@ -130,13 +133,25 @@ public class MeFragment extends BaseFragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setStoreInfo();
+    }
 
     public void setStoreInfo() {
         tvStoreName.setText(UserLogic.getUser().getStore_name());
         tvStoreAdd.setText(UserLogic.getUser().getStore_address());
-        ivStoreLogo.loadCircle(UserLogic.getUser().getStore_avatar());
+        setBtnChangeState(UserLogic.getUser().getStore_state());
     }
 
+    public void setBtnChangeState(int state) {
+        if (state == 0) {
+            tvStoreState.setText("已停止营业");
+        } else {
+            tvStoreState.setText("正常开业中");
+        }
+    }
 
     @OnClick(R.id.ll_about_us)
     public void onLlAboutUsClicked() {
@@ -145,6 +160,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.btn_logout)
     public void onBtnLogoutClicked() {
-        ((MainActivity)getActivity()).logout();
+        ((MainActivity) getActivity()).logout();
     }
+
 }

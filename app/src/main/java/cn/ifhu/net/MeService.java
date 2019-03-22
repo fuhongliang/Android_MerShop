@@ -45,5 +45,8 @@ public interface MeService {
     @POST("edit_passwd")
     public Observable<BaseEntity<Object>> editPasswd(@Field("member_id") String member_id,@Field("phone_number") String phone_number,@Field("verify_code") String verify_code,@Field("new_passwd") String new_passwd,@Field("con_new_passwd") String con_new_passwd);
 
+    @FormUrlEncoded
+    @POST("store_set_desc")
+    public Observable<BaseEntity<Object>> storeSetSesc(@Field("store_id") String store_id,@Field("store_desc") String store_desc);
 
 }
