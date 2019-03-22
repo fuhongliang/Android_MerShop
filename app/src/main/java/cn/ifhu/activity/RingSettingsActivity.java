@@ -11,6 +11,9 @@ import cn.ifhu.base.BaseActivity;
 import cn.ifhu.utils.Constants;
 import cn.ifhu.utils.IrReference;
 
+/**
+ * @author fuhongliang
+ */
 public class RingSettingsActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
