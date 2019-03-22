@@ -35,16 +35,15 @@
 
         <Switch
             android:id="@+id/swh_shock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
             android:textOff=""
             android:textOn=""
             android:thumb="@drawable/thumb"
-            android:track="@drawable/track_selctor" />
-
+            android:track="@drawable/track_selctor"/>
 
     </RelativeLayout>
 
@@ -75,8 +74,8 @@
 
         <Switch
             android:id="@+id/swh_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
@@ -85,9 +84,7 @@
             android:thumb="@drawable/thumb"
             android:track="@drawable/track_selctor" />
 
-
     </RelativeLayout>
-
 
     <ImageView
         android:layout_width="wrap_content"
