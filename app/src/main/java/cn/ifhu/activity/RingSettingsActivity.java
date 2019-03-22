@@ -1,12 +1,9 @@
 package cn.ifhu.activity;
 
 import android.os.Bundle;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.R;
@@ -15,7 +12,6 @@ import cn.ifhu.utils.Constants;
 import cn.ifhu.utils.IrReference;
 
 public class RingSettingsActivity extends BaseActivity {
-
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -35,7 +31,7 @@ public class RingSettingsActivity extends BaseActivity {
         settingSwitch();
     }
 
-    public void settingSwitch(){
+    public void settingSwitch() {
         // 添加监听
         swhShock.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -54,13 +50,12 @@ public class RingSettingsActivity extends BaseActivity {
         });
     }
 
-    public void initSwitch(){
-        boolean isShake = IrReference.getInstance().getBoolean(Constants.Shake,false);
+    public void initSwitch() {
+        boolean isShake = IrReference.getInstance().getBoolean(Constants.Shake, false);
         swhShock.setChecked(isShake);
 
-        boolean isRingMost = IrReference.getInstance().getBoolean(Constants.RINGMOST,false);
+        boolean isRingMost = IrReference.getInstance().getBoolean(Constants.RINGMOST, false);
         swhStatus.setChecked(isRingMost);
-
     }
 
 }
