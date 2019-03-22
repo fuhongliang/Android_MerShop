@@ -33,5 +33,10 @@ public interface MeService {
     @POST("store_set_desc")
     public Observable<BaseEntity<Object>> storeSetDesc(@Field("store_id") int store_id,@Field("store_desc") String store_desc);
 
+    @FormUrlEncoded
+    @POST("store_set_worktime")
+    public Observable<BaseEntity<Object>> storeSetWorktime(@Field("store_id") int store_id,@Field("work_start_time") String work_start_time,@Field("work_end_time") String work_end_time,@Field("token") String token);
+
+
 
 }

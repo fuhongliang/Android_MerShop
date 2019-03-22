@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -13,8 +15,17 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
+import cn.ifhu.base.BaseObserver;
+import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.UserServiceBean;
 import cn.ifhu.dialog.DialogListFragment;
 import cn.ifhu.dialog.DialogWheelFragment;
+import cn.ifhu.net.MeService;
+import cn.ifhu.net.RetrofitAPIManager;
+import cn.ifhu.net.SchedulerUtils;
+import cn.ifhu.utils.IrReference;
+import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.UserLogic;
 
 /**
  * @author fuhongliang
@@ -95,20 +106,19 @@ public class StoreSetUpActivity extends BaseActivity {
                 mins.add(i+"");
             }
         }
+
+
+
     }
 
 
 
     @OnClick(R.id.tv_store_time)
     public void onTvStoreTimeClicked() {
-        Bundle bundlePhone = new Bundle();
-        bundlePhone.putString("title", "请选择时间");
-        bundlePhone.putStringArrayList("stringList", hours);
-
-        DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundlePhone, new DialogWheelFragment.OperateDialogConfirmListner() {
+        DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), new DialogWheelFragment.OperateDialogConfirmListner() {
             @Override
-            public void onClickTextView(String string) {
-
+            public void onClickTextView(String beginTime, String endTime) {
+                setStoreTime(beginTime, endTime);
             }
         });
     }
@@ -116,5 +126,23 @@ public class StoreSetUpActivity extends BaseActivity {
     @OnClick(R.id.rl_store_license)
     public void onRlStoreLicenseClicked() {
         startActivity(new Intent(StoreSetUpActivity.this, BusinessQualificationActivity.class));
+    }
+
+
+    public void setStoreTime(String beginTime,String endTime){
+        tvStoreTime.setText(beginTime+endTime);
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(),beginTime,endTime,UserLogic.getUser().getToken())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            }
+        });
     }
 }

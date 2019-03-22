@@ -1,5 +1,6 @@
 package cn.ifhu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import java.util.List;
 
 import cn.ifhu.R;
+import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.adapter.FragmentAdapter;
 import cn.ifhu.base.BaseActivity;
 import cn.ifhu.base.BaseFragment;
@@ -17,6 +19,7 @@ import cn.ifhu.fragments.me.MeFragment;
 import cn.ifhu.fragments.neworder.NewOrderFragment;
 import cn.ifhu.fragments.operation.OperationFragment;
 import cn.ifhu.fragments.orders.OrdersFragment;
+import cn.ifhu.utils.UserLogic;
 
 /**
  * @author fuhongliang
@@ -86,5 +89,11 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+    }
+
+    public void logout(){
+        UserLogic.isLogin();
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 }

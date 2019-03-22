@@ -39,5 +39,8 @@ public class UserLogic {
         }
     }
 
+    public static void loginOut() {
+        IrReference.getInstance().saveString(USER, "");
+    }
 
 }

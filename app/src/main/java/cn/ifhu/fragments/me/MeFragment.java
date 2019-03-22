@@ -9,10 +9,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.baba.GlideImageView;
 
@@ -23,12 +21,13 @@ import butterknife.Unbinder;
 import cn.ifhu.R;
 import cn.ifhu.activity.AccountAndSafeActivity;
 import cn.ifhu.activity.FeedBackActivity;
+import cn.ifhu.activity.MainActivity;
 import cn.ifhu.activity.RingSettingsActivity;
 import cn.ifhu.activity.StoreSetUpActivity;
+import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.utils.DialogUtils;
-import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
 /**
@@ -116,7 +115,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.ll_service)
     public void onLlServiceClicked() {
-        DialogUtils.showConfirmDialog("客服电话","020-78785656", "取消","联系客服",getActivity().getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+        DialogUtils.showConfirmDialog("客服电话", "020-78785656", "取消", "联系客服", getActivity().getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
             @Override
             public void cancel() {
             }
@@ -131,14 +130,21 @@ public class MeFragment extends BaseFragment {
         });
     }
 
-    @OnClick(R.id.ll_about_us)
-    public void onViewClicked() {
 
-    }
-
-    public void setStoreInfo(){
+    public void setStoreInfo() {
         tvStoreName.setText(UserLogic.getUser().getStore_name());
         tvStoreAdd.setText(UserLogic.getUser().getStore_address());
         ivStoreLogo.load(UserLogic.getUser().getStore_avatar());
+    }
+
+
+    @OnClick(R.id.ll_about_us)
+    public void onLlAboutUsClicked() {
+
+    }
+
+    @OnClick(R.id.btn_logout)
+    public void onBtnLogoutClicked() {
+        ((MainActivity)getActivity()).logout();
     }
 }

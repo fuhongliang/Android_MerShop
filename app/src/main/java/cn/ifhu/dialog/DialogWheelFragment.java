@@ -35,14 +35,15 @@ import cn.ifhu.utils.DeviceUtil;
 public class DialogWheelFragment extends BaseDialogFragment{
 
     private OperateDialogConfirmListner confirmListner;
-    private LinearLayout llContent;
+    private TextView tvCancel;
+    private TextView tvOk;
     TimePicker timePickerBegin;
     TimePicker timePickerEnd;
+    String beginTime;
+    String endTime;
 
-    List<String> stringList = new ArrayList<String>();
-    public static void showOperateDialog(FragmentManager fragmentManager, Bundle bundle, OperateDialogConfirmListner confirmListner){
+    public static void showOperateDialog(FragmentManager fragmentManager,OperateDialogConfirmListner confirmListner){
         DialogWheelFragment dialogFragment = new DialogWheelFragment();
-        dialogFragment.setArguments(bundle);
         dialogFragment.setDialogConfirmListner(confirmListner);
         dialogFragment.show(fragmentManager,"AlertDialogFragment");
     }
@@ -70,11 +71,21 @@ public class DialogWheelFragment extends BaseDialogFragment{
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-        Bundle bundle = getArguments();
-        stringList = bundle.getStringArrayList("stringList");
-        llContent = view.findViewById(R.id.ll_content);
+        tvCancel = view.findViewById(R.id.tv_cancel);
+        tvOk = view.findViewById(R.id.tv_ok);
         timePickerBegin = view.findViewById(R.id.time_picker);
         timePickerEnd = view.findViewById(R.id.time_picker2);
+
+        tvCancel.setOnClickListener(v -> {
+            dismiss();
+        });
+
+        tvOk.setOnClickListener(v -> {
+            dismiss();
+            confirmListner.onClickTextView(beginTime,endTime);
+        });
+
+
         addOptionalView();
 //      changeTimePickerColor(view);
     }
@@ -97,7 +108,18 @@ public class DialogWheelFragment extends BaseDialogFragment{
         timePickerBegin.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                long delayMills = (hourOfDay * 60 + minute) * 60 * 1000;
+                String hour = hourOfDay+"";
+                String min = minute+"";
+                beginTime = hour + min + "";
+            }
+        });
+
+        timePickerEnd.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                String hour = hourOfDay+"";
+                String min = minute+"";
+                endTime = hour + min + "";
             }
         });
     }
@@ -157,20 +179,12 @@ public class DialogWheelFragment extends BaseDialogFragment{
     }
 
 
-    //指定NumberPicker大小                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                改的NumberPicker和NumberPicker的宽度值
-//    private static void setPickerSize(NumberPicker np, int widthDpValue, Context context) {
-//        int widthPxValue = ToolUtils.dp2px(context, widthDpValue);
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(widthPxValue, LinearLayout.LayoutParams.WRAP_CONTENT);
-//        params.setMargins(0, 0, 0, 0);
-//        np.setLayoutParams(params);
-//    }
-
 
     public void setDialogConfirmListner(OperateDialogConfirmListner alertDialogConfirmListner) {
         this.confirmListner = alertDialogConfirmListner;
     }
 
     public interface OperateDialogConfirmListner {
-        void onClickTextView(String string);
+        void onClickTextView(String beginTime,String endTime);
     }
 }
