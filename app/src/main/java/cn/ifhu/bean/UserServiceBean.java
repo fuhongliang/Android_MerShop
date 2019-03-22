@@ -31,17 +31,38 @@ public interface UserServiceBean {
     class LoginResponse {
 
 
+        /**
+         * store_id : 7
+         * store_name : test002
+         * store_phone : 13166668888
+         * store_avatar :
+         * area_info : 河北 唐山市 丰润区
+         * store_address : 21213
+         * work_start_time : 08:00
+         * work_end_time : 22:00
+         * store_state : 1
+         * store_description :
+         * business_licence_number_electronic : 06062332464779218.jpg
+         * member_id : 12
+         * member_mobile :
+         * member_name : test
+         * token : cb3ee81a339e755fc0ece10665f13b1c
+         */
+
         private int store_id;
         private String store_name;
+        private String store_phone;
         private String store_avatar;
         private String area_info;
         private String store_address;
-        private String store_workingtime;
+        private String work_start_time;
+        private String work_end_time;
         private int store_state;
         private String store_description;
         private String business_licence_number_electronic;
         private int member_id;
         private String member_mobile;
+        private String member_name;
         private String token;
 
         public int getStore_id() {
@@ -58,6 +79,14 @@ public interface UserServiceBean {
 
         public void setStore_name(String store_name) {
             this.store_name = store_name;
+        }
+
+        public String getStore_phone() {
+            return store_phone;
+        }
+
+        public void setStore_phone(String store_phone) {
+            this.store_phone = store_phone;
         }
 
         public String getStore_avatar() {
@@ -84,12 +113,20 @@ public interface UserServiceBean {
             this.store_address = store_address;
         }
 
-        public String getStore_workingtime() {
-            return store_workingtime;
+        public String getWork_start_time() {
+            return work_start_time;
         }
 
-        public void setStore_workingtime(String store_workingtime) {
-            this.store_workingtime = store_workingtime;
+        public void setWork_start_time(String work_start_time) {
+            this.work_start_time = work_start_time;
+        }
+
+        public String getWork_end_time() {
+            return work_end_time;
+        }
+
+        public void setWork_end_time(String work_end_time) {
+            this.work_end_time = work_end_time;
         }
 
         public int getStore_state() {
@@ -130,6 +167,14 @@ public interface UserServiceBean {
 
         public void setMember_mobile(String member_mobile) {
             this.member_mobile = member_mobile;
+        }
+
+        public String getMember_name() {
+            return member_name;
+        }
+
+        public void setMember_name(String member_name) {
+            this.member_name = member_name;
         }
 
         public String getToken() {

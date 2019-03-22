@@ -59,6 +59,7 @@ public class ChangePassWordActivity extends BaseActivity {
         setContentView(R.layout.activity_change_password);
         ButterKnife.bind(this);
         tvTitle.setText("修改密码");
+        tvPhone.setText(UserLogic.getUser().getMember_mobile());
     }
 
     @OnClick(R.id.iv_back)
@@ -68,7 +69,21 @@ public class ChangePassWordActivity extends BaseActivity {
 
     @OnClick(R.id.tv_get_code)
     public void onTvGetCodeClicked() {
-        showCountDown();
+        setLoadingMessageIndicator(true);
+        UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
+        RetrofitAPIManager.create(MeService.class).getSms(loginResponse.getMember_mobile()+"")
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                showCountDown();
+            }
+        });
     }
 
     private void showCountDown() {

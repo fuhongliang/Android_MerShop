@@ -36,7 +36,7 @@ public class AccountAndSafeActivity extends BaseActivity {
         ButterKnife.bind(this);
         tvTitle.setText("账号与安全");
         tvPhone.setText(UserLogic.getUser().getMember_mobile());
-//        tvName.setText(UserLogic.getUser().getStore_name());
+        tvName.setText(UserLogic.getUser().getMember_name());
     }
 
     @OnClick(R.id.iv_back)

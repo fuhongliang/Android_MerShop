@@ -134,7 +134,7 @@ public class MeFragment extends BaseFragment {
     public void setStoreInfo() {
         tvStoreName.setText(UserLogic.getUser().getStore_name());
         tvStoreAdd.setText(UserLogic.getUser().getStore_address());
-        ivStoreLogo.load(UserLogic.getUser().getStore_avatar());
+        ivStoreLogo.loadCircle(UserLogic.getUser().getStore_avatar());
     }
 
 
