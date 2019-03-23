@@ -37,12 +37,8 @@ public class SortManagementActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.et_sort)
     EditText etSort;
-    @BindView(R.id.et_sort_descr)
-    EditText etSortDescr;
     @BindView(R.id.btn_save)
     Button btnSave;
-    @BindView(R.id.btn_cancel)
-    Button btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +70,6 @@ public class SortManagementActivity extends BaseActivity {
                 protected void onSuccees(BaseEntity t) throws Exception {
                     ToastHelper.makeText(t.getMessage()+"", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
                     etSort.setText("");
-                    etSortDescr.setText("");
                 }
 
                 @Override
@@ -90,16 +85,6 @@ public class SortManagementActivity extends BaseActivity {
             ToastHelper.makeText("标题不能为空", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             return false;
         }
-        if (StringUtils.isEmpty(etSortDescr.getText().toString().trim())) {
-            ToastHelper.makeText("描述不能为空", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
-            return false;
-        }
         return true;
-    }
-
-
-    @OnClick(R.id.btn_cancel)
-    public void onBtnCancelClicked() {
-        finish();
     }
 }
