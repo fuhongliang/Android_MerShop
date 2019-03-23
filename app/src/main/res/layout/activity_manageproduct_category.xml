@@ -9,15 +9,16 @@
         layout="@layout/layout_header" />
 
     <ListView
-        android:layout_below="@+id/navigation_header_container"
         android:id="@+id/lv_category"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:layout_above="@+id/ll_bottom"
+        android:layout_below="@+id/navigation_header_container"
+        android:layout_marginTop="37dp"
+        android:layout_marginBottom="-37dp"
+        android:background="@color/white"
         android:scrollbars="none"
-        tools:listitem="@layout/item_manage_category"
-        />
+        tools:listitem="@layout/item_manage_category" />
 
     <LinearLayout
         android:id="@+id/ll_bottom"

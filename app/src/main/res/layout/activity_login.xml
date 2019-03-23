@@ -135,5 +135,6 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="51dp"
         android:gravity="center"
+        android:stateListAnimator="@null"
         />
 </LinearLayout>

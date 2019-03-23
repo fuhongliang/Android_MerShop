@@ -146,6 +146,7 @@ public class StoreSetUpActivity extends BaseActivity {
         });
     }
 
+//
     @Override
     protected void onResume() {
         super.onResume();

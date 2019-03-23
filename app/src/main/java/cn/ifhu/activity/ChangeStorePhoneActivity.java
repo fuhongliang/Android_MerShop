@@ -46,6 +46,7 @@ public class ChangeStorePhoneActivity extends BaseActivity {
         RetrofitAPIManager.create(MeService.class).storeSetPhone(UserLogic.getUser().getStore_id(),etPhone.getText().toString().trim())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
 
+
             @Override
             protected void onApiComplete() {
                 setLoadingMessageIndicator(false);

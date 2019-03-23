@@ -73,9 +73,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="41dp"
-            android:layout_marginTop="165dp"
-            android:layout_marginRight="33dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="175dp"
+            android:layout_marginRight="15dp">
 
             <LinearLayout
                 android:id="@+id/ll_store_setup"
@@ -143,9 +143,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="41dp"
-            android:layout_marginTop="240dp"
-            android:layout_marginRight="33dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="250dp"
+            android:layout_marginRight="15dp">
 
             <LinearLayout style="@style/me_layout">
 
@@ -210,9 +210,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="41dp"
-            android:layout_marginTop="310dp"
-            android:layout_marginRight="33dp">
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="320dp"
+            android:layout_marginRight="15dp">
 
             <LinearLayout
                 android:id="@+id/ll_about_us"
@@ -254,7 +254,9 @@
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout style="@style/me_layout"></LinearLayout>
+            <LinearLayout style="@style/me_layout">
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -268,6 +270,8 @@
             android:background="@drawable/bg_button_blue"
             android:text="退出登陆"
             android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:stateListAnimator="@null"
+            />
     </RelativeLayout>
 </LinearLayout>
