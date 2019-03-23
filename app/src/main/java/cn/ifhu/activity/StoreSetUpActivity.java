@@ -107,16 +107,12 @@ public class StoreSetUpActivity extends BaseActivity {
 
     @OnClick(R.id.ll_store_time)
     public void onTvStoreTimeClicked() {
-        Bundle bundle = new Bundle();
-        bundle.putString("startTime", loginResponse.getWork_start_time());
-        bundle.putString("endTime", loginResponse.getWork_end_time());
-
-        DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundle, new DialogWheelFragment.OperateDialogConfirmListner() {
-            @Override
-            public void onClickTextView(String beginTime, String endTime) {
-                setStoreTime(beginTime, endTime);
-            }
-        });
+        if (loginResponse.getWork_start_time() != null && loginResponse.getWork_end_time() != null){
+            Bundle bundle = new Bundle();
+            bundle.putString("startTime", loginResponse.getWork_start_time());
+            bundle.putString("endTime", loginResponse.getWork_end_time());
+            DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundle, (beginTime, endTime) -> setStoreTime(beginTime, endTime));
+        }
     }
 
     @OnClick(R.id.rl_store_license)
@@ -146,7 +142,6 @@ public class StoreSetUpActivity extends BaseActivity {
         });
     }
 
-//
     @Override
     protected void onResume() {
         super.onResume();
