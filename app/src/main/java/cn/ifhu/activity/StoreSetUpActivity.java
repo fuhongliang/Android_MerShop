@@ -8,6 +8,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baba.GlideImageView;
+
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -18,12 +20,10 @@ import cn.ifhu.base.BaseActivity;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
 import cn.ifhu.bean.UserServiceBean;
-import cn.ifhu.dialog.DialogListFragment;
 import cn.ifhu.dialog.DialogWheelFragment;
 import cn.ifhu.net.MeService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
-import cn.ifhu.utils.IrReference;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
@@ -52,6 +52,13 @@ public class StoreSetUpActivity extends BaseActivity {
     TextView tvStoreTime;
     @BindView(R.id.rl_store_license)
     RelativeLayout rlStoreLicense;
+    @BindView(R.id.tv_store_state)
+    TextView tvStoreState;
+    @BindView(R.id.tv_store_notice)
+    TextView tvStoreNotice;
+    UserServiceBean.LoginResponse loginResponse;
+    @BindView(R.id.iv_logo)
+    GlideImageView ivLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +66,19 @@ public class StoreSetUpActivity extends BaseActivity {
         setContentView(R.layout.activity_store_setup);
         ButterKnife.bind(this);
         tvTitle.setText("门店设置");
+        initData();
     }
 
+
+    public void initData() {
+        loginResponse = UserLogic.getUser();
+        tvStoreState.setText(loginResponse.getStore_state() == 0 ? "已停止营业" : "正常营业中");
+        tvStoreNotice.setText(loginResponse.getStore_description());
+        ivLogo.load(loginResponse.getStore_avatar());
+        tvStorePhone.setText(loginResponse.getStore_phone());
+        tvStoreAdd.setText(loginResponse.getStore_address());
+        tvStoreTime.setText(loginResponse.getWork_start_time() + "~" + loginResponse.getWork_end_time());
+    }
 
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
@@ -79,43 +97,21 @@ public class StoreSetUpActivity extends BaseActivity {
 
     @OnClick(R.id.rl_notice)
     public void onRlNoticeClicked() {
+        startActivity(new Intent(StoreSetUpActivity.this, StoreNoticeActivity.class));
     }
 
     @OnClick(R.id.ll_store_phone)
     public void onLlStorePhoneClicked() {
-        startActivity(new Intent(StoreSetUpActivity.this,ChangeStorePhoneActivity.class));
-
+        startActivity(new Intent(StoreSetUpActivity.this, ChangeStorePhoneActivity.class));
     }
 
-    private ArrayList<String> hours = new ArrayList<>();
-    private ArrayList<String> mins = new ArrayList<>();
-
-    private void initOptionData() {
-        for (int i=0;i<24;i++){
-            if (i<10){
-                hours.add("0"+i);
-            }else {
-                hours.add(i+"");
-            }
-        }
-
-        for (int i=0;i<60;i++){
-            if (i<10){
-                mins.add("0"+i);
-            }else {
-                mins.add(i+"");
-            }
-        }
-
-
-
-    }
-
-
-
-    @OnClick(R.id.tv_store_time)
+    @OnClick(R.id.ll_store_time)
     public void onTvStoreTimeClicked() {
-        DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), new DialogWheelFragment.OperateDialogConfirmListner() {
+        Bundle bundle = new Bundle();
+        bundle.putString("startTime", loginResponse.getWork_start_time());
+        bundle.putString("endTime", loginResponse.getWork_end_time());
+
+        DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundle, new DialogWheelFragment.OperateDialogConfirmListner() {
             @Override
             public void onClickTextView(String beginTime, String endTime) {
                 setStoreTime(beginTime, endTime);
@@ -128,10 +124,11 @@ public class StoreSetUpActivity extends BaseActivity {
         startActivity(new Intent(StoreSetUpActivity.this, BusinessQualificationActivity.class));
     }
 
-    public void setStoreTime(String beginTime,String endTime){
-        tvStoreTime.setText(beginTime+endTime);
+
+    public void setStoreTime(String beginTime, String endTime) {
+        tvStoreTime.setText(beginTime + "~" + endTime);
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(),beginTime,endTime)
+        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(), beginTime, endTime)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -141,7 +138,18 @@ public class StoreSetUpActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity t) throws Exception {
                 ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
+                loginResponse.setWork_start_time(beginTime);
+                loginResponse.setWork_end_time(endTime);
+                UserLogic.saveUser(loginResponse);
             }
         });
+    }
+
+//
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
     }
 }
