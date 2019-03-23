@@ -46,7 +46,7 @@
         <TextView
             style="@style/tv_text"
             android:text="登陆账号"
-            android:textSize="17sp" />
+            />
 
         <TextView
             android:id="@+id/tv_name"
@@ -65,6 +65,8 @@
         android:layout_height="1dp"
         android:layout_marginLeft="15dp"
         android:background="#E5E5E5" />
+
+
     <!--修改密码-->
     <RelativeLayout
         android:id="@+id/rl_change_password"
