@@ -7,6 +7,10 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.view.MenuItem;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.List;
 
 import cn.ifhu.R;
@@ -15,11 +19,14 @@ import cn.ifhu.adapter.FragmentAdapter;
 import cn.ifhu.base.BaseActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.base.ViewManager;
+import cn.ifhu.bean.MessageEvent;
 import cn.ifhu.fragments.me.MeFragment;
 import cn.ifhu.fragments.neworder.NewOrderFragment;
 import cn.ifhu.fragments.operation.OperationFragment;
 import cn.ifhu.fragments.orders.OrdersFragment;
 import cn.ifhu.utils.UserLogic;
+
+import static cn.ifhu.utils.Constants.LOGOUT;
 
 /**
  * @author fuhongliang
@@ -61,6 +68,9 @@ public class MainActivity extends BaseActivity {
         navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         initViewPager();
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
     private void initViewPager() {
@@ -91,9 +101,25 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    public void logout(){
+    public void logout() {
         UserLogic.loginOut();
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
         finish();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+        switch (messageEvent.getMessage()) {
+            case LOGOUT:
+                logout();
+                break;
+            default:
+        }
     }
 }

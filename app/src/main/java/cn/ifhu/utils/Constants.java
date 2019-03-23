@@ -10,5 +10,8 @@ public class Constants {
     public static final String TOKEN = "TOKEN";
     public static final String Shake = "Shake";
     public static final String RINGMOST = "RINGMOST";
+    public static final String CLASSLIST = "CLASSLIST";
+    public static final String PRODUCTLIST = "PRODUCTLIST";
+    public static final String LOGOUT = "logout_event";
 
 }

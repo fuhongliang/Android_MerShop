@@ -39,6 +39,7 @@ public class ManageProductCategoryActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manageproduct_category);
         ButterKnife.bind(this);
+        tvTitle.setText("管理分类");
         mockData();
         manageCategoryAdapter = new ManageCategoryAdapter(mDataArray, this, new ManageCategoryAdapter.ItemOnclick() {
             @Override
@@ -81,6 +82,6 @@ public class ManageProductCategoryActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_product)
     public void onRlAddProductClicked() {
-        startActivity(new Intent(ManageProductCategoryActivity.this,AddOrEditProductActivity.class));
+        startActivity(new Intent(ManageProductCategoryActivity.this,SortManagementActivity.class));
     }
 }
