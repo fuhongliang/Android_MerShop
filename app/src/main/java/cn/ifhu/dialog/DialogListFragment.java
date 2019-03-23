@@ -18,8 +18,7 @@ import cn.ifhu.R;
 import cn.ifhu.utils.DeviceUtil;
 
 /**
- * @author tony
- * @date 2018/8/13
+ * @author fuhongliang
  */
 public class DialogListFragment  extends BaseDialogFragment{
 

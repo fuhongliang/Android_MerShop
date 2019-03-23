@@ -7,16 +7,22 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeoutException;
 
 import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.MessageEvent;
 import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.UserLogic;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
+
+import static cn.ifhu.utils.Constants.LOGOUT;
 
 /**
  * @author fuhongliang
@@ -58,6 +64,13 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
                         ToastHelper.makeText(tLinkBaseEntity.getMessage(), Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();
                     }
                 }
+                if (tLinkBaseEntity.isTokenTimeOut()) {
+                    try {
+                        EventBus.getDefault().post(new MessageEvent(LOGOUT));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -95,9 +108,6 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
                         }
                     } else if (error.code() >= 500) {
                         onFailure(e, false);
-                        if (needShowErroToast) {
-                            ToastHelper.makeText("Server 500 error", Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();
-                        }
                     }
                 } else {
                     ToastHelper.makeText(e.getMessage(), Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();

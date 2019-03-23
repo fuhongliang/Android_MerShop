@@ -9,7 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import com.baba.GlideImageView;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -64,21 +65,26 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvPrice.setText(mDataList.get(position).getGoods_price());
+        viewHolder.tvPrice.setText(mDataList.get(position).getGoods_marketprice());
+        viewHolder.tvOriginalPrice.setText(mDataList.get(position).getGoods_price());
         viewHolder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+        viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
+
         return convertView;
     }
 
     static class ViewHolder {
         @BindView(R.id.iv_product_image)
-        ImageView ivProductImage;
+        GlideImageView ivProductImage;
         @BindView(R.id.tv_price)
         TextView tvPrice;
         @BindView(R.id.tv_original_price)
         TextView tvOriginalPrice;
-
+        @BindView(R.id.tv_name)
+        TextView tvName;
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
+
 }

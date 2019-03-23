@@ -32,8 +32,6 @@ public class FeedBackActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.et_feedback)
     EditText etFeedback;
-    @BindView(R.id.et_phone)
-    EditText etPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,6 @@ public class FeedBackActivity extends BaseActivity {
 
     public void clearEdit(){
         etFeedback.setText("");
-        etPhone.setText("");
     }
 
     @OnClick(R.id.iv_back)
@@ -80,9 +77,6 @@ public class FeedBackActivity extends BaseActivity {
 
     public boolean checkContent(){
         if(StringUtils.isEmpty(etFeedback.getText().toString().trim())){
-            return false;
-        }
-        if (StringUtils.isEmpty(etPhone.getText().toString().trim())){
             return false;
         }
         return true;

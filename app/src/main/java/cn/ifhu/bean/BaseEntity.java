@@ -6,6 +6,7 @@ package cn.ifhu.bean;
 public class BaseEntity<T> {
 
     private static int SUCCESS_CODE = 200;
+    private static int TOKENTIMEOUT_CODE = 1000;
     private int code = 0;
     private String msg;
     private T data;
@@ -18,6 +19,12 @@ public class BaseEntity<T> {
         return false;
     }
 
+    public boolean isTokenTimeOut() {
+        if (code == TOKENTIMEOUT_CODE) {
+            return true;
+        }
+        return false;
+    }
     public int getCode() {
         return code;
     }

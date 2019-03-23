@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,8 +44,8 @@ public class ProductActivity extends BaseActivity {
     ListView lvCategory;
     @BindView(R.id.lv_product)
     ListView lvProduct;
-    ArrayList<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
-    ArrayList<ProductManageBean.GoodsListBean> mProductArray = new ArrayList<>();
+    List<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
+    List<ProductManageBean.GoodsListBean> mProductArray = new ArrayList<>();
     CategoryAdapter mCategoryAdapter;
     ProductAdapter mProductAdapter;
     @BindView(R.id.rl_manage_category)
@@ -63,7 +64,6 @@ public class ProductActivity extends BaseActivity {
             @Override
             public void onClickItem(int position) {
                 mProductData(mDataArray.get(position).getStc_id());
-                mCategoryAdapter.notifyDataSetChanged();
             }
         });
         lvCategory.setAdapter(mCategoryAdapter);
@@ -99,12 +99,14 @@ public class ProductActivity extends BaseActivity {
 
                         @Override
                         public void ok() {
-                            startActivity(new Intent(ProductActivity.this,AddOrEditProductActivity.class));
+                            startActivity(new Intent(ProductActivity.this,SortManagementActivity.class));
                         }
                     });
                 }else {
-                    mCategoryAdapter.setmDataList(t.getData().getClass_list());
-                    mProductAdapter.setmDataList(t.getData().getGoods_list());
+                    mDataArray = t.getData().getClass_list();
+                    mCategoryAdapter.setmDataList(mDataArray);
+                    mProductArray = t.getData().getGoods_list();
+                    mProductAdapter.setmDataList(mProductArray);
                 }
             }
         });
@@ -112,7 +114,6 @@ public class ProductActivity extends BaseActivity {
 
 
     public void mProductData(int class_id) {
-        mProductArray.clear();
         getData(class_id);
     }
 

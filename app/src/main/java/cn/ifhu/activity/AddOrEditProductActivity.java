@@ -1,5 +1,6 @@
 package cn.ifhu.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,6 +12,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
+import cn.ifhu.base.BaseObserver;
+import cn.ifhu.bean.AddGoodsBean;
+import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.net.OperationService;
+import cn.ifhu.net.RetrofitAPIManager;
+import cn.ifhu.net.SchedulerUtils;
 
 /**
  * @author fuhongliang
@@ -52,13 +59,29 @@ public class AddOrEditProductActivity extends BaseActivity {
 
     @OnClick(R.id.tv_category)
     public void onTvCategoryClicked() {
-    }
 
-    @OnClick(R.id.tv_selling_time)
-    public void onTvSellingTimeClicked() {
     }
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
+        setLoadingMessageIndicator(true);
+        AddGoodsBean addGoodsBean = new AddGoodsBean();
+        RetrofitAPIManager.create(OperationService.class).addGoods(addGoodsBean)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+
+            }
+        });
+    }
+
+    @OnClick(R.id.ll_selling_time)
+    public void onViewClicked() {
+        startActivity(new Intent(AddOrEditProductActivity.this,SellingTimeActivity.class));
     }
 }
