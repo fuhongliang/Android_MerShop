@@ -45,7 +45,7 @@ public class StoreStateActivity extends BaseActivity {
         ButterKnife.bind(this);
         setBtnChangeState(UserLogic.getUser().getStore_state());
         tvTitle.setText("营业状态");
-        tvStoreTime.setText(UserLogic.getUser().getWork_start_time() + "~" + UserLogic.getUser().getWork_end_time());
+        tvStoreTime.setText("营业时间:"+UserLogic.getUser().getWork_start_time() + "~" + UserLogic.getUser().getWork_end_time());
     }
 
     public void setBtnChangeState(int state) {
@@ -67,7 +67,6 @@ public class StoreStateActivity extends BaseActivity {
     public void onBtnChangeStateClicked() {
         changeState();
     }
-
     public void changeState() {
         setLoadingMessageIndicator(true);
         int state = UserLogic.getUser().getStore_state() == 0 ? 1 : 0;
