@@ -17,15 +17,23 @@
             android:layout_height="44dp"
             android:background="#ffffff"
             android:gravity="center_vertical"
-            android:orientation="vertical">
+            >
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="时间无限"
+                android:layout_weight="1"
                 android:textColor="#000000"
                 android:textSize="17sp" />
+            <ImageView
+                android:id="@+id/iv_select"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="10dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/choose_selector"/>
         </LinearLayout>
 
         <TextView
