@@ -5,7 +5,7 @@
     android:background="#F5F5F5"
     android:orientation="vertical">
     <!--头部-->
-    <include layout="@layout/layout_header"/>
+    <include layout="@layout/layout_header" />
     <!--时间无限-->
     <RelativeLayout
         android:layout_width="match_parent"
