@@ -82,8 +82,8 @@
                 style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_mdsz" />
 
@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="门店设置"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -101,10 +101,9 @@
                 android:id="@+id/ll_print_setup"
                 style="@style/me_layout"
                 >
-
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_dysz" />
 
@@ -112,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="打印设置"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -123,8 +122,8 @@
                 style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_xxls" />
 
@@ -132,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="消息和铃声"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -147,11 +146,12 @@
             android:layout_marginTop="250dp"
             android:layout_marginRight="15dp">
 
-            <LinearLayout style="@style/me_layout">
+            <LinearLayout
+                style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_yyzt" />
 
@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="营业状态"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -170,8 +170,8 @@
                 style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_zhaq" />
 
@@ -179,7 +179,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="账号与安全"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -190,8 +190,8 @@
                 style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_yjfk" />
 
@@ -199,7 +199,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="意见反馈"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -219,8 +219,8 @@
                 style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_gywm" />
 
@@ -228,7 +228,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="关于我们"
                     android:textColor="#000000"
                     android:textSize="12sp" />
@@ -239,8 +239,8 @@
                 style="@style/me_layout">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="22dp"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
                     android:layout_gravity="center"
                     android:background="@drawable/personal_ic_kfzx" />
 
@@ -248,13 +248,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="客服中心"
                     android:textColor="#000000"
                     android:textSize="12sp" />
             </LinearLayout>
 
-            <LinearLayout style="@style/me_layout">
+            <LinearLayout
+                style="@style/me_layout">
 
             </LinearLayout>
 
