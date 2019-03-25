@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f5f5f5"
     android:orientation="vertical">
     <!--头部-->
     <include layout="@layout/layout_header" />
@@ -15,13 +16,8 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:gravity="left"
-            android:text="营业状态"
-            android:textColor="#000000"
-            android:textSize="17sp" />
+            style="@style/tv_text"
+            android:text="营业状态" />
 
         <TextView
             android:id="@+id/tv_store_state"
@@ -33,15 +29,21 @@
             android:textColor="#666666"
             android:textSize="17sp" />
 
-        <ImageView
-            style="@style/im_tongyong_jinru" />
+        <ImageView style="@style/im_tongyong_jinru" />
     </LinearLayout>
 
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:background="#E5E5E5" />
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:background="#E5E5E5" />
+    </RelativeLayout>
+
     <!--餐厅公告-->
     <RelativeLayout
         android:id="@+id/rl_notice"
@@ -83,157 +85,152 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp" />
-    <!--店铺头像-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="#ffffff">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:gravity="center_vertical"
-            android:text="店铺头像"
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <com.baba.GlideImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp" />
-    </RelativeLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:background="#E5E5E5" />
-    <!--餐厅电话-->
     <LinearLayout
-        android:id="@+id/ll_store_phone"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="#ffffff"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <!--店铺头像-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="#ffffff">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:gravity="left"
-            android:text="餐厅电话"
-            android:textColor="#000000"
-            android:textSize="17sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="店铺头像"
+                android:textColor="#000000"
+                android:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/tv_store_phone"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textColor="#666666"
-            android:textSize="17sp" />
+            <com.baba.GlideImageView
+                android:id="@+id/iv_logo"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp" />
+        </RelativeLayout>
 
         <ImageView
-            style="@style/im_tongyong_jinru" />
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:background="#E5E5E5" />
+        <!--餐厅电话-->
+        <LinearLayout
+            android:id="@+id/ll_store_phone"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tv_text"
+                android:text="餐厅电话" />
+
+            <TextView
+                android:id="@+id/tv_store_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textColor="#666666"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:background="#E5E5E5" />
+        <!--餐厅地址-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="餐厅地址"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/tv_store_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:text="广州市天河区棠下街道"
+                android:textColor="#666666"
+                android:textSize="17sp" />
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:background="#E5E5E5" />
+        <!--营业时间-->
+        <LinearLayout
+            android:id="@+id/ll_store_time"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/tv_text"
+                android:text="营业时间" />
+
+            <TextView
+                android:id="@+id/tv_store_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="09:00 ~ 22:00"
+                android:textColor="#666666"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:background="#E5E5E5" />
+        <!--营业资质-->
+        <RelativeLayout
+            android:id="@+id/rl_store_license"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#ffffff">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                android:text="营业资质"
+                android:textColor="#000000"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:background="#E5E5E5" />
-    <!--餐厅地址-->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="#ffffff">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:gravity="center_vertical"
-            android:text="餐厅地址"
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/tv_store_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="15dp"
-            android:text="广州市天河区棠下街道"
-            android:textColor="#666666"
-            android:textSize="17sp" />
-    </RelativeLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:background="#E5E5E5" />
-    <!--营业时间-->
-    <LinearLayout
-        android:id="@+id/ll_store_time"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="#ffffff"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:gravity="left"
-            android:text="营业时间"
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <TextView
-            android:id="@+id/tv_store_time"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="09:00 ~ 22:00"
-            android:textColor="#666666"
-            android:textSize="17sp" />
-
-        <ImageView
-            style="@style/im_tongyong_jinru" />
-    </LinearLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
-        android:background="#E5E5E5" />
-    <!--营业资质-->
-    <RelativeLayout
-        android:id="@+id/rl_store_license"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="#ffffff">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:gravity="center_vertical"
-            android:text="营业资质"
-            android:textColor="#000000"
-            android:textSize="17sp" />
-
-        <ImageView
-            style="@style/im_tongyong_jinru" />
-    </RelativeLayout>
 </LinearLayout>
