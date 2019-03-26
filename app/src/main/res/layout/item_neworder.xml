@@ -38,8 +38,8 @@
         android:minHeight="72dp"
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="5dp"
-        app:cardElevation="5dp"
-        app:cardMaxElevation="8dp"
+        app:cardElevation="2dp"
+        app:cardMaxElevation="4dp"
         >
 
         <RelativeLayout
