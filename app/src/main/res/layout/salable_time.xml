@@ -72,9 +72,10 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="开始时间"
                 android:textColor="#999999"
                 android:textSize="14sp" />
@@ -105,9 +106,10 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
                 android:text="结束时间"
                 android:textColor="#999999"
                 android:textSize="14sp" />
