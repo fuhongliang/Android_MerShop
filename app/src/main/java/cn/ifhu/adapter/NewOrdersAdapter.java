@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -46,10 +48,25 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.tvOrderNumber.setText(mDatas.get(position).getOrder_id() + "");
-        holder.tvCustomerName.setText(mDatas.get(position).getExtend_order_common().getReciver_name() + "");
-        holder.tvCustomerPhone.setText(mDatas.get(position).getExtend_order_common().getPhone() + "");
-        holder.tvCustomerAdd.setText(mDatas.get(position).getExtend_order_common().getAddress() + "");
+        OrderBean orderBean = mDatas.get(position);
+        holder.tvOrderNumber.setText(orderBean.getOrder_id() + "");
+        holder.tvCustomerName.setText(orderBean.getExtend_order_common().getReciver_name() + "");
+        holder.tvCustomerPhone.setText(orderBean.getExtend_order_common().getPhone() + "");
+        holder.tvCustomerAdd.setText(orderBean.getExtend_order_common().getAddress() + "");
+        holder.tvTotal.setText(orderBean.getTotal_price()+"");
+        holder.tvServiceFee.setText(orderBean.getCommis_price()+"");
+        holder.tvEarnMoney.setText(orderBean.getGoods_pay_price()+"");
+        holder.llContent.removeAllViews();
+        for (OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean:orderBean.getExtend_order_goods()){
+            View view =LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
+            TextView mProductName = view.findViewById(R.id.tv_product_name);
+            TextView mPrice = view.findViewById(R.id.tv_price);
+            TextView mNumber = view.findViewById(R.id.tv_number);
+            mProductName.setText(extendOrderGoodsBean.getGoods_name());
+            mPrice.setText(extendOrderGoodsBean.getGoods_price());
+            mNumber.setText("x "+extendOrderGoodsBean.getGoods_num());
+            holder.llContent.addView(view);
+        }
         holder.btn_refuse.setOnClickListener(v -> onclickButton.refuse(position));
         holder.btn_accept.setOnClickListener(v -> onclickButton.accept(position));
     }
@@ -72,6 +89,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
 
         TextView tvOrderTime;
         TextView tvOrderSn;
+        LinearLayout llContent;
 
         public MyViewHolder(View view) {
             super(view);
@@ -82,6 +100,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             tvTotal = view.findViewById(R.id.tv_total);
             tvServiceFee = view.findViewById(R.id.tv_service_fee);
             tvEarnMoney = view.findViewById(R.id.tv_earn_money);
+            llContent = view.findViewById(R.id.ll_content);
 
             tvOrderTime = view.findViewById(R.id.tv_order_time);
             tvOrderSn = view.findViewById(R.id.tv_order_sn);

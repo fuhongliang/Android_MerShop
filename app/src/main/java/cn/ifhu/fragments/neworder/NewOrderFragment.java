@@ -71,28 +71,25 @@ public class NewOrderFragment extends BaseFragment {
     }
 
     public void getNewOrders(){
-        Logger.d("getNewOrders");
         layoutSwipeRefresh.setRefreshing(true);
         RetrofitAPIManager.create(OrderService.class).getNewOrder(UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
 
             @Override
             protected void onApiComplete() {
-                Logger.d("onApiComplete");
                 layoutSwipeRefresh.setRefreshing(false);
             }
 
             @Override
             protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
-                Logger.d("onSuccees"+t);
-                if (t.getData().isEmpty()){
+
+                if (t.getData() == null || t.getData().isEmpty()){
 //                    recyclerList
                 }else {
                     mDatas.clear();
                     mDatas.addAll(t.getData());
                     newOrdersAdapter.updateData(mDatas);
                 }
-
                 ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             }
         });
