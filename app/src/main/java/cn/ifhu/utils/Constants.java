@@ -13,5 +13,6 @@ public class Constants {
     public static final String CLASSLIST = "CLASSLIST";
     public static final String PRODUCTLIST = "PRODUCTLIST";
     public static final String LOGOUT = "logout_event";
+    public static final String SELLINGTIME = "SELLINGTIME";
 
 }
