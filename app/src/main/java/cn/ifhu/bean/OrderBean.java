@@ -4,16 +4,17 @@ import java.util.List;
 
 public class OrderBean {
 
+
     /**
-     * order_id : 8
-     * order_sn : 2000000000000801
-     * buyer_id : 4
-     * add_time : 2019-03-14 14:46:53
-     * extend_order_common : {"phone":"17189183213","address":"河南\t南阳市\t邓州市 刘集乡","reciver_name":"张三的收货地址"}
-     * extend_order_goods : [{"goods_name":"溪秀气垫CC霜 保湿补水遮瑕裸妆粉底液持久控油隔离BB霜","goods_price":"128.00","goods_num":2,"commis_rate":0,"goods_pay_price":"256.00"},{"goods_name":"溪秀面膜补水保湿冰膜冰感透肌舒缓蚕丝面膜护肤套装男女","goods_price":"68.00","goods_num":2,"commis_rate":0,"goods_pay_price":"136.00"}]
-     * total_price : 392
-     * commis_price : 0
-     * goods_pay_price : 392
+     * order_id : 4
+     * order_sn : 2000000000001001
+     * buyer_id : 13
+     * add_time : 2019-03-26 17:46:10
+     * extend_order_common : {"phone":"18825110998","address":"广东\t汕尾市\t陆丰市 大道中599号泰兴商业大厦10楼","reciver_name":"张生"}
+     * extend_order_goods : [{"goods_name":"水果69.69元","goods_price":"69.96","goods_num":1,"commis_rate":5,"goods_pay_price":"69.96"}]
+     * total_price : 69.96
+     * commis_price : 3.498
+     * goods_pay_price : 66.462
      */
 
     private int order_id;
@@ -21,9 +22,9 @@ public class OrderBean {
     private int buyer_id;
     private String add_time;
     private ExtendOrderCommonBean extend_order_common;
-    private int total_price;
-    private int commis_price;
-    private int goods_pay_price;
+    private double total_price;
+    private double commis_price;
+    private double goods_pay_price;
     private List<ExtendOrderGoodsBean> extend_order_goods;
 
     public int getOrder_id() {
@@ -66,27 +67,27 @@ public class OrderBean {
         this.extend_order_common = extend_order_common;
     }
 
-    public int getTotal_price() {
+    public double getTotal_price() {
         return total_price;
     }
 
-    public void setTotal_price(int total_price) {
+    public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
 
-    public int getCommis_price() {
+    public double getCommis_price() {
         return commis_price;
     }
 
-    public void setCommis_price(int commis_price) {
+    public void setCommis_price(double commis_price) {
         this.commis_price = commis_price;
     }
 
-    public int getGoods_pay_price() {
+    public double getGoods_pay_price() {
         return goods_pay_price;
     }
 
-    public void setGoods_pay_price(int goods_pay_price) {
+    public void setGoods_pay_price(double goods_pay_price) {
         this.goods_pay_price = goods_pay_price;
     }
 
@@ -100,9 +101,9 @@ public class OrderBean {
 
     public static class ExtendOrderCommonBean {
         /**
-         * phone : 17189183213
-         * address : 河南	南阳市	邓州市 刘集乡
-         * reciver_name : 张三的收货地址
+         * phone : 18825110998
+         * address : 广东	汕尾市	陆丰市 大道中599号泰兴商业大厦10楼
+         * reciver_name : 张生
          */
 
         private String phone;
@@ -136,11 +137,11 @@ public class OrderBean {
 
     public static class ExtendOrderGoodsBean {
         /**
-         * goods_name : 溪秀气垫CC霜 保湿补水遮瑕裸妆粉底液持久控油隔离BB霜
-         * goods_price : 128.00
-         * goods_num : 2
-         * commis_rate : 0
-         * goods_pay_price : 256.00
+         * goods_name : 水果69.69元
+         * goods_price : 69.96
+         * goods_num : 1
+         * commis_rate : 5
+         * goods_pay_price : 69.96
          */
 
         private String goods_name;

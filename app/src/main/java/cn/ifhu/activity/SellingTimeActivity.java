@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,11 +19,13 @@ import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.SellingTime;
 import cn.ifhu.bean.UserServiceBean;
 import cn.ifhu.dialog.DialogWheelFragment;
 import cn.ifhu.net.MeService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
+import cn.ifhu.utils.ProductLogic;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
@@ -43,6 +46,7 @@ public class SellingTimeActivity extends BaseActivity {
     Button btnSave;
     @BindView(R.id.iv_select)
     ImageView ivSelect;
+    List<SellingTime> sellingTimeList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class SellingTimeActivity extends BaseActivity {
         setContentView(R.layout.activity_sellging_time);
         ButterKnife.bind(this);
         tvTitle.setText("可售时间");
+        ivSelect.setSelected(true);
     }
 
 
@@ -82,24 +87,31 @@ public class SellingTimeActivity extends BaseActivity {
     }
 
     public void setStoreTime(String beginTime, String endTime) {
-
         View view = getLayoutInflater().inflate(R.layout.item_time, null);
         TextView mTvStartTime = view.findViewById(R.id.tv_start_time);
         TextView mTvEndTime = view.findViewById(R.id.tv_end_time);
         ImageView mIvDelete = view.findViewById(R.id.iv_delete);
         mTvStartTime.setText(beginTime);
         mTvEndTime.setText(endTime);
-        mIvDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                llContent.removeView(view);
-            }
+        mIvDelete.setOnClickListener(v -> {
+            int position = llContent.indexOfChild(v);
+            llContent.removeView(view);
+            sellingTimeList.remove(position);
         });
         llContent.addView(view);
+        SellingTime sellingTime = new SellingTime();
+        sellingTime.setStart_time(beginTime);
+        sellingTime.setEnd_time(endTime);
+        sellingTimeList.add(sellingTime);
     }
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
-
+        if (ivSelect.isSelected()){
+            ProductLogic.saveSellingTime(new ArrayList<>());
+        }else {
+            ProductLogic.saveSellingTime(sellingTimeList);
+        }
+        finish();
     }
 }

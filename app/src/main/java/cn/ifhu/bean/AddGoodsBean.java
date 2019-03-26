@@ -9,7 +9,7 @@ public class AddGoodsBean {
     double goods_price;
     double origin_price;
     int goods_storage;
-    List<SellTime> sell_time;
+    List<SellingTime> sell_time;
     String goods_desc;
 
     public int getStore_id() {
@@ -60,11 +60,11 @@ public class AddGoodsBean {
         this.goods_storage = goods_storage;
     }
 
-    public List<SellTime> getSell_time() {
+    public List<SellingTime> getSell_time() {
         return sell_time;
     }
 
-    public void setSell_time(List<SellTime> sell_time) {
+    public void setSell_time(List<SellingTime> sell_time) {
         this.sell_time = sell_time;
     }
 
@@ -76,24 +76,4 @@ public class AddGoodsBean {
         this.goods_desc = goods_desc;
     }
 
-    class  SellTime{
-        String start_time;
-        String end_time;
-
-        public String getStart_time() {
-            return start_time;
-        }
-
-        public void setStart_time(String start_time) {
-            this.start_time = start_time;
-        }
-
-        public String getEnd_time() {
-            return end_time;
-        }
-
-        public void setEnd_time(String end_time) {
-            this.end_time = end_time;
-        }
-    }
 }

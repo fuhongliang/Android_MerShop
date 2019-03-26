@@ -6,8 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.orhanobut.logger.Logger;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,6 +35,8 @@ public class StoreStateActivity extends BaseActivity {
     TextView tvStoreTime;
     @BindView(R.id.btn_change_state)
     Button btnChangeState;
+    @BindView(R.id.iv_state)
+    ImageView ivState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,16 +45,18 @@ public class StoreStateActivity extends BaseActivity {
         ButterKnife.bind(this);
         setBtnChangeState(UserLogic.getUser().getStore_state());
         tvTitle.setText("营业状态");
-        tvStoreTime.setText("营业时间:"+UserLogic.getUser().getWork_start_time() + "~" + UserLogic.getUser().getWork_end_time());
+        tvStoreTime.setText("营业时间:" + UserLogic.getUser().getWork_start_time() + "~" + UserLogic.getUser().getWork_end_time());
     }
 
     public void setBtnChangeState(int state) {
         if (state == 0) {
             btnChangeState.setText("开始营业");
             tvStoreState.setText("已停止营业");
+            ivState.setBackgroundResource(R.drawable.yingye_ic_weiyingye);
         } else {
             btnChangeState.setText("停止营业");
             tvStoreState.setText("正常开业中");
+            ivState.setBackgroundResource(R.drawable.personal_ic_yyzt);
         }
     }
 
@@ -67,6 +69,7 @@ public class StoreStateActivity extends BaseActivity {
     public void onBtnChangeStateClicked() {
         changeState();
     }
+
     public void changeState() {
         setLoadingMessageIndicator(true);
         int state = UserLogic.getUser().getStore_state() == 0 ? 1 : 0;

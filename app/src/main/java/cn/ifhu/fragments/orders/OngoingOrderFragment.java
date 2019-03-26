@@ -28,6 +28,7 @@ import cn.ifhu.dialog.DialogListFragment;
 import cn.ifhu.dialog.NormalTextDialog;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.utils.DialogUtils;
+import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.utils.ToastHelper;
 
 /**
@@ -83,6 +84,7 @@ public class OngoingOrderFragment extends BaseFragment{
         newOrdersAdapter = new OnGoingOrdersAdapter(mDatas, getContext(), position -> {
             showPrintDialog(position);
         });
+        recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerList.setAdapter(newOrdersAdapter);
         setRefreshLayout();
     }
