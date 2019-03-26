@@ -14,6 +14,9 @@ import cn.ifhu.bean.UserServiceBean;
 import static cn.ifhu.utils.Constants.CLASSLIST;
 import static cn.ifhu.utils.Constants.USER;
 
+/**
+ * @author fuhongliang
+ */
 public class ProductLogic {
 
     public static void saveClass(List<ProductManageBean.ClassListBean> dataBean) {

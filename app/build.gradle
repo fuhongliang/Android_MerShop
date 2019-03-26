@@ -62,4 +62,6 @@ dependencies {
      * eventbus
      */
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    implementation 'jsc.kit.wheel:wheel-view:0.5.3'
 }

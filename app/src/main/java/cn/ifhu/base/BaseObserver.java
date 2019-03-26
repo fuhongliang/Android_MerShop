@@ -64,13 +64,13 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
                         ToastHelper.makeText(tLinkBaseEntity.getMessage(), Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();
                     }
                 }
-                if (tLinkBaseEntity.isTokenTimeOut()) {
-                    try {
-                        EventBus.getDefault().post(new MessageEvent(LOGOUT));
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
+//                if (tLinkBaseEntity.isTokenTimeOut()) {
+//                    try {
+//                        EventBus.getDefault().post(new MessageEvent(LOGOUT));
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                    }
+//                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

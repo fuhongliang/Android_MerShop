@@ -17,13 +17,13 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.ProductActivity"/>
+        <activity android:name=".activity.ProductManageActivity"/>
         <activity android:name=".activity.MainActivity"/>
         <activity android:name=".activity.RingSettingsActivity"></activity>
         <activity
             android:name=".activity.AddOrEditProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.ManageProductCategoryActivity" />
+        <activity android:name=".activity.ManageCategoryActivity" />
         <activity android:name=".activity.SortCategoryActivity" />
         <activity
             android:name=".activity.login.LoginActivity"
@@ -64,7 +64,7 @@
             android:name=".activity.ReviewListActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.SortManagementActivity"
+            android:name=".activity.CategoryManagementActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity

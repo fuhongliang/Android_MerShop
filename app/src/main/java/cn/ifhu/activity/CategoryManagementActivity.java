@@ -29,7 +29,7 @@ import io.reactivex.disposables.Disposable;
 /**
  * @author fuhongliang
  */
-public class SortManagementActivity extends BaseActivity {
+public class CategoryManagementActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;

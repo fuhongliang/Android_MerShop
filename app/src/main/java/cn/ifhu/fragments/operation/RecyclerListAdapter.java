@@ -36,8 +36,10 @@ import java.util.Collections;
 import java.util.List;
 
 import cn.ifhu.R;
+import cn.ifhu.bean.ProductManageBean;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.utils.DialogUtils;
+import cn.ifhu.utils.ProductLogic;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.view.ItemTouchHelper.ItemTouchHelperAdapter;
 import cn.ifhu.view.ItemTouchHelper.ItemTouchHelperViewHolder;
@@ -53,29 +55,21 @@ import cn.ifhu.view.ItemTouchHelper.OnStartDragListener;
 public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.ItemViewHolder>
         implements ItemTouchHelperAdapter {
 
-    private final List<String> mItems = new ArrayList<>();
-
+    List<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
     private final OnStartDragListener mDragStartListener;
     public Context context;
+
     public RecyclerListAdapter(Context context, OnStartDragListener dragStartListener) {
         this.context = context;
         mDragStartListener = dragStartListener;
-        mockData();
-        mItems.addAll(mDataArray);
+        initkData();
     }
-    ArrayList<String> mDataArray = new ArrayList<>();
-    public void mockData() {
-        mDataArray.add("热销");
-        mDataArray.add("特殊套餐");
-        mDataArray.add("单人套餐");
-        mDataArray.add("米饭");
-        mDataArray.add("主食类");
-        mDataArray.add("精美小吃");
-        mDataArray.add("汤类");
-        mDataArray.add("饮料");
-        mDataArray.add("必买");
-        mDataArray.add("点心");
-        mDataArray.add("其他");
+    public void initkData() {
+        try {
+            mDataArray = ProductLogic.getClassList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -86,7 +80,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
-        holder.textView.setText(mItems.get(position));
+        holder.textView.setText(mDataArray.get(position).getStc_name());
 
         // Start a drag whenever the handle view it touched
         holder.handleView.setOnTouchListener(new View.OnTouchListener() {
@@ -124,7 +118,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
             @Override
             public void ok() {
-                mItems.remove(position);
+                mDataArray.remove(position);
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
                 ToastHelper.makeText("点击了确定按钮",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
@@ -134,20 +128,20 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     @Override
     public void onItemDismiss(int position) {
-        mItems.remove(position);
+        mDataArray.remove(position);
         notifyItemRemoved(position);
     }
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        Collections.swap(mItems, fromPosition, toPosition);
+        Collections.swap(mDataArray, fromPosition, toPosition);
         notifyItemMoved(fromPosition, toPosition);
         return true;
     }
 
     @Override
     public int getItemCount() {
-        return mItems.size();
+        return mDataArray.size();
     }
 
     /**

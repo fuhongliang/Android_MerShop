@@ -68,7 +68,7 @@ public class ChangeStorePhoneActivity extends BaseActivity {
 
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
-        finish();
+        goBack();
     }
 
 

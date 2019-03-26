@@ -10,6 +10,7 @@ import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.base.ActivityCollector;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.dialog.loading.LoadingDialog;
+import cn.ifhu.utils.KeyBoardUtil;
 import cn.ifhu.utils.Utils;
 
 /**
@@ -134,5 +135,10 @@ public class BaseActivity extends AppCompatActivity {
         } else {
             LoadingDialog.progressCancel();
         }
+    }
+
+    public void goBack(){
+        KeyBoardUtil.hideKeyboard(this);
+        finish();
     }
 }

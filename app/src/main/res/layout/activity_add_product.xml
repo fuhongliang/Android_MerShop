@@ -34,9 +34,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginEnd="15dp"
                 android:layout_weight="1"
+                android:maxLines="1"
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="限30以内"
+                android:singleLine="true"
                 android:textColor="#999999"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -69,7 +71,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="end|center_vertical"
-                android:text="热销"
                 android:textColor="#666666"
                 android:textSize="17sp" />
 
@@ -114,6 +115,7 @@
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请填写价格"
+                android:inputType="numberDecimal"
                 android:textColor="#999999"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -146,6 +148,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="15dp"
                 android:layout_weight="1"
+                android:inputType="numberDecimal"
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请填写价格"

@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,11 +16,13 @@ import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.adapter.ManageCategoryAdapter;
 import cn.ifhu.base.BaseActivity;
+import cn.ifhu.bean.ProductManageBean;
+import cn.ifhu.utils.ProductLogic;
 
 /**
  * @author fuhongliang
  */
-public class ManageProductCategoryActivity extends BaseActivity {
+public class ManageCategoryActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -32,7 +35,7 @@ public class ManageProductCategoryActivity extends BaseActivity {
     @BindView(R.id.rl_add_product)
     RelativeLayout rlAddProduct;
     ManageCategoryAdapter manageCategoryAdapter;
-    ArrayList<String> mDataArray = new ArrayList<>();
+    List<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class ManageProductCategoryActivity extends BaseActivity {
         setContentView(R.layout.activity_manageproduct_category);
         ButterKnife.bind(this);
         tvTitle.setText("管理分类");
-        mockData();
+        initData();
         manageCategoryAdapter = new ManageCategoryAdapter(mDataArray, this, new ManageCategoryAdapter.ItemOnclick() {
             @Override
             public void onClickEditItem(int position) {
@@ -55,18 +58,12 @@ public class ManageProductCategoryActivity extends BaseActivity {
         lvCategory.setAdapter(manageCategoryAdapter);
     }
 
-    public void mockData() {
-        mDataArray.add("热销");
-        mDataArray.add("特殊套餐");
-        mDataArray.add("单人套餐");
-        mDataArray.add("米饭");
-        mDataArray.add("主食类");
-        mDataArray.add("精美小吃");
-        mDataArray.add("汤类");
-        mDataArray.add("饮料");
-        mDataArray.add("必买");
-        mDataArray.add("点心");
-        mDataArray.add("其他");
+    public void initData() {
+        try {
+            mDataArray = ProductLogic.getClassList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @OnClick(R.id.iv_back)
@@ -77,11 +74,11 @@ public class ManageProductCategoryActivity extends BaseActivity {
 
     @OnClick(R.id.rl_manage_category)
     public void onRlManageCategoryClicked() {
-        startActivity(new Intent(ManageProductCategoryActivity.this,SortCategoryActivity.class));
+        startActivity(new Intent(ManageCategoryActivity.this,SortCategoryActivity.class));
     }
 
     @OnClick(R.id.rl_add_product)
     public void onRlAddProductClicked() {
-        startActivity(new Intent(ManageProductCategoryActivity.this,SortManagementActivity.class));
+        startActivity(new Intent(ManageCategoryActivity.this, CategoryManagementActivity.class));
     }
 }

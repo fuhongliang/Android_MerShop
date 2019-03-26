@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +27,13 @@ import cn.ifhu.net.OperationService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
 import cn.ifhu.utils.DialogUtils;
-import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.ProductLogic;
 import cn.ifhu.utils.UserLogic;
 
 /**
  * @author fuhongliang
  */
-public class ProductActivity extends BaseActivity {
+public class ProductManageActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -70,6 +69,7 @@ public class ProductActivity extends BaseActivity {
 
         mProductAdapter = new ProductAdapter(mProductArray, this);
         lvProduct.setAdapter(mProductAdapter);
+        tvTitle.setText("商品管理");
     }
 
     @Override
@@ -99,7 +99,7 @@ public class ProductActivity extends BaseActivity {
 
                         @Override
                         public void ok() {
-                            startActivity(new Intent(ProductActivity.this,SortManagementActivity.class));
+                            startActivity(new Intent(ProductManageActivity.this, CategoryManagementActivity.class));
                         }
                     });
                 }else {
@@ -107,6 +107,7 @@ public class ProductActivity extends BaseActivity {
                     mCategoryAdapter.setmDataList(mDataArray);
                     mProductArray = t.getData().getGoods_list();
                     mProductAdapter.setmDataList(mProductArray);
+                    ProductLogic.saveClass(mDataArray);
                 }
             }
         });
@@ -125,11 +126,11 @@ public class ProductActivity extends BaseActivity {
 
     @OnClick(R.id.rl_manage_category)
     public void onRlManageCategoryClicked() {
-        startActivity(new Intent(ProductActivity.this,ManageProductCategoryActivity.class));
+        startActivity(new Intent(ProductManageActivity.this, ManageCategoryActivity.class));
     }
 
     @OnClick(R.id.rl_add_product)
     public void onRlAddProductClicked() {
-        startActivity(new Intent(ProductActivity.this,AddOrEditProductActivity.class));
+        startActivity(new Intent(ProductManageActivity.this,AddOrEditProductActivity.class));
     }
 }

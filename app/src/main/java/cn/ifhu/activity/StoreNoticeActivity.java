@@ -48,7 +48,7 @@ public class StoreNoticeActivity extends BaseActivity {
 
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
-        finish();
+        goBack();
     }
 
     @OnClick(R.id.btn_save)

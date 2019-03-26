@@ -10,21 +10,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.R;
+import cn.ifhu.bean.ProductManageBean;
 
 /**
  * @author fuhongliang
  */
 public class ManageCategoryAdapter extends BaseAdapter {
-    public ArrayList<String> mDataList;
+    List<ProductManageBean.ClassListBean> mDataList;
     public Context mContext;
     public int mCurPosition = 0;
     ItemOnclick itemOnclick;
 
-    public ManageCategoryAdapter(ArrayList<String> mDataList, Context mContext, ItemOnclick itemOnclick) {
+    public ManageCategoryAdapter(List<ProductManageBean.ClassListBean> mDataList, Context mContext, ItemOnclick itemOnclick) {
         this.mDataList = mDataList;
         this.mContext = mContext;
         this.itemOnclick = itemOnclick;
@@ -57,7 +59,7 @@ public class ManageCategoryAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvCategroy.setText(mDataList.get(position));
+        viewHolder.tvCategroy.setText(mDataList.get(position).getStc_name());
         viewHolder.tvEdit.setOnClickListener(v -> {
             itemOnclick.onClickEditItem(position);
         });

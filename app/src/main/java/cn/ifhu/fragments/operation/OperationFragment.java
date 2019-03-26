@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.R;
-import cn.ifhu.activity.ProductActivity;
+import cn.ifhu.activity.ProductManageActivity;
 import cn.ifhu.activity.ReviewListActivity;
 import cn.ifhu.base.BaseFragment;
 
@@ -66,7 +66,7 @@ public class OperationFragment extends BaseFragment {
 
     @OnClick(R.id.ll_OperationProduct)
     public void onLlOperationProductClicked() {
-        startActivity(new Intent(getActivity(), ProductActivity.class));
+        startActivity(new Intent(getActivity(), ProductManageActivity.class));
     }
 
     @OnClick(R.id.ll_reviews)

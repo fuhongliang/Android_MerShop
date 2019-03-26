@@ -29,9 +29,8 @@ public interface OperationService {
     @POST("add_goods_class")
     public Observable<BaseEntity<List<Object>>> updateGoodsClass(@Field("store_id") int store_id, @Field("class_id") int class_id, @Field("class_name") String class_name);
 
-    @FormUrlEncoded
     @POST("add_goods")
-//    public Observable<BaseEntity<Object>> addGoods(@Field("store_id") int store_id, @Field("class_id") int class_id, @Field("goods_name") String goods_name, @Field("goods_price") double goods_price, @Field("origin_price") double origin_price, @Field("goods_storage") int goods_storage);
+//  public Observable<BaseEntity<Object>> addGoods(@Field("store_id") int store_id, @Field("class_id") int class_id, @Field("goods_name") String goods_name, @Field("goods_price") double goods_price, @Field("origin_price") double origin_price, @Field("goods_storage") int goods_storage);
     public Observable<BaseEntity<Object>> addGoods(@Body AddGoodsBean addGoodsBean);
 
 
