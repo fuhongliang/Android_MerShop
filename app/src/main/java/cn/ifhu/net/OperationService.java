@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.ifhu.bean.AddGoodsBean;
 import cn.ifhu.bean.BaseEntity;
+import cn.ifhu.bean.OperationBean;
 import cn.ifhu.bean.ProductManageBean;
 import cn.ifhu.bean.ReviewBean;
 import cn.ifhu.bean.SortCategoryBean;
@@ -46,6 +47,11 @@ public interface OperationService {
     @FormUrlEncoded
     @POST("store_feedback")
     public Observable<BaseEntity<Object>> storeFeedback(@Field("store_id") int store_id,@Field("content") String content,@Field("parent_id") int parent_id);
+
+    @FormUrlEncoded
+    @POST("store_yunying")
+    public Observable<BaseEntity<OperationBean>> storeYunying(@Field("store_id") int store_id);
+
 
 
 }
