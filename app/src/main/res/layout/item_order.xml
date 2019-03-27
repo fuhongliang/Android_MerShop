@@ -59,28 +59,27 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/tv_customer_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:text="张先生"
                 android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="17sp" />
+                android:textSize="17sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/phone"
+                android:id="@+id/tv_customer_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/name"
+                android:layout_marginLeft="17dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@id/tv_customer_name"
                 android:text="15975900123"
                 android:textColor="#000000"
                 android:textSize="17sp"
-                android:textStyle="bold"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="17dp"
-                />
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,27 +87,28 @@
                 android:textColor="#1C98F6"
                 android:textSize="15sp"
                 android:gravity="right"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginRight="15dp"
                 />
             <ImageView
                 android:id="@+id/icon_weizhi"
                 android:layout_width="10dp"
                 android:layout_height="13dp"
-                android:background="@drawable/icon_weizhi"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="40dp"
-                />
+                android:layout_marginTop="45dp"
+                android:background="@drawable/icon_weizhi" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="地址：广东省深圳市南山区松白路1053号"
-                android:textColor="#D7D6DC"
-                android:textSize="14sp"
-                android:layout_toRightOf="@id/icon_weizhi"
-                android:layout_marginTop="38dp"
                 android:layout_marginLeft="11dp"
-                />
+                android:layout_marginTop="41dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="12dp"
+                android:layout_toRightOf="@id/icon_weizhi"
+                android:text="地址：广东省深圳市南山区松白路1053号"
+                android:textColor="#666666"
+                android:textSize="14sp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
     <RelativeLayout
