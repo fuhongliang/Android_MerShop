@@ -36,6 +36,7 @@ import cn.ifhu.net.OrderService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
 import cn.ifhu.net.UserService;
+import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
@@ -161,8 +162,10 @@ public class NewOrderFragment extends BaseFragment {
                 receiveOrder(mDatas.get(position).getOrder_id()+"",position);
             }
         });
+        recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerList.setAdapter(newOrdersAdapter);
         setRefreshLayout();
+        getNewOrders();
     }
 
     @SuppressLint("ResourceAsColor")

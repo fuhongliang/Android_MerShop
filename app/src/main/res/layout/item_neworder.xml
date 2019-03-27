@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ffffff"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="15dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,8 +15,7 @@
             android:id="@+id/tv_order_number"
             android:layout_width="50dp"
             android:layout_height="26dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="9dp"
+            android:layout_centerVertical="true"
             android:background="@drawable/bg_button"
             android:gravity="center"
             android:text="#68"
@@ -24,8 +24,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="11dp"
-            android:layout_marginTop="12dp"
             android:layout_toRightOf="@+id/tv_order_number"
             android:text="立即送达"
             android:textColor="#1C98F6"
@@ -35,7 +35,10 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginBottom="15dp"
         android:minHeight="72dp"
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="5dp"
@@ -44,8 +47,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_customer_name"
@@ -96,8 +98,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
         android:gravity="left"
         android:text="商品"
         android:textColor="#000000"
@@ -116,7 +116,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:background="#E5E5E5" />
 
@@ -127,7 +126,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
             android:layout_marginTop="10dp"
             android:text="小计"
             android:textColor="#333333"
@@ -139,7 +137,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
             android:text="￥22.5"
             android:textColor="#000000"
             android:textSize="17sp"
@@ -153,7 +150,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
             android:layout_marginTop="14dp"
             android:gravity="left"
             android:text="平台服务费"
@@ -165,7 +161,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
             android:gravity="right"
             android:text="-￥4.2"
             android:textColor="#000000"
@@ -180,7 +175,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="14dp"
             android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="本单预计收入"
@@ -192,7 +186,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="16dp"
             android:gravity="right"
             android:text="￥18.3"
             android:textColor="#EC1818"
@@ -203,7 +196,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:background="#E5E5E5" />
 
@@ -211,7 +203,6 @@
         android:id="@+id/tv_order_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:gravity="left"
         android:text="下单时间：2019-02-28 13:05:56"
@@ -222,7 +213,6 @@
         android:id="@+id/tv_order_sn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:gravity="left"
         android:text="订单编号：87274917415"
@@ -232,7 +222,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
         android:background="#E5E5E5" />
 
@@ -241,23 +230,25 @@
         android:layout_height="wrap_content"
         android:padding="10dp">
 
-        <Button
+        <TextView
             android:id="@+id/btn_refuse"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/bg_button_grey"
+            android:gravity="center"
             android:text="拒单"
             android:textColor="#666666"
             android:textSize="18sp" />
 
-        <Button
+        <TextView
             android:id="@+id/btn_accept"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@drawable/bu_button_blue"
+            android:gravity="center"
             android:text="接单"
             android:textColor="#ffffff"
             android:textSize="18sp" />

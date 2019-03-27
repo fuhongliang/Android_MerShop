@@ -67,6 +67,10 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
             holder.llContent.addView(view);
         }
+        holder.tvOrderSn.setText("订单编号：" + orderBean.getOrder_sn() + "");
+        holder.tvOrderTime.setText("下单时间：" + orderBean.getAdd_time() + "");
+
+
         holder.btn_refuse.setOnClickListener(v -> onclickButton.refuse(position));
         holder.btn_accept.setOnClickListener(v -> onclickButton.accept(position));
     }
@@ -77,8 +81,8 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        Button btn_refuse;
-        Button btn_accept;
+        TextView btn_refuse;
+        TextView btn_accept;
         TextView tvOrderNumber;
         TextView tvCustomerName;
         TextView tvCustomerPhone;

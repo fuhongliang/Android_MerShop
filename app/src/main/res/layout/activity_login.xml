@@ -123,18 +123,18 @@
         android:layout_marginLeft="16dp"
         />
 
-    <Button
+    <TextView
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:text="登录"
         android:textSize="17sp"
         android:textColor="#ffffff"
-        android:background="#1C98F6"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="51dp"
         android:gravity="center"
+        android:background="@drawable/bu_button_blue"
         android:stateListAnimator="@null"
         />
 </LinearLayout>

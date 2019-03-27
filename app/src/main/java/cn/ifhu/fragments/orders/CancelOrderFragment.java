@@ -35,12 +35,12 @@ import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
-import static cn.ifhu.utils.Constants.ORDERONGOING;
+import static cn.ifhu.utils.Constants.ORDERCANCEL;
 
 /**
  * @author fuhongliang
  */
-public class OngoingOrderFragment extends BaseFragment{
+public class CancelOrderFragment extends BaseFragment{
 
     @BindView(R.id.recycler_list)
     RecyclerView recyclerList;
@@ -51,11 +51,11 @@ public class OngoingOrderFragment extends BaseFragment{
     OnGoingOrdersAdapter mOrdersAdapter;
     private List<OrderBean> mDatas = new ArrayList<OrderBean>();
     private ArrayList<String> reasonList;
-    public static OngoingOrderFragment newInstance() {
-        return new OngoingOrderFragment();
+    public static CancelOrderFragment newInstance() {
+        return new CancelOrderFragment();
     }
 
-    public OngoingOrderFragment() {
+    public CancelOrderFragment() {
         // Required empty public constructor
     }
 
@@ -123,7 +123,7 @@ public class OngoingOrderFragment extends BaseFragment{
 
     public void getData(){
         layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERONGOING,UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERCANCEL,UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
 
             @Override
@@ -141,7 +141,6 @@ public class OngoingOrderFragment extends BaseFragment{
                     mDatas.addAll(t.getData());
                     mOrdersAdapter.updateData(mDatas);
                 }
-                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             }
         });
     }

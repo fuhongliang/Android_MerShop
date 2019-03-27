@@ -56,8 +56,8 @@ public class OrdersFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_order_managment, container, false);
         unbinder = ButterKnife.bind(this, view);
         mFragmentArrayList.add(OngoingOrderFragment.newInstance());
-        mFragmentArrayList.add(OngoingOrderFragment.newInstance());
-        mFragmentArrayList.add(OngoingOrderFragment.newInstance());
+        mFragmentArrayList.add(FinishedOrderFragment.newInstance());
+        mFragmentArrayList.add(CancelOrderFragment.newInstance());
         return view;
     }
 

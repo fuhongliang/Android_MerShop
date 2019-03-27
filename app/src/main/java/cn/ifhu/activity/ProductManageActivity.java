@@ -51,6 +51,7 @@ public class ProductManageActivity extends BaseActivity {
     RelativeLayout rlManageCategory;
     @BindView(R.id.rl_add_product)
     RelativeLayout rlAddProduct;
+    public int mCurId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class ProductManageActivity extends BaseActivity {
             @Override
             public void onClickItem(int position) {
                 mProductData(mDataArray.get(position).getStc_id());
+                mCurId = mDataArray.get(position).getStc_id();
             }
         });
         lvCategory.setAdapter(mCategoryAdapter);
@@ -75,12 +77,12 @@ public class ProductManageActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        getData(0);
+        getData(mCurId);
     }
 
-    public void getData(int class_id){
+    public void getData(int class_id) {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).goodsList(UserLogic.getUser().getStore_id(),class_id)
+        RetrofitAPIManager.create(OperationService.class).goodsList(UserLogic.getUser().getStore_id(), class_id)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ProductManageBean>(true) {
 
             @Override
@@ -90,8 +92,8 @@ public class ProductManageActivity extends BaseActivity {
 
             @Override
             protected void onSuccees(BaseEntity<ProductManageBean> t) throws Exception {
-                if (t.getData().getClass_list().isEmpty()){
-                    DialogUtils.showConfirmDialog("温馨提示", "您的店铺还没有商品分类 \n 是否新建商品分类？", "否", "是",getSupportFragmentManager(),  new ConfirmDialog.ButtonOnclick() {
+                if (t.getData().getClass_list().isEmpty()) {
+                    DialogUtils.showConfirmDialog("温馨提示", "您的店铺还没有商品分类 \n 是否新建商品分类？", "否", "是", getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
                         @Override
                         public void cancel() {
                             finish();
@@ -102,7 +104,7 @@ public class ProductManageActivity extends BaseActivity {
                             startActivity(new Intent(ProductManageActivity.this, AddOrEditCategoryActivity.class));
                         }
                     });
-                }else {
+                } else {
                     mDataArray = t.getData().getClass_list();
                     mCategoryAdapter.setmDataList(mDataArray);
                     mProductArray = t.getData().getGoods_list();
@@ -131,6 +133,6 @@ public class ProductManageActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_product)
     public void onRlAddProductClicked() {
-        startActivity(new Intent(ProductManageActivity.this,AddOrEditProductActivity.class));
+        startActivity(new Intent(ProductManageActivity.this, AddOrEditProductActivity.class));
     }
 }

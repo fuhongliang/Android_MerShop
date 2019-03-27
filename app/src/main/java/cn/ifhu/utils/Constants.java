@@ -15,4 +15,8 @@ public class Constants {
     public static final String LOGOUT = "logout_event";
     public static final String SELLINGTIME = "SELLINGTIME";
 
+    public static final int ORDERFINISHED = 40;
+    public static final int ORDERCANCEL = 0;
+    public static final int ORDERONGOING = 25;
+
 }

@@ -32,7 +32,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @BindView(R.id.et_password)
     EditText etPassword;
 
-    Button btnLogin;
+    TextView btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

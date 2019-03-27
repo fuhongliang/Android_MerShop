@@ -35,12 +35,12 @@ import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
-import static cn.ifhu.utils.Constants.ORDERONGOING;
+import static cn.ifhu.utils.Constants.ORDERFINISHED;
 
 /**
  * @author fuhongliang
  */
-public class OngoingOrderFragment extends BaseFragment{
+public class FinishedOrderFragment extends BaseFragment{
 
     @BindView(R.id.recycler_list)
     RecyclerView recyclerList;
@@ -51,11 +51,11 @@ public class OngoingOrderFragment extends BaseFragment{
     OnGoingOrdersAdapter mOrdersAdapter;
     private List<OrderBean> mDatas = new ArrayList<OrderBean>();
     private ArrayList<String> reasonList;
-    public static OngoingOrderFragment newInstance() {
-        return new OngoingOrderFragment();
+    public static FinishedOrderFragment newInstance() {
+        return new FinishedOrderFragment();
     }
 
-    public OngoingOrderFragment() {
+    public FinishedOrderFragment() {
         // Required empty public constructor
     }
 
@@ -88,7 +88,7 @@ public class OngoingOrderFragment extends BaseFragment{
                 R.color.colorPrimaryDark,
                 R.color.colorPrimaryDark);
         layoutSwipeRefresh.setOnRefreshListener(() -> {
-           getData();
+            getData();
         });
     }
 
@@ -123,7 +123,7 @@ public class OngoingOrderFragment extends BaseFragment{
 
     public void getData(){
         layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERONGOING,UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERFINISHED,UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
 
             @Override
