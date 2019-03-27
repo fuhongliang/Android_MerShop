@@ -65,8 +65,8 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvPrice.setText(mDataList.get(position).getGoods_marketprice());
-        viewHolder.tvOriginalPrice.setText(mDataList.get(position).getGoods_price());
+        viewHolder.tvPrice.setText(mDataList.get(position).getGoods_price());
+        viewHolder.tvOriginalPrice.setText(mDataList.get(position).getGoods_marketprice());
         viewHolder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
 

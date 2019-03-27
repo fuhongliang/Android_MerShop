@@ -17,7 +17,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
-import cn.ifhu.fragments.orders.OngoingOrderFragment;
+import cn.ifhu.fragments.reviews.AllReviewFragment;
+import cn.ifhu.fragments.reviews.NeedReplyReviewFragment;
 import cn.ifhu.view.RVPIndicator;
 
 /**
@@ -45,8 +46,8 @@ public class ReviewListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_list);
         ButterKnife.bind(this);
-        mFragmentArrayList.add(OngoingOrderFragment.newInstance());
-        mFragmentArrayList.add(OngoingOrderFragment.newInstance());
+        mFragmentArrayList.add(AllReviewFragment.newInstance());
+        mFragmentArrayList.add(NeedReplyReviewFragment.newInstance());
         initViewPager();
     }
 
