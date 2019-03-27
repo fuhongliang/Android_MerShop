@@ -29,7 +29,7 @@ public class RetrofitAPIManager {
 
     private static final long TIMEOUT = 1000;
     private static Retrofit retrofit;
-    public static String baseDevURL = "http://47.111.27.189/api/public/index.php/";
+    public static String baseDevURL = "https://api.shennongmall.com/v1/";
 
     private RetrofitAPIManager() {
 

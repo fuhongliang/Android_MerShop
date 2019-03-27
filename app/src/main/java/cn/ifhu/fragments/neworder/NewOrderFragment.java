@@ -136,7 +136,6 @@ public class NewOrderFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_order, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
@@ -146,7 +145,6 @@ public class NewOrderFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Logger.d("onViewCreated");
         initData();
         recyclerList.setLayoutManager(new LinearLayoutManager(getActivity()));
         newOrdersAdapter = new NewOrdersAdapter(mDatas, getContext(), new NewOrdersAdapter.OnclickButton() {

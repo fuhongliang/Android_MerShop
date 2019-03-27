@@ -26,6 +26,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import cn.ifhu.bean.ProductManageBean;
+import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.view.ItemTouchHelper.OnStartDragListener;
 import cn.ifhu.view.ItemTouchHelper.SimpleItemTouchHelperCallback;
 
@@ -35,6 +39,7 @@ import cn.ifhu.view.ItemTouchHelper.SimpleItemTouchHelperCallback;
 public class SortCategoryListFragment extends Fragment implements OnStartDragListener {
 
     private ItemTouchHelper mItemTouchHelper;
+    RecyclerListAdapter adapter = new RecyclerListAdapter(getActivity(), this);
 
     public SortCategoryListFragment() {
     }
@@ -49,7 +54,6 @@ public class SortCategoryListFragment extends Fragment implements OnStartDragLis
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerListAdapter adapter = new RecyclerListAdapter(getActivity(), this);
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -63,5 +67,9 @@ public class SortCategoryListFragment extends Fragment implements OnStartDragLis
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         mItemTouchHelper.startDrag(viewHolder);
+    }
+
+    public List<ProductManageBean.ClassListBean> getmDataArray() {
+        return adapter.getmDataArray();
     }
 }

@@ -2,7 +2,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/category_color">
 
     <include
         android:id="@+id/navigation_header_container"
@@ -15,6 +16,9 @@
         android:layout_above="@+id/ll_bottom"
         android:layout_below="@+id/navigation_header_container"
         android:background="@color/white"
+        android:footerDividersEnabled="false"
+        android:divider="@color/category_color"
+        android:dividerHeight="1dp"
         android:scrollbars="none"
         tools:listitem="@layout/item_manage_category" />
 
@@ -55,8 +59,9 @@
             </LinearLayout>
 
         </RelativeLayout>
+
         <RelativeLayout
-            android:id="@+id/rl_add_product"
+            android:id="@+id/rl_add_category"
             android:layout_width="0dp"
             android:layout_margin="7dp"
             android:layout_weight="1"
@@ -85,6 +90,5 @@
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
-
 </RelativeLayout>
 

@@ -51,8 +51,8 @@ public class AddOrEditProductActivity extends BaseActivity {
     EditText etPrice;
     @BindView(R.id.et_original_price)
     EditText etOriginalPrice;
-    @BindView(R.id.tv_selling_time)
-    TextView tvSellingTime;
+//    @BindView(R.id.tv_selling_time)
+//    TextView tvSellingTime;
 
     @BindView(R.id.et_product_desr)
     EditText etProductDesr;
@@ -70,7 +70,8 @@ public class AddOrEditProductActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         ButterKnife.bind(this);
-        setTvCategory(0);
+        int position = getIntent().getIntExtra("position",0);
+        setTvCategory(position);
     }
 
     @OnClick(R.id.iv_back)
@@ -138,8 +139,8 @@ public class AddOrEditProductActivity extends BaseActivity {
             addGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
             addGoodsBean.setClass_id(categoryId);
             addGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
-            addGoodsBean.setGoods_storage(swhShock.isChecked() ? 90000 : 10);
-            addGoodsBean.setSell_time(sellingTimes);
+            addGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
+            addGoodsBean.setSell_time(new ArrayList<>());
 
             RetrofitAPIManager.create(OperationService.class).addGoods(addGoodsBean)
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
@@ -201,17 +202,19 @@ public class AddOrEditProductActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        try {
-            sellingTimes = ProductLogic.getSellingTime();
-            if (sellingTimes == null || sellingTimes.size() == 0) {
-                tvSellingTime.setText("时间无限");
-            } else {
-                for (SellingTime sellingTime : sellingTimes) {
-                    tvSellingTime.setText(sellingTime.getStart_time() + "~" + sellingTime.getEnd_time());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            sellingTimes = ProductLogic.getSellingTime();
+//            if (sellingTimes == null || sellingTimes.size() == 0) {
+//                tvSellingTime.setText("时间无限");
+//            } else {
+//                String mSellingTime = "";
+//                for (SellingTime sellingTime : sellingTimes) {
+//                    mSellingTime =   sellingTime + sellingTime.getStart_time() + "~" + sellingTime.getEnd_time();
+//                }
+//                tvSellingTime.setText(mSellingTime);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
     }
 }

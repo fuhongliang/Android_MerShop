@@ -64,7 +64,7 @@
             android:name=".activity.ReviewListActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.CategoryManagementActivity"
+            android:name=".activity.AddOrEditCategoryActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity

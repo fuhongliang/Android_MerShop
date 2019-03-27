@@ -71,6 +71,11 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
             e.printStackTrace();
         }
     }
+
+    public List<ProductManageBean.ClassListBean> getmDataArray() {
+        return mDataArray;
+    }
+
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main, parent, false);

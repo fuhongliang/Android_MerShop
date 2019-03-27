@@ -49,22 +49,22 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         OrderBean orderBean = mDatas.get(position);
-        holder.tvOrderNumber.setText(orderBean.getOrder_id() + "");
+        holder.tvOrderNumber.setText("#" + orderBean.getOrder_id());
         holder.tvCustomerName.setText(orderBean.getExtend_order_common().getReciver_name() + "");
         holder.tvCustomerPhone.setText(orderBean.getExtend_order_common().getPhone() + "");
         holder.tvCustomerAdd.setText(orderBean.getExtend_order_common().getAddress() + "");
-        holder.tvTotal.setText(orderBean.getTotal_price()+"");
-        holder.tvServiceFee.setText(orderBean.getCommis_price()+"");
-        holder.tvEarnMoney.setText(orderBean.getGoods_pay_price()+"");
+        holder.tvTotal.setText(orderBean.getTotal_price() + "");
+        holder.tvServiceFee.setText(orderBean.getCommis_price() + "");
+        holder.tvEarnMoney.setText(orderBean.getGoods_pay_price() + "");
         holder.llContent.removeAllViews();
-        for (OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean:orderBean.getExtend_order_goods()){
-            View view =LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
+        for (OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean : orderBean.getExtend_order_goods()) {
+            View view = LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
             TextView mProductName = view.findViewById(R.id.tv_product_name);
             TextView mPrice = view.findViewById(R.id.tv_price);
             TextView mNumber = view.findViewById(R.id.tv_number);
             mProductName.setText(extendOrderGoodsBean.getGoods_name());
             mPrice.setText(extendOrderGoodsBean.getGoods_price());
-            mNumber.setText("x "+extendOrderGoodsBean.getGoods_num());
+            mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
             holder.llContent.addView(view);
         }
         holder.btn_refuse.setOnClickListener(v -> onclickButton.refuse(position));
@@ -112,6 +112,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
 
     public interface OnclickButton {
         void refuse(int position);
+
         void accept(int position);
     }
 }

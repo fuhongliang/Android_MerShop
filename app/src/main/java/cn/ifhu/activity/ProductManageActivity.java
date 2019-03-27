@@ -99,7 +99,7 @@ public class ProductManageActivity extends BaseActivity {
 
                         @Override
                         public void ok() {
-                            startActivity(new Intent(ProductManageActivity.this, CategoryManagementActivity.class));
+                            startActivity(new Intent(ProductManageActivity.this, AddOrEditCategoryActivity.class));
                         }
                     });
                 }else {

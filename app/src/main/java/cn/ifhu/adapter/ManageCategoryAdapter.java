@@ -32,6 +32,11 @@ public class ManageCategoryAdapter extends BaseAdapter {
         this.itemOnclick = itemOnclick;
     }
 
+    public void setmDataList(List<ProductManageBean.ClassListBean> mDataList) {
+        this.mDataList = mDataList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return mDataList == null ? 0 : mDataList.size();

@@ -32,8 +32,6 @@ public class ManageCategoryActivity extends BaseActivity {
     ListView lvCategory;
     @BindView(R.id.rl_manage_category)
     RelativeLayout rlManageCategory;
-    @BindView(R.id.rl_add_product)
-    RelativeLayout rlAddProduct;
     ManageCategoryAdapter manageCategoryAdapter;
     List<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
 
@@ -43,16 +41,20 @@ public class ManageCategoryActivity extends BaseActivity {
         setContentView(R.layout.activity_manageproduct_category);
         ButterKnife.bind(this);
         tvTitle.setText("管理分类");
-        initData();
         manageCategoryAdapter = new ManageCategoryAdapter(mDataArray, this, new ManageCategoryAdapter.ItemOnclick() {
             @Override
             public void onClickEditItem(int position) {
-
+                Intent intent = new Intent(ManageCategoryActivity.this,AddOrEditCategoryActivity.class);
+                intent.putExtra("ClassId",mDataArray.get(position).getStc_id());
+                intent.putExtra("ClassName",mDataArray.get(position).getStc_name());
+                startActivity(intent);
             }
 
             @Override
             public void onClickAddItem(int position) {
-
+                Intent intent = new Intent(ManageCategoryActivity.this,AddOrEditProductActivity.class);
+                intent.putExtra("position",position);
+                startActivity(intent);
             }
         });
         lvCategory.setAdapter(manageCategoryAdapter);
@@ -66,6 +68,13 @@ public class ManageCategoryActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+        manageCategoryAdapter.setmDataList(mDataArray);
+    }
+
     @OnClick(R.id.iv_back)
     public void onViewClicked() {
         finish();
@@ -77,8 +86,8 @@ public class ManageCategoryActivity extends BaseActivity {
         startActivity(new Intent(ManageCategoryActivity.this,SortCategoryActivity.class));
     }
 
-    @OnClick(R.id.rl_add_product)
+    @OnClick(R.id.rl_add_category)
     public void onRlAddProductClicked() {
-        startActivity(new Intent(ManageCategoryActivity.this, CategoryManagementActivity.class));
+        startActivity(new Intent(ManageCategoryActivity.this, AddOrEditCategoryActivity.class));
     }
 }
