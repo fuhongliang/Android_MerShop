@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_data"
-        android:icon="@drawable/status_ic_dclx"
+        android:icon="@drawable/ic_dclx_selector"
         android:title="待处理" />
     <item
         android:id="@+id/navigation_meetings"
@@ -18,5 +18,6 @@
         android:id="@+id/navigation_me"
         android:icon="@drawable/status_ic_wdx"
         android:title="我的" />
+
 
 </menu>
