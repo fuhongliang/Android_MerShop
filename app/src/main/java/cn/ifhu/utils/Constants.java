@@ -19,4 +19,5 @@ public class Constants {
     public static final int ORDERCANCEL = 0;
     public static final int ORDERONGOING = 25;
 
+    public static final String TAGBUGKEY = "4fde9a6c2e41b1255ab6cd9ea971c190";
 }
