@@ -9,8 +9,8 @@ public class ReviewBean {
      * com_list : [{"com_id":5,"content":"还可以","haoping":1,"kouwei":1,"baozhuang":1,"peisong":1,"add_time":"1970-01-01 08:00:00","member_avatar":"","member_name":"lijing","replay":""}]
      */
 
-    private HaopingBean haoping;
-    private List<ComListBean> com_list;
+    public HaopingBean haoping;
+    public List<ComListBean> com_list;
 
     public HaopingBean getHaoping() {
         return haoping;

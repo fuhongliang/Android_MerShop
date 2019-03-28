@@ -45,6 +45,11 @@ public interface OperationService {
 
 
     @FormUrlEncoded
+    @POST("get_store_com")
+    public Observable<BaseEntity<ReviewBean>> getNoReplyReviews(@Field("store_id") int store_id,@Field("no_com") int no_com);
+
+
+    @FormUrlEncoded
     @POST("store_feedback")
     public Observable<BaseEntity<Object>> storeFeedback(@Field("store_id") int store_id,@Field("content") String content,@Field("parent_id") int parent_id);
 

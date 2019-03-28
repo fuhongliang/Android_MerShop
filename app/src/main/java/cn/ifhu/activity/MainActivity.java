@@ -42,17 +42,23 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            resetToDefaultIcon();
+
             int i = item.getItemId();
-            if (i == R.id.navigation_data) {
+            if (i == R.id.navigation_home) {
+                item.setIcon(R.drawable.status_ic_dclm);
                 mPager.setCurrentItem(0);
                 return true;
-            } else if (i == R.id.navigation_meetings) {
+            } else if (i == R.id.navigation_orders) {
+                item.setIcon(R.drawable.status_ic_ddglx);
                 mPager.setCurrentItem(1);
                 return true;
-            } else if (i == R.id.navigation_investors) {
+            } else if (i == R.id.navigation_operation) {
+                item.setIcon(R.drawable.status_ic_yym);
                 mPager.setCurrentItem(2);
                 return true;
             } else if (i == R.id.navigation_me) {
+                item.setIcon(R.drawable.status_ic_wdm);
                 mPager.setCurrentItem(3);
                 return true;
             }
@@ -71,6 +77,20 @@ public class MainActivity extends BaseActivity {
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+        navigation.setItemIconTintList(null);
+        navigation.setSelectedItemId(R.id.navigation_home);
+    }
+
+
+    private void resetToDefaultIcon() {
+        MenuItem home =  navigation.getMenu().findItem(R.id.navigation_home);
+        MenuItem orders =  navigation.getMenu().findItem(R.id.navigation_orders);
+        MenuItem operation =  navigation.getMenu().findItem(R.id.navigation_operation);
+        MenuItem me =  navigation.getMenu().findItem(R.id.navigation_me);
+        home.setIcon(R.drawable.status_ic_dclx);
+        orders.setIcon(R.drawable.status_ic_ddglm);
+        operation.setIcon(R.drawable.status_ic_yyx);
+        me.setIcon(R.drawable.status_ic_wdx);
     }
 
     private void initViewPager() {

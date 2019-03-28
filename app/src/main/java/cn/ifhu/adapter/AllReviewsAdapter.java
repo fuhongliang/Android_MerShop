@@ -16,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.R;
 import cn.ifhu.bean.ReviewBean;
+import cn.ifhu.utils.StringUtils;
 
 /**
  * @author fuhongliang
@@ -54,6 +55,29 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ReviewBean.ComListBean comListBean = reviewBean.getCom_list().get(position);
+        holder.ivUserHeader.load(comListBean.getMember_avatar());
+        holder.tvUserName.setText(comListBean.getMember_name());
+        holder.tvDate.setText(comListBean.getAdd_time());
+        holder.tvStoreName.setText("商家"+comListBean.getHaoping() +"星");
+        holder.tvKouwei.setText("口味"+comListBean.getKouwei() +"星");
+        holder.tvBaozhuan.setText("包装"+comListBean.getBaozhuang() +"星");
+        holder.tvPeisong.setText("配送"+comListBean.getPeisong() +"星");
+        holder.tvReviewContent.setText(comListBean.getContent());
+        holder.tvReply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onclickButton.reply(position);
+            }
+        });
+        if (StringUtils.isEmpty(comListBean.getReplay())){
+            holder.rlReply.setVisibility(View.GONE);
+            holder.tvReply.setVisibility(View.VISIBLE);
+        }else {
+            holder.tvReply.setVisibility(View.GONE);
+            holder.rlReply.setVisibility(View.VISIBLE);
+            holder.tvReplyContent.setText("商家回复："+comListBean.getReplay());
+        }
+
     }
 
     @Override

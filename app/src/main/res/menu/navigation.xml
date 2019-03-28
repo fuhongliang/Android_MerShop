@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/navigation_data"
+        android:id="@+id/navigation_home"
         android:icon="@drawable/status_ic_dclx"
         android:title="待处理" />
     <item
-        android:id="@+id/navigation_meetings"
+        android:id="@+id/navigation_orders"
         android:icon="@drawable/status_ic_ddglm"
         android:title="订单管理" />
 
     <item
-        android:id="@+id/navigation_investors"
+        android:id="@+id/navigation_operation"
         android:icon="@drawable/status_ic_yyx"
         android:title="门店运营" />
 

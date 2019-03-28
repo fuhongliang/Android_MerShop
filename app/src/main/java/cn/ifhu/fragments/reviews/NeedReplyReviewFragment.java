@@ -51,7 +51,7 @@ public class NeedReplyReviewFragment extends BaseFragment {
 
     public void getAllReviews() {
         layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OperationService.class).getStoreReviews(UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OperationService.class).getNoReplyReviews(UserLogic.getUser().getStore_id(),1)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ReviewBean>(true) {
             @Override
             protected void onApiComplete() {
@@ -61,7 +61,6 @@ public class NeedReplyReviewFragment extends BaseFragment {
             @Override
             protected void onSuccees(BaseEntity<ReviewBean> t) throws Exception {
                 allReviewsAdapter.updateData(t.getData());
-                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }
@@ -105,6 +104,7 @@ public class NeedReplyReviewFragment extends BaseFragment {
         });
         recyclerList.setAdapter(allReviewsAdapter);
         setRefreshLayout();
+        getAllReviews();
     }
 
     @SuppressLint("ResourceAsColor")

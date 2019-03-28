@@ -17,6 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
+import cn.ifhu.bean.ReviewBean;
 import cn.ifhu.fragments.reviews.AllReviewFragment;
 import cn.ifhu.fragments.reviews.NeedReplyReviewFragment;
 import cn.ifhu.view.RVPIndicator;
@@ -36,6 +37,14 @@ public class ReviewListActivity extends BaseActivity {
     LinearLayout indicator;
     @BindView(R.id.vp_content)
     ViewPager vpContent;
+    @BindView(R.id.tv_rate)
+    TextView tvRate;
+    @BindView(R.id.tv_hao_ping)
+    TextView tvHaoPing;
+    @BindView(R.id.tv_zhong_ping)
+    TextView tvZhongPing;
+    @BindView(R.id.tv_cha_ping)
+    TextView tvChaPing;
     private List<String> mList = Arrays.asList("全部评价", "未回复");
     FragmentPagerAdapter mAdapter;
     private List<Fragment> mFragmentArrayList = new ArrayList<Fragment>();
@@ -49,8 +58,15 @@ public class ReviewListActivity extends BaseActivity {
         mFragmentArrayList.add(AllReviewFragment.newInstance());
         mFragmentArrayList.add(NeedReplyReviewFragment.newInstance());
         initViewPager();
+        tvTitle.setText("用户评价");
     }
 
+    public void setHeaderData(ReviewBean.HaopingBean headerData){
+        tvRate.setText("好评度："+headerData.getRate()+"");
+        tvHaoPing.setText("好评（"+headerData.getHaoping()+"）");
+        tvZhongPing.setText("中评（"+headerData.getZhongping()+"）");
+        tvChaPing.setText("差评（"+headerData.getChaping()+"）");
+    }
 
     public void initViewPager() {
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {

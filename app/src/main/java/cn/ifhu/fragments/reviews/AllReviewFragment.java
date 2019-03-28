@@ -21,6 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.ifhu.R;
+import cn.ifhu.activity.ReviewListActivity;
 import cn.ifhu.adapter.AllReviewsAdapter;
 import cn.ifhu.adapter.NewOrdersAdapter;
 import cn.ifhu.base.BaseFragment;
@@ -71,14 +72,14 @@ public class AllReviewFragment extends BaseFragment {
             @Override
             protected void onSuccees(BaseEntity<ReviewBean> t) throws Exception {
                 allReviewsAdapter.updateData(t.getData());
-                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                ((ReviewListActivity)getActivity()).setHeaderData(t.getData().getHaoping());
             }
         });
     }
 
     public void ReViewReply(int reviewId) {
         layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OperationService.class).storeFeedback(UserLogic.getUser().getStore_id(),"",reviewId)
+        RetrofitAPIManager.create(OperationService.class).storeFeedback(UserLogic.getUser().getStore_id(),"感谢你的评论！",reviewId)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -115,6 +116,7 @@ public class AllReviewFragment extends BaseFragment {
         });
         recyclerList.setAdapter(allReviewsAdapter);
         setRefreshLayout();
+        getAllReviews();
     }
 
     @SuppressLint("ResourceAsColor")

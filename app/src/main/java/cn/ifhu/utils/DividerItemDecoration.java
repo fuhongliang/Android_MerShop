@@ -9,9 +9,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.View;
 
+/**
+ * @author fuhongliang
+ */
 public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     private static final int[] ATTRS = new int[]{
@@ -118,9 +120,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
                 if (pos >= childCount) {
                     return true;
                 }
-            } else
-            // StaggeredGridLayoutManager 且横向滚动
-            {
+            } else{
                 // 如果是最后一行，则不需要绘制底部
                 if ((pos + 1) % spanCount == 0) {
                     return true;
