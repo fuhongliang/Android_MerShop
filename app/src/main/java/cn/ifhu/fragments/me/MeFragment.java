@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -58,6 +58,8 @@ public class MeFragment extends BaseFragment {
     TextView tvStoreAdd;
     @BindView(R.id.tv_store_state)
     TextView tvStoreState;
+    @BindView(R.id.iv_store_state)
+    ImageView ivStoreState;
 
 
     public static MeFragment newInstance() {
@@ -148,8 +150,10 @@ public class MeFragment extends BaseFragment {
     public void setBtnChangeState(int state) {
         if (state == 0) {
             tvStoreState.setText("已停止营业");
+            ivStoreState.setBackgroundResource(R.drawable.personal_ic_yyzt);
         } else {
             tvStoreState.setText("正常开业中");
+            ivStoreState.setBackgroundResource(R.drawable.personal_ic_yyzt0);
         }
     }
 
