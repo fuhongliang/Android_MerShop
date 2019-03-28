@@ -21,11 +21,22 @@ public class OrderBean {
     private long order_sn;
     private int buyer_id;
     private String add_time;
+    private String order_state;
+
     private ExtendOrderCommonBean extend_order_common;
     private double total_price;
     private double commis_price;
     private double goods_pay_price;
     private List<ExtendOrderGoodsBean> extend_order_goods;
+
+
+    public String getOrder_state() {
+        return order_state;
+    }
+
+    public void setOrder_state(String order_state) {
+        this.order_state = order_state;
+    }
 
     public int getOrder_id() {
         return order_id;

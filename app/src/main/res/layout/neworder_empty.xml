@@ -6,20 +6,6 @@
     android:background="#ffffff"
     android:orientation="vertical"
     >
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:background="#1C98F6"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="新订单"
-            android:textColor="#ffffff"
-            android:textSize="18sp"
-            android:gravity="center"
-            />
-    </RelativeLayout>
     <ImageView
         android:layout_width="125dp"
         android:layout_height="129dp"

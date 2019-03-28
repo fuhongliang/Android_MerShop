@@ -4,17 +4,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/layout_swipe_refresh"
         android:layout_width="match_parent"
-        android:background="@color/line_bg"
         android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:id="@+id/rl_empty"
+            >
 
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="125dp"
+                    android:layout_height="129dp"
+                    android:background="@drawable/image_loding"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:id="@+id/order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="暂无订单"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="想要获取更多的订单，快去看看促销管理吧～"
+                    android:layout_below="@+id/order"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="5dp"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/line_bg"
             tools:listitem="@layout/item_neworder" />
     </android.support.v4.widget.SwipeRefreshLayout>
 

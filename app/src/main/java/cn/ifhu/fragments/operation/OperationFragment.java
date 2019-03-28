@@ -86,6 +86,12 @@ public class OperationFragment extends BaseFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getOperationData();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();

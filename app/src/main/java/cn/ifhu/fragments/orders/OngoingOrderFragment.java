@@ -3,7 +3,6 @@ package cn.ifhu.fragments.orders;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ import static cn.ifhu.utils.Constants.ORDERONGOING;
 /**
  * @author fuhongliang
  */
-public class OngoingOrderFragment extends BaseFragment{
+public class OngoingOrderFragment extends BaseFragment {
 
     @BindView(R.id.recycler_list)
     RecyclerView recyclerList;
@@ -49,8 +50,11 @@ public class OngoingOrderFragment extends BaseFragment{
     Unbinder unbinder;
 
     OnGoingOrdersAdapter mOrdersAdapter;
+    @BindView(R.id.rl_empty)
+    RelativeLayout llEmpty;
     private List<OrderBean> mDatas = new ArrayList<OrderBean>();
     private ArrayList<String> reasonList;
+
     public static OngoingOrderFragment newInstance() {
         return new OngoingOrderFragment();
     }
@@ -88,21 +92,21 @@ public class OngoingOrderFragment extends BaseFragment{
                 R.color.colorPrimaryDark,
                 R.color.colorPrimaryDark);
         layoutSwipeRefresh.setOnRefreshListener(() -> {
-           getData();
+            getData();
         });
     }
 
 
     public void showPrintDialog(int position) {
-        DialogUtils.showConfirmDialog("提示","确定打印小票？", getActivity().getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+        DialogUtils.showConfirmDialog("提示", "确定打印小票？", getActivity().getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
             @Override
             public void cancel() {
-                    ToastHelper.makeText("点击了取消按钮",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText("点击了取消按钮", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
 
             @Override
             public void ok() {
-                ToastHelper.makeText("点击了确定按钮",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText("点击了确定按钮", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }
@@ -121,9 +125,9 @@ public class OngoingOrderFragment extends BaseFragment{
         reasonList.add("其他");
     }
 
-    public void getData(){
+    public void getData() {
         layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERONGOING,UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERONGOING, UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
 
             @Override
@@ -134,14 +138,15 @@ public class OngoingOrderFragment extends BaseFragment{
             @Override
             protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
 
-                if (t.getData() == null || t.getData().isEmpty()){
-//                    recyclerList
-                }else {
+                if (t.getData() == null || t.getData().isEmpty()) {
+                    llEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    llEmpty.setVisibility(View.GONE);
                     mDatas.clear();
                     mDatas.addAll(t.getData());
                     mOrdersAdapter.updateData(mDatas);
                 }
-                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }

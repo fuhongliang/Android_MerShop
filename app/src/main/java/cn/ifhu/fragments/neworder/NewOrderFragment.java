@@ -1,9 +1,7 @@
 package cn.ifhu.fragments.neworder;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,9 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
-
-import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,19 +21,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.ifhu.R;
-import cn.ifhu.activity.MainActivity;
-import cn.ifhu.activity.login.LoginActivity;
 import cn.ifhu.adapter.NewOrdersAdapter;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
 import cn.ifhu.bean.OrderBean;
-import cn.ifhu.bean.UserServiceBean;
 import cn.ifhu.dialog.DialogListFragment;
 import cn.ifhu.net.OrderService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
-import cn.ifhu.net.UserService;
 import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
@@ -52,8 +46,11 @@ public class NewOrderFragment extends BaseFragment {
     Unbinder unbinder;
 
     NewOrdersAdapter newOrdersAdapter;
+    @BindView(R.id.rl_empty)
+    RelativeLayout llEmpty;
     private List<OrderBean> mDatas;
     private ArrayList<String> reasonList;
+
     public static NewOrderFragment newInstance() {
         return new NewOrderFragment();
     }
@@ -71,7 +68,7 @@ public class NewOrderFragment extends BaseFragment {
         reasonList.add("其他");
     }
 
-    public void getNewOrders(){
+    public void getNewOrders() {
         layoutSwipeRefresh.setRefreshing(true);
         RetrofitAPIManager.create(OrderService.class).getNewOrder(UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
@@ -84,19 +81,20 @@ public class NewOrderFragment extends BaseFragment {
             @Override
             protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
 
-                if (t.getData() == null || t.getData().isEmpty()){
-//                    recyclerList
-                }else {
+                if (t.getData() == null || t.getData().isEmpty()) {
+                    llEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    llEmpty.setVisibility(View.GONE);
                     mDatas.clear();
                     mDatas.addAll(t.getData());
                     newOrdersAdapter.updateData(mDatas);
                 }
-                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }
 
-    public void receiveOrder(String orderId,int position){
+    public void receiveOrder(String orderId, int position) {
 
         RetrofitAPIManager.create(OrderService.class).receiveOrder(orderId)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
@@ -110,14 +108,14 @@ public class NewOrderFragment extends BaseFragment {
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 mDatas.remove(position);
                 newOrdersAdapter.updateData(mDatas);
-                ToastHelper.makeText("接单成功",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText("接单成功", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }
 
-    public void refuseOrder(int orderId,int position,String reason){
+    public void refuseOrder(int orderId, int position, String reason) {
 
-        RetrofitAPIManager.create(OrderService.class).refuseOrder(orderId,reason)
+        RetrofitAPIManager.create(OrderService.class).refuseOrder(orderId, reason)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
 
             @Override
@@ -129,7 +127,7 @@ public class NewOrderFragment extends BaseFragment {
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 mDatas.remove(position);
                 newOrdersAdapter.updateData(mDatas);
-                ToastHelper.makeText("已拒绝！",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText("已拒绝！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }
@@ -154,12 +152,12 @@ public class NewOrderFragment extends BaseFragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("title", "请选择拒单理由");
                 bundle.putStringArrayList("stringList", reasonList);
-                showOptionDialog(bundle,position);
+                showOptionDialog(bundle, position);
             }
 
             @Override
             public void accept(int position) {
-                receiveOrder(mDatas.get(position).getOrder_id()+"",position);
+                receiveOrder(mDatas.get(position).getOrder_id() + "", position);
             }
         });
         recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
@@ -183,9 +181,9 @@ public class NewOrderFragment extends BaseFragment {
     /**
      * @param bundle 携带参数
      */
-    public void showOptionDialog(Bundle bundle,int position) {
+    public void showOptionDialog(Bundle bundle, int position) {
         DialogListFragment.showOperateDialog(getActivity().getSupportFragmentManager(), bundle, string -> {
-            refuseOrder(mDatas.get(position).getOrder_id(),position,string);
+            refuseOrder(mDatas.get(position).getOrder_id(), position, string);
         });
     }
 

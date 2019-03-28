@@ -14,6 +14,7 @@ import java.util.List;
 
 import cn.ifhu.R;
 import cn.ifhu.bean.OrderBean;
+import cn.ifhu.utils.StringUtils;
 
 /**
  * @author fuhongliang
@@ -63,9 +64,15 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
             mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
             holder.llContent.addView(view);
         }
+        if (StringUtils.isEmpty(orderBean.getOrder_state())){
+            holder.tvOrderState.setVisibility(View.GONE);
+        }else {
+            holder.tvOrderState.setVisibility(View.VISIBLE);
+            holder.tvOrderState.setText(orderBean.getOrder_state());
+        }
 
-        holder.tvOrderSn.setText("订单编号："+orderBean.getOrder_sn()+"");
-        holder.tvOrderTime.setText("下单时间："+orderBean.getAdd_time()+"");
+        holder.tvOrderSn.setText("订单编号：" + orderBean.getOrder_sn() + "");
+        holder.tvOrderTime.setText("下单时间：" + orderBean.getAdd_time() + "");
 
 
     }
@@ -83,6 +90,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         TextView tvTotal;
         TextView tvServiceFee;
         TextView tvEarnMoney;
+        TextView tvOrderState;
 
         TextView tvOrderTime;
         TextView tvOrderSn;
@@ -98,6 +106,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
             tvServiceFee = view.findViewById(R.id.tv_service_fee);
             tvEarnMoney = view.findViewById(R.id.tv_earn_money);
             llContent = view.findViewById(R.id.ll_content);
+            tvOrderState = view.findViewById(R.id.tv_order_state);
 
             tvOrderTime = view.findViewById(R.id.tv_order_time);
             tvOrderSn = view.findViewById(R.id.tv_order_sn);
