@@ -39,5 +39,8 @@
     <color name="transparent100_white">#FFffffff</color>
     <color name="line_bg">#F5F5F5</color>
 
+    <color name="navigation_selected_color">#1C98F6</color>
+    <color name="navigation_color">#666666</color>
+
 
 </resources>

@@ -1,6 +1,8 @@
 package cn.ifhu.activity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -82,6 +84,9 @@ public class MainActivity extends BaseActivity {
         }
         navigation.setItemIconTintList(null);
         navigation.setSelectedItemId(R.id.navigation_home);
+        Resources resource=(Resources)getBaseContext().getResources();
+        ColorStateList csl=(ColorStateList)resource.getColorStateList(R.color.bottom_navigation_color);
+        navigation.setItemTextColor(csl);
     }
 
 
