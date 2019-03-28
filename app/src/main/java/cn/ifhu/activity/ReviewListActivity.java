@@ -62,7 +62,7 @@ public class ReviewListActivity extends BaseActivity {
     }
 
     public void setHeaderData(ReviewBean.HaopingBean headerData){
-        tvRate.setText("好评度："+headerData.getRate()+"");
+        tvRate.setText("好评度："+headerData.getRate()*100+"%");
         tvHaoPing.setText("好评（"+headerData.getHaoping()+"）");
         tvZhongPing.setText("中评（"+headerData.getZhongping()+"）");
         tvChaPing.setText("差评（"+headerData.getChaping()+"）");
