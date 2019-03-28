@@ -21,6 +21,7 @@
         app:menu="@menu/navigation"
         app:labelVisibilityMode="labeled"
         app:itemHorizontalTranslationEnabled="false"
-        android:background="?android:attr/windowBackground"/>
+        android:background="?android:attr/windowBackground"
+        />
 
 </LinearLayout>
