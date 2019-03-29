@@ -6,7 +6,7 @@ package cn.ifhu.bean;
 public class BaseEntity<T> {
 
     private static int SUCCESS_CODE = 200;
-    private static int TOKENTIMEOUT_CODE = 1000;
+    private static int TOKENTIMEOUT_CODE = 3001;
     private int code = 0;
     private String msg;
     private T data;
