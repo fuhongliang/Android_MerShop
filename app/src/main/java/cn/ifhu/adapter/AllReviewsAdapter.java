@@ -55,7 +55,9 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.My
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         ReviewBean.ComListBean comListBean = reviewBean.getCom_list().get(position);
-        holder.ivUserHeader.load(comListBean.getMember_avatar());
+
+        holder.ivUserHeader.load(comListBean.getMember_avatar(),R.drawable.moren_yonghu);
+
         holder.tvUserName.setText(comListBean.getMember_name());
         holder.tvDate.setText(comListBean.getAdd_time());
         holder.tvStoreName.setText("商家"+comListBean.getHaoping() +"星");

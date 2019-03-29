@@ -51,9 +51,6 @@ dependencies {
     /**
      * 网络库
      */
-    /**
-     * 网络库
-     */
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
@@ -82,4 +79,7 @@ dependencies {
     implementation 'jsc.kit.wheel:wheel-view:0.5.3'
 
     api 'com.bugtags.library:bugtags-lib:latest.integration'
+
+
+
 }
