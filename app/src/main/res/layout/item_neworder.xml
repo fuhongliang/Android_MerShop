@@ -121,12 +121,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="小计"
             android:textColor="#333333"
             android:textSize="15sp" />
@@ -136,7 +136,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
             android:text="￥22.5"
             android:textColor="#000000"
             android:textSize="17sp"
@@ -145,12 +144,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
             android:gravity="left"
             android:text="平台服务费"
             android:textColor="#333333"
@@ -160,7 +159,6 @@
             android:id="@+id/tv_service_fee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="right"
             android:text="-￥4.2"
             android:textColor="#000000"
@@ -170,12 +168,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="本单预计收入"
             android:textColor="#333333"
@@ -185,7 +183,6 @@
             android:id="@+id/tv_earn_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="right"
             android:text="￥18.3"
             android:textColor="#EC1818"
@@ -198,14 +195,13 @@
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:background="#E5E5E5" />
-
     <TextView
         android:id="@+id/tv_order_time"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="left"
         android:text="下单时间：2019-02-28 13:05:56"
+        android:gravity="left"
         android:textColor="#666666"
         android:textSize="14sp" />
 
@@ -228,7 +224,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_marginTop="15dp"
+        >
 
         <TextView
             android:id="@+id/btn_refuse"

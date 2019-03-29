@@ -90,9 +90,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="配送中"
-                android:textColor="#000000"
+                android:textColor="#0ac782"
                 android:textSize="17sp"
-                android:textStyle="bold" />
+                />
             <ImageView
                 android:id="@+id/icon_weizhi"
                 android:layout_width="10dp"
@@ -139,12 +139,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text="小计"
             android:textColor="#333333"
             android:textSize="15sp" />
@@ -154,7 +154,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="10dp"
             android:text="￥22.5"
             android:textColor="#000000"
             android:textSize="17sp"
@@ -163,12 +162,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
             android:gravity="left"
             android:text="平台服务费"
             android:textColor="#333333"
@@ -178,7 +177,6 @@
             android:id="@+id/tv_service_fee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="right"
             android:text="-￥4.2"
             android:textColor="#000000"
@@ -188,12 +186,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="left"
             android:text="本单预计收入"
             android:textColor="#333333"
@@ -203,7 +201,6 @@
             android:id="@+id/tv_earn_money"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:gravity="right"
             android:text="￥18.3"
             android:textColor="#EC1818"

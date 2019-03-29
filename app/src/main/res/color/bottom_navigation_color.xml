@@ -4,5 +4,4 @@
     <item android:color="@color/navigation_selected_color" android:state_pressed="true" /> <!-- pressed颜色 -->
     <item android:color="@color/navigation_selected_color" android:state_focused="true" /> <!-- focused颜色 -->
     <item android:color="@color/navigation_color" /> <!-- default颜色 -->
-
 </selector>
