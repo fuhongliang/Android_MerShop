@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:hint="请输入账号/手机号"
             android:maxLines="1"
-            android:text="test009"
+            android:text="test01"
             android:inputType="text"
             android:layout_toRightOf="@+id/tv_account_numbe"
             android:layout_marginLeft="30dp"
