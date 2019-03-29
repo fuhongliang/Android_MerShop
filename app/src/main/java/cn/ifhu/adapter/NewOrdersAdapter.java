@@ -63,7 +63,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             TextView mPrice = view.findViewById(R.id.tv_price);
             TextView mNumber = view.findViewById(R.id.tv_number);
             mProductName.setText(extendOrderGoodsBean.getGoods_name());
-            mPrice.setText(extendOrderGoodsBean.getGoods_price());
+            mPrice.setText(" ¥ " + extendOrderGoodsBean.getGoods_price());
             mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
             holder.llContent.addView(view);
         }
