@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.baba.GlideImageView;
+import com.idlestar.ratingstar.RatingStarView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,7 +59,7 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.My
         holder.ivUserHeader.load(comListBean.getMember_avatar());
         holder.tvUserName.setText(comListBean.getMember_name());
         holder.tvDate.setText(comListBean.getAdd_time());
-        holder.tvStoreName.setText("商家"+comListBean.getHaoping() +"星");
+        holder.rsv_rating.setRating(comListBean.getHaoping());
         holder.tvKouwei.setText("口味"+comListBean.getKouwei() +"星");
         holder.tvBaozhuan.setText("包装"+comListBean.getBaozhuang() +"星");
         holder.tvPeisong.setText("配送"+comListBean.getPeisong() +"星");
@@ -108,6 +109,8 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.My
         TextView tvReplyContent;
         @BindView(R.id.rl_reply)
         RelativeLayout rlReply;
+        @BindView(R.id.rsv_rating)
+        RatingStarView rsv_rating;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
