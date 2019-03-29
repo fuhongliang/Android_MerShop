@@ -21,6 +21,7 @@
         app:menu="@menu/navigation"
         app:labelVisibilityMode="labeled"
         app:itemHorizontalTranslationEnabled="false"
+        app:itemTextColor="@color/bottom_navigation_color"
         android:background="?android:attr/windowBackground"
         />
 
