@@ -14,6 +14,7 @@ public class Constants {
     public static final String PRODUCTLIST = "PRODUCTLIST";
     public static final String LOGOUT = "logout_event";
     public static final String SELLINGTIME = "SELLINGTIME";
+    public static final String unit = "￥";
 
     public static final int ORDERFINISHED = 40;
     public static final int ORDERCANCEL = 0;
