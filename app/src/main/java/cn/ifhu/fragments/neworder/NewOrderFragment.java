@@ -157,7 +157,7 @@ public class NewOrderFragment extends BaseFragment {
 
             @Override
             public void accept(int position) {
-                receiveOrder(mDatas.get(position).getOrder_id() + "", position);
+                receiveOrder(mDatas.get(position).getOrder_id() + "¥", position);
             }
         });
         recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));

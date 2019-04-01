@@ -45,7 +45,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:gravity="center_horizontal"
-                        android:text="暂无订单" />
+                        android:text="暂无订单"
+                        android:textSize="16dp"
+                        android:textColor="#333333"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -53,7 +55,9 @@
                         android:layout_below="@+id/order"
                         android:layout_marginTop="5dp"
                         android:gravity="center_horizontal"
-                        android:text="想要获取更多的订单，快去看看促销管理吧～" />
+                        android:text="想要获取更多的订单，快去看看促销管理吧～"
+                        android:textSize="13dp"
+                        android:textColor="#999999"/>
                 </LinearLayout>
             </RelativeLayout>
 

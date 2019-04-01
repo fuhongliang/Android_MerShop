@@ -88,8 +88,7 @@
                 android:textColor="#000000"
                 android:textSize="17sp" />
 
-            <ImageView
-                style="@style/tv_text"/>
+            <ImageView style="@style/im_tongyong_jinru" />
         </RelativeLayout>
 
     </LinearLayout>
