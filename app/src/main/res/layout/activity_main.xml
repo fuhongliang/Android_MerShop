@@ -22,7 +22,7 @@
         app:labelVisibilityMode="labeled"
         app:itemHorizontalTranslationEnabled="false"
         app:itemTextColor="@color/bottom_navigation_color"
-        android:background="?android:attr/windowBackground"
+        android:background="@drawable/bg_buttom_white"
         />
 
 </LinearLayout>
