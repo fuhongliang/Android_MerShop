@@ -34,7 +34,7 @@ import cn.ifhu.utils.DeviceUtil;
  * @author tony
  * @date 2018/8/13
  */
-public class DialogWheelFragment extends BaseDialogFragment{
+public class DialogWheelFragment extends BaseDialogFragment {
 
     private OperateDialogConfirmListner confirmListner;
     private TextView tvCancel;
@@ -44,11 +44,11 @@ public class DialogWheelFragment extends BaseDialogFragment{
     String beginTime;
     String endTime;
 
-    public static void showOperateDialog(FragmentManager fragmentManager,Bundle bundle,OperateDialogConfirmListner confirmListner){
+    public static void showOperateDialog(FragmentManager fragmentManager, Bundle bundle, OperateDialogConfirmListner confirmListner) {
         DialogWheelFragment dialogFragment = new DialogWheelFragment();
         dialogFragment.setArguments(bundle);
         dialogFragment.setDialogConfirmListner(confirmListner);
-        dialogFragment.show(fragmentManager,"AlertDialogFragment");
+        dialogFragment.show(fragmentManager, "AlertDialogFragment");
     }
 
     @Override
@@ -63,7 +63,7 @@ public class DialogWheelFragment extends BaseDialogFragment{
         super.onStart();
         DisplayMetrics dm = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        getDialog().getWindow().setLayout(dm.widthPixels- DeviceUtil.dip2px(0), ViewGroup.LayoutParams.WRAP_CONTENT);
+        getDialog().getWindow().setLayout(dm.widthPixels - DeviceUtil.dip2px(0), ViewGroup.LayoutParams.WRAP_CONTENT);
         getDialog().getWindow().setGravity(Gravity.BOTTOM);
     }
 
@@ -87,21 +87,21 @@ public class DialogWheelFragment extends BaseDialogFragment{
 
         tvOk.setOnClickListener(v -> {
             dismiss();
-            confirmListner.onClickTextView(beginTime,endTime);
+            confirmListner.onClickTextView(beginTime, endTime);
         });
 
 
-        addOptionalView(bundle.getString("startTime"),bundle.getString("endTime"));
-//      changeTimePickerColor(view);
+        addOptionalView(bundle.getString("startTime"), bundle.getString("endTime"));
+//        changeTimePickerColor(view);
     }
 
-    public void addOptionalView(String startTime,String end_time) {
+    public void addOptionalView(String startTime, String end_time) {
         beginTime = startTime;
         endTime = end_time;
 
-        Logger.d(startTime+"---"+end_time);
-        String[] start =  startTime.split(":");
-        String[] end =  end_time.split(":");
+        Logger.d(startTime + "---" + end_time);
+        String[] start = startTime.split(":");
+        String[] end = end_time.split(":");
         int startHour = Integer.parseInt(start[0]);
         int startMins = Integer.parseInt(start[1]);
 
@@ -124,37 +124,37 @@ public class DialogWheelFragment extends BaseDialogFragment{
 
         timePickerBegin.setOnTimeChangedListener((view, hourOfDay, minute) -> {
             String hour;
-            String min ;
-            if (hourOfDay>9){
-                hour = hourOfDay+"";
-            }else {
-                hour ="0" + hourOfDay;
+            String min;
+            if (hourOfDay > 9) {
+                hour = hourOfDay + "";
+            } else {
+                hour = "0" + hourOfDay;
             }
 
-            if (minute>9){
-                min = minute+"";
-            }else {
-                min ="0" + minute;
+            if (minute > 9) {
+                min = minute + "";
+            } else {
+                min = "0" + minute;
             }
             beginTime = hour + ":" + min;
         });
 
         timePickerEnd.setOnTimeChangedListener((view, hourOfDay, minute) -> {
             String hour;
-            String min ;
-            if (hourOfDay>9){
-                hour = hourOfDay+"";
-            }else {
-                hour ="0" + hourOfDay;
+            String min;
+            if (hourOfDay > 9) {
+                hour = hourOfDay + "";
+            } else {
+                hour = "0" + hourOfDay;
             }
 
-            if (minute>9){
-                min = minute+"";
-            }else {
-                min ="0" + minute;
+            if (minute > 9) {
+                min = minute + "";
+            } else {
+                min = "0" + minute;
             }
 
-            endTime = hour + ":" +  min ;
+            endTime = hour + ":" + min;
         });
     }
 
@@ -166,13 +166,13 @@ public class DialogWheelFragment extends BaseDialogFragment{
         NumberPicker hourNumberPicker = view.findViewById(hourNumberPickerId);
         NumberPicker minuteNumberPicker = view.findViewById(minuteNumberPickerId);
 
-        setNumberPickerDivider(hourNumberPicker, Color.YELLOW);
-        setNumberPickerDivider(minuteNumberPicker, Color.GREEN);
+        setNumberPickerDivider(hourNumberPicker, Color.BLUE);
+        setNumberPickerDivider(minuteNumberPicker, Color.BLUE);
 
-        setNumberpickerTextColour(hourNumberPicker, Color.RED);
-        setNumberpickerTextColour(minuteNumberPicker, Color.BLUE);
+//        setNumberpickerTextColour(hourNumberPicker, R.color.colorPrimary);
+//        setNumberpickerTextColour(minuteNumberPicker, R.color.colorPrimary);
 
-//        setPickerSize(hourNumberPicker, 30, this);
+//      setPickerSize(hourNumberPicker, 30, this);
 
     }
 
@@ -192,7 +192,6 @@ public class DialogWheelFragment extends BaseDialogFragment{
     }
 
 
-
     //另一种指定文字颜色的方法
     private void setNumberpickerTextColour(NumberPicker number_picker, int color) {
         final int count = number_picker.getChildCount();
@@ -207,11 +206,10 @@ public class DialogWheelFragment extends BaseDialogFragment{
                 ((EditText) child).setTextColor(color);
                 number_picker.invalidate();
             } catch (NoSuchFieldException | IllegalAccessException | IllegalArgumentException e) {
-                Log.i("setNumberPickerTxtClr", "set_numberpicker_text_colour: "+e);
+                Log.i("setNumberPickerTxtClr", "set_numberpicker_text_colour: " + e);
             }
         }
     }
-
 
 
     public void setDialogConfirmListner(OperateDialogConfirmListner alertDialogConfirmListner) {
@@ -219,6 +217,6 @@ public class DialogWheelFragment extends BaseDialogFragment{
     }
 
     public interface OperateDialogConfirmListner {
-        void onClickTextView(String beginTime,String endTime);
+        void onClickTextView(String beginTime, String endTime);
     }
 }
