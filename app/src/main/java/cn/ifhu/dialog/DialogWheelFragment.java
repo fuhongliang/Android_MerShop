@@ -92,7 +92,7 @@ public class DialogWheelFragment extends BaseDialogFragment {
 
 
         addOptionalView(bundle.getString("startTime"), bundle.getString("endTime"));
-        changeTimePickerColor(view);
+//        changeTimePickerColor(view);
     }
 
     public void addOptionalView(String startTime, String end_time) {
@@ -166,11 +166,11 @@ public class DialogWheelFragment extends BaseDialogFragment {
         NumberPicker hourNumberPicker = view.findViewById(hourNumberPickerId);
         NumberPicker minuteNumberPicker = view.findViewById(minuteNumberPickerId);
 
-        setNumberPickerDivider(hourNumberPicker, 0xffcccccc);
-        setNumberPickerDivider(minuteNumberPicker, 0xffcccccc);
+        setNumberPickerDivider(hourNumberPicker, Color.BLUE);
+        setNumberPickerDivider(minuteNumberPicker, Color.BLUE);
 
-        setNumberpickerTextColour(hourNumberPicker, R.color.colorPrimary);
-        setNumberpickerTextColour(minuteNumberPicker, R.color.colorPrimary);
+//        setNumberpickerTextColour(hourNumberPicker, R.color.colorPrimary);
+//        setNumberpickerTextColour(minuteNumberPicker, R.color.colorPrimary);
 
 //      setPickerSize(hourNumberPicker, 30, this);
 
