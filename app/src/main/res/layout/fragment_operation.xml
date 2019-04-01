@@ -18,7 +18,7 @@
     <!--今日收入与单量-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="wrap_content"
         android:background="#1C98F6">
         <!--收入-->
         <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="48dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="35dp"
             android:background="#1C98F6"
             android:orientation="vertical">
 
@@ -37,7 +37,7 @@
                 android:gravity="center"
                 android:text="2787.88"
                 android:textColor="#ffffff"
-                android:textSize="21sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -64,7 +64,7 @@
                 android:gravity="center"
                 android:text="188"
                 android:textColor="#ffffff"
-                android:textSize="21sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,8 +87,9 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="25dp"
+            android:paddingLeft="15dp"
             android:paddingTop="20dp"
+            android:paddingBottom="22dp"
             android:text="店铺概括"
             android:textColor="#808080"
             android:textSize="14sp" />
@@ -96,9 +97,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="14dp"
-            android:paddingTop="17dp"
-            android:paddingRight="14dp"
+            android:paddingLeft="19dp"
+            android:paddingRight="19dp"
             android:paddingBottom="16dp">
             <!--店铺收藏量-->
             <LinearLayout
@@ -110,20 +110,20 @@
                 <TextView
                     android:id="@+id/tv_store_collect"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="170"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="店铺收藏量"
                     android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:textSize="11dp" />
             </LinearLayout>
             <!--店铺商品总数-->
             <LinearLayout
@@ -135,20 +135,20 @@
                 <TextView
                     android:id="@+id/tv_goods_num"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="430"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="店铺商品总数"
                     android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:textSize="11dp" />
             </LinearLayout>
             <!--30天下单量-->
             <LinearLayout
@@ -160,20 +160,20 @@
                 <TextView
                     android:id="@+id/tv_30_ordernum"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="1235"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="30天下单量"
                     android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:textSize="11dp" />
             </LinearLayout>
             <!--30天销售金额-->
             <LinearLayout
@@ -185,11 +185,11 @@
                 <TextView
                     android:id="@+id/tv_30_orderamount"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="18890"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -198,7 +198,7 @@
                     android:gravity="center"
                     android:text="30天销售金额"
                     android:textColor="#666666"
-                    android:textSize="11sp" />
+                    android:textSize="11dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -216,7 +216,7 @@
             <LinearLayout
                 android:id="@+id/ll_OperationProduct"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -228,7 +228,7 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:gravity="center"
                     android:text="商品管理"

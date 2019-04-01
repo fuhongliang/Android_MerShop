@@ -52,12 +52,11 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:background="@drawable/bg_button_blue"
             android:text="回复"
             android:gravity="center"
             android:textColor="#ffffff"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
     </RelativeLayout>
     <!--商家星星-->
     <LinearLayout
@@ -96,7 +95,6 @@
             android:layout_height="14dp"
             android:layout_weight="1"
             />
-        ic_launcher_round.png
         <TextView
             android:id="@+id/tv_kouwei"
             android:layout_width="wrap_content"
@@ -129,9 +127,9 @@
         android:id="@+id/tv_review_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:gravity="left"
-        android:lineSpacingExtra="15dp"
+        android:lineSpacingExtra="10dp"
         android:text="苹果非常非常棒！是今年新下来的苹果，是非常正宗的烟台红富士！口感又脆又甜，还有一个最大的优"
         android:textColor="#333333"
         android:textSize="15sp" />
@@ -140,7 +138,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
-        android:layout_marginBottom="11dp">
+        android:layout_marginBottom="12dp">
 
         <ImageView
             android:layout_width="0dp"
