@@ -56,7 +56,7 @@ public class StoreStateActivity extends BaseActivity {
         } else {
             btnChangeState.setText("停止营业");
             tvStoreState.setText("正常开业中");
-            ivState.setBackgroundResource(R.drawable.personal_ic_yyzt);
+            ivState.setBackgroundResource(R.drawable.yingye_ic_yiyingye);
         }
     }
 
