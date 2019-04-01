@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@drawable/bg_butt_white"
         android:orientation="horizontal">
         <RelativeLayout
             android:id="@+id/rl_manage_category"
