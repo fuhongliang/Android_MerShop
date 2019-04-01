@@ -29,6 +29,7 @@ import cn.ifhu.fragments.orders.OrdersFragment;
 import cn.ifhu.utils.UserLogic;
 
 import static cn.ifhu.utils.Constants.LOGOUT;
+import static cn.ifhu.utils.Constants.UPDATESTOREDATA;
 
 /**
  * @author fuhongliang
@@ -40,17 +41,12 @@ public class MainActivity extends BaseActivity {
     private FragmentAdapter mAdapter;
     BottomNavigationView navigation;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            resetToDefaultIcon();
-            return setCurrentItemIcon(item);
-        }
-
+            = item -> {
+        resetToDefaultIcon();
+        return setCurrentItemIcon(item);
     };
 
-    public boolean setCurrentItemIcon(MenuItem item){
+    public boolean setCurrentItemIcon(MenuItem item) {
         int i = item.getItemId();
         if (i == R.id.navigation_home) {
             item.setIcon(R.drawable.status_ic_dclm);
@@ -63,6 +59,7 @@ public class MainActivity extends BaseActivity {
         } else if (i == R.id.navigation_operation) {
             item.setIcon(R.drawable.status_ic_yym);
             mPager.setCurrentItem(2);
+            ((OperationFragment)mFragments.get(2)).getOperationData();
             return true;
         } else if (i == R.id.navigation_me) {
             item.setIcon(R.drawable.status_ic_wdm);
@@ -84,17 +81,17 @@ public class MainActivity extends BaseActivity {
         }
         navigation.setItemIconTintList(null);
         navigation.setSelectedItemId(R.id.navigation_home);
-        Resources resource=(Resources)getBaseContext().getResources();
-        ColorStateList csl=(ColorStateList)resource.getColorStateList(R.color.bottom_navigation_color);
+        Resources resource = (Resources) getBaseContext().getResources();
+        ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.bottom_navigation_color);
         navigation.setItemTextColor(csl);
     }
 
 
     private void resetToDefaultIcon() {
-        MenuItem home =  navigation.getMenu().findItem(R.id.navigation_home);
-        MenuItem orders =  navigation.getMenu().findItem(R.id.navigation_orders);
-        MenuItem operation =  navigation.getMenu().findItem(R.id.navigation_operation);
-        MenuItem me =  navigation.getMenu().findItem(R.id.navigation_me);
+        MenuItem home = navigation.getMenu().findItem(R.id.navigation_home);
+        MenuItem orders = navigation.getMenu().findItem(R.id.navigation_orders);
+        MenuItem operation = navigation.getMenu().findItem(R.id.navigation_operation);
+        MenuItem me = navigation.getMenu().findItem(R.id.navigation_me);
         home.setIcon(R.drawable.status_ic_dclx);
         orders.setIcon(R.drawable.status_ic_ddglm);
         operation.setIcon(R.drawable.status_ic_yyx);
