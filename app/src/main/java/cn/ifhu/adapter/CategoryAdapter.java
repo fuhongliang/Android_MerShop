@@ -1,6 +1,7 @@
 package cn.ifhu.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,9 @@ public class CategoryAdapter extends BaseAdapter {
         if (mCurPosition == position) {
             viewHolder.imageView.setVisibility(View.VISIBLE);
             viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.selected_black));
+            viewHolder.linearLayout.setBackgroundColor(Color.WHITE);
         } else {
+            viewHolder.linearLayout.setBackgroundColor(mContext.getColor(R.color.category_color));
             viewHolder.imageView.setVisibility(View.GONE);
             viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.unselect_grey));
         }
