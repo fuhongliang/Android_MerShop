@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import cn.ifhu.R;
 import cn.ifhu.bean.ProductManageBean;
 import cn.ifhu.utils.DividerItemDecoration;
 import cn.ifhu.view.ItemTouchHelper.OnStartDragListener;

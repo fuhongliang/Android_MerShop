@@ -20,7 +20,8 @@
     android:layout_height="48dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?selectableItemBackground">
+    android:background="@color/white"
+    >
 
     <ImageView
         android:id="@+id/iv_delete"
@@ -55,4 +56,11 @@
         android:padding="10dp"
         android:layout_gravity="center_vertical|right"
         android:src="@drawable/ic_drag" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E5E5E5"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="bottom"/>
 </FrameLayout>
