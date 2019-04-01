@@ -19,7 +19,9 @@
             android:id="@+id/lv_category"
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:background="#F5F5F5"
+            android:background="@color/category_color"
+            android:dividerHeight="0dp"
+            android:divider="@null"
             android:scrollbars="none" />
 
         <ListView
@@ -39,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="54dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:background="@drawable/bg_butt_white"
         android:orientation="horizontal">
         <RelativeLayout
             android:id="@+id/rl_manage_category"
