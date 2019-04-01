@@ -2,13 +2,10 @@ package cn.ifhu.base;
 
 import android.accounts.NetworkErrorException;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 import com.google.gson.Gson;
 import com.orhanobut.logger.Logger;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
@@ -46,7 +43,6 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
 
     @Override
     public void onNext(BaseEntity<T> tLinkBaseEntity) {
-        Logger.d(tLinkBaseEntity.getMessage());
         if (tLinkBaseEntity.isSuccess()) {
             try {
                 onSuccees(tLinkBaseEntity);
@@ -79,8 +75,6 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
 
     @Override
     public void onError(Throwable e) {
-        Logger.d("onError: " + e.toString());
-
         onAPIError();
         try {
             if (e instanceof ConnectException
