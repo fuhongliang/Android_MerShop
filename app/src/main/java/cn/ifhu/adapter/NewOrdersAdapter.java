@@ -25,7 +25,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
     private List<OrderBean> mDatas;
     private Context mContext;
     public OnclickButton onclickButton;
-
+    public static String unit = "￥";
     public NewOrdersAdapter(List<OrderBean> mDatas, Context mContext, OnclickButton onclickButton) {
         this.mDatas = mDatas;
         this.mContext = mContext;
@@ -53,9 +53,9 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
         holder.tvCustomerName.setText(orderBean.getExtend_order_common().getReciver_name() + "");
         holder.tvCustomerPhone.setText(orderBean.getExtend_order_common().getPhone() + "");
         holder.tvCustomerAdd.setText(orderBean.getExtend_order_common().getAddress() + "");
-        holder.tvTotal.setText(orderBean.getTotal_price() + "");
-        holder.tvServiceFee.setText(orderBean.getCommis_price() + "");
-        holder.tvEarnMoney.setText(orderBean.getGoods_pay_price() + "");
+        holder.tvTotal.setText(unit+orderBean.getTotal_price() + "");
+        holder.tvServiceFee.setText(unit+orderBean.getCommis_price() + "");
+        holder.tvEarnMoney.setText(unit+orderBean.getGoods_pay_price() + "");
         holder.llContent.removeAllViews();
         for (OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean : orderBean.getExtend_order_goods()) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
@@ -63,7 +63,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             TextView mPrice = view.findViewById(R.id.tv_price);
             TextView mNumber = view.findViewById(R.id.tv_number);
             mProductName.setText(extendOrderGoodsBean.getGoods_name());
-            mPrice.setText(" ¥ " + extendOrderGoodsBean.getGoods_price());
+            mPrice.setText(unit+extendOrderGoodsBean.getGoods_price());
             mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
             holder.llContent.addView(view);
         }

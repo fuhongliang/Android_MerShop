@@ -86,8 +86,8 @@ public class OperationFragment extends BaseFragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
         getOperationData();
     }
 

@@ -252,11 +252,10 @@
                 android:id="@+id/et_product_desr"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:gravity="top"
                 android:hint="介绍以下您的产品吧，200字以内就可以哦"
-                android:padding="5dp" />
+                android:padding="15dp" />
         </LinearLayout>
 
 

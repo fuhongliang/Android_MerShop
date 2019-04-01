@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/category_color">
+    >
 
     <include
         android:id="@+id/navigation_header_container"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/ll_bottom"
         android:layout_below="@+id/navigation_header_container"
-        android:background="@color/white"
+        android:background="@color/category_color"
         android:footerDividersEnabled="false"
         android:divider="@color/category_color"
         android:dividerHeight="1dp"
