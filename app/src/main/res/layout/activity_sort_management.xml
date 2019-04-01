@@ -31,7 +31,9 @@
             android:layout_marginBottom="15dp"
             android:background="@null"
             android:hint="请输入分类名称"
-            android:textSize="14dp"/>
+            android:textSize="14dp"
+            style="@style/base_edit"
+            />
 
     </LinearLayout>
 

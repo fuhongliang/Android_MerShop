@@ -22,7 +22,7 @@
             android:background="@null"
             android:gravity="left"
             android:hint="设置一条您的餐厅公告（200字以内）"
-            android:textColor="#999999"
+            style="@style/base_edit"
             android:textSize="17sp" />
     </LinearLayout>
 
