@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="48dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="35dp"
             android:background="#1C98F6"
             android:orientation="vertical">
@@ -37,12 +37,14 @@
                 android:gravity="center"
                 android:text="2787.88"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:text="今日订单收入/元"
                 android:textColor="#ffffff"
@@ -53,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="126dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:background="#1C98F6"
             android:orientation="vertical">
 
@@ -64,12 +66,14 @@
                 android:gravity="center"
                 android:text="188"
                 android:textColor="#ffffff"
-                android:textSize="16sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="6dp"
                 android:gravity="center"
                 android:text="今日单量/单"
                 android:textColor="#ffffff"
@@ -79,7 +83,7 @@
     <!--中间部分圆角包裹-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="-20dp"
         android:background="@drawable/bg_button_fragment"
         android:orientation="vertical">
@@ -88,8 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="22dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
             android:text="店铺概括"
             android:textColor="#808080"
             android:textSize="14sp" />
@@ -97,108 +101,119 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="19dp"
-            android:paddingRight="19dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="15dp">
             <!--店铺收藏量-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:id="@+id/tv_store_collect"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="170"
                     android:textColor="#000000"
-                    android:textSize="14dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="6dp"
                     android:gravity="center"
                     android:text="店铺收藏量"
                     android:textColor="#666666"
-                    android:textSize="11dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
             <!--店铺商品总数-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:id="@+id/tv_goods_num"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="430"
                     android:textColor="#000000"
-                    android:textSize="14dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="6dp"
                     android:gravity="center"
                     android:text="店铺商品总数"
                     android:textColor="#666666"
-                    android:textSize="11dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
             <!--30天下单量-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:id="@+id/tv_30_ordernum"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="1235"
                     android:textColor="#000000"
-                    android:textSize="14dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="6dp"
                     android:gravity="center"
                     android:text="30天下单量"
                     android:textColor="#666666"
-                    android:textSize="11dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
             <!--30天销售金额-->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center"
+                >
 
                 <TextView
                     android:id="@+id/tv_30_orderamount"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="18890"
                     android:textColor="#000000"
-                    android:textSize="14dp" />
+                    android:textSize="16dp"
+                    android:textStyle="bold"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
                     android:gravity="center"
                     android:text="30天销售金额"
                     android:textColor="#666666"
-                    android:textSize="11dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
         </LinearLayout>
 
