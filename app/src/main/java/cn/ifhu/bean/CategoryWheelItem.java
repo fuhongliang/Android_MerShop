@@ -1,5 +1,6 @@
 package cn.ifhu.bean;
 
+
 import jsc.kit.wheel.base.WheelItem;
 
 public class CategoryWheelItem extends WheelItem {

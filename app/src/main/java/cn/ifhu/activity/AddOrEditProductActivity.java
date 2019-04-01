@@ -92,18 +92,16 @@ public class AddOrEditProductActivity extends BaseActivity {
         ColumnWheelDialog<CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem> dialog = new ColumnWheelDialog<>(this);
         dialog.show();
         dialog.setTitle("");
+
         dialog.setCancelButton("取消", null);
-        dialog.setOKButton("确定", new ColumnWheelDialog.OnClickCallBack<CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem>() {
-            @Override
-            public boolean callBack(View v, @Nullable CategoryWheelItem item0, @Nullable CategoryWheelItem item1, @Nullable CategoryWheelItem item2, @Nullable CategoryWheelItem item3, @Nullable CategoryWheelItem item4) {
-                String result = "";
-                if (item0 != null) {
-                    result += item0.getShowText();
-                    categoryId = item0.getId();
-                }
-                tvCategory.setText(result);
-                return false;
+        dialog.setOKButton("确定", (v, item0, item1, item2, item3, item4) -> {
+            String result = "";
+            if (item0 != null) {
+                result += item0.getShowText();
+                categoryId = item0.getId();
             }
+            tvCategory.setText(result);
+            return false;
         });
         dialog.setItems(initItems(), null, null, null, null);
         dialog.setSelected(0, 0, 0, 0, 0);
