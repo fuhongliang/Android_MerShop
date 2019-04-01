@@ -77,8 +77,9 @@
             android:layout_marginTop="42dp"
             android:layout_marginRight="15dp"
             android:hint="您还没发布餐厅公告"
-            android:textColor="#999999"
-            android:textSize="13dp" />
+            android:textColorHint="#999999"
+            android:textSize="13dp"
+            android:textColor="#333333"/>
     </RelativeLayout>
 
     <ImageView
@@ -140,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:textColor="#666666"
+                android:textColor="#333333"
                 android:textSize="17sp" />
 
             <ImageView style="@style/im_tongyong_jinru" />
@@ -174,7 +175,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
                 android:text="广州市天河区棠下街道"
-                android:textColor="#666666"
+                android:textColor="#333333"
                 android:textSize="17sp" />
         </RelativeLayout>
 
@@ -203,7 +204,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="09:00 ~ 22:00"
-                android:textColor="#666666"
+                android:textColor="#333333"
                 android:textSize="17sp" />
 
             <ImageView style="@style/im_tongyong_jinru" />
