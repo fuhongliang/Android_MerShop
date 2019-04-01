@@ -32,7 +32,7 @@
                 android:layout_weight="1"
                 android:gravity="right"
                 android:text="188****8765"
-                android:textColor="#666666"
+                style="@style/base_edit"
                 android:textSize="17sp" />
         </LinearLayout>
 
@@ -60,8 +60,8 @@
                 android:layout_marginRight="15dp"
                 android:layout_weight="1"
                 android:gravity="right"
+                style="@style/base_edit"
                 android:text="gg****ui"
-                android:textColor="#666666"
                 android:textSize="17sp" />
         </LinearLayout>
 

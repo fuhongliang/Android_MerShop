@@ -174,10 +174,11 @@
             android:layout_height="wrap_content"
             android:padding="12dp"
             android:layout_marginTop="12dp"
-            android:lineSpacingExtra="15dp"
-            android:background="@drawable/bg_button_gray"
+            android:lineSpacingExtra="10dp"
+            style="@style/base_edit"
             android:text="商家回复：感谢亲的五星好评，我们会继续努力，为大家提供香甜可口的正宗红富士苹果"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColor="#666666"/>
         <ImageView
             android:layout_width="22dp"
             android:layout_height="13dp"

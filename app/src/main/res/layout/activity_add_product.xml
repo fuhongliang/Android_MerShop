@@ -22,8 +22,9 @@
 
             <TextView
                 style="@style/tv_text"
-                android:text="商品名称 *"
+                android:text="商品名称 "
                 />
+            <include layout="@layout/layout_star"/>
 
             <EditText
                 android:id="@+id/et_product_name"
@@ -36,8 +37,8 @@
                 android:gravity="end|center_vertical"
                 android:hint="限30以内"
                 android:singleLine="true"
-                android:textColor="#999999"
-                android:textSize="15sp" />
+                style="@style/base_edit"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <ImageView
@@ -55,16 +56,16 @@
 
             <TextView
                 style="@style/tv_text"
-                android:text="商品分类 *"
+                android:text="商品分类"
                 />
-
+          <include layout="@layout/layout_star"/>
             <TextView
                 android:id="@+id/tv_category"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="end|center_vertical"
-                android:textColor="#666666"
+                android:textColor="#333333"
                 android:textSize="17sp" />
 
             <ImageView style="@style/im_tongyong_jinru" />
@@ -95,8 +96,9 @@
 
             <TextView
                 style="@style/tv_text"
-                android:text="价格 *"
+                android:text="价格"
                 />
+            <include layout="@layout/layout_star"/>
 
             <EditText
                 android:id="@+id/et_price"
@@ -108,8 +110,8 @@
                 android:gravity="end|center_vertical"
                 android:hint="请填写价格"
                 android:inputType="numberDecimal"
-                android:textColor="#999999"
-                android:textSize="15sp" />
+                style="@style/base_edit"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <ImageView
@@ -127,8 +129,9 @@
 
             <TextView
                 style="@style/tv_text"
-                android:text="原价 *"
+                android:text="原价 "
                 />
+            <include layout="@layout/layout_star"/>
 
             <EditText
                 android:id="@+id/et_original_price"
@@ -140,8 +143,8 @@
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请填写价格"
-                android:textColor="#999999"
-                android:textSize="15sp" />
+                style="@style/base_edit"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <ImageView
@@ -226,11 +229,6 @@
             android:layout_marginLeft="15dp"
             android:background="#E5E5E5" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="15dp"
-            android:background="#E5E5E5" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -243,10 +241,9 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
                 android:paddingTop="15dp"
-                android:paddingBottom="5dp"
                 android:text="商品描述"
                 android:textColor="#000000"
-                android:textSize="17sp" />
+                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/et_product_desr"
@@ -254,8 +251,13 @@
                 android:layout_height="100dp"
                 android:background="@null"
                 android:gravity="top"
+                style="@style/base_edit"
                 android:hint="介绍以下您的产品吧，200字以内就可以哦"
-                android:padding="15dp" />
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:textSize="15sp"
+                />
         </LinearLayout>
 
 

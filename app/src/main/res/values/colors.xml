@@ -43,4 +43,8 @@
     <color name="navigation_color">#666666</color>
 
 
+
+    <color name="typed_text_color">#333333</color>
+    <color name="hint_text_color">#999999</color>
+
 </resources>

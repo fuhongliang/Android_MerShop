@@ -67,7 +67,8 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/tongyong_jinru" />
+            android:background="@drawable/tongyong_jinru"
+            />
 
         <TextView
             android:id="@+id/tv_store_notice"
@@ -77,9 +78,8 @@
             android:layout_marginTop="42dp"
             android:layout_marginRight="15dp"
             android:hint="您还没发布餐厅公告"
-            android:textColorHint="#999999"
-            android:textSize="13dp"
-            android:textColor="#333333"/>
+            style="@style/base_edit"
+            android:textSize="14dp"/>
     </RelativeLayout>
 
     <ImageView

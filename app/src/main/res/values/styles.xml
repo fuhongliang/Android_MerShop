@@ -133,4 +133,9 @@
     </style>
 
 
+    <style name="base_edit">
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:textColor">@color/typed_text_color</item>
+    </style>
+
 </resources>
