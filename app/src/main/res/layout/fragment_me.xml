@@ -40,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="38dp"
-            android:background="@drawable/bg_white" />
+            android:background="@drawable/bg_white"
+            />
 
         <com.baba.GlideImageView
             android:id="@+id/iv_store_logo"
