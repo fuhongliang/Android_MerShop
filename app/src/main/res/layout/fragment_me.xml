@@ -155,6 +155,7 @@
             android:layout_marginRight="15dp">
 
             <LinearLayout
+                android:id="@+id/ll_store_state"
                 style="@style/me_layout">
 
                 <ImageView

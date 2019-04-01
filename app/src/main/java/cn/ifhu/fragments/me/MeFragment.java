@@ -25,6 +25,7 @@ import cn.ifhu.activity.FeedBackActivity;
 import cn.ifhu.activity.MainActivity;
 import cn.ifhu.activity.RingSettingsActivity;
 import cn.ifhu.activity.StoreSetUpActivity;
+import cn.ifhu.activity.StoreStateActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.utils.DialogUtils;
@@ -167,4 +168,8 @@ public class MeFragment extends BaseFragment {
         ((MainActivity) getActivity()).logout();
     }
 
+    @OnClick(R.id.ll_store_state)
+    public void onViewClicked() {
+        startActivity(new Intent(getActivity(), StoreStateActivity.class));
+    }
 }
