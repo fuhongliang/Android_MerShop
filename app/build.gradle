@@ -76,9 +76,8 @@ dependencies {
      */
     implementation 'org.greenrobot:eventbus:3.0.0'
 
-    implementation 'jsc.kit.wheel:wheel-view:0.5.3'
-
     api 'com.bugtags.library:bugtags-lib:latest.integration'
 
     api 'com.github.everhad:AndroidRatingStar:v1.0.4'
+    api project(path: ':wheelLibrary')
 }
