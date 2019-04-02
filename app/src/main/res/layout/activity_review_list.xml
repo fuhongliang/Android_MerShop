@@ -17,6 +17,7 @@
             android:layout_weight="1.5"
             android:text="好评度：99%"
             android:gravity="center"
+            android:textColor="#333333"
             android:layout_height="match_parent" />
 
         <TextView
@@ -24,6 +25,7 @@
             android:layout_width="0dp"
             android:text="好评（840）"
             android:gravity="center"
+            android:textColor="#333333"
             android:layout_weight="1"
             android:layout_height="match_parent" />
 
@@ -31,6 +33,7 @@
             android:id="@+id/tv_zhong_ping"
             android:layout_width="0dp"
             android:gravity="center"
+            android:textColor="#333333"
             android:text="中评（19）"
             android:layout_weight="1"
             android:layout_height="match_parent" />
@@ -39,6 +42,7 @@
             android:id="@+id/tv_cha_ping"
             android:text="差评（1）"
             android:gravity="center"
+            android:textColor="#333333"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent" />
