@@ -84,7 +84,7 @@
             app:rsv_starNum="5"
             app:rsv_rating="1"
             app:rsv_onlyHalfStar="true"
-            app:rsv_enableSelectRating="true"
+            app:rsv_enableSelectRating="false"
             app:rsv_starThickness="0.5"
             app:rsv_drawStrokeForEmptyStar="false"
             app:rsv_drawStrokeForHalfStar="true"

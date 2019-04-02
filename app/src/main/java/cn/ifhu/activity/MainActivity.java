@@ -81,8 +81,8 @@ public class MainActivity extends BaseActivity {
         }
         navigation.setItemIconTintList(null);
         navigation.setSelectedItemId(R.id.navigation_home);
-        Resources resource = (Resources) getBaseContext().getResources();
-        ColorStateList csl = (ColorStateList) resource.getColorStateList(R.color.bottom_navigation_color);
+        Resources resource = getBaseContext().getResources();
+        ColorStateList csl = resource.getColorStateList(R.color.bottom_navigation_color);
         navigation.setItemTextColor(csl);
     }
 
