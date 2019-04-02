@@ -19,6 +19,7 @@ import butterknife.Unbinder;
 import cn.ifhu.R;
 import cn.ifhu.activity.ProductManageActivity;
 import cn.ifhu.activity.ReviewListActivity;
+import cn.ifhu.activity.WebViewActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
@@ -60,6 +61,7 @@ public class OperationFragment extends BaseFragment {
     TextView tv30Ordernum;
     @BindView(R.id.tv_30_orderamount)
     TextView tv30Orderamount;
+    OperationBean operationBean;
 
     public static OperationFragment newInstance() {
         return new OperationFragment();
@@ -117,7 +119,8 @@ public class OperationFragment extends BaseFragment {
         });
     }
 
-    public void initData(OperationBean operationBean) {
+    public void initData(OperationBean mOperationBean) {
+        operationBean = mOperationBean;
         tvEarnToday.setText(operationBean.getToday_orderamount());
         tvOrdersToday.setText(operationBean.getToday_ordernum() + "");
         tvStoreCollect.setText(operationBean.getStore_collect() + "");
@@ -129,6 +132,6 @@ public class OperationFragment extends BaseFragment {
 
     @OnClick(R.id.ll_operation_data)
     public void onViewClicked() {
-
+        WebViewActivity.start(getContext(), operationBean.getJingying_url(),"经营数据");
     }
 }

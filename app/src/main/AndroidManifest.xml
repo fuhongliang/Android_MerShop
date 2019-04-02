@@ -71,6 +71,9 @@
         <activity
             android:name=".activity.SellingTimeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
 
     </application>
 
