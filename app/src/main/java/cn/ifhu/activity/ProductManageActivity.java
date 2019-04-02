@@ -94,7 +94,7 @@ public class ProductManageActivity extends BaseActivity {
 
             @Override
             protected void onSuccees(BaseEntity<ProductManageBean> t) throws Exception {
-                if (t.getData() == null || t.getData().getClass_list().isEmpty()) {
+                if (t.getData() == null || t.getData().getClass_list() == null || t.getData().getClass_list().size() == 0) {
                     DialogUtils.showConfirmDialog("温馨提示", "您的店铺还没有商品分类 \n 是否新建商品分类？", "否", "是", getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
                         @Override
                         public void cancel() {
