@@ -12,9 +12,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -25,15 +22,11 @@ import cn.ifhu.activity.ReviewListActivity;
 import cn.ifhu.base.BaseFragment;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
-import cn.ifhu.bean.MessageEvent;
 import cn.ifhu.bean.OperationBean;
 import cn.ifhu.net.OperationService;
 import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
 import cn.ifhu.utils.UserLogic;
-
-import static cn.ifhu.utils.Constants.LOGOUT;
-import static cn.ifhu.utils.Constants.UPDATESTOREDATA;
 
 /**
  * @author tony
@@ -124,13 +117,18 @@ public class OperationFragment extends BaseFragment {
         });
     }
 
-    public void initData(OperationBean operationBean){
+    public void initData(OperationBean operationBean) {
         tvEarnToday.setText(operationBean.getToday_orderamount());
-        tvOrdersToday.setText(operationBean.getToday_ordernum()+"");
-        tvStoreCollect.setText(operationBean.getStore_collect()+"");
-        tvGoodsNum.setText(operationBean.getGoods_num()+"");
-        tv30Ordernum.setText(operationBean.get_$30_ordernum()+"");
+        tvOrdersToday.setText(operationBean.getToday_ordernum() + "");
+        tvStoreCollect.setText(operationBean.getStore_collect() + "");
+        tvGoodsNum.setText(operationBean.getGoods_num() + "");
+        tv30Ordernum.setText(operationBean.get_$30_ordernum() + "");
         tv30Orderamount.setText(operationBean.get_$30_orderamount());
+
+    }
+
+    @OnClick(R.id.ll_operation_data)
+    public void onViewClicked() {
 
     }
 }

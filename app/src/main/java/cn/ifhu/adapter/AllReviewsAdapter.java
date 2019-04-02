@@ -3,10 +3,10 @@ package cn.ifhu.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -78,7 +78,7 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.My
         }else {
             holder.tvReply.setVisibility(View.GONE);
             holder.rlReply.setVisibility(View.VISIBLE);
-            holder.tvReplyContent.setText("商家回复："+comListBean.getReplay());
+            holder.tvReplyContent.setText(Html.fromHtml(String.format(mContext.getString(R.string.shop_reply), comListBean.getReplay())));
         }
 
     }
