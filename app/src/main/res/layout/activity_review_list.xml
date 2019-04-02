@@ -61,8 +61,8 @@
             app:indicator_color="@color/colorPrimaryDark"
             app:indicator_height="2dp"
             app:indicator_visible_count="2"
-            app:text_color_normal="@color/black"
-            app:text_color_selected="@color/colorPrimaryDark" />
+            app:text_color_normal="#999999"
+            app:text_color_selected="@color/black" />
 
         <ImageView style="@style/v_line" />
     </LinearLayout>
