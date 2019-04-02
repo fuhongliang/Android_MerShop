@@ -118,7 +118,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         DialogUtils.showConfirmDialog("是否删除此分类","该分类所有商品将会被删除", ((FragmentActivity)context).getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
             @Override
             public void cancel() {
-                ToastHelper.makeText("点击了取消按钮", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             }
 
             @Override
@@ -126,7 +125,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
                 mDataArray.remove(position);
                 notifyItemRemoved(position);
                 notifyDataSetChanged();
-                ToastHelper.makeText("点击了确定按钮",Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             }
         });
     }

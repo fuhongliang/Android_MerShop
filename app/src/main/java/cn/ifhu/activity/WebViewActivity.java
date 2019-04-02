@@ -19,18 +19,13 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.facebook.stetho.common.StringUtil;
-
 import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.ifhu.MyApplication;
 import cn.ifhu.R;
 import cn.ifhu.base.BaseActivity;
-import cn.ifhu.utils.DeviceUtil;
-import cn.ifhu.utils.IrReference;
 import cn.ifhu.utils.StringUtils;
 import cn.ifhu.utils.UserLogic;
 
@@ -186,4 +181,8 @@ public class WebViewActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
+    }
 }
