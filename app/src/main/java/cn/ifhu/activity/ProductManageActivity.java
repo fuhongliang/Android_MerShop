@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ import cn.ifhu.net.RetrofitAPIManager;
 import cn.ifhu.net.SchedulerUtils;
 import cn.ifhu.utils.DialogUtils;
 import cn.ifhu.utils.ProductLogic;
+import cn.ifhu.utils.ToastHelper;
 import cn.ifhu.utils.UserLogic;
 
 /**
@@ -111,6 +113,13 @@ public class ProductManageActivity extends BaseActivity {
                     mProductAdapter.setmDataList(mProductArray);
                     ProductLogic.saveClass(mDataArray);
                 }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                ToastHelper.makeText(e.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                finish();
             }
         });
     }

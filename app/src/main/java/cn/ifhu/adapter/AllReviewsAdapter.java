@@ -59,7 +59,7 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.My
 
         holder.ivUserHeader.load(comListBean.getMember_avatar(),R.drawable.moren_yonghu);
 
-        holder.tvUserName.setText(comListBean.getMember_name());
+        holder.tvUserName.setText(StringUtils.isEmpty(comListBean.getMember_name())?"匿名":comListBean.getMember_name());
         holder.tvDate.setText(comListBean.getAdd_time());
         holder.rsv_rating.setRating(comListBean.getHaoping());
         holder.tvKouwei.setText("口味"+comListBean.getKouwei() +"星");

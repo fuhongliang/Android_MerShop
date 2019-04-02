@@ -24,5 +24,4 @@
         app:itemTextColor="@color/bottom_navigation_color"
         android:background="@drawable/bg_buttom_white"
         />
-
 </LinearLayout>
