@@ -91,7 +91,7 @@
                     android:layout_width="10dp"
                     android:layout_height="13dp"
                     android:layout_marginLeft="16dp"
-                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/icon_weizhi" />
 
                 <TextView
