@@ -75,6 +75,7 @@ public class RetrofitAPIManager {
                         Logger.d(message);
                     }
                 }).setLevel(HttpLoggingInterceptor.Level.BODY));
+
         OkHttpClient httpClient = builder.build();
         return httpClient;
     }

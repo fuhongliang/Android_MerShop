@@ -46,5 +46,10 @@
 
     <color name="typed_text_color">#333333</color>
     <color name="hint_text_color">#999999</color>
+    <color name="daipeisong_text_color">#EC1818</color>
+    <color name="peisongzhong_text_color">#0AC782</color>
+    <color name="yiquxiao_text_color">#999999</color>
+    <color name="yiwangcheng_text_color">#1C98F6</color>
+
 
 </resources>

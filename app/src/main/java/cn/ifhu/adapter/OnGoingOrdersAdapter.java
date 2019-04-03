@@ -70,6 +70,15 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         }else {
             holder.tvOrderState.setVisibility(View.VISIBLE);
             holder.tvOrderState.setText(orderBean.getOrder_state());
+            if ("待配送".equals(orderBean.getOrder_state())){
+                holder.tvOrderState.setTextColor(mContext.getResources().getColor(R.color.daipeisong_text_color));
+            }else if ("已取消".equals(orderBean.getOrder_state())){
+                holder.tvOrderState.setTextColor(mContext.getResources().getColor(R.color.yiquxiao_text_color));
+            }else if ("已完成".equals(orderBean.getOrder_state())){
+                holder.tvOrderState.setTextColor(mContext.getResources().getColor(R.color.yiwangcheng_text_color));
+            }else {
+                holder.tvOrderState.setTextColor(mContext.getResources().getColor(R.color.peisongzhong_text_color));
+            }
         }
 
         holder.tvOrderSn.setText("订单编号：" + orderBean.getOrder_sn() + "");
