@@ -58,5 +58,10 @@ public interface OperationService {
     public Observable<BaseEntity<OperationBean>> storeYunying(@Field("store_id") int store_id);
 
 
+    @FormUrlEncoded
+    @POST("del_goods_class")
+    public Observable<BaseEntity<List<Object>>> delGoodsClass(@Field("class_id") int class_id,@Field("store_id") int store_id);
+
+
 
 }

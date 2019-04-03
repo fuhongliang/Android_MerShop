@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package cn.ifhu.fragments.operation;
+package cn.ifhu.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
@@ -31,16 +30,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import cn.ifhu.R;
+import cn.ifhu.base.BaseObserver;
+import cn.ifhu.bean.BaseEntity;
 import cn.ifhu.bean.ProductManageBean;
 import cn.ifhu.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.net.OperationService;
+import cn.ifhu.net.RetrofitAPIManager;
+import cn.ifhu.net.SchedulerUtils;
 import cn.ifhu.utils.DialogUtils;
+import cn.ifhu.utils.GsonUtils;
 import cn.ifhu.utils.ProductLogic;
 import cn.ifhu.utils.ToastHelper;
+import cn.ifhu.utils.UserLogic;
 import cn.ifhu.view.ItemTouchHelper.ItemTouchHelperAdapter;
 import cn.ifhu.view.ItemTouchHelper.ItemTouchHelperViewHolder;
 import cn.ifhu.view.ItemTouchHelper.OnStartDragListener;
@@ -58,12 +63,17 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     List<ProductManageBean.ClassListBean> mDataArray = new ArrayList<>();
     private final OnStartDragListener mDragStartListener;
     public Context context;
-
+    DeleteitemInterface deleteitemInterface;
     public RecyclerListAdapter(Context context, OnStartDragListener dragStartListener) {
         this.context = context;
         mDragStartListener = dragStartListener;
         initkData();
     }
+
+    public void setDeleteitemInterface(DeleteitemInterface deleteitemInterface) {
+        this.deleteitemInterface = deleteitemInterface;
+    }
+
     public void initkData() {
         try {
             mDataArray = ProductLogic.getClassList();
@@ -122,11 +132,17 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
             @Override
             public void ok() {
-                mDataArray.remove(position);
-                notifyItemRemoved(position);
-                notifyDataSetChanged();
+                if (deleteitemInterface != null){
+                    deleteitemInterface.deleteItem(mDataArray.get(position).getStc_id(),position);
+                }
             }
         });
+    }
+
+    public void ItemRemoved(int position){
+        mDataArray.remove(position);
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -176,5 +192,9 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         public void onItemClear() {
             itemView.setBackgroundColor(0);
         }
+    }
+
+    public interface DeleteitemInterface{
+        void deleteItem(int class_id,int position);
     }
 }

@@ -18,7 +18,7 @@ import cn.ifhu.base.BaseActivity;
 import cn.ifhu.base.BaseObserver;
 import cn.ifhu.bean.BaseEntity;
 import cn.ifhu.bean.ProductManageBean;
-import cn.ifhu.fragments.operation.RecyclerListAdapter;
+import cn.ifhu.adapter.RecyclerListAdapter;
 import cn.ifhu.fragments.operation.SortCategoryListFragment;
 import cn.ifhu.net.OperationService;
 import cn.ifhu.net.RetrofitAPIManager;
@@ -60,6 +60,12 @@ public class SortCategoryActivity extends BaseActivity  implements OnStartDragLi
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(recyclerView);
+        adapter.setDeleteitemInterface(new RecyclerListAdapter.DeleteitemInterface() {
+            @Override
+            public void deleteItem(int class_id, int position) {
+                deleteGoodsClass(class_id,position);
+            }
+        });
     }
 
     @OnClick(R.id.iv_back)
@@ -87,6 +93,24 @@ public class SortCategoryActivity extends BaseActivity  implements OnStartDragLi
                 ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                 ProductLogic.saveClass(t.getData());
                 finish();
+            }
+        });
+    }
+
+    public void deleteGoodsClass(int class_id,int position){
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).delGoodsClass(class_id, UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<List<Object>>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<List<Object>> t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                adapter.ItemRemoved(position);
+                ProductLogic.saveClass(getmDataArray());
             }
         });
     }
