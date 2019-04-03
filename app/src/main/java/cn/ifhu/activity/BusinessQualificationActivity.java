@@ -45,7 +45,7 @@ public class BusinessQualificationActivity extends BaseActivity {
     }
 
     public void loadBusinessqualification() {
-        ivBusinessQualification.load(UserLogic.getUser().getBusiness_licence_number_electronic(), R.drawable.pic_place_holder, (isComplete, percentage, bytesRead, totalBytes) -> {
+        ivBusinessQualification.load(UserLogic.getUser().getBusiness_licence_number_electronic(), R.drawable.photo_zhizhao, (isComplete, percentage, bytesRead, totalBytes) -> {
             if (isComplete) {
                 progressView.setVisibility(View.GONE);
             } else {
