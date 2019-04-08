@@ -29,7 +29,8 @@
         android:layout_height="40dp"
         android:padding="10dp"
         android:layout_gravity="center_vertical"
-        android:src="@drawable/ic_delete" />
+        android:src="@drawable/editmenu_shanchu"
+        />
 
     <TextView
         android:id="@+id/text"
@@ -47,7 +48,8 @@
         android:padding="10dp"
         android:layout_gravity="center_vertical|right"
         android:layout_marginRight="60dp"
-        android:src="@drawable/editmenu_zhiding" />
+        android:src="@drawable/editmenu_zhiding"
+        />
 
     <ImageView
         android:id="@+id/handle"
@@ -56,7 +58,7 @@
         android:padding="10dp"
         android:layout_marginRight="5dp"
         android:layout_gravity="center_vertical|right"
-        android:src="@drawable/ic_drag" />
+        android:src="@drawable/editmenu_paixu1" />
 
     <ImageView
         android:layout_width="match_parent"
