@@ -72,12 +72,14 @@ public class StoreSetUpActivity extends BaseActivity {
 
     public void initData() {
         loginResponse = UserLogic.getUser();
-        tvStoreState.setText(loginResponse.getStore_state() == 0 ? "已停止营业" : "正常营业中");
-        tvStoreNotice.setText(loginResponse.getStore_description());
-        ivLogo.load(loginResponse.getStore_avatar());
-        tvStorePhone.setText(loginResponse.getStore_phone());
-        tvStoreAdd.setText(loginResponse.getStore_address());
-        tvStoreTime.setText(loginResponse.getWork_start_time() + "~" + loginResponse.getWork_end_time());
+        if (loginResponse != null) {
+            tvStoreState.setText(loginResponse.getStore_state() == 0 ? "已停止营业" : "正常营业中");
+            tvStoreNotice.setText(loginResponse.getStore_description());
+            ivLogo.load(loginResponse.getStore_avatar());
+            tvStorePhone.setText(loginResponse.getStore_phone());
+            tvStoreAdd.setText(loginResponse.getStore_address());
+            tvStoreTime.setText(loginResponse.getWork_start_time() + "~" + loginResponse.getWork_end_time());
+        }
     }
 
     @OnClick(R.id.iv_back)
@@ -107,7 +109,7 @@ public class StoreSetUpActivity extends BaseActivity {
 
     @OnClick(R.id.ll_store_time)
     public void onTvStoreTimeClicked() {
-        if (loginResponse.getWork_start_time() != null && loginResponse.getWork_end_time() != null){
+        if (loginResponse.getWork_start_time() != null && loginResponse.getWork_end_time() != null) {
             Bundle bundle = new Bundle();
             bundle.putString("startTime", loginResponse.getWork_start_time());
             bundle.putString("endTime", loginResponse.getWork_end_time());

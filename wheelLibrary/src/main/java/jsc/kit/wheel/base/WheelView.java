@@ -411,9 +411,12 @@ public class WheelView extends View implements IWheelViewSetting {
         float totalLength = 0;
         String showText = null;
         for (IWheel wheel : items) {
-            showText = wheel.getShowText();
-            if (showText == null || showText.length() == 0)
-                continue;
+            if (wheel != null) {
+                showText = wheel.getShowText();
+                if (showText == null || showText.length() == 0) {
+                    continue;
+                }
+            }
             totalLength += textPaint.measureText(showText);
         }
         return totalLength / getItemCount();

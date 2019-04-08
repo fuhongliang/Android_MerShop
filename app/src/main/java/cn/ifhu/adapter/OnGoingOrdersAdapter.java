@@ -84,7 +84,6 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         holder.tvOrderSn.setText("订单编号：" + orderBean.getOrder_sn() + "");
         holder.tvOrderTime.setText("下单时间：" + orderBean.getAdd_time() + "");
 
-
     }
 
     @Override

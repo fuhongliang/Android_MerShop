@@ -26,6 +26,7 @@
             android:background="@null"
             android:gravity="center_vertical"
             android:hint="请输入餐厅电话"
+            android:inputType="number"
             style="@style/base_edit"
             android:textSize="17sp" />
     </LinearLayout>
