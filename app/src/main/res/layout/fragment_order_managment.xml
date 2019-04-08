@@ -21,7 +21,7 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <cn.ifhu.view.RVPIndicator
+        <cn.ifhu.mershop.view.RVPIndicator
             android:id="@+id/rvp_indicator"
             android:layout_width="match_parent"
             android:layout_height="50dp"
