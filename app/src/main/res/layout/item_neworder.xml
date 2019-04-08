@@ -62,7 +62,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
-                    android:text="张先生"
+                    android:text=""
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17dp"
                     android:layout_toRightOf="@id/tv_customer_name"
-                    android:text="15975900123"
+                    android:text=""
                     android:textColor="#000000"
                     android:textSize="17sp"
                     android:textStyle="bold" />
@@ -101,7 +101,7 @@
                     android:layout_marginLeft="11dp"
                     android:layout_marginRight="15dp"
                     android:layout_toRightOf="@id/icon_weizhi"
-                    android:text="地址：广东省深圳市南山区松白路1053号"
+                    android:text="地址："
                     android:textColor="#666666"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -150,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="￥22.5"
+            android:text="￥"
             android:textColor="#000000"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -174,7 +174,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="-￥4.2"
+            android:text="-￥"
             android:textColor="#000000"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -198,7 +198,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="￥18.3"
+            android:text="￥"
             android:textColor="#EC1818"
             android:textSize="17sp"
             android:textStyle="bold" />
@@ -216,7 +216,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="left"
-        android:text="下单时间：2019-02-28 13:05:56"
+        android:text="下单时间："
         android:textColor="#666666"
         android:textSize="14sp" />
 
@@ -226,7 +226,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="left"
-        android:text="订单编号：87274917415"
+        android:text="订单编号："
         android:textColor="#666666"
         android:textSize="14sp" />
 

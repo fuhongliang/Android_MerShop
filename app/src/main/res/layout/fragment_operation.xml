@@ -331,10 +331,12 @@
         android:layout_marginTop="19dp"
         android:layout_marginBottom="11dp"
         android:text="促销管理"
+        android:visibility="invisible"
         android:textColor="#808080"
         android:textSize="14dp" />
 
     <LinearLayout
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
