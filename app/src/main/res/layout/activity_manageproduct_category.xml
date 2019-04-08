@@ -22,6 +22,13 @@
         android:scrollbars="none"
         tools:listitem="@layout/item_manage_category" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="55dp"
+        />
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
@@ -32,29 +39,28 @@
         <RelativeLayout
             android:id="@+id/rl_manage_category"
             android:layout_width="0dp"
-            android:background="@drawable/bg_grey_line"
             android:layout_weight="1"
-            android:layout_margin="7dp"
+            android:layout_margin="6dp"
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
                     android:background="@drawable/editmenu_px"
+                    android:layout_marginBottom="4dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="排序/批量操作"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ff000000"
-                    android:textSize="17sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
                     />
             </LinearLayout>
 
@@ -63,29 +69,28 @@
         <RelativeLayout
             android:id="@+id/rl_add_category"
             android:layout_width="0dp"
-            android:layout_margin="7dp"
+            android:layout_margin="6dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_grey_line"
             android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:background="@drawable/editmenu_add"
+                    android:layout_width="21dp"
+                    android:layout_height="21dp"
+                    android:background="@drawable/editmenu_addd"
+                    android:layout_marginBottom="4dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="新建分类"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ff000000"
-                    android:textSize="17sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp"
                     />
             </LinearLayout>
         </RelativeLayout>
