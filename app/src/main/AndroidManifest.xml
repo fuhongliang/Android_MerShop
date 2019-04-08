@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="cn.ifhu">
+    package="cn.ifhu.mershop">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
@@ -17,17 +17,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.ProductManageActivity"/>
-        <activity android:name=".activity.MainActivity"
+        <activity android:name=".mershop.activity.ProductManageActivity"/>
+        <activity android:name=".mershop.activity.MainActivity"
             android:theme="@style/AppTheme_listDivider"/>
-        <activity android:name=".activity.RingSettingsActivity"></activity>
+        <activity android:name=".mershop.activity.RingSettingsActivity"></activity>
         <activity
-            android:name=".activity.AddOrEditProductActivity"
+            android:name=".mershop.activity.AddOrEditProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.ManageCategoryActivity" />
-        <activity android:name=".activity.SortCategoryActivity" />
+        <activity android:name=".mershop.activity.ManageCategoryActivity" />
+        <activity android:name=".mershop.activity.SortCategoryActivity" />
         <activity
-            android:name=".activity.login.LoginActivity"
+            android:name=".mershop.activity.login.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,44 +35,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TestActivity"/>
+        <activity android:name=".mershop.activity.TestActivity"/>
 
         <activity
-            android:name=".activity.StoreSetUpActivity"
+            android:name=".mershop.activity.StoreSetUpActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.AboutUsActivity" />
-        <activity android:name=".activity.AccountAndSafeActivity" />
+        <activity android:name=".mershop.activity.AboutUsActivity" />
+        <activity android:name=".mershop.activity.AccountAndSafeActivity" />
         <activity
-            android:name=".activity.FeedBackActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".activity.ChangePassWordActivity"
+            android:name=".mershop.activity.FeedBackActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.StoreStateActivity"
+            android:name=".mershop.activity.ChangePassWordActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.ChangeStorePhoneActivity"
+            android:name=".mershop.activity.StoreStateActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.BusinessQualificationActivity"
+            android:name=".mershop.activity.ChangeStorePhoneActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.StoreNoticeActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name=".activity.ReviewListActivity"
+            android:name=".mershop.activity.BusinessQualificationActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.AddOrEditCategoryActivity"
+            android:name=".mershop.activity.StoreNoticeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name=".activity.SellingTimeActivity"
+            android:name=".mershop.activity.ReviewListActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name=".mershop.activity.AddOrEditCategoryActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".mershop.activity.SellingTimeActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".mershop.activity.WebViewActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
     </application>
