@@ -8,16 +8,7 @@
 
     <include layout="@layout/layout_header" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginBottom="11dp"
-        android:gravity="left"
-        android:text="震动"
-        android:textColor="#808080"
-        android:textSize="14dp" />
+
     <!--新消息震动-->
     <RelativeLayout
         android:layout_width="match_parent"
@@ -48,21 +39,12 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginBottom="11dp"
-        android:gravity="left"
-        android:text="音量"
-        android:textColor="#808080"
-        android:textSize="14dp" />
     <!--开启APP时声音调为最大-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:layout_marginTop="15dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -75,6 +57,35 @@
 
         <Switch
             android:id="@+id/swh_status"
+            android:layout_width="55dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:textOff=""
+            android:textOn=""
+            android:checked="true"
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track_selctor" />
+
+    </RelativeLayout>
+    <!--打印机断开声音提醒-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#ffffff"
+        android:layout_marginTop="15dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="打印机断开声音提醒"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <Switch
             android:layout_width="55dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
