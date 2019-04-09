@@ -222,6 +222,21 @@
                     android:track="@drawable/track_selctor" />
 
             </RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:background="#E5E5E5" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:hint="请输入该商品库存数量"
+                android:textSize="15sp"
+                style="@style/base_edit"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:background="@null"
+                />
 
             <ImageView
                 android:layout_width="match_parent"
