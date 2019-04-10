@@ -21,6 +21,7 @@ import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.ViewManager;
 import cn.ifhu.mershop.bean.MessageEvent;
+import cn.ifhu.mershop.bt.BluetoothController;
 import cn.ifhu.mershop.fragments.me.MeFragment;
 import cn.ifhu.mershop.fragments.neworder.NewOrderFragment;
 import cn.ifhu.mershop.fragments.operation.OperationFragment;

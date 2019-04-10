@@ -1,4 +1,4 @@
-package cn.ifhu.mershop.activity;
+package cn.ifhu.mershop.activity.operation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,7 +52,7 @@ public class ManageCategoryActivity extends BaseActivity {
 
             @Override
             public void onClickAddItem(int position) {
-                Intent intent = new Intent(ManageCategoryActivity.this,AddOrEditProductActivity.class);
+                Intent intent = new Intent(ManageCategoryActivity.this, AddOrEditProductActivity.class);
                 intent.putExtra("position",position);
                 startActivity(intent);
             }

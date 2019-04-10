@@ -1,4 +1,4 @@
-package cn.ifhu.mershop.activity;
+package cn.ifhu.mershop.activity.me;
 
 import android.os.Bundle;
 import android.widget.EditText;
@@ -13,7 +13,6 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
-import cn.ifhu.mershop.bean.UserServiceBean;
 import cn.ifhu.mershop.net.MeService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
@@ -24,28 +23,27 @@ import cn.ifhu.mershop.utils.UserLogic;
 /**
  * @author fuhongliang
  */
-public class ChangeStorePhoneActivity extends BaseActivity {
+public class FeedBackActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
-    @BindView(R.id.et_phone)
-    EditText etPhone;
+    @BindView(R.id.et_feedback)
+    EditText etFeedback;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant_phone);
+        setContentView(R.layout.activity_feedback);
         ButterKnife.bind(this);
-        tvTitle.setText("餐厅电话");
-        etPhone.setText(UserLogic.getUser().getStore_phone()+"");
+        tvTitle.setText("意见反馈");
     }
 
-    public void changeStorePhone() {
+    public void feedBack() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(MeService.class).storeSetPhone(UserLogic.getUser().getStore_id(),etPhone.getText().toString().trim())
+        RetrofitAPIManager.create(MeService.class).storeMsgFeedback(UserLogic.getUser().getStore_id(),etFeedback.getText().toString().trim(),1)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
-
 
             @Override
             protected void onApiComplete() {
@@ -55,35 +53,29 @@ public class ChangeStorePhoneActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 ToastHelper.makeText(t.getMessage()+"", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
-                UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
-                loginResponse.setStore_phone(etPhone.getText().toString().trim());
-                UserLogic.saveUser(loginResponse);
+                clearEdit();
             }
         });
     }
 
     public void clearEdit(){
-        etPhone.setText("");
+        etFeedback.setText("");
     }
 
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
-        goBack();
+        finish();
     }
-
 
     @OnClick(R.id.btn_feedback)
     public void onBtnFeedbackClicked() {
         if (checkContent()){
-            changeStorePhone();
+            feedBack();
         }
     }
 
     public boolean checkContent(){
-        if (StringUtils.isEmpty(etPhone.getText().toString().trim())){
-            return false;
-        }
-        if (etPhone.getText().toString().trim().equals(UserLogic.getUser().getStore_phone())){
+        if(StringUtils.isEmpty(etFeedback.getText().toString().trim())){
             return false;
         }
         return true;

@@ -20,13 +20,15 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
-import cn.ifhu.mershop.activity.AccountAndSafeActivity;
-import cn.ifhu.mershop.activity.FeedBackActivity;
+import cn.ifhu.mershop.activity.me.AccountAndSafeActivity;
+import cn.ifhu.mershop.activity.me.FeedBackActivity;
 import cn.ifhu.mershop.activity.MainActivity;
-import cn.ifhu.mershop.activity.RingSettingsActivity;
-import cn.ifhu.mershop.activity.StoreSetUpActivity;
-import cn.ifhu.mershop.activity.StoreStateActivity;
+import cn.ifhu.mershop.activity.me.RingSettingsActivity;
+import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
+import cn.ifhu.mershop.activity.me.StoreSetUpActivity;
+import cn.ifhu.mershop.activity.me.StoreStateActivity;
 import cn.ifhu.mershop.base.BaseFragment;
+import cn.ifhu.mershop.bt.BluetoothActivity;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.UserLogic;
@@ -101,7 +103,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.ll_print_setup)
     public void onLlPrintSetupClicked() {
-
+        startActivity(new Intent(getActivity(), SearchBluetoothActivity.class));
     }
 
     @OnClick(R.id.ll_notice)

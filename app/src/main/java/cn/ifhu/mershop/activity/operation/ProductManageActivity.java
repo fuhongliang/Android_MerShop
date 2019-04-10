@@ -1,4 +1,4 @@
-package cn.ifhu.mershop.activity;
+package cn.ifhu.mershop.activity.operation;
 
 import android.content.Intent;
 import android.os.Bundle;

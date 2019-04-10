@@ -1,4 +1,4 @@
-package cn.ifhu.mershop.activity;
+package cn.ifhu.mershop.activity.me;
 
 import android.os.Bundle;
 import android.view.View;

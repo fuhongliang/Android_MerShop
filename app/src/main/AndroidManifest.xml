@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.ifhu.mershop">
 
+    <!-- 允许程序连接到已配对的蓝牙设备 -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <!-- 允许程序发现和配对蓝牙设备 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!-- 允许程序发现和配对蓝牙设备 -->
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!--地理位置-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
@@ -17,15 +26,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".activity.ProductManageActivity"/>
+        <activity android:name=".activity.operation.ProductManageActivity"/>
         <activity android:name=".activity.MainActivity"
             android:theme="@style/AppTheme_listDivider"/>
-        <activity android:name=".activity.RingSettingsActivity"></activity>
+        <activity android:name=".activity.me.RingSettingsActivity"></activity>
         <activity
-            android:name=".activity.AddOrEditProductActivity"
+            android:name=".activity.operation.AddOrEditProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.ManageCategoryActivity" />
-        <activity android:name=".activity.SortCategoryActivity" />
+        <activity android:name=".activity.operation.ManageCategoryActivity" />
+        <activity android:name=".activity.operation.SortCategoryActivity" />
         <activity
             android:name=".activity.login.LoginActivity"
             android:windowSoftInputMode="stateHidden|adjustPan">
@@ -38,42 +47,46 @@
         <activity android:name=".activity.TestActivity"/>
 
         <activity
-            android:name=".activity.StoreSetUpActivity"
+            android:name=".activity.me.StoreSetUpActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity android:name=".activity.AboutUsActivity" />
-        <activity android:name=".activity.AccountAndSafeActivity" />
+        <activity android:name=".activity.me.AboutUsActivity" />
+        <activity android:name=".activity.me.AccountAndSafeActivity" />
         <activity
-            android:name=".activity.FeedBackActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-        <activity
-            android:name=".activity.ChangePassWordActivity"
+            android:name=".activity.me.FeedBackActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.StoreStateActivity"
+            android:name=".activity.me.ChangePassWordActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.ChangeStorePhoneActivity"
+            android:name=".activity.me.StoreStateActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.BusinessQualificationActivity"
+            android:name=".activity.me.ChangeStorePhoneActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.StoreNoticeActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name=".activity.ReviewListActivity"
+            android:name=".activity.me.BusinessQualificationActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
-            android:name=".activity.AddOrEditCategoryActivity"
+            android:name=".activity.me.StoreNoticeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
         <activity
-            android:name=".activity.SellingTimeActivity"
+            android:name=".activity.operation.ReviewListActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.operation.AddOrEditCategoryActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name=".activity.operation.SellingTimeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activity.WebViewActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activity.me.SearchBluetoothActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <service android:name=".BtService"/>
 
     </application>
 

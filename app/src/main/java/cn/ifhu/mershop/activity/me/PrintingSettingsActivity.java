@@ -1,4 +1,4 @@
-package cn.ifhu.mershop.activity;
+package cn.ifhu.mershop.activity.me;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import cn.ifhu.mershop.base.BaseActivity;
 /**
  * @author fuhongliang
  */
-public class AboutUsActivity extends BaseActivity {
+public class PrintingSettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

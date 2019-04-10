@@ -6,6 +6,7 @@ import com.bugtags.library.Bugtags;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import cn.ifhu.mershop.base.AppInfo;
 import cn.ifhu.mershop.utils.IrReference;
 
 import static cn.ifhu.mershop.utils.Constants.TAGBUGKEY;
@@ -24,6 +25,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AppInfo.init(getApplicationContext());
         instance = this;
         Logger.addLogAdapter(new AndroidLogAdapter());
         IrReference.getInstance();

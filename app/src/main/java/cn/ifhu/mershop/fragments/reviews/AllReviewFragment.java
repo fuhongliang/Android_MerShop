@@ -20,7 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
-import cn.ifhu.mershop.activity.ReviewListActivity;
+import cn.ifhu.mershop.activity.operation.ReviewListActivity;
 import cn.ifhu.mershop.adapter.AllReviewsAdapter;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;

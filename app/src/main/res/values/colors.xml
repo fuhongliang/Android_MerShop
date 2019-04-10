@@ -51,5 +51,21 @@
     <color name="yiquxiao_text_color">#999999</color>
     <color name="yiwangcheng_text_color">#1C98F6</color>
 
+    <!-- text colors -->
+    <!-- 87% of #000000: text -->
+    <color name="text_primary">#DF000000</color>
+    <!-- 54% of #000000: secondary text / icons -->
+    <color name="text_secondary">#8A000000</color>
+    <!-- 26% of #000000: hint text -->
+    <color name="text_hint">#43000000</color>
+    <!-- 12% of #000000: dividers text -->
+    <color name="divider">#1F000000</color>
 
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_orange">#ED9400</color>
+    <color name="text_gray_light">#707070</color>
+    <color name="text_green">#97C535</color>
+    <color name="text_blue">#329CC8</color>
+    <color name="text_red">#FFFF0000</color>
+    <color name="second_grey">#999999</color>
 </resources>

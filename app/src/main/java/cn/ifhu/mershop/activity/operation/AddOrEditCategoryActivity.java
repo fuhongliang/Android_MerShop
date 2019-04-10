@@ -1,4 +1,4 @@
-package cn.ifhu.mershop.activity;
+package cn.ifhu.mershop.activity.operation;
 
 import android.os.Bundle;
 import android.widget.Button;
