@@ -41,18 +41,17 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="6dp"
                     android:text="每人限领1张"
                     android:textColor="#999999"
                     android:textSize="13dp" />
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:gravity="bottom"
+                    android:layout_height="match_parent"
                     android:text="2019-03-25~2019-03-28"
                     android:textColor="#999999"
+                    android:gravity="bottom"
                     android:textSize="13dp" />
             </LinearLayout>
 
