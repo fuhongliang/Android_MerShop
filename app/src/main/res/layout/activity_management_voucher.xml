@@ -16,8 +16,8 @@
         android:layout_above="@+id/iv_line"
         android:layout_below="@+id/navigation_header_container"
         android:divider="@null"
-        android:dividerHeight="15dp"
-        tools:listitem="@layout/item_management" />
+        android:dividerHeight="0dp"
+        tools:listitem="@layout/item_voucher" />
 
     <ImageView
         android:id="@+id/iv_line"
