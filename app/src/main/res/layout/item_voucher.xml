@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -8,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/bg_radius"
         android:orientation="vertical">
@@ -63,10 +65,30 @@
                 android:background="@drawable/yhq_bnt_ysx" />
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@drawable/bg_button_virtual" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="8dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/bnt_icon_zuo_yuan" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/bg_button_virtual" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="8dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bnt_icon_yuo_yuan" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -166,16 +188,35 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_button_virtual" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="8dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/bnt_icon_zuo_yuan" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/bg_button_virtual" />
+
+            <ImageView
+                android:layout_width="4dp"
+                android:layout_height="8dp"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/bnt_icon_yuo_yuan" />
+        </RelativeLayout>
 
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="44dp"
             android:layout_alignParentBottom="true">
 
 
@@ -219,7 +260,10 @@
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
+
         </RelativeLayout>
 
+
     </LinearLayout>
+
 </LinearLayout>
