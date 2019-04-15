@@ -53,7 +53,7 @@ public class CategoryAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        ViewHolder viewHolder = null;
+        ViewHolder viewHolder;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_category, null);
             viewHolder = new ViewHolder();
@@ -67,10 +67,10 @@ public class CategoryAdapter extends BaseAdapter {
 
         if (mCurPosition == position) {
             viewHolder.imageView.setVisibility(View.VISIBLE);
-            viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.selected_black));
+            viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
             viewHolder.linearLayout.setBackgroundColor(Color.WHITE);
         } else {
-            viewHolder.linearLayout.setBackgroundColor(mContext.getColor(R.color.category_color));
+            viewHolder.linearLayout.setBackgroundColor(mContext.getResources().getColor(R.color.category_color));
             viewHolder.imageView.setVisibility(View.GONE);
             viewHolder.textView.setTextColor(mContext.getResources().getColor(R.color.unselect_grey));
         }
