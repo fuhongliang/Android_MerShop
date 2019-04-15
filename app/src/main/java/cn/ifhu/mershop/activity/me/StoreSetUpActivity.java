@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ import cn.ifhu.mershop.dialog.DialogWheelFragment;
 import cn.ifhu.mershop.net.MeService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -57,6 +60,10 @@ public class StoreSetUpActivity extends BaseActivity {
     UserServiceBean.LoginResponse loginResponse;
     @BindView(R.id.iv_logo)
     GlideImageView ivLogo;
+    @BindView(R.id.swh_auto_access)
+    Switch swhAutoAccess;
+    @BindView(R.id.swh_auto_print)
+    Switch swhAutoPrint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +85,27 @@ public class StoreSetUpActivity extends BaseActivity {
             tvStoreAdd.setText(loginResponse.getStore_address());
             tvStoreTime.setText(loginResponse.getWork_start_time() + "~" + loginResponse.getWork_end_time());
         }
+        boolean autoAccess = IrReference.getInstance().getBoolean(Constants.AUTOACCESS, false);
+        swhAutoAccess.setChecked(autoAccess);
+
+        boolean autoPrint = IrReference.getInstance().getBoolean(Constants.AUTOPRINT, false);
+        swhAutoPrint.setChecked(autoPrint);
+
+        swhAutoAccess.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                IrReference.getInstance().setBoolean(Constants.AUTOACCESS, true);
+            } else {
+                IrReference.getInstance().setBoolean(Constants.AUTOACCESS, false);
+            }
+        });
+
+        swhAutoPrint.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                IrReference.getInstance().setBoolean(Constants.AUTOPRINT, true);
+            } else {
+                IrReference.getInstance().setBoolean(Constants.AUTOPRINT, false);
+            }
+        });
     }
 
     @OnClick(R.id.iv_back)

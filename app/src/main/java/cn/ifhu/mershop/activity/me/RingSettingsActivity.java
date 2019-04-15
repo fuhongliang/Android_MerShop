@@ -26,6 +26,8 @@ public class RingSettingsActivity extends BaseActivity {
     Switch swhShock;
     @BindView(R.id.swh_status)
     Switch swhStatus;
+    @BindView(R.id.swh_off_tips)
+    Switch swhOffTips;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,14 @@ public class RingSettingsActivity extends BaseActivity {
                 IrReference.getInstance().setBoolean(Constants.RINGMOST, false);
             }
         });
+
+        swhOffTips.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                IrReference.getInstance().setBoolean(Constants.OFFTIPS, true);
+            } else {
+                IrReference.getInstance().setBoolean(Constants.OFFTIPS, false);
+            }
+        });
     }
 
     public void initSwitch() {
@@ -62,6 +72,10 @@ public class RingSettingsActivity extends BaseActivity {
 
         boolean isRingMost = IrReference.getInstance().getBoolean(Constants.RINGMOST, false);
         swhStatus.setChecked(isRingMost);
+
+        boolean offTips = IrReference.getInstance().getBoolean(Constants.OFFTIPS, false);
+        swhOffTips.setChecked(offTips);
+
     }
 
     @OnClick(R.id.iv_back)

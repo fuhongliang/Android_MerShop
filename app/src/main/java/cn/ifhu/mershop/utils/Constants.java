@@ -10,6 +10,9 @@ public class Constants {
     public static final String TOKEN = "TOKEN";
     public static final String Shake = "Shake";
     public static final String RINGMOST = "RINGMOST";
+    public static final String OFFTIPS = "OFFTIPS";
+    public static final String AUTOACCESS = "AUTOACCESS";
+    public static final String AUTOPRINT = "AUTOPRINT";
     public static final String CLASSLIST = "CLASSLIST";
     public static final String PRODUCTLIST = "PRODUCTLIST";
     public static final String LOGOUT = "logout_event";
