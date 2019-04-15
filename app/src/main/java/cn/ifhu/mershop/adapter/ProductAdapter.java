@@ -18,8 +18,6 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.utils.Constants;
 
-import static cn.ifhu.mershop.utils.Constants.UNLIMITED;
-
 /**
  * @author fuhongliang
  */
@@ -69,7 +67,14 @@ public class ProductAdapter extends BaseAdapter {
         viewHolder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
         viewHolder.tvReserve.setText("当前库存：" + mDataList.get(position).getGoods_storage());
-        viewHolder.tvChangeState.setText(mDataList.get(position).getGoods_state() == 0 ? "上架" : "下架");
+        if (mDataList.get(position).getGoods_state() == 0) {
+            viewHolder.tvChangeState.setText("上架");
+            viewHolder.tvStateTip.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.tvChangeState.setText("下架");
+            viewHolder.tvStateTip.setVisibility(View.INVISIBLE);
+        }
+
         return convertView;
     }
 
@@ -90,6 +95,8 @@ public class ProductAdapter extends BaseAdapter {
         TextView tvEdit;
         @BindView(R.id.tv_delete)
         TextView tvDelete;
+        @BindView(R.id.tv_state_tip)
+        TextView tvStateTip;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
