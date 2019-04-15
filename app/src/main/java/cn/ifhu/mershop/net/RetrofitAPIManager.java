@@ -1,13 +1,22 @@
 package cn.ifhu.mershop.net;
 
+import android.util.Log;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.orhanobut.logger.Logger;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import cn.ifhu.mershop.MyApplication;
+import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.utils.DeviceUtil;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.UserLogic;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -17,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @author fuhongliang
  */
 public class RetrofitAPIManager {
+    private static Retrofit uploadRetrofit;
 
     private static final long TIMEOUT = 1000;
     private static Retrofit retrofit;
@@ -39,6 +49,66 @@ public class RetrofitAPIManager {
         return retrofit;
     }
 
+    /**
+     * 上传专用
+     *
+     * @param service
+     * @param <T>
+     * @return
+     */
+    public static <T> T createUpload(final Class<T> service) {
+        return getUploadClientApi().create(service);
+    }
+
+
+    /**
+     * 上传图片专用的Retrofit
+     */
+    public static Retrofit getUploadClientApi() {
+        if (uploadRetrofit == null) {
+            uploadRetrofit = new Retrofit.Builder()
+                    .baseUrl(baseDevURL)
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(genericUploadClient())
+                    .build();
+        }
+
+        return uploadRetrofit;
+    }
+
+    private static OkHttpClient genericUploadClient() {
+
+        OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        String token = "";
+                        if (UserLogic.isLogin()) {
+                            token = UserLogic.getUser().getToken();
+                        }
+                        Request request = chain.request()
+                                .newBuilder()
+                                .addHeader("token", token)
+                                .build();
+                        return chain.proceed(request);
+                    }
+
+                })
+                .addNetworkInterceptor(new StethoInterceptor())
+                .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .readTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
+                .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
+                    @Override
+                    public void log(String message) {
+                        Log.d("RetrofitAPIManager", message);
+                    }
+                }).setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
+
+        return httpClient;
+    }
 
     public static <T> T create(final Class<T> service) {
         return getClientApi().create(service);

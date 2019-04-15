@@ -90,13 +90,9 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
                 if (e instanceof HttpException) {
                     HttpException error = (HttpException) e;
                     if (400 <= error.code() && error.code() < 500) {
-                        Gson gson = new Gson();
-                        BaseEntity<T> linkBaseEntity = gson.fromJson(error.response().errorBody().string(), BaseEntity.class);
-
-                        onCodeError(linkBaseEntity);
                         if (needShowErroToast) {
-                            if (linkBaseEntity != null && !TextUtils.isEmpty(linkBaseEntity.getMessage())) {
-                                ToastHelper.makeText(linkBaseEntity.getMessage(), Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();
+                            if (!TextUtils.isEmpty(error.getMessage())) {
+                                ToastHelper.makeText(error.getMessage(), Toast.LENGTH_LONG, ToastHelper.WARNWITHICONTOAST).show();
                             }
                         }
                     } else if (error.code() >= 500) {

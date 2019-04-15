@@ -36,12 +36,17 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_above="@+id/ll_bottom"
+        />
     <LinearLayout
         android:id="@+id/ll_bottom"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_butt_white"
         android:orientation="horizontal">
         <RelativeLayout
             android:id="@+id/rl_manage_category"

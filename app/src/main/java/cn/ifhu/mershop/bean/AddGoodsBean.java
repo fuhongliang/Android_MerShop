@@ -13,14 +13,14 @@ public class AddGoodsBean {
     int goods_storage;
     List<SellingTime> sell_time;
     String goods_desc;
-    MultipartBody.Part goods_image;
+    String img_name;
 
-    public MultipartBody.Part getFile() {
-        return goods_image;
+    public String getImg_name() {
+        return img_name;
     }
 
-    public void setFile(MultipartBody.Part file) {
-        this.goods_image = file;
+    public void setImg_name(String img_name) {
+        this.img_name = img_name;
     }
 
     public int getStore_id() {

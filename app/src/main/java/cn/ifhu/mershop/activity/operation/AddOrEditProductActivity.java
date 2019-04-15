@@ -34,11 +34,13 @@ import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.CategoryWheelItem;
+import cn.ifhu.mershop.bean.FileModel;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.SellingTime;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.net.UploadFileService;
 import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.ProductLogic;
 import cn.ifhu.mershop.utils.StringUtils;
@@ -153,39 +155,56 @@ public class AddOrEditProductActivity extends BaseActivity {
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
-        setLoadingMessageIndicator(true);
-        if (checkContentEmpty()) {
-            setLoadingMessageIndicator(false);
-        } else {
-            AddGoodsBean addGoodsBean = new AddGoodsBean();
-            addGoodsBean.setGoods_name(etProductName.getText().toString());
-            addGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
-            addGoodsBean.setOrigin_price(Double.parseDouble(etOriginalPrice.getText().toString().trim()));
-            addGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
-            addGoodsBean.setClass_id(categoryId);
-            addGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
-            addGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
-            addGoodsBean.setSell_time(new ArrayList<>());
-            File file = new File(cardPath);
-            RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
-            MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-            addGoodsBean.setFile(body);
-            RetrofitAPIManager.create(OperationService.class).addGoods(addGoodsBean)
-                    .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
-                @Override
-                protected void onApiComplete() {
-                    setLoadingMessageIndicator(false);
-                }
-
-                @Override
-                protected void onSuccees(BaseEntity<Object> t) throws Exception {
-                    ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                    clearContent();
-                }
-            });
+        if (!checkContentEmpty()) {
+            upLoadImage();
         }
     }
 
+    public void postProduct(String url){
+        setLoadingMessageIndicator(true);
+        AddGoodsBean addGoodsBean = new AddGoodsBean();
+        addGoodsBean.setGoods_name(etProductName.getText().toString());
+        addGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
+        addGoodsBean.setOrigin_price(Double.parseDouble(etOriginalPrice.getText().toString().trim()));
+        addGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
+        addGoodsBean.setClass_id(categoryId);
+        addGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
+        addGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
+        addGoodsBean.setSell_time(new ArrayList<>());
+        addGoodsBean.setImg_name(url);
+        RetrofitAPIManager.create(OperationService.class).addGoods(addGoodsBean)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                clearContent();
+            }
+        });
+    }
+
+    public void upLoadImage(){
+        setLoadingMessageIndicator(true);
+        File file = new File(cardPath);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+        RetrofitAPIManager.create(UploadFileService.class).imageUpload(body,1)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<FileModel>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<FileModel> t) throws Exception {
+                postProduct(t.getData().getFile_url());
+            }
+        });
+    }
 
     public boolean checkContentEmpty() {
         if (StringUtils.isEmpty(cardPath)){
