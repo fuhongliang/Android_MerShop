@@ -18,6 +18,8 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.utils.Constants;
 
+import static cn.ifhu.mershop.utils.Constants.UNLIMITED;
+
 /**
  * @author fuhongliang
  */
@@ -57,19 +59,17 @@ public class ProductAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.item_product, null);
             viewHolder = new ViewHolder(convertView);
-            viewHolder.tvPrice = convertView.findViewById(R.id.tv_price);
-            viewHolder.tvOriginalPrice = convertView.findViewById(R.id.tv_original_price);
-
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.tvPrice.setText(Constants.unit+mDataList.get(position).getGoods_price());
-        viewHolder.tvOriginalPrice.setText(Constants.unit+mDataList.get(position).getGoods_marketprice());
+        viewHolder.tvPrice.setText(Constants.unit + mDataList.get(position).getGoods_price());
+        viewHolder.tvOriginalPrice.setText(Constants.unit + mDataList.get(position).getGoods_marketprice());
         viewHolder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
-
+        viewHolder.tvReserve.setText("当前库存：" + mDataList.get(position).getGoods_storage());
+        viewHolder.tvChangeState.setText(mDataList.get(position).getGoods_state() == 0 ? "上架" : "下架");
         return convertView;
     }
 
@@ -82,9 +82,17 @@ public class ProductAdapter extends BaseAdapter {
         TextView tvOriginalPrice;
         @BindView(R.id.tv_name)
         TextView tvName;
+        @BindView(R.id.tv_reserve)
+        TextView tvReserve;
+        @BindView(R.id.tv_change_state)
+        TextView tvChangeState;
+        @BindView(R.id.tv_edit)
+        TextView tvEdit;
+        @BindView(R.id.tv_delete)
+        TextView tvDelete;
+
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
-
 }

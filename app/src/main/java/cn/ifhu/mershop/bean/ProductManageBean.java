@@ -64,7 +64,7 @@ public class ProductManageBean {
         private String goods_name;
         private String goods_price;
         private String goods_marketprice;
-        private int goods_salenum;
+        private int goods_state;
         private int goods_storage;
 
         public int getGoods_id() {
@@ -99,12 +99,12 @@ public class ProductManageBean {
             this.goods_marketprice = goods_marketprice;
         }
 
-        public int getGoods_salenum() {
-            return goods_salenum;
+        public int getGoods_state() {
+            return goods_state;
         }
 
-        public void setGoods_salenum(int goods_salenum) {
-            this.goods_salenum = goods_salenum;
+        public void setGoods_state(int goods_state) {
+            this.goods_state = goods_state;
         }
 
         public int getGoods_storage() {

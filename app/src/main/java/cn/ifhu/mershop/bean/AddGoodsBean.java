@@ -2,6 +2,8 @@ package cn.ifhu.mershop.bean;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
+
 public class AddGoodsBean {
     int store_id;
     int class_id;
@@ -11,6 +13,15 @@ public class AddGoodsBean {
     int goods_storage;
     List<SellingTime> sell_time;
     String goods_desc;
+    MultipartBody.Part goods_image;
+
+    public MultipartBody.Part getFile() {
+        return goods_image;
+    }
+
+    public void setFile(MultipartBody.Part file) {
+        this.goods_image = file;
+    }
 
     public int getStore_id() {
         return store_id;

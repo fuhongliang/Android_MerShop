@@ -1,14 +1,27 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baba.GlideImageView;
+import com.bumptech.glide.Glide;
+import com.orhanobut.logger.Logger;
+import com.yalantis.ucrop.UCrop;
+import com.zhihu.matisse.Matisse;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +39,15 @@ import cn.ifhu.mershop.bean.SellingTime;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.ProductLogic;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 import jsc.kit.wheel.dialog.ColumnWheelDialog;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * @author fuhongliang
@@ -62,14 +79,27 @@ public class AddOrEditProductActivity extends BaseActivity {
     Switch swhShock;
 
     List<SellingTime> sellingTimeList = new ArrayList<>();
+    @BindView(R.id.iv_product_image)
+    GlideImageView ivProductImage;
+
+    String cardPath = "";
+    @BindView(R.id.ll_reserve)
+    LinearLayout llReserve;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         ButterKnife.bind(this);
-        int position = getIntent().getIntExtra("position",0);
+        int position = getIntent().getIntExtra("position", 0);
         setTvCategory(position);
+        swhShock.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                llReserve.setVisibility(View.GONE);
+            } else {
+                llReserve.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @OnClick(R.id.iv_back)
@@ -90,7 +120,6 @@ public class AddOrEditProductActivity extends BaseActivity {
         ColumnWheelDialog<CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem> dialog = new ColumnWheelDialog<>(this);
         dialog.show();
         dialog.setTitle("");
-
         dialog.setCancelButton("取消", null);
         dialog.setOKButton("确定", (v, item0, item1, item2, item3, item4) -> {
             String result = "";
@@ -137,7 +166,10 @@ public class AddOrEditProductActivity extends BaseActivity {
             addGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
             addGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
             addGoodsBean.setSell_time(new ArrayList<>());
-
+            File file = new File(cardPath);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
+            MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
+            addGoodsBean.setFile(body);
             RetrofitAPIManager.create(OperationService.class).addGoods(addGoodsBean)
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
                 @Override
@@ -156,6 +188,11 @@ public class AddOrEditProductActivity extends BaseActivity {
 
 
     public boolean checkContentEmpty() {
+        if (StringUtils.isEmpty(cardPath)){
+            ToastHelper.makeText("请选择商品图片", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            return true;
+        }
+
         if (StringUtils.isEmpty(etProductName.getText().toString().trim())) {
             ToastHelper.makeText("请输入商品名称", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
@@ -212,5 +249,69 @@ public class AddOrEditProductActivity extends BaseActivity {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+    }
+
+    public void showSelectPicPage() {
+        ImageChooseUtil.startChooseImage(AddOrEditProductActivity.this, ImageChooseUtil.REQUEST_CODE);
+    }
+
+
+    @OnClick(R.id.rl_choose_pic)
+    public void onRlChoosePicClicked() {
+        showSelectPicPage();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case ImageChooseUtil.REQUEST_CODE:
+                    List<Uri> stringList = Matisse.obtainResult(data);
+                    if (stringList != null && stringList.size() > 0) {
+                        Glide.with(this).load(stringList.get(0)).into(ivProductImage);
+                    }
+                    startCrop(stringList.get(0));
+                    break;
+                case UCrop.REQUEST_CROP:
+                    Logger.d("UCrop.REQUEST_CROP");
+                    handleCropResult(data);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void startCrop(@NonNull Uri uri) {
+        String destinationFileName = System.currentTimeMillis() + ".jpg";
+        UCrop uCrop = UCrop.of(uri, Uri.fromFile(new File(getCacheDir(), destinationFileName)));
+        uCrop = basisConfig(uCrop);
+        uCrop = advancedConfig(uCrop);
+        uCrop.start(this);
+    }
+
+    private UCrop advancedConfig(@NonNull UCrop uCrop) {
+        UCrop.Options options = new UCrop.Options();
+        options.setCompressionFormat(Bitmap.CompressFormat.JPEG);
+        options.setCompressionQuality(90);
+        options.setHideBottomControls(false);
+        options.setFreeStyleCropEnabled(true);
+        return uCrop.withOptions(options);
+    }
+
+    private UCrop basisConfig(@NonNull UCrop uCrop) {
+        uCrop = uCrop.useSourceImageAspectRatio();
+        return uCrop;
+    }
+
+    private void handleCropResult(@NonNull Intent result) {
+        final Uri resultUri = UCrop.getOutput(result);
+        if (resultUri != null) {
+            ivProductImage.load(resultUri.getPath());
+            cardPath = resultUri.getPath();
+        } else {
+            Toast.makeText(this, "剪切失败，请重新选择", Toast.LENGTH_SHORT).show();
+        }
     }
 }

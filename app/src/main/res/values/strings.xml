@@ -17,5 +17,6 @@
     </array>
 
     <string name="shop_reply"><Data><![CDATA[<font color="#1C98F6">商家回复：</font> %s]]></Data></string>
+    <string name="file_provider_authorities">com.yalantis.ucrop.provider</string>
 
 </resources>

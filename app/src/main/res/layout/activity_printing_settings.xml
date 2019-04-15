@@ -55,22 +55,22 @@
             android:background="@drawable/dyj_ic_ykq" />
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/iv_wkq"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="13dp"
-            android:text="DSHUA18SF"
             android:textColor="#000000"
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/tv_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="15dp"
-            android:text="已连接"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" />
 

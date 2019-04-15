@@ -8,10 +8,13 @@ import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ReviewBean;
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 /**
  * @author fuhongliang
@@ -31,6 +34,7 @@ public interface OperationService {
     @POST("add_goods_class")
     public Observable<BaseEntity<List<ProductManageBean.ClassListBean>>> updateGoodsClass(@Field("store_id") int store_id, @Field("class_id") int class_id, @Field("class_name") String class_name);
 
+    @FormUrlEncoded
     @POST("add_goods")
     public Observable<BaseEntity<Object>> addGoods(@Body AddGoodsBean addGoodsBean);
 

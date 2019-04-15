@@ -1,1 +1,1 @@
-include ':app', ':glideImageView', ':wheelLibrary'
+include ':app', ':glideImageView', ':wheelLibrary', ':matise'
