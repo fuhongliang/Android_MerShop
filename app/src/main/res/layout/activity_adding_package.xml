@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_header" />
+    <!--活动名称-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/tv_text"
+            android:text="活动名称" />
+
+        <include layout="@layout/layout_star" />
+
+        <EditText
+            style="@style/base_edit"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="end|center_vertical"
+            android:hint="最多可输入20个字"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!--添加商品-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            style="@style/tv_text"
+            android:text="添加商品" />
+
+        <include layout="@layout/layout_star" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E5E5E5" />
+    <!--添加商品-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:padding="15dp">
+        <!--商品图片-->
+        <ImageView
+            android:id="@+id/iv_product_image"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:background="@color/unselect_grey" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="76dp"
+            android:layout_toRightOf="@+id/iv_product_image"
+            android:orientation="vertical">
+            <!--商品名称-->
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="三文鱼寿司"
+                android:textColor="#ff000000"
+                android:textSize="17sp" />
+            <!--原价、优惠价格-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="6dp"
+                android:gravity="bottom">
+                <!--原价:￥189.0-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="15dp"
+                    android:text="原价:￥189.0"
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+                <!--优惠价格：-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="10dp"
+                    android:text="优惠价格："
+                    android:textColor="#666666"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_bg_white"
+                    android:gravity="center"
+                    android:text="100"
+                    android:textColor="#EC1818"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:text="元"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/xiangqing_ic_shanchu" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E5E5E5" />
+    <!--添加-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/yhq_ic_add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="添加"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17sp" />
+    </LinearLayout>
+
+    <!--活动状态-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="活动状态"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <Switch
+            android:layout_width="55dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:checked="true"
+            android:textOff=""
+            android:textOn=""
+            android:thumb="@drawable/thumb"
+            android:track="@drawable/track_selctor" />
+
+    </RelativeLayout>
+
+    <!--活动状态-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:gravity="center_vertical"
+            android:text="总优惠价格："
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="￥200.00"
+            android:textColor="#EC1818"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/bg_button_blue"
+        android:stateListAnimator="@null"
+        android:text="提交"
+        android:textColor="#ffffff"
+        android:textSize="17sp" />
+</LinearLayout>
