@@ -3,6 +3,9 @@ package cn.ifhu.mershop.bean;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author fuhongliang
+ */
 public class ProductManageBean {
 
 
@@ -73,6 +76,7 @@ public class ProductManageBean {
         private int goods_state;
         private int goods_storage;
         private String goods_image;
+
         private List<GoodsSaleTimeBean> goods_sale_time;
 
         public int getGoods_id() {

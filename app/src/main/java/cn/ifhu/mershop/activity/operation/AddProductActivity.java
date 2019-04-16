@@ -204,7 +204,7 @@ public class AddProductActivity extends BaseActivity {
 
             @Override
             protected void onSuccees(BaseEntity<FileModel> t) throws Exception {
-                postProduct(t.getData().getImg_path());
+                postProduct(t.getData().getImg_name());
             }
 
             @Override

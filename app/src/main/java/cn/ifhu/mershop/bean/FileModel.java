@@ -1,5 +1,8 @@
 package cn.ifhu.mershop.bean;
 
+/**
+ * @author fuhongliang
+ */
 public class FileModel {
 
     /**
