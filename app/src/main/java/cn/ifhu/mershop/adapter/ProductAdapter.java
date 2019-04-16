@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baba.GlideImageView;
 
@@ -15,8 +16,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.base.BaseObserver;
+import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.ProductManageBean;
+import cn.ifhu.mershop.net.OperationService;
+import cn.ifhu.mershop.net.RetrofitAPIManager;
+import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.ToastHelper;
 
 /**
  * @author fuhongliang
@@ -24,7 +31,7 @@ import cn.ifhu.mershop.utils.Constants;
 public class ProductAdapter extends BaseAdapter {
     public List<ProductManageBean.GoodsListBean> mDataList;
     public Context mContext;
-
+    onClickItem onClickItem;
     public void setmDataList(List<ProductManageBean.GoodsListBean> mDataList) {
         this.mDataList = mDataList;
         notifyDataSetChanged();
@@ -33,6 +40,16 @@ public class ProductAdapter extends BaseAdapter {
     public ProductAdapter(List<ProductManageBean.GoodsListBean> mDataList, Context mContext) {
         this.mDataList = mDataList;
         this.mContext = mContext;
+    }
+
+    public void changeProductState(int position){
+        ProductManageBean.GoodsListBean goodsListBean = mDataList.get(position);
+        mDataList.get(position).setGoods_state(goodsListBean.getGoods_state() == 0?1:0);
+        notifyDataSetChanged();
+    }
+
+    public void setOnClickItem(ProductAdapter.onClickItem onClickItem) {
+        this.onClickItem = onClickItem;
     }
 
     @Override
@@ -75,9 +92,31 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder.tvStateTip.setVisibility(View.INVISIBLE);
         }
 //      viewHolder.ivProductImage.load(mDataList.get(position));
+        if (onClickItem != null){
+            viewHolder.tvChangeState.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickItem.changeState(position);
+                }
+            });
 
+            viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickItem.editProduct(position);
+                }
+            });
+
+            viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onClickItem.deleteProduct(position);
+                }
+            });
+        }
         return convertView;
     }
+
 
     static class ViewHolder {
         @BindView(R.id.iv_product_image)
@@ -103,4 +142,11 @@ public class ProductAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
     }
+
+    public interface onClickItem{
+        void changeState(int position);
+        void editProduct(int position);
+        void deleteProduct(int position);
+    }
+
 }

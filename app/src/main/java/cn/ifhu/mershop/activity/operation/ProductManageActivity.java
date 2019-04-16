@@ -72,6 +72,22 @@ public class ProductManageActivity extends BaseActivity {
         lvCategory.setAdapter(mCategoryAdapter);
 
         mProductAdapter = new ProductAdapter(mProductArray, this);
+        mProductAdapter.setOnClickItem(new ProductAdapter.onClickItem() {
+            @Override
+            public void changeState(int position) {
+                changeProductState(position);
+            }
+
+            @Override
+            public void editProduct(int position) {
+
+            }
+
+            @Override
+            public void deleteProduct(int position) {
+                delProduct(position);
+            }
+        });
         lvProduct.setAdapter(mProductAdapter);
         tvTitle.setText("商品管理");
     }
@@ -118,7 +134,7 @@ public class ProductManageActivity extends BaseActivity {
             @Override
             public void onError(Throwable e) {
                 super.onError(e);
-                ToastHelper.makeText(e.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText(e.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                 finish();
             }
         });
@@ -143,5 +159,41 @@ public class ProductManageActivity extends BaseActivity {
     @OnClick(R.id.rl_add_product)
     public void onRlAddProductClicked() {
         startActivity(new Intent(ProductManageActivity.this, AddOrEditProductActivity.class));
+    }
+
+
+    public void changeProductState(int position) {
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).chGoodsState(mProductArray.get(position).getGoods_id(), UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                mProductAdapter.changeProductState(position);
+            }
+        });
+    }
+
+    public void delProduct(int position) {
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).delGoods(mProductArray.get(position).getGoods_id(), UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                mProductArray.remove(position);
+                mProductAdapter.setmDataList(mProductArray);
+            }
+        });
     }
 }

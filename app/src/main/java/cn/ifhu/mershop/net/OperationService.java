@@ -64,6 +64,13 @@ public interface OperationService {
     @POST("del_goods_class")
     public Observable<BaseEntity<List<Object>>> delGoodsClass(@Field("class_id") int class_id,@Field("store_id") int store_id);
 
+    @FormUrlEncoded
+    @POST("chgoods_state")
+    public Observable<BaseEntity<Object>> chGoodsState(@Field("goods_id") int goods_id,@Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("del_goods")
+    public Observable<BaseEntity<Object>> delGoods(@Field("goods_id") int goods_id,@Field("store_id") int store_id);
 
 
 }
