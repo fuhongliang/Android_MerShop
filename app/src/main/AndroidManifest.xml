@@ -35,8 +35,12 @@
             android:theme="@style/AppTheme_listDivider"/>
         <activity android:name=".activity.me.RingSettingsActivity"></activity>
         <activity
-            android:name=".activity.operation.AddOrEditProductActivity"
+            android:name=".activity.operation.AddProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.operation.EditProductActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity android:name=".activity.operation.ManageCategoryActivity" />
         <activity android:name=".activity.operation.SortCategoryActivity" />
         <activity

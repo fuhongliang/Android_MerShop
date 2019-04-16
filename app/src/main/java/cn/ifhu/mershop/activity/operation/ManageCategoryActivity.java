@@ -52,7 +52,7 @@ public class ManageCategoryActivity extends BaseActivity {
 
             @Override
             public void onClickAddItem(int position) {
-                Intent intent = new Intent(ManageCategoryActivity.this, AddOrEditProductActivity.class);
+                Intent intent = new Intent(ManageCategoryActivity.this, AddProductActivity.class);
                 intent.putExtra("position",position);
                 startActivity(intent);
             }

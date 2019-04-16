@@ -91,28 +91,13 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder.tvChangeState.setText("下架");
             viewHolder.tvStateTip.setVisibility(View.INVISIBLE);
         }
-//      viewHolder.ivProductImage.load(mDataList.get(position));
+      viewHolder.ivProductImage.load(mDataList.get(position).getGoods_image());
         if (onClickItem != null){
-            viewHolder.tvChangeState.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickItem.changeState(position);
-                }
-            });
+            viewHolder.tvChangeState.setOnClickListener(v -> onClickItem.changeState(position));
 
-            viewHolder.tvEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickItem.editProduct(position);
-                }
-            });
+            viewHolder.tvEdit.setOnClickListener(v -> onClickItem.editProduct(position));
 
-            viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onClickItem.deleteProduct(position);
-                }
-            });
+            viewHolder.tvDelete.setOnClickListener(v -> onClickItem.deleteProduct(position));
         }
         return convertView;
     }
