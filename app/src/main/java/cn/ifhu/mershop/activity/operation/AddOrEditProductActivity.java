@@ -161,7 +161,6 @@ public class AddOrEditProductActivity extends BaseActivity {
     }
 
     public void postProduct(String url){
-        setLoadingMessageIndicator(true);
         AddGoodsBean addGoodsBean = new AddGoodsBean();
         addGoodsBean.setGoods_name(etProductName.getText().toString());
         addGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
@@ -192,16 +191,21 @@ public class AddOrEditProductActivity extends BaseActivity {
         File file = new File(cardPath);
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
-        RetrofitAPIManager.create(UploadFileService.class).imageUpload(body,1)
+        RetrofitAPIManager.createUpload(UploadFileService.class).imageUpload(body)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<FileModel>(true) {
             @Override
             protected void onApiComplete() {
-                setLoadingMessageIndicator(false);
             }
 
             @Override
             protected void onSuccees(BaseEntity<FileModel> t) throws Exception {
-                postProduct(t.getData().getFile_url());
+                postProduct(t.getData().getImg_path());
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                setLoadingMessageIndicator(false);
             }
         });
     }

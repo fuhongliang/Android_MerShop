@@ -74,6 +74,7 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder.tvChangeState.setText("下架");
             viewHolder.tvStateTip.setVisibility(View.INVISIBLE);
         }
+//      viewHolder.ivProductImage.load(mDataList.get(position));
 
         return convertView;
     }

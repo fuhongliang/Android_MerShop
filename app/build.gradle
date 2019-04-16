@@ -85,6 +85,6 @@ dependencies {
      * 权限询问
      */
     implementation 'com.yanzhenjie:permission:2.0.0-rc3'
-    compile project(path: ':matise')
+    implementation project(path: ':matise')
     implementation 'com.github.yalantis:ucrop:2.2.3-native'
 }

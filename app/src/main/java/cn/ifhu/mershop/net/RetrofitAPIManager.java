@@ -30,7 +30,7 @@ public class RetrofitAPIManager {
 
     private static final long TIMEOUT = 1000;
     private static Retrofit retrofit;
-    public static String baseDevURL = "http://47.92.244.60:88/v2/";
+    public static String baseDevURL = "http://47.111.27.189:2000/v2/";
 
     private RetrofitAPIManager() {
 
@@ -80,31 +80,22 @@ public class RetrofitAPIManager {
     private static OkHttpClient genericUploadClient() {
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        String token = "";
-                        if (UserLogic.isLogin()) {
-                            token = UserLogic.getUser().getToken();
-                        }
-                        Request request = chain.request()
-                                .newBuilder()
-                                .addHeader("token", token)
-                                .build();
-                        return chain.proceed(request);
+                .addInterceptor(chain -> {
+                    String token = "";
+                    if (UserLogic.isLogin()) {
+                        token = UserLogic.getUser().getToken();
                     }
-
+                    Request request = chain.request()
+                            .newBuilder()
+                            .addHeader("token", token)
+                            .build();
+                    return chain.proceed(request);
                 })
                 .addNetworkInterceptor(new StethoInterceptor())
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                    @Override
-                    public void log(String message) {
-                        Log.d("RetrofitAPIManager", message);
-                    }
-                }).setLevel(HttpLoggingInterceptor.Level.BODY))
+                .addInterceptor(new HttpLoggingInterceptor(message -> Log.d("RetrofitAPIManager", message)).setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
 
         return httpClient;

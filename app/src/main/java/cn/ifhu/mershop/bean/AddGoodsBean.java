@@ -2,8 +2,9 @@ package cn.ifhu.mershop.bean;
 
 import java.util.List;
 
-import okhttp3.MultipartBody;
-
+/**
+ * @author fuhongliang
+ */
 public class AddGoodsBean {
     int store_id;
     int class_id;

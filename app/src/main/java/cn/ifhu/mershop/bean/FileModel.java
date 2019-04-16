@@ -7,22 +7,23 @@ public class FileModel {
      * file_url : http://xxxxxxxxxx.png
      */
 
-    private String file_name;
-    private String file_url;
+    private String img_name;
+    private String img_path;
 
-    public String getFile_name() {
-        return file_name;
+
+    public String getImg_name() {
+        return img_name;
     }
 
-    public void setFile_name(String file_name) {
-        this.file_name = file_name;
+    public void setImg_name(String img_name) {
+        this.img_name = img_name;
     }
 
-    public String getFile_url() {
-        return file_url;
+    public String getImg_path() {
+        return img_path;
     }
 
-    public void setFile_url(String file_url) {
-        this.file_url = file_url;
+    public void setImg_path(String img_path) {
+        this.img_path = img_path;
     }
 }

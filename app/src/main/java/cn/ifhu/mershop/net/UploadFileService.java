@@ -17,7 +17,7 @@ import retrofit2.http.Part;
 public interface UploadFileService {
 
     @Multipart
-    @POST("image_upload")
-    public Observable<BaseEntity<FileModel>> imageUpload(@Part() MultipartBody.Part file ,@Field("type") int type);
+    @POST("image_upload/goods_img")
+    public Observable<BaseEntity<FileModel>> imageUpload(@Part() MultipartBody.Part file );
 
 }
