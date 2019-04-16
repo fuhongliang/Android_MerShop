@@ -5,21 +5,27 @@
     android:layout_height="match_parent"
     >
     <include layout="@layout/layout_header"/>
-    <ImageView
-        android:layout_width="126dp"
-        android:layout_height="126dp"
-        android:background="@drawable/yhq_zannwuyouhui"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="165dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="暂无优惠活动"
-        android:textSize="14sp"
-        android:textColor="#999999"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="294dp"/>
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_centerInParent="true"
+       android:orientation="vertical"
+       android:gravity="center">
+       <ImageView
+           android:layout_width="126dp"
+           android:layout_height="126dp"
+           android:background="@drawable/yhq_zannwuyouhui"
+           android:layout_centerHorizontal="true"
+           />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="暂无优惠活动"
+           android:textSize="14sp"
+           android:textColor="#999999"
+           android:layout_centerHorizontal="true"
+           />
+   </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
