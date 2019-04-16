@@ -54,6 +54,7 @@ public class ProductManageActivity extends BaseActivity {
     @BindView(R.id.rl_add_product)
     RelativeLayout rlAddProduct;
     public int mCurId = 0;
+    public int classPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class ProductManageActivity extends BaseActivity {
             public void onClickItem(int position) {
                 mProductData(mDataArray.get(position).getStc_id());
                 mCurId = mDataArray.get(position).getStc_id();
+                classPosition = position;
             }
         });
         lvCategory.setAdapter(mCategoryAdapter);
@@ -80,7 +82,7 @@ public class ProductManageActivity extends BaseActivity {
 
             @Override
             public void editProduct(int position) {
-
+                goToEditProduct(position,classPosition);
             }
 
             @Override
@@ -158,7 +160,7 @@ public class ProductManageActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_product)
     public void onRlAddProductClicked() {
-        startActivity(new Intent(ProductManageActivity.this, AddOrEditProductActivity.class));
+        startActivity(new Intent(ProductManageActivity.this, AddProductActivity.class));
     }
 
 
@@ -195,5 +197,12 @@ public class ProductManageActivity extends BaseActivity {
                 mProductAdapter.setmDataList(mProductArray);
             }
         });
+    }
+
+    public void goToEditProduct(int position, int curClassPosition) {
+        Intent intent = new Intent(ProductManageActivity.this, EditProductActivity.class);
+        intent.putExtra("position", curClassPosition);
+        intent.putExtra("product", mProductArray.get(position));
+        startActivity(intent);
     }
 }

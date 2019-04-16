@@ -35,8 +35,12 @@
             android:theme="@style/AppTheme_listDivider"/>
         <activity android:name=".activity.me.RingSettingsActivity"></activity>
         <activity
-            android:name=".activity.operation.AddOrEditProductActivity"
+            android:name=".activity.operation.AddProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
+            android:name=".activity.operation.EditProductActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
         <activity android:name=".activity.operation.ManageCategoryActivity" />
         <activity android:name=".activity.operation.SortCategoryActivity" />
         <activity
@@ -96,12 +100,12 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="@string/file_provider_authorities"
+            android:authorities="cn.ifhu.mershop.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider_paths" />
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.baba.GlideImageView;
 import com.bumptech.glide.Glide;
-import com.orhanobut.logger.Logger;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
 
@@ -54,7 +53,7 @@ import okhttp3.RequestBody;
 /**
  * @author fuhongliang
  */
-public class AddOrEditProductActivity extends BaseActivity {
+public class EditProductActivity extends BaseActivity {
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -87,12 +86,14 @@ public class AddOrEditProductActivity extends BaseActivity {
     String cardPath = "";
     @BindView(R.id.ll_reserve)
     LinearLayout llReserve;
+    ProductManageBean.GoodsListBean goodsListBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
         ButterKnife.bind(this);
+        goodsListBean = (ProductManageBean.GoodsListBean) getIntent().getSerializableExtra("product");
         int position = getIntent().getIntExtra("position", 0);
         setTvCategory(position);
         swhShock.setOnCheckedChangeListener((buttonView, isChecked) -> {
@@ -102,6 +103,17 @@ public class AddOrEditProductActivity extends BaseActivity {
                 llReserve.setVisibility(View.VISIBLE);
             }
         });
+        initData();
+    }
+
+    public void initData() {
+        if (goodsListBean != null) {
+            etProductName.setText(goodsListBean.getGoods_name());
+            etPrice.setText(goodsListBean.getGoods_price());
+            etOriginalPrice.setText(goodsListBean.getGoods_marketprice());
+            etProductDesr.setText(goodsListBean.getGoods_desc());
+            ivProductImage.load(goodsListBean.getGoods_image());
+        }
     }
 
     @OnClick(R.id.iv_back)
@@ -156,11 +168,15 @@ public class AddOrEditProductActivity extends BaseActivity {
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
         if (!checkContentEmpty()) {
-            upLoadImage();
+            if (StringUtils.isEmpty(cardPath)) {
+                postProduct(goodsListBean.getGoods_image());
+            } else {
+                upLoadImage();
+            }
         }
     }
 
-    public void postProduct(String url){
+    public void postProduct(String url) {
         AddGoodsBean addGoodsBean = new AddGoodsBean();
         addGoodsBean.setGoods_name(etProductName.getText().toString());
         addGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
@@ -186,7 +202,7 @@ public class AddOrEditProductActivity extends BaseActivity {
         });
     }
 
-    public void upLoadImage(){
+    public void upLoadImage() {
         setLoadingMessageIndicator(true);
         File file = new File(cardPath);
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
@@ -211,11 +227,6 @@ public class AddOrEditProductActivity extends BaseActivity {
     }
 
     public boolean checkContentEmpty() {
-        if (StringUtils.isEmpty(cardPath)){
-            ToastHelper.makeText("请选择商品图片", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-            return true;
-        }
-
         if (StringUtils.isEmpty(etProductName.getText().toString().trim())) {
             ToastHelper.makeText("请输入商品名称", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
@@ -241,7 +252,7 @@ public class AddOrEditProductActivity extends BaseActivity {
 
     @OnClick(R.id.ll_selling_time)
     public void onViewClicked() {
-        startActivity(new Intent(AddOrEditProductActivity.this, SellingTimeActivity.class));
+        startActivity(new Intent(EditProductActivity.this, SellingTimeActivity.class));
     }
 
     public void setTvCategory(int position) {
@@ -275,7 +286,7 @@ public class AddOrEditProductActivity extends BaseActivity {
     }
 
     public void showSelectPicPage() {
-        ImageChooseUtil.startChooseImage(AddOrEditProductActivity.this, ImageChooseUtil.REQUEST_CODE);
+        ImageChooseUtil.startChooseImage(EditProductActivity.this, ImageChooseUtil.REQUEST_CODE);
     }
 
 
@@ -297,7 +308,6 @@ public class AddOrEditProductActivity extends BaseActivity {
                     startCrop(stringList.get(0));
                     break;
                 case UCrop.REQUEST_CROP:
-                    Logger.d("UCrop.REQUEST_CROP");
                     handleCropResult(data);
                     break;
                 default:
