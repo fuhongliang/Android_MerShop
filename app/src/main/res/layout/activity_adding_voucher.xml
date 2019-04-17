@@ -206,24 +206,22 @@
                 android:gravity="end|center_vertical">
 
                 <ImageView
-                    android:id="@+id/jian"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:background="@drawable/yhq_ic_jian" />
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:padding="10dp"
+                    android:src="@drawable/yhq_ic_jian" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="15dp"
                     android:gravity="center_vertical"
                     android:text="1" />
 
                 <ImageView
-                    android:id="@+id/jia"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginLeft="15dp"
-                    android:background="@drawable/yhq_ic_jia" />
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:padding="10dp"
+                    android:src="@drawable/yhq_ic_jia" />
             </LinearLayout>
 
         </LinearLayout>
@@ -261,6 +259,7 @@
                 android:background="@null"
                 android:hint="请输入"
                 android:textSize="15sp"
+
 
                 />
         </RelativeLayout>
