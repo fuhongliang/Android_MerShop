@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.DiscountBean;
 import cn.ifhu.mershop.bean.EditGoodsBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
@@ -43,7 +44,7 @@ public interface OperationService {
 
     @FormUrlEncoded
     @POST("sort_goods_class")
-    public Observable<BaseEntity<List<ProductManageBean.ClassListBean>>> sortGoodsClass(@Field("class_ids") String sortCategoryBean,@Field("store_id") int store_id);
+    public Observable<BaseEntity<List<ProductManageBean.ClassListBean>>> sortGoodsClass(@Field("class_ids") String sortCategoryBean, @Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("get_store_com")
@@ -52,12 +53,12 @@ public interface OperationService {
 
     @FormUrlEncoded
     @POST("get_store_com")
-    public Observable<BaseEntity<ReviewBean>> getNoReplyReviews(@Field("store_id") int store_id,@Field("no_com") int no_com);
+    public Observable<BaseEntity<ReviewBean>> getNoReplyReviews(@Field("store_id") int store_id, @Field("no_com") int no_com);
 
 
     @FormUrlEncoded
     @POST("store_feedback")
-    public Observable<BaseEntity<Object>> storeFeedback(@Field("store_id") int store_id,@Field("content") String content,@Field("parent_id") int parent_id);
+    public Observable<BaseEntity<Object>> storeFeedback(@Field("store_id") int store_id, @Field("content") String content, @Field("parent_id") int parent_id);
 
     @FormUrlEncoded
     @POST("store_yunying")
@@ -66,15 +67,19 @@ public interface OperationService {
 
     @FormUrlEncoded
     @POST("del_goods_class")
-    public Observable<BaseEntity<List<Object>>> delGoodsClass(@Field("class_id") int class_id,@Field("store_id") int store_id);
+    public Observable<BaseEntity<List<Object>>> delGoodsClass(@Field("class_id") int class_id, @Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("chgoods_state")
-    public Observable<BaseEntity<Object>> chGoodsState(@Field("goods_id") int goods_id,@Field("store_id") int store_id);
+    public Observable<BaseEntity<Object>> chGoodsState(@Field("goods_id") int goods_id, @Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("del_goods")
-    public Observable<BaseEntity<Object>> delGoods(@Field("goods_id") int goods_id,@Field("store_id") int store_id);
+    public Observable<BaseEntity<Object>> delGoods(@Field("goods_id") int goods_id, @Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("xianshi_list")
+    public Observable<BaseEntity<List<DiscountBean>>> getDiscountList(@Field("store_id") int store_id);
 
 
 }
