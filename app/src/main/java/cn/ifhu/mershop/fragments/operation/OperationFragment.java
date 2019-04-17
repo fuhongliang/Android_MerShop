@@ -17,9 +17,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.WebViewActivity;
+import cn.ifhu.mershop.activity.operation.DiscountListActivity;
 import cn.ifhu.mershop.activity.operation.ProductManageActivity;
 import cn.ifhu.mershop.activity.operation.ReviewListActivity;
-import cn.ifhu.mershop.activity.WebViewActivity;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
@@ -132,6 +133,23 @@ public class OperationFragment extends BaseFragment {
 
     @OnClick(R.id.ll_operation_data)
     public void onViewClicked() {
-        WebViewActivity.start(getContext(), operationBean.getJingying_url(),"经营数据");
+        WebViewActivity.start(getContext(), operationBean.getJingying_url(), "经营数据");
+    }
+
+    @OnClick(R.id.rl_discount)
+    public void onRlDiscountClicked() {
+        startActivity(new Intent(getContext(), DiscountListActivity.class));
+    }
+
+    @OnClick(R.id.rl_less)
+    public void onRlLessClicked() {
+    }
+
+    @OnClick(R.id.rL_package)
+    public void onRLPackageClicked() {
+    }
+
+    @OnClick(R.id.rl_voucher)
+    public void onRlVoucherClicked() {
     }
 }

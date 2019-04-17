@@ -75,7 +75,8 @@ public class ProductManageBean {
         private String goods_desc;
         private int goods_state;
         private int goods_storage;
-        private String goods_image;
+        private String img_name;
+        private String img_path;
 
         private List<GoodsSaleTimeBean> goods_sale_time;
 
@@ -135,12 +136,20 @@ public class ProductManageBean {
             this.goods_storage = goods_storage;
         }
 
-        public String getGoods_image() {
-            return goods_image;
+        public String getImg_name() {
+            return img_name;
         }
 
-        public void setGoods_image(String goods_image) {
-            this.goods_image = goods_image;
+        public void setImg_name(String img_name) {
+            this.img_name = img_name;
+        }
+
+        public String getImg_path() {
+            return img_path;
+        }
+
+        public void setImg_path(String img_path) {
+            this.img_path = img_path;
         }
 
         public List<GoodsSaleTimeBean> getGoods_sale_time() {

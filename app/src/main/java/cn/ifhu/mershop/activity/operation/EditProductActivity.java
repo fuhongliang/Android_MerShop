@@ -33,6 +33,7 @@ import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.CategoryWheelItem;
+import cn.ifhu.mershop.bean.EditGoodsBean;
 import cn.ifhu.mershop.bean.FileModel;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.SellingTime;
@@ -112,7 +113,7 @@ public class EditProductActivity extends BaseActivity {
             etPrice.setText(goodsListBean.getGoods_price());
             etOriginalPrice.setText(goodsListBean.getGoods_marketprice());
             etProductDesr.setText(goodsListBean.getGoods_desc());
-            ivProductImage.load(goodsListBean.getGoods_image());
+            ivProductImage.load(goodsListBean.getImg_path()+"/"+goodsListBean.getImg_name());
         }
     }
 
@@ -169,7 +170,7 @@ public class EditProductActivity extends BaseActivity {
     public void onBtnSaveClicked() {
         if (!checkContentEmpty()) {
             if (StringUtils.isEmpty(cardPath)) {
-                postProduct(goodsListBean.getGoods_image());
+                postProduct(goodsListBean.getImg_name());
             } else {
                 upLoadImage();
             }
@@ -177,17 +178,18 @@ public class EditProductActivity extends BaseActivity {
     }
 
     public void postProduct(String url) {
-        AddGoodsBean addGoodsBean = new AddGoodsBean();
-        addGoodsBean.setGoods_name(etProductName.getText().toString());
-        addGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
-        addGoodsBean.setOrigin_price(Double.parseDouble(etOriginalPrice.getText().toString().trim()));
-        addGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
-        addGoodsBean.setClass_id(categoryId);
-        addGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
-        addGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
-        addGoodsBean.setSell_time(new ArrayList<>());
-        addGoodsBean.setImg_name(url);
-        RetrofitAPIManager.create(OperationService.class).addGoods(addGoodsBean)
+        EditGoodsBean editGoodsBean = new EditGoodsBean();
+        editGoodsBean.setGoods_name(etProductName.getText().toString());
+        editGoodsBean.setGoods_id(goodsListBean.getGoods_id());
+        editGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
+        editGoodsBean.setOrigin_price(Double.parseDouble(etOriginalPrice.getText().toString().trim()));
+        editGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
+        editGoodsBean.setClass_id(categoryId);
+        editGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
+        editGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
+        editGoodsBean.setSell_time(new ArrayList<>());
+        editGoodsBean.setImg_name(url);
+        RetrofitAPIManager.create(OperationService.class).editGoods(editGoodsBean)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -197,7 +199,7 @@ public class EditProductActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                clearContent();
+                finish();
             }
         });
     }
@@ -215,7 +217,7 @@ public class EditProductActivity extends BaseActivity {
 
             @Override
             protected void onSuccees(BaseEntity<FileModel> t) throws Exception {
-                postProduct(t.getData().getImg_path());
+                postProduct(t.getData().getImg_name());
             }
 
             @Override

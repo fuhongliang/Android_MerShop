@@ -4,6 +4,7 @@ import java.util.List;
 
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.EditGoodsBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ReviewBean;
@@ -36,6 +37,9 @@ public interface OperationService {
 
     @POST("add_goods")
     public Observable<BaseEntity<Object>> addGoods(@Body AddGoodsBean addGoodsBean);
+
+    @POST("edit_goods")
+    public Observable<BaseEntity<Object>> editGoods(@Body EditGoodsBean editGoodsBean);
 
     @FormUrlEncoded
     @POST("sort_goods_class")

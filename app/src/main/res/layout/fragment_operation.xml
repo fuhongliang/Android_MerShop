@@ -341,6 +341,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_discount"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#ffffff">
@@ -373,6 +374,7 @@
             android:background="#E5E5E5" />
 
         <RelativeLayout
+            android:id="@+id/rl_less"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#ffffff">
@@ -405,6 +407,7 @@
             android:background="#E5E5E5" />
 
         <RelativeLayout
+            android:id="@+id/rL_package"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#ffffff">
@@ -437,6 +440,7 @@
             android:background="#E5E5E5" />
 
         <RelativeLayout
+            android:id="@+id/rl_voucher"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#ffffff">
