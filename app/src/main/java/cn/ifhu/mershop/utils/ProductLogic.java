@@ -11,6 +11,7 @@ import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.SellingTime;
 
 import static cn.ifhu.mershop.utils.Constants.CLASSLIST;
+import static cn.ifhu.mershop.utils.Constants.DISCOUNTPRODUCTLIST;
 import static cn.ifhu.mershop.utils.Constants.SELLINGTIME;
 
 /**
@@ -50,6 +51,29 @@ public class ProductLogic {
         if (!TextUtils.isEmpty(json)) {
             ArrayList<SellingTime> classListBean = GsonUtils.fromJsonArrayToArrayList(json,SellingTime.class);
             return classListBean;
+        }
+        return null;
+    }
+
+//保存选择的折扣商品信息
+    public static void saveDiscountGoods(List<ProductManageBean.GoodsListBean> goodsListBeans) {
+        if (goodsListBeans != null) {
+            Gson gson = new Gson();
+            String json = gson.toJson(goodsListBeans);
+            IrReference.getInstance().saveString(DISCOUNTPRODUCTLIST, json);
+        }
+    }
+
+    public static void clearDiscountGoods() {
+        IrReference.getInstance().saveString(DISCOUNTPRODUCTLIST, "");
+    }
+
+
+    public static List<ProductManageBean.GoodsListBean> getDiscountGoods() throws Exception {
+        String json = IrReference.getInstance().getString(DISCOUNTPRODUCTLIST, "");
+        if (!TextUtils.isEmpty(json)) {
+            ArrayList<ProductManageBean.GoodsListBean> goodsListBeans = GsonUtils.fromJsonArrayToArrayList(json,ProductManageBean.GoodsListBean.class);
+            return goodsListBeans;
         }
         return null;
     }

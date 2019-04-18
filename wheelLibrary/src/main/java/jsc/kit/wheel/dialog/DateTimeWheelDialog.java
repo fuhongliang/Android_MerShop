@@ -113,18 +113,24 @@ public class DateTimeWheelDialog extends Dialog {
         //year
         yearWheelItemView = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(yearWheelItemView, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        yearWheelItemView.setTextSize(26);
         //month
         monthWheelItemView = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(monthWheelItemView, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        monthWheelItemView.setTextSize(26);
+
         //day
         dayWheelItemView = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(dayWheelItemView, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        dayWheelItemView.setTextSize(26);
         //hour
         hourWheelItemView = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(hourWheelItemView, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        hourWheelItemView.setTextSize(26);
         //minute
         minuteWheelItemView = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(minuteWheelItemView, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+        minuteWheelItemView.setTextSize(26);
 
         tvTitle = findViewById(R.id.wheel_id_title_bar_title);
         tvCancel = findViewById(R.id.wheel_id_title_bar_cancel);

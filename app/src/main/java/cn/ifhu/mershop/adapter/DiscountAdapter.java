@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class DiscountAdapter extends BaseAdapter {
 
     List<DiscountBean> discountBeanList;
     Context mContext;
+    OnClickItem onClickItem;
 
     public DiscountAdapter(List<DiscountBean> discountBeanList, Context mContext) {
         this.discountBeanList = discountBeanList;
@@ -33,9 +35,13 @@ public class DiscountAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
+    public void setOnClickItem(OnClickItem onClickItem) {
+        this.onClickItem = onClickItem;
+    }
+
     @Override
     public int getCount() {
-        return discountBeanList == null?0:discountBeanList.size();
+        return discountBeanList == null ? 0 : discountBeanList.size();
     }
 
     @Override
@@ -60,13 +66,22 @@ public class DiscountAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.tvDiscountName.setText(discountBeanList.get(position).getXianshi_name());
-//        viewHolder.tvAtLess.setText();
+        viewHolder.tvAtLess.setText("购买下限：" + discountBeanList.get(position).getLower_limit());
         viewHolder.tvTime.setText(discountBeanList.get(position).getStart_time() + "-" + discountBeanList.get(position).getEnd_time());
         if (discountBeanList.get(position).getState() == 1) {
             viewHolder.ivDiscount.setBackgroundResource(R.drawable.yhq_bnt_xszk);
+            viewHolder.ivState.setVisibility(View.INVISIBLE);
+            viewHolder.llEdit.setVisibility(View.VISIBLE);
         } else {
+            viewHolder.ivState.setVisibility(View.VISIBLE);
             viewHolder.ivDiscount.setBackgroundResource(R.drawable.yhq_bnt_xszk01);
+            viewHolder.llEdit.setVisibility(View.INVISIBLE);
         }
+        if (onClickItem != null){
+            viewHolder.llEdit.setOnClickListener(v -> onClickItem.editDiscount(position));
+            viewHolder.llDelete.setOnClickListener(v -> onClickItem.deleteDiscount(position));
+        }
+
         return convertView;
     }
 
@@ -79,13 +94,23 @@ public class DiscountAdapter extends BaseAdapter {
         TextView tvTime;
         @BindView(R.id.tv_at_less)
         TextView tvAtLess;
-        @BindView(R.id.tv_edit)
-        TextView tvEdit;
-        @BindView(R.id.tv_delete)
-        TextView tvDelete;
+        @BindView(R.id.iv_state)
+        ImageView ivState;
+        @BindView(R.id.ll_edit)
+        LinearLayout llEdit;
+        @BindView(R.id.ll_delete)
+        LinearLayout llDelete;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
+
+
+    public interface OnClickItem {
+        void editDiscount(int position);
+
+        void deleteDiscount(int position);
+    }
+
 }

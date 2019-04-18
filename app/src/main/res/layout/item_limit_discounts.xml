@@ -95,51 +95,57 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp">
 
-
-            <ImageView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/tv_edit"
-                android:background="@drawable/xiangqing_ic_bianji" />
-
-            <TextView
-                android:id="@+id/tv_edit"
+            <LinearLayout
+                android:id="@+id/ll_edit"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/iv_shanshu"
-                android:gravity="center"
-                android:paddingStart="10dp"
-                android:paddingEnd="25dp"
-                android:text="编辑"
-                android:textColor="#333333"
-                android:textSize="14sp" />
+                android:layout_height="match_parent"
+                android:layout_toStartOf="@id/ll_delete"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/xiangqing_ic_bianji" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="25dp"
+                    android:text="编辑"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
 
 
-            <ImageView
-                android:id="@+id/iv_shanshu"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/tv_delete"
-                android:background="@drawable/xiangqing_ic_shanchu" />
-
-            <TextView
-                android:id="@+id/tv_delete"
+            <LinearLayout
+                android:id="@+id/ll_delete"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:paddingLeft="10dp"
-                android:paddingRight="15dp"
-                android:text="删除"
-                android:textColor="#333333"
-                android:textSize="14sp" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/xiangqing_ic_shanchu" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="15dp"
+                    android:text="删除"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

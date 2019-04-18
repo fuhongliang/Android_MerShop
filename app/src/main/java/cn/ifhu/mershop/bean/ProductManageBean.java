@@ -56,27 +56,24 @@ public class ProductManageBean {
 
     public static class GoodsListBean implements Serializable {
 
-        /**
-         * goods_id : 100072
-         * goods_name : qeqweq
-         * goods_price : 222.00
-         * goods_marketprice : 3333.00
-         * goods_desc :
-         * goods_sale_time : [{"start_time":"00:00","end_time":"23:59"}]
-         * goods_state : 1
-         * goods_storage : 99999999
-         * goods_image : http://47.111.27.189:2000/storage/shop/store/goods/2/913a54c50bc4204511cbef5d39b40f9d.png
-         */
-
         private int goods_id;
         private String goods_name;
         private String goods_price;
         private String goods_marketprice;
+        private String goods_dicountprice;
         private String goods_desc;
         private int goods_state;
         private int goods_storage;
         private String img_name;
         private String img_path;
+
+        public String getGoods_dicountprice() {
+            return goods_dicountprice;
+        }
+
+        public void setGoods_dicountprice(String goods_dicountprice) {
+            this.goods_dicountprice = goods_dicountprice;
+        }
 
         private List<GoodsSaleTimeBean> goods_sale_time;
 

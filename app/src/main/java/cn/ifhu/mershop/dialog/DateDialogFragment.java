@@ -18,8 +18,6 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import com.orhanobut.logger.Logger;
-
 import java.lang.reflect.Field;
 
 import cn.ifhu.mershop.R;
@@ -29,18 +27,16 @@ import cn.ifhu.mershop.utils.DeviceUtil;
  * @author tony
  * @date 2018/8/13
  */
-public class DialogWheelFragment extends BaseDialogFragment {
+public class DateDialogFragment extends BaseDialogFragment {
 
     private OperateDialogConfirmListner confirmListner;
     private TextView tvCancel;
     private TextView tvOk;
     TimePicker timePickerBegin;
-    TimePicker timePickerEnd;
     String beginTime;
-    String endTime;
 
     public static void showOperateDialog(FragmentManager fragmentManager, Bundle bundle, OperateDialogConfirmListner confirmListner) {
-        DialogWheelFragment dialogFragment = new DialogWheelFragment();
+        DateDialogFragment dialogFragment = new DateDialogFragment();
         dialogFragment.setArguments(bundle);
         dialogFragment.setDialogConfirmListner(confirmListner);
         dialogFragment.show(fragmentManager, "AlertDialogFragment");
@@ -74,47 +70,35 @@ public class DialogWheelFragment extends BaseDialogFragment {
         tvCancel = view.findViewById(R.id.tv_cancel);
         tvOk = view.findViewById(R.id.tv_ok);
         timePickerBegin = view.findViewById(R.id.time_picker);
-        timePickerEnd = view.findViewById(R.id.time_picker2);
-
         tvCancel.setOnClickListener(v -> {
             dismiss();
         });
 
         tvOk.setOnClickListener(v -> {
             dismiss();
-            confirmListner.onClickTextView(beginTime, endTime);
+            confirmListner.onClickTextView(beginTime);
         });
 
-
-        addOptionalView(bundle.getString("startTime"), bundle.getString("endTime"));
+        addOptionalView(bundle.getString("startTime"));
 //      changeTimePickerColor(view);
     }
 
-    public void addOptionalView(String startTime, String end_time) {
+    public void addOptionalView(String startTime) {
         beginTime = startTime;
-        endTime = end_time;
 
         String[] start = startTime.split(":");
-        String[] end = end_time.split(":");
         int startHour = Integer.parseInt(start[0]);
         int startMins = Integer.parseInt(start[1]);
 
-        int endHour = Integer.parseInt(end[0]);
-        int endMins = Integer.parseInt(end[1]);
 
         timePickerBegin.setIs24HourView(true);
         //设置为24小时显示格式
         timePickerBegin.setCurrentHour(startHour);
         //当前小时
         timePickerBegin.setCurrentMinute(startMins);
-        //当前分钟
 
-        timePickerEnd.setIs24HourView(true);
-        timePickerEnd.setCurrentHour(endHour);
-        timePickerEnd.setCurrentMinute(endMins);
 
         timePickerBegin.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
-        timePickerEnd.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);
 
         timePickerBegin.setOnTimeChangedListener((view, hourOfDay, minute) -> {
             String hour;
@@ -133,23 +117,6 @@ public class DialogWheelFragment extends BaseDialogFragment {
             beginTime = hour + ":" + min;
         });
 
-        timePickerEnd.setOnTimeChangedListener((view, hourOfDay, minute) -> {
-            String hour;
-            String min;
-            if (hourOfDay > 9) {
-                hour = hourOfDay + "";
-            } else {
-                hour = "0" + hourOfDay;
-            }
-
-            if (minute > 9) {
-                min = minute + "";
-            } else {
-                min = "0" + minute;
-            }
-
-            endTime = hour + ":" + min;
-        });
     }
 
     public void changeTimePickerColor(View view) {
@@ -211,6 +178,6 @@ public class DialogWheelFragment extends BaseDialogFragment {
     }
 
     public interface OperateDialogConfirmListner {
-        void onClickTextView(String beginTime, String endTime);
+        void onClickTextView(String beginTime);
     }
 }

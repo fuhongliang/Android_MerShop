@@ -203,4 +203,10 @@ public class StringUtils {
         }
         return new String(chars);
     }
+
+    public static Double stringToDouble(String s) {
+        double d = Double.parseDouble(s);
+        return d;
+    }
+
 }

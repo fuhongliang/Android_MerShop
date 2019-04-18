@@ -1,10 +1,12 @@
 package cn.ifhu.mershop.activity.me;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.operation.FullCutActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 
 /**

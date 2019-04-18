@@ -5,6 +5,8 @@ import java.util.List;
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
+import cn.ifhu.mershop.bean.DiscountInfoBean;
+import cn.ifhu.mershop.bean.DiscountPostBean;
 import cn.ifhu.mershop.bean.EditGoodsBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
@@ -80,6 +82,21 @@ public interface OperationService {
     @FormUrlEncoded
     @POST("xianshi_list")
     public Observable<BaseEntity<List<DiscountBean>>> getDiscountList(@Field("store_id") int store_id);
+
+
+    @POST("xianshi_edit")
+    public Observable<BaseEntity<Object>> xianshiAddOrEdit(@Body DiscountPostBean discountPostBean);
+
+
+    @FormUrlEncoded
+    @POST("xianshi_del")
+    public Observable<BaseEntity<Object>> delDiscount(@Field("xianshi_id") String xianshi_id, @Field("store_id") String store_id);
+
+
+
+    @FormUrlEncoded
+    @POST("xianshi_info")
+    public Observable<BaseEntity<DiscountInfoBean>> getDiscountInfo(@Field("xianshi_id") String xianshi_id, @Field("store_id") String store_id);
 
 
 }

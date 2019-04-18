@@ -8,6 +8,7 @@ import com.orhanobut.logger.Logger;
 
 import cn.ifhu.mershop.base.AppInfo;
 import cn.ifhu.mershop.utils.IrReference;
+import cn.ifhu.mershop.utils.ProductLogic;
 
 import static cn.ifhu.mershop.utils.Constants.TAGBUGKEY;
 
@@ -31,6 +32,8 @@ public class MyApplication extends Application {
         IrReference.getInstance();
         //在这里初始化
         Bugtags.start(TAGBUGKEY, this, Bugtags.BTGInvocationEventBubble);
+        ProductLogic.clearDiscountGoods();
+
     }
 
 }

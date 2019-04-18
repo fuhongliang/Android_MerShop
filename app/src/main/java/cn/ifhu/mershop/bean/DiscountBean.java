@@ -11,11 +11,28 @@ public class DiscountBean {
      * end_time : 0
      * state : 1
      */
-
+    private int xianshi_id;
     private String xianshi_name;
     private int start_time;
     private int end_time;
     private int state;
+    private int lower_limit;
+
+    public int getXianshi_id() {
+        return xianshi_id;
+    }
+
+    public void setXianshi_id(int xianshi_id) {
+        this.xianshi_id = xianshi_id;
+    }
+
+    public int getLower_limit() {
+        return lower_limit;
+    }
+
+    public void setLower_limit(int lower_limit) {
+        this.lower_limit = lower_limit;
+    }
 
     public String getXianshi_name() {
         return xianshi_name;

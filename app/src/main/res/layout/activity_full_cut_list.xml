@@ -34,8 +34,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="50dp"
-        android:dividerHeight="0dp"
-        android:divider="@null"
         />
 
     <TextView
@@ -46,7 +44,7 @@
         android:background="#CCCCCC" />
 
     <RelativeLayout
-        android:id="@+id/rl_add_discount"
+        android:id="@+id/rl_add_full_cut"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
