@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.bugtags.library.plugin'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 28
@@ -26,6 +27,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     buildToolsVersion '28.0.3'
+
+    greendao{
+        schemaVersion 9
+        daoPackage 'cn.ifhu.mershop.db'
+        targetGenDir 'src/main/java'
+    }
 }
 
 //Bugtags 插件配置
@@ -87,4 +94,9 @@ dependencies {
     implementation 'com.yanzhenjie:permission:2.0.0-rc3'
     implementation project(path: ':matise')
     implementation 'com.github.yalantis:ucrop:2.2.3-native'
+    implementation 'joda-time:joda-time:2.9.9'
+    /**
+     * greendao
+     */
+    implementation 'org.greenrobot:greendao:3.2.2'
 }

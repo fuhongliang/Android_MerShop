@@ -19,6 +19,7 @@ import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.WebViewActivity;
 import cn.ifhu.mershop.activity.operation.DiscountListActivity;
+import cn.ifhu.mershop.activity.operation.FullCutActivity;
 import cn.ifhu.mershop.activity.operation.ProductManageActivity;
 import cn.ifhu.mershop.activity.operation.ReviewListActivity;
 import cn.ifhu.mershop.base.BaseFragment;
@@ -143,6 +144,7 @@ public class OperationFragment extends BaseFragment {
 
     @OnClick(R.id.rl_less)
     public void onRlLessClicked() {
+        startActivity(new Intent(getContext(), FullCutActivity.class));
     }
 
     @OnClick(R.id.rL_package)
@@ -151,5 +153,8 @@ public class OperationFragment extends BaseFragment {
 
     @OnClick(R.id.rl_voucher)
     public void onRlVoucherClicked() {
+
     }
+
+
 }

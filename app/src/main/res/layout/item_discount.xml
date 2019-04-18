@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="106dp"
     android:background="#ffffff">
 
     <com.baba.GlideImageView
@@ -10,6 +10,7 @@
         android:layout_height="76dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@color/unselect_grey" />
 
     <RelativeLayout
@@ -36,7 +37,7 @@
 
 
             <ImageView
-                android:id="@+id/iv_zhekou"
+                android:id="@+id/iv_discount"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_marginLeft="15dp"
@@ -45,13 +46,13 @@
                 android:layout_marginTop="9dp"/>
 
             <TextView
+                android:id="@+id/tv_discount"
                 android:layout_below="@id/tv_name"
-                android:layout_toRightOf="@id/iv_zhekou"
+                android:layout_toRightOf="@id/iv_discount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
                 android:layout_marginTop="7dp"
-                android:text="折扣率：8.8折"
                 android:textColor="#666666"
                 android:textSize="12sp" />
 
@@ -74,18 +75,18 @@
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="10dp"
                 android:layout_toRightOf="@+id/tv_price"
-                android:text="￥48.8"
                 android:textColor="#ff999999"
                 android:textSize="14sp" />
         </RelativeLayout>
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:id="@+id/iv_choose"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_alignParentRight="true"
+            android:padding="15dp"
             android:layout_centerVertical="true"
-            android:background="@drawable/yhq_icon_yixuanze"
-
+            android:src="@drawable/choose_selector"
             />
     </RelativeLayout>
 
@@ -95,6 +96,5 @@
         android:layout_height="1dp"
         android:layout_marginLeft="15dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="15dp"
         android:background="#E5E5E5" />
 </RelativeLayout>

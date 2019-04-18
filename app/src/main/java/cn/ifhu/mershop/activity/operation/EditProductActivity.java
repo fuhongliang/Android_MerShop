@@ -187,7 +187,12 @@ public class EditProductActivity extends BaseActivity {
         editGoodsBean.setClass_id(categoryId);
         editGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
         editGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
-        editGoodsBean.setSell_time(new ArrayList<>());
+        SellingTime sellingTime = new SellingTime();
+        sellingTime.setStart_time("00:00");
+        sellingTime.setEnd_time("23:59");
+        List<SellingTime> sellingTimes = new ArrayList<>();
+        sellingTimes.add(sellingTime);
+        editGoodsBean.setSell_time(sellingTimes);
         editGoodsBean.setImg_name(url);
         RetrofitAPIManager.create(OperationService.class).editGoods(editGoodsBean)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {

@@ -22,6 +22,9 @@ buildscript {
         // in the individual module build.gradle files
         //**重要**
         classpath 'com.bugtags.library:bugtags-gradle:latest.integration'
+
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
     }
 
 }
