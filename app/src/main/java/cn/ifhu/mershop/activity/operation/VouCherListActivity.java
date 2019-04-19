@@ -3,6 +3,8 @@ package cn.ifhu.mershop.activity.operation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,6 +26,10 @@ public class VouCherListActivity extends BaseActivity {
     TextView tvTitle;
     @BindView(R.id.rl_add_voucher)
     RelativeLayout rlAddVoucher;
+    @BindView(R.id.ll_empty)
+    LinearLayout llEmpty;
+    @BindView(R.id.lv_voucher)
+    ListView lvVoucher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,8 @@ public class VouCherListActivity extends BaseActivity {
         tvTitle.setText("代金券管理");
 
     }
+
+
 
 
     @OnClick(R.id.iv_back)

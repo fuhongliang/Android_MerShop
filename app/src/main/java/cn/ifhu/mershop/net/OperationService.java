@@ -13,6 +13,8 @@ import cn.ifhu.mershop.bean.FullCutPostBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ReviewBean;
+import cn.ifhu.mershop.bean.ValueBean;
+import cn.ifhu.mershop.bean.ValuePostBean;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
@@ -113,5 +115,13 @@ public interface OperationService {
 
     @POST("mamsong_edit")
     public Observable<BaseEntity<Object>> mamsongEditOrAdd(@Body FullCutPostBean fullCutPostBean);
+
+    @POST("mianzhi_list")
+    public Observable<BaseEntity<List<ValueBean>>> getMianzhiList();
+
+
+    @POST("voucher_edit")
+    public Observable<BaseEntity<Object>> voucherEdit(@Body ValuePostBean valuePostBean);
+
 
 }
