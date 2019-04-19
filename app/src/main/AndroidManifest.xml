@@ -110,7 +110,10 @@
 
         <activity android:name=".activity.operation.DiscountListActivity"
             />
-        <activity android:name=".activity.operation.VouCherActivity" />
+        <activity android:name=".activity.operation.AddLimitDiscountsActivity" />
+        <activity android:name=".activity.operation.FullCutActivity"/>
+        <activity android:name=".activity.operation.VouCherListActivity" />
+        <activity android:name=".activity.operation.AddVouCherActivity"/>
     </application>
 
 </manifest>

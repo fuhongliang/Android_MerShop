@@ -1,5 +1,6 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,7 +15,7 @@ import cn.ifhu.mershop.base.BaseActivity;
 /**
  * @author fuhongliang
  */
-public class VouCherActivity extends BaseActivity {
+public class VouCherListActivity extends BaseActivity {
 
 
     @BindView(R.id.iv_back)
@@ -42,5 +43,6 @@ public class VouCherActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_voucher)
     public void onRlAddVoucherClicked() {
+        startActivity(new Intent(VouCherListActivity.this, AddVouCherActivity.class));
     }
 }
