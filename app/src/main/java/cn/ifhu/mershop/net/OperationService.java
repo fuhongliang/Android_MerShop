@@ -8,6 +8,7 @@ import cn.ifhu.mershop.bean.DiscountBean;
 import cn.ifhu.mershop.bean.DiscountInfoBean;
 import cn.ifhu.mershop.bean.DiscountPostBean;
 import cn.ifhu.mershop.bean.EditGoodsBean;
+import cn.ifhu.mershop.bean.FullCutBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ReviewBean;
@@ -98,5 +99,9 @@ public interface OperationService {
     @POST("xianshi_info")
     public Observable<BaseEntity<DiscountInfoBean>> getDiscountInfo(@Field("xianshi_id") String xianshi_id, @Field("store_id") String store_id);
 
+
+    @FormUrlEncoded
+    @POST("mamsong_list")
+    public Observable<BaseEntity<List<FullCutBean>>> getFullCutList(@Field("store_id") int store_id);
 
 }

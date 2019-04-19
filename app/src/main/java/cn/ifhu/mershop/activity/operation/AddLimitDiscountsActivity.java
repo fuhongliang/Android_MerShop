@@ -112,8 +112,8 @@ public class AddLimitDiscountsActivity extends BaseActivity {
         etDiscountName.setText(discountInfoBean.getXianshi_name());
         etTag.setText(discountInfoBean.getXianshi_title());
         etDescription.setText(discountInfoBean.getXianshi_explain());
-        tvStartTime.setText(discountInfoBean.getStart_time()+"");
-        tvEndTime.setText(discountInfoBean.getEnd_time()+"");
+        tvStartTime.setText(DateUtil.getLongToString(discountInfoBean.getStart_time()));
+        tvEndTime.setText(DateUtil.getLongToString(discountInfoBean.getEnd_time()));
         tvLimitLess.setText(discountInfoBean.getLower_limit()+"");
         limitNumber = discountInfoBean.getLower_limit();
         for (DiscountInfoBean.GoodsListBean goodsListBean :discountInfoBean.getGoods_list()){
@@ -122,7 +122,7 @@ public class AddLimitDiscountsActivity extends BaseActivity {
             goodsbean.setGoods_name(goodsListBean.getGoods_name());
             goodsbean.setGoods_dicountprice(goodsListBean.getXianshi_price());
             goodsbean.setGoods_price(goodsListBean.getGoods_price());
-            goodsbean.setImg_name("");
+            goodsbean.setImg_name(goodsbean.getImg_name());
             goodsbean.setImg_path(discountInfoBean.getImg_path());
             listBeans.add(goodsbean);
         }
@@ -133,6 +133,7 @@ public class AddLimitDiscountsActivity extends BaseActivity {
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
         finish();
+        ProductLogic.clearDiscountGoods();
     }
 
     @OnClick(R.id.tv_start_time)
@@ -259,10 +260,14 @@ public class AddLimitDiscountsActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         try {
-            listBeans = ProductLogic.getDiscountGoods();
+            if (ProductLogic.getDiscountGoods() != null){
+                listBeans = ProductLogic.getDiscountGoods();
+            }
             selectedDiscountGoodsAdapter.setmDataList(listBeans);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 }

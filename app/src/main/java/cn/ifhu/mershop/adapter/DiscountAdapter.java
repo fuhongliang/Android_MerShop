@@ -15,6 +15,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.bean.DiscountBean;
+import cn.ifhu.mershop.utils.DateUtil;
 
 /**
  * @author fuhongliang
@@ -67,7 +68,7 @@ public class DiscountAdapter extends BaseAdapter {
         }
         viewHolder.tvDiscountName.setText(discountBeanList.get(position).getXianshi_name());
         viewHolder.tvAtLess.setText("购买下限：" + discountBeanList.get(position).getLower_limit());
-        viewHolder.tvTime.setText(discountBeanList.get(position).getStart_time() + "-" + discountBeanList.get(position).getEnd_time());
+        viewHolder.tvTime.setText(DateUtil.getLongToString(discountBeanList.get(position).getStart_time()) + "-" + DateUtil.getLongToString(discountBeanList.get(position).getEnd_time()));
         if (discountBeanList.get(position).getState() == 1) {
             viewHolder.ivDiscount.setBackgroundResource(R.drawable.yhq_bnt_xszk);
             viewHolder.ivState.setVisibility(View.INVISIBLE);

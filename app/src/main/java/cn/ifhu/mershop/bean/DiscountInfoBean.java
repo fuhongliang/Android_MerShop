@@ -22,8 +22,8 @@ public class DiscountInfoBean {
     private String xianshi_name;
     private String xianshi_title;
     private String xianshi_explain;
-    private int start_time;
-    private int end_time;
+    private long start_time;
+    private long end_time;
     private int lower_limit;
     private String img_path;
 
@@ -69,15 +69,15 @@ public class DiscountInfoBean {
         this.xianshi_explain = xianshi_explain;
     }
 
-    public int getStart_time() {
+    public long getStart_time() {
         return start_time;
     }
 
-    public void setStart_time(int start_time) {
+    public void setStart_time(long start_time) {
         this.start_time = start_time;
     }
 
-    public int getEnd_time() {
+    public long getEnd_time() {
         return end_time;
     }
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -15,10 +16,12 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/iv_state"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_margin="15dp"
@@ -32,47 +35,72 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="海鲜寿司单品满减劵"
                     android:textColor="#010101"
                     android:textSize="17sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:text="2019-03-25~2019-03-28"
-                    android:textColor="#999999"
-                    android:textSize="13dp" />
-
                 <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/tv_full_cut1"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/bg_button_virtual_border"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_virtual_selector"
                         android:gravity="center"
-                        android:text="满100减20"
-                        android:textColor="#999999"
+                        android:textColor="@color/full_cut_color"
+                        android:visibility="invisible"
                         android:textSize="11dp" />
 
                     <TextView
+                        android:id="@+id/tv_full_cut2"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:background="@drawable/bg_button_virtual_border"
+                        android:background="@drawable/bg_virtual_selector"
+                        android:visibility="invisible"
                         android:gravity="center"
-                        android:text="满200减50"
-                        android:textColor="#999999"
+                        android:textColor="@color/full_cut_color"
                         android:textSize="11dp" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_full_cut3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_virtual_selector"
+                        android:visibility="invisible"
+                        android:gravity="center"
+                        android:textColor="@color/full_cut_color"
+                        android:textSize="11dp" />
+
+                    <TextView
+                        android:id="@+id/tv_full_cut4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/bg_virtual_selector"
+                        android:gravity="center"
+                        android:visibility="invisible"
+                        android:textColor="@color/full_cut_color"
+                        android:textSize="11dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/iv_state_right"
                 android:layout_width="52dp"
                 android:layout_height="45dp"
                 android:layout_gravity="end"
@@ -81,7 +109,8 @@
 
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="4dp"
@@ -89,7 +118,7 @@
                 android:layout_alignParentLeft="true"
                 android:background="@drawable/bnt_icon_zuo_yuan" />
 
-            <ImageView
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_centerVertical="true"
@@ -104,34 +133,48 @@
                 android:background="@drawable/bnt_icon_yuo_yuan" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
-
-
-            <ImageView
-                android:id="@+id/iv_shanshu"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="50dp"
-                android:background="@drawable/xiangqing_ic_shanchu" />
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:text="删除"
-                android:textColor="#333333"
-                android:textSize="14sp" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
+                android:text="2019-03-25~2019-03-28"
+                android:textColor="#999999"
+                android:textSize="13dp" />
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rl_delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/tv_delete"
+                    android:background="@drawable/xiangqing_ic_shanchu" />
+
+                <TextView
+                    android:id="@+id/tv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:text="删除"
+                    android:textColor="#333333"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>
