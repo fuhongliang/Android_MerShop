@@ -123,6 +123,14 @@
             android:name=".activity.operation.AddFullReductionActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
+        <activity
+            android:name=".activity.operation.DiscountPackageListActivity"
+            />
+
+        <activity android:name=".activity.operation.DiscountAddProductActivity"/>
+
+        <activity android:name=".activity.operation.AddDiscountPackageActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
     </application>
 
 </manifest>
