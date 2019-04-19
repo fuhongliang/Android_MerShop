@@ -6,6 +6,9 @@ import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
 import cn.ifhu.mershop.bean.DiscountInfoBean;
+import cn.ifhu.mershop.bean.DiscountPackageBean;
+import cn.ifhu.mershop.bean.DiscountPackageInfoBean;
+import cn.ifhu.mershop.bean.DiscountPackagePostBean;
 import cn.ifhu.mershop.bean.DiscountPostBean;
 import cn.ifhu.mershop.bean.EditGoodsBean;
 import cn.ifhu.mershop.bean.FullCutBean;
@@ -115,6 +118,22 @@ public interface OperationService {
 
     @POST("mamsong_edit")
     public Observable<BaseEntity<Object>> mamsongEditOrAdd(@Body FullCutPostBean fullCutPostBean);
+
+    @FormUrlEncoded
+    @POST("bundling_list")
+    public Observable<BaseEntity<List<DiscountPackageBean>>> getDiscountPackageList(@Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("bundling_info")
+    public Observable<BaseEntity<DiscountPackageInfoBean>> getDiscountPackageinfo(@Field("bundling_id") String bundling_id, @Field("store_id") String store_id);
+
+    @POST("bundling_edit")
+    public Observable<BaseEntity<Object>> AddOrEditDiscountPackage(@Body DiscountPackagePostBean discountPackagePostBean);
+
+
+    @FormUrlEncoded
+    @POST("bundling_del")
+    public Observable<BaseEntity<Object>> delDiscountPackage(@Field("bundling_id") String bundling_id, @Field("store_id") String store_id);
 
     @POST("mianzhi_list")
     public Observable<BaseEntity<List<ValueBean>>> getMianzhiList();

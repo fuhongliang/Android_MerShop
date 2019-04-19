@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             >
 
-            <ImageView
+            <com.baba.GlideImageView
+                android:id="@+id/iv_state"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_margin="15dp"
@@ -34,8 +35,10 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:text="海鲜寿司单品优惠套餐"
                     android:textColor="#010101"
                     android:textSize="17sp" />
@@ -43,8 +46,9 @@
 
 
                 <TextView
+                    android:id="@+id/tv_price"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="总优惠价格：￥150.00"
                     android:textColor="#999999"
                     android:gravity="bottom"
@@ -52,6 +56,7 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/iv_state_right"
                 android:layout_width="52dp"
                 android:layout_height="45dp"
                 android:layout_gravity="end"
@@ -85,28 +90,26 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             >
             <ImageView
                 android:id="@+id/bianji"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="60dp"
-                android:layout_toLeftOf="@id/iv_shanshu"
+                android:layout_toLeftOf="@id/tv_edit"
                 android:background="@drawable/yhq_bnt_guanli" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tv_edit"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
+                android:layout_marginRight="15dp"
                 android:layout_toLeftOf="@id/iv_shanshu"
                 android:text="管理"
+                android:gravity="center"
                 android:textColor="#333333"
                 android:textSize="14sp" />
 
@@ -114,17 +117,18 @@
                 android:id="@+id/iv_shanshu"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
-                android:layout_alignParentRight="true"
+                android:layout_toLeftOf="@+id/tv_delete"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="50dp"
                 android:background="@drawable/xiangqing_ic_shanchu" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/tv_delete"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
                 android:text="删除"
                 android:textColor="#333333"
                 android:textSize="14sp" />

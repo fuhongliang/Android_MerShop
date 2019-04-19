@@ -122,7 +122,7 @@ public class AddLimitDiscountsActivity extends BaseActivity {
             goodsbean.setGoods_name(goodsListBean.getGoods_name());
             goodsbean.setGoods_dicountprice(goodsListBean.getXianshi_price());
             goodsbean.setGoods_price(goodsListBean.getGoods_price());
-            goodsbean.setImg_name(goodsbean.getImg_name());
+            goodsbean.setImg_name(goodsListBean.getGoods_image());
             goodsbean.setImg_path(discountInfoBean.getImg_path());
             listBeans.add(goodsbean);
         }
@@ -208,6 +208,9 @@ public class AddLimitDiscountsActivity extends BaseActivity {
             discountPostBean.setStart_time(tvStartTime.getText().toString());
             discountPostBean.setEnd_time(tvEndTime.getText().toString());
             discountPostBean.setLower_limit(tvLimitLess.getText().toString().trim());
+            if (!StringUtils.isEmpty(xianshi_id)){
+                discountPostBean.setXianshi_id(xianshi_id);
+            }
             List<DiscountGoods> goodsList = new ArrayList<>();
             for (ProductManageBean.GoodsListBean bean:listBeans){
                 DiscountGoods discountGoods = new DiscountGoods();
