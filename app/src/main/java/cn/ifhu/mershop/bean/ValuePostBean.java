@@ -7,7 +7,6 @@ public class ValuePostBean {
     String mianzhi;
     String limit_price;
 
-
     String describe;
     String end_time;
 
