@@ -29,7 +29,7 @@
             android:textSize="14sp" />
     </LinearLayout>
     <ListView
-        android:id="@+id/lv_discount"
+        android:id="@+id/lv_voucher"
         android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
