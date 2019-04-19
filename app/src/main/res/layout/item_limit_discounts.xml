@@ -58,7 +58,6 @@
                     android:textColor="#999999"
                     android:textSize="13dp" />
             </LinearLayout>
-
             <ImageView
                 android:id="@+id/iv_state"
                 android:layout_width="52dp"
@@ -71,19 +70,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <TextView
                 android:layout_width="4dp"
                 android:layout_height="8dp"
                 android:layout_alignParentLeft="true"
-                android:background="@drawable/bnt_icon_zuo_yuan" />
+                android:background="@drawable/bnt_icon_zuo_yuan"
 
-            <ImageView
+                />
+
+            <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@drawable/bg_button_virtual" />
+                android:background="@drawable/bg_button_virtual"
+                android:layerType="software"/>
 
             <ImageView
                 android:layout_width="4dp"

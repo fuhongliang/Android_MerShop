@@ -22,6 +22,7 @@ import cn.ifhu.mershop.activity.operation.DiscountListActivity;
 import cn.ifhu.mershop.activity.operation.FullCutActivity;
 import cn.ifhu.mershop.activity.operation.ProductManageActivity;
 import cn.ifhu.mershop.activity.operation.ReviewListActivity;
+import cn.ifhu.mershop.activity.operation.VouCherListActivity;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
@@ -153,6 +154,7 @@ public class OperationFragment extends BaseFragment {
 
     @OnClick(R.id.rl_voucher)
     public void onRlVoucherClicked() {
+        startActivity(new Intent(getContext(), VouCherListActivity.class));
 
     }
 
