@@ -1,10 +1,12 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +23,13 @@ import cn.ifhu.mershop.bean.FullCutBean;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
 /**
  * @author fuhongliang
  */
-public class FullCutActivity extends BaseActivity {
+public class FullCutListActivity extends BaseActivity {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -43,8 +46,13 @@ public class FullCutActivity extends BaseActivity {
         setContentView(R.layout.activity_full_cut_list);
         ButterKnife.bind(this);
         tvTitle.setText("满立减");
-        getFullCutListData();
         fullCutAdapter = new FullCutAdapter(fullCutBeanList, this);
+        fullCutAdapter.setOnClickItem(new FullCutAdapter.OnClickItem() {
+            @Override
+            public void deleteDiscount(int position) {
+                delFullCutData(position);
+            }
+        });
         lvDiscount.setAdapter(fullCutAdapter);
     }
 
@@ -56,7 +64,7 @@ public class FullCutActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_full_cut)
     public void onRlAddFullCutClicked() {
-
+        startActivity(new Intent(FullCutListActivity.this,AddFullReductionActivity.class));
     }
 
 
@@ -78,6 +86,30 @@ public class FullCutActivity extends BaseActivity {
                 } else {
                     llEmpty.setVisibility(View.VISIBLE);
                 }
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getFullCutListData();
+    }
+
+    public void delFullCutData(int position) {
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).delFullCut(fullCutBeanList.get(position).getMansong_id()+"",UserLogic.getUser().getStore_id()+"")
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<Object> t) throws Exception {
+                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                fullCutBeanList.remove(position);
+                fullCutAdapter.setBeanList(fullCutBeanList);
             }
         });
     }
