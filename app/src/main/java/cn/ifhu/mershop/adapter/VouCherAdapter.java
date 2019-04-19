@@ -65,8 +65,28 @@ public class VouCherAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
+        viewHolder.tvVoucherName.setText(vouCherBeanList.get(position).getVoucher_title());
+        viewHolder.tvLimit.setText("每人限领"+vouCherBeanList.get(position).getVoucher_eachlimit()+"张");
+        viewHolder.tvTime.setText(vouCherBeanList.get(position).getVoucher_end_date());
+        viewHolder.tvLessNumber.setText(vouCherBeanList.get(position).getVoucher_surplus()+"");
+        viewHolder.tvReceived.setText(vouCherBeanList.get(position).getVoucher_giveout()+"");
+        viewHolder.tvUseed.setText(vouCherBeanList.get(position).getVoucher_used()+"");
+        viewHolder.tvTotalPrice.setText(vouCherBeanList.get(position).getVoucher_limit()+"");
 
+        if (vouCherBeanList.get(position).getVoucher_state() == 1) {
+            viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_djq);
+            viewHolder.ivStateRight.setVisibility(View.INVISIBLE);
+            viewHolder.llEdit.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.ivStateRight.setVisibility(View.VISIBLE);
+            viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_djq01);
+            viewHolder.llEdit.setVisibility(View.INVISIBLE);
+        }
 
+        if (onClickItem != null){
+            viewHolder.llEdit.setOnClickListener(v -> onClickItem.editDiscount(position));
+            viewHolder.llDelete.setOnClickListener(v -> onClickItem.deleteDiscount(position));
+        }
         return convertView;
     }
 
@@ -77,27 +97,34 @@ public class VouCherAdapter extends BaseAdapter {
         void deleteDiscount(int position);
     }
 
-    static
-    class ViewHolder {
-        @BindView(R.id.iv_voucher)
-        ImageView ivVoucher;
-        @BindView(R.id.tv_voucher_name)
-        TextView tvVoucherName;
-        @BindView(R.id.tv_time)
-        TextView tvTime;
+    static class ViewHolder {
+
         @BindView(R.id.iv_state)
         ImageView ivState;
-        @BindView(R.id.management)
-        LinearLayout management;
+        @BindView(R.id.tv_voucher_name)
+        TextView tvVoucherName;
+        @BindView(R.id.tv_limit)
+        TextView tvLimit;
+        @BindView(R.id.tv_time)
+        TextView tvTime;
+        @BindView(R.id.iv_state_right)
+        ImageView ivStateRight;
+        @BindView(R.id.tv_less_number)
+        TextView tvLessNumber;
+        @BindView(R.id.tv_received)
+        TextView tvReceived;
+        @BindView(R.id.tv_useed)
+        TextView tvUseed;
+        @BindView(R.id.tv_total_price)
+        TextView tvTotalPrice;
         @BindView(R.id.ll_edit)
         LinearLayout llEdit;
         @BindView(R.id.ll_delete)
         LinearLayout llDelete;
-        @BindView(R.id.ll_content)
-        LinearLayout llContent;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }
+
 }

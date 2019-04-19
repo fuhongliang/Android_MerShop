@@ -18,6 +18,8 @@ import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ReviewBean;
 import cn.ifhu.mershop.bean.ValueBean;
 import cn.ifhu.mershop.bean.ValuePostBean;
+import cn.ifhu.mershop.bean.VouCherBean;
+import cn.ifhu.mershop.bean.VouCherInfoBean;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
@@ -141,6 +143,16 @@ public interface OperationService {
 
     @POST("voucher_edit")
     public Observable<BaseEntity<Object>> voucherEdit(@Body ValuePostBean valuePostBean);
+
+
+    @FormUrlEncoded
+    @POST("voucher_list")
+    public Observable<BaseEntity<List<VouCherBean>>> getVoucherList(@Field("store_id") String store_id);
+
+    @FormUrlEncoded
+    @POST("voucher_info")
+    public Observable<BaseEntity<VouCherInfoBean>> getVoucherInfo(@Field("voucher_id") String voucher_id, @Field("store_id") String store_id);
+
 
 
 }

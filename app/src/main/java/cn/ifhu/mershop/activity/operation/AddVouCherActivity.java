@@ -20,10 +20,12 @@ import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.CategoryWheelItem;
+import cn.ifhu.mershop.bean.DiscountInfoBean;
 import cn.ifhu.mershop.bean.FullCutBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ValueBean;
 import cn.ifhu.mershop.bean.ValuePostBean;
+import cn.ifhu.mershop.bean.VouCherInfoBean;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
@@ -69,7 +71,7 @@ public class AddVouCherActivity extends BaseActivity {
     ColumnWheelDialog dialog = null;
 
     int limit = 1;
-
+    String voucher_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +79,41 @@ public class AddVouCherActivity extends BaseActivity {
         ButterKnife.bind(this);
         tvTitle.setText("限时折扣");
         getValueListData();
+
+        voucher_id = getIntent().getStringExtra("voucher_id");
+        if (StringUtils.isEmpty(voucher_id)){
+            tvTitle.setText("添加活动");
+        }else {
+            tvTitle.setText("编辑活动");
+            getVouCherInfo();
+        }
     }
 
+    public void getVouCherInfo(){
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).getVoucherInfo(voucher_id,UserLogic.getUser().getStore_id()+"")
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<VouCherInfoBean>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity<VouCherInfoBean> t) throws Exception {
+                initData(t.getData());
+            }
+        });
+    }
+
+    public void initData(VouCherInfoBean vouCherInfoBean){
+        etVoucherName.setText(vouCherInfoBean.getVoucher_title());
+        tvValue.setText(vouCherInfoBean.getVoucher_price()+"");
+        etPrice.setText(vouCherInfoBean.getVoucher_limit()+"");
+        tvDate.setText(vouCherInfoBean.getVoucher_end_date()+"");
+        etNumber.setText(vouCherInfoBean.getVoucher_total()+"");
+        tvLimit.setText(vouCherInfoBean.getVoucher_eachlimit()+"");
+        etDescription.setText(vouCherInfoBean.getVoucher_desc());
+    }
 
     public void getValueListData() {
         setLoadingMessageIndicator(true);
@@ -93,7 +128,6 @@ public class AddVouCherActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<List<ValueBean>> t) throws Exception {
                 valueBeanList.addAll(t.getData());
                 initItems();
-
             }
         });
 
@@ -113,7 +147,6 @@ public class AddVouCherActivity extends BaseActivity {
 
 
     public void postValueData() {
-
         if (!checkContentEmpty()) {
             ValuePostBean valuePostBean = new ValuePostBean();
             valuePostBean.setTitle(etVoucherName.getText().toString());
@@ -124,7 +157,9 @@ public class AddVouCherActivity extends BaseActivity {
             valuePostBean.setEach_limit(Integer.parseInt(tvLimit.getText().toString()));
             valuePostBean.setDescribe(etDescription.getText().toString());
             valuePostBean.setStore_id(UserLogic.getUser().getStore_id());
-
+            if (!StringUtils.isEmpty(voucher_id)){
+                valuePostBean.setVoucher_id(voucher_id);
+            }
             setLoadingMessageIndicator(true);
             RetrofitAPIManager.create(OperationService.class).voucherEdit(valuePostBean)
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
@@ -228,7 +263,6 @@ public class AddVouCherActivity extends BaseActivity {
     public void onTvDateClicked() {
         createDateDialog();
     }
-
 
     private DateTimeWheelDialog createDateDialog() {
         Calendar calendar = Calendar.getInstance();
