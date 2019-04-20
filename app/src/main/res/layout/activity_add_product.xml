@@ -354,6 +354,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="15dp"
         android:background="@drawable/bg_button_blue"
+        android:stateListAnimator="@null"
         android:text="保存"
         android:textColor="#ffffff"
         android:textSize="17sp" />
