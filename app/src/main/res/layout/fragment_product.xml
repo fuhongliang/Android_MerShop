@@ -55,7 +55,7 @@
                 <ImageView
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:background="@drawable/editmenu_glfl"
+                    android:background="@drawable/editmenu_glfll"
                     />
 
                 <TextView
