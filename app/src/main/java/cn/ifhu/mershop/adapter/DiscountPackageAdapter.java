@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -78,8 +79,8 @@ public class DiscountPackageAdapter extends BaseAdapter {
         }
 
         if (onClickItem != null) {
-            viewHolder.tvDelete.setOnClickListener(v -> onClickItem.deleteDiscountPackage(position));
-            viewHolder.tvEdit.setOnClickListener(v -> onClickItem.editDiscountPackage(position));
+            viewHolder.llDelete.setOnClickListener(v -> onClickItem.deleteDiscountPackage(position));
+            viewHolder.llEdit.setOnClickListener(v -> onClickItem.editDiscountPackage(position));
         }
 
         return convertView;
@@ -90,10 +91,10 @@ public class DiscountPackageAdapter extends BaseAdapter {
         TextView tvName;
         @BindView(R.id.tv_price)
         TextView tvPrice;
-        @BindView(R.id.tv_edit)
-        TextView tvEdit;
-        @BindView(R.id.tv_delete)
-        TextView tvDelete;
+        @BindView(R.id.ll_edit)
+        LinearLayout llEdit;
+        @BindView(R.id.ll_delete)
+        LinearLayout llDelete;
         @BindView(R.id.iv_state)
         ImageView ivState;
         @BindView(R.id.iv_state_right)
