@@ -53,6 +53,7 @@
             <TextView
                 style="@style/tv_text"
                 android:text="劵的面值" />
+            <include layout="@layout/layout_star" />
 
             <TextView
                 android:id="@+id/tv_value"
@@ -86,6 +87,7 @@
             <TextView
                 style="@style/tv_text"
                 android:text="使用条件" />
+            <include layout="@layout/layout_star" />
 
             <EditText
                 android:id="@+id/et_price"
@@ -137,6 +139,7 @@
             <TextView
                 style="@style/tv_text"
                 android:text="有效期" />
+            <include layout="@layout/layout_star" />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -206,11 +209,12 @@
             <TextView
                 style="@style/tv_text"
                 android:text="每人限领" />
+            <include layout="@layout/layout_star" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="15dp"
+                android:layout_marginRight="5dp"
                 android:gravity="end|center_vertical">
 
                 <ImageView

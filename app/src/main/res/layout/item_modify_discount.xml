@@ -43,7 +43,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_below="@id/tv_name"
                 android:background="@drawable/yhq_icon_zhekou"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="8dp"/>
 
             <TextView
                 android:id="@+id/tv_discount_rate"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="7dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:text="折扣率：8.8折"
                 android:textColor="#666666"
                 android:textSize="12sp" />
