@@ -5,7 +5,6 @@
     android:background="#F5F5F5"
     android:orientation="vertical">
 
-
     <RelativeLayout
         android:id="@+id/rl_header"
         android:layout_width="match_parent"

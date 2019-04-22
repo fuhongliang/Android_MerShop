@@ -131,6 +131,8 @@
 
         <activity android:name=".activity.operation.AddDiscountPackageActivity"
             android:windowSoftInputMode="stateHidden|adjustPan"/>
+
+        <activity android:name=".activity.me.PrintingSettingsActivity"/>
     </application>
 
 </manifest>

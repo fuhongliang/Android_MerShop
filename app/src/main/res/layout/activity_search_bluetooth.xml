@@ -90,13 +90,14 @@
                     android:textSize="11sp" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+            <ImageView
+                android:id="@+id/iv_settings"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:padding="12dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/dyj_ic_sbxqgt" />
+                android:src="@drawable/dyj_ic_sbxqgt" />
         </RelativeLayout>
     </LinearLayout>
 
