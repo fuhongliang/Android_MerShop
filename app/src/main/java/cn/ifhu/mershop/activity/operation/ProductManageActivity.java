@@ -2,6 +2,7 @@ package cn.ifhu.mershop.activity.operation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -87,7 +88,16 @@ public class ProductManageActivity extends BaseActivity {
 
             @Override
             public void deleteProduct(int position) {
-                delProduct(position);
+                DialogUtils.showConfirmDialog("温馨提示","是否确定删除该商品？", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+                    @Override
+                    public void cancel() {
+                    }
+
+                    @Override
+                    public void ok() {
+                        delProduct(position);
+                    }
+                });
             }
         });
         lvProduct.setAdapter(mProductAdapter);

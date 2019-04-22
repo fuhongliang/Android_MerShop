@@ -3,6 +3,7 @@ package cn.ifhu.mershop.activity.operation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,7 @@ import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmInputDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
@@ -78,27 +80,20 @@ public class DiscountAddProductActivity extends BaseActivity {
         mProductAdapter.setOnClickItem(new DiscountProductAdapter.onClickItem() {
             @Override
             public void setDiscountPrice(int position) {
-                View view = getLayoutInflater().inflate(R.layout.dialog_input, null);
-                final EditText editText = view.findViewById(R.id.dialog_edit);
-                final TextView textView = view.findViewById(R.id.tv_price);
-                textView.setText(mProductArray.get(position).getGoods_price());
-                AlertDialog dialog = new AlertDialog.Builder(DiscountAddProductActivity.this)
-                        .setTitle("修改价格")
-                        .setView(view)
-                        .setNegativeButton("取消", (dialog1, which) -> dialog1.dismiss())
-                        .setPositiveButton("确定", (dialog12, which) -> {
-                            String content = editText.getText().toString();
-                            if (!StringUtils.isEmpty(content)) {
-                                ProductManageBean.GoodsListBean goodsListBean = mProductArray.get(position);
-                                goodsListBean.setGoods_dicountprice(content);
-                                addSelectedGoods(goodsListBean);
-                            }
+                View view = getLayoutInflater().inflate(R.layout.confirm_input_layout, null);
+                DialogUtils.showInputConfirmDialog("修改价格",mProductArray.get(position).getGoods_price(), getSupportFragmentManager(),new ConfirmInputDialog.ButtonOnclick() {
+                    @Override
+                    public void ok(String discount_price) {
+                        if (!StringUtils.isEmpty(discount_price)) {
+                            ProductManageBean.GoodsListBean goodsListBean = mProductArray.get(position);
+                            goodsListBean.setGoods_dicountprice(discount_price);
+                            addSelectedGoods(goodsListBean);
+                        }
 
-                            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                            mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-                            dialog12.dismiss();
-                        }).create();
-                dialog.show();
+                        InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+                    }
+                });
             }
 
             @Override
@@ -109,6 +104,8 @@ public class DiscountAddProductActivity extends BaseActivity {
         lvProduct.setAdapter(mProductAdapter);
         tvTitle.setText("添加商品");
     }
+
+
 
     public void addSelectedGoods(ProductManageBean.GoodsListBean goodsListBean) {
         try {
