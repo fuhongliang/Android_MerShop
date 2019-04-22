@@ -25,34 +25,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="2dp"
             android:text="三文鱼寿司"
             android:textColor="#ff000000"
             android:textSize="17sp" />
+        <!--原价:￥189.0-->
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="15dp"
+            android:text="原价:￥189.0"
+            android:textColor="#666666"
+            android:textSize="14sp" />
         <!--原价、优惠价格-->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginBottom="6dp"
-            android:gravity="bottom">
-            <!--原价:￥189.0-->
-            <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="15dp"
-                android:text="原价:￥189.0"
-                android:textColor="#666666"
-                android:textSize="14sp" />
+            android:gravity="bottom"
+            >
+
             <!--优惠价格：-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="15dp"
                 android:text="优惠价格："
-                android:textColor="#666666"
+                android:textColor="#333333"
                 android:textSize="14sp" />
 
             <TextView
