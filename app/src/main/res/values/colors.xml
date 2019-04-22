@@ -71,5 +71,5 @@
 
 
     <color name="full_cut_selected_color">#F77A27</color>
-    <color name="full_cut_unselected_color">#dedede</color>
+    <color name="full_cut_unselected_color">#fefefe</color>
 </resources>
