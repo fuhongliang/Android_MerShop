@@ -63,23 +63,20 @@
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
-                android:background="#E5E5E5" />
             <!--添加商品-->
 
             <cn.ifhu.mershop.view.ExpandListView
                 android:id="@+id/listView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp" />
+                android:layout_marginLeft="15dp"
+                android:divider="@null"
+                android:dividerHeight="0dp"
+                />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginLeft="15dp"
                 android:background="#E5E5E5" />
             <!--添加-->
             <LinearLayout
@@ -168,19 +165,17 @@
                     android:textSize="18sp" />
 
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
 
 
-    <Button
-        android:id="@+id/btn_save"
+    <TextView
+        android:id="@+id/tv_save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        android:stateListAnimator="@null"
         android:text="提交"
         android:textColor="#ffffff"
         android:textSize="17sp" />
