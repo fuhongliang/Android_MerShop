@@ -1,11 +1,20 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.view.TimePickerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,6 +81,8 @@ public class AddVouCherActivity extends BaseActivity {
 
     int limit = 1;
     String voucher_id;
+    private TimePickerView pvTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,17 +92,55 @@ public class AddVouCherActivity extends BaseActivity {
         getValueListData();
 
         voucher_id = getIntent().getStringExtra("voucher_id");
-        if (StringUtils.isEmpty(voucher_id)){
+        if (StringUtils.isEmpty(voucher_id)) {
             tvTitle.setText("添加活动");
-        }else {
+        } else {
             tvTitle.setText("编辑活动");
             getVouCherInfo();
         }
+        initTimePicker();
+        tvDate.setOnClickListener(v -> {
+            pvTime.show(v);
+        });
     }
 
-    public void getVouCherInfo(){
+    private void initTimePicker() {
+        pvTime = new TimePickerBuilder(this, (date, v) -> {
+            tvDate.setText(DateUtil.getDateToString(date));
+
+        })
+                .setTimeSelectChangeListener(date -> {
+                })
+                .setType(new boolean[]{true, true, true, true, true, true})
+                .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+                .addOnCancelClickListener(view -> {
+                })
+                .build();
+
+        Dialog mDialog = pvTime.getDialog();
+        if (mDialog != null) {
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM);
+
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+            pvTime.getDialogContainerLayout().setLayoutParams(params);
+
+            Window dialogWindow = mDialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);
+                dialogWindow.setGravity(Gravity.BOTTOM);
+                dialogWindow.setDimAmount(0.1f);
+            }
+        }
+    }
+
+    public void getVouCherInfo() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).getVoucherInfo(voucher_id,UserLogic.getUser().getStore_id()+"")
+        RetrofitAPIManager.create(OperationService.class).getVoucherInfo(voucher_id, UserLogic.getUser().getStore_id() + "")
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<VouCherInfoBean>(true) {
             @Override
             protected void onApiComplete() {
@@ -105,13 +154,13 @@ public class AddVouCherActivity extends BaseActivity {
         });
     }
 
-    public void initData(VouCherInfoBean vouCherInfoBean){
+    public void initData(VouCherInfoBean vouCherInfoBean) {
         etVoucherName.setText(vouCherInfoBean.getVoucher_title());
-        tvValue.setText(vouCherInfoBean.getVoucher_price()+"");
-        etPrice.setText(vouCherInfoBean.getVoucher_limit()+"");
-        tvDate.setText(vouCherInfoBean.getVoucher_end_date()+"");
-        etNumber.setText(vouCherInfoBean.getVoucher_total()+"");
-        tvLimit.setText(vouCherInfoBean.getVoucher_eachlimit()+"");
+        tvValue.setText(vouCherInfoBean.getVoucher_price() + "");
+        etPrice.setText(vouCherInfoBean.getVoucher_limit() + "");
+        tvDate.setText(vouCherInfoBean.getVoucher_end_date() + "");
+        etNumber.setText(vouCherInfoBean.getVoucher_total() + "");
+        tvLimit.setText(vouCherInfoBean.getVoucher_eachlimit() + "");
         etDescription.setText(vouCherInfoBean.getVoucher_desc());
     }
 
@@ -157,7 +206,7 @@ public class AddVouCherActivity extends BaseActivity {
             valuePostBean.setEach_limit(Integer.parseInt(tvLimit.getText().toString()));
             valuePostBean.setDescribe(etDescription.getText().toString());
             valuePostBean.setStore_id(UserLogic.getUser().getStore_id());
-            if (!StringUtils.isEmpty(voucher_id)){
+            if (!StringUtils.isEmpty(voucher_id)) {
                 valuePostBean.setVoucher_id(voucher_id);
             }
             setLoadingMessageIndicator(true);
@@ -258,38 +307,6 @@ public class AddVouCherActivity extends BaseActivity {
         return new CategoryWheelItem[1];
     }
 
-
-    @OnClick(R.id.tv_date)
-    public void onTvDateClicked() {
-        createDateDialog();
-    }
-
-    private DateTimeWheelDialog createDateDialog() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2010);
-        calendar.set(Calendar.MONTH, 4);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        Date startDate = calendar.getTime();
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2035);
-        Date endDate = calendar.getTime();
-
-        DateTimeWheelDialog dialog = new DateTimeWheelDialog(this);
-        dialog.show();
-        dialog.setTitle("选择时间");
-        int config = DateTimeWheelDialog.SHOW_YEAR_MONTH_DAY_HOUR_MINUTE;
-        dialog.configShowUI(config);
-        dialog.setCancelButton("取消", null);
-        dialog.setOKButton("确定", (v, selectedDate) -> {
-            tvDate.setText(DateUtil.getDateToString(selectedDate));
-            return false;
-        });
-        dialog.setDateArea(startDate, endDate, true);
-        dialog.updateSelectedDate(new Date());
-        return dialog;
-    }
 
     @OnClick(R.id.iv_less)
     public void onIvLessClicked() {
