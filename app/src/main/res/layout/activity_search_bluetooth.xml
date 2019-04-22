@@ -51,7 +51,9 @@
             android:layout_height="wrap_content"
             android:text="我的设备"
             android:textColor="#808080"
-            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="11dp"
+            android:layout_marginLeft="15dp"
             android:textSize="13sp" />
 
         <RelativeLayout
@@ -106,12 +108,14 @@
         android:id="@+id/rl_tips"
         android:layout_below="@+id/ll_my_device"
         android:layout_width="match_parent"
-        android:layout_height="49dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="新设备"
             android:textColor="#808080"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="11dp"
             android:layout_marginLeft="15dp"
             android:layout_centerVertical="true"
             android:textSize="13sp" />
