@@ -23,9 +23,11 @@ import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
 import cn.ifhu.mershop.bean.VouCherBean;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -68,7 +70,17 @@ public class VouCherListActivity extends BaseActivity {
 
             @Override
             public void deleteDiscount(int position) {
-                deleteItem(position);
+                DialogUtils.showConfirmDialog("提示","是否删除该代金券", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+                    @Override
+                    public void cancel() {
+
+                    }
+
+                    @Override
+                    public void ok() {
+                        deleteDiscountItem(position);
+                    }
+                });
             }
         });
     }
@@ -95,7 +107,7 @@ public class VouCherListActivity extends BaseActivity {
         });
     }
 
-    public void deleteItem(int position){
+    public void deleteDiscountItem(int position){
         setLoadingMessageIndicator(true);
         RetrofitAPIManager.create(OperationService.class).delDiscount(vouCherBeanList.get(position).getVoucher_id()+"",UserLogic.getUser().getStore_id()+"")
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
