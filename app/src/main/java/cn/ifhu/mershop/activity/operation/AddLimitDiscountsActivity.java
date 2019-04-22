@@ -1,14 +1,22 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.view.TimePickerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -74,6 +82,8 @@ public class AddLimitDiscountsActivity extends BaseActivity {
     ListView lvDiscountGoods;
     SelectedDiscountGoodsAdapter selectedDiscountGoodsAdapter;
     String xianshi_id;
+    int type = 0;
+    private TimePickerView pvTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +99,56 @@ public class AddLimitDiscountsActivity extends BaseActivity {
         }
         selectedDiscountGoodsAdapter  = new SelectedDiscountGoodsAdapter(listBeans,this);
         lvDiscountGoods.setAdapter(selectedDiscountGoodsAdapter);
-
+        type = 0;
+        initTimePicker();
+        tvStartTime.setOnClickListener(v -> {
+            type = 0;
+            pvTime.show(v);
+        });
+        tvEndTime.setOnClickListener(v -> {
+            type = 1;
+            pvTime.show(v);
+        });
     }
+
+    private void initTimePicker() {
+        pvTime = new TimePickerBuilder(this, (date, v) -> {
+            if (type == 0) {
+                tvStartTime.setText(DateUtil.getDateToString(date));
+            } else {
+                tvEndTime.setText(DateUtil.getDateToString(date));
+            }
+
+        })
+                .setTimeSelectChangeListener(date -> {
+                })
+                .setType(new boolean[]{true, true, true, true, true, true})
+                .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+                .addOnCancelClickListener(view -> {
+                })
+                .build();
+
+        Dialog mDialog = pvTime.getDialog();
+        if (mDialog != null) {
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM);
+
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+            pvTime.getDialogContainerLayout().setLayoutParams(params);
+
+            Window dialogWindow = mDialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);
+                dialogWindow.setGravity(Gravity.BOTTOM);
+                dialogWindow.setDimAmount(0.1f);
+            }
+        }
+    }
+
 
     public void getDiscountInfo(){
         setLoadingMessageIndicator(true);
@@ -136,46 +194,6 @@ public class AddLimitDiscountsActivity extends BaseActivity {
         ProductLogic.clearDiscountGoods();
     }
 
-    @OnClick(R.id.tv_start_time)
-    public void onTvStartTimeClicked() {
-        createDialog(0).show();
-    }
-
-    @OnClick(R.id.tv_end_time)
-    public void onTvEndTimeClicked() {
-        createDialog(1).show();
-    }
-
-    private DateTimeWheelDialog createDialog(int type) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2010);
-        calendar.set(Calendar.MONTH, 4);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        Date startDate = calendar.getTime();
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2035);
-        Date endDate = calendar.getTime();
-
-        DateTimeWheelDialog dialog = new DateTimeWheelDialog(this);
-        dialog.show();
-        dialog.setTitle("选择时间");
-        int config = DateTimeWheelDialog.SHOW_YEAR_MONTH_DAY_HOUR_MINUTE;
-        dialog.configShowUI(config);
-        dialog.setCancelButton("取消", null);
-        dialog.setOKButton("确定", (v, selectedDate) -> {
-            if (type == 0) {
-                tvStartTime.setText(DateUtil.getDateToString(selectedDate));
-            } else {
-                tvEndTime.setText(DateUtil.getDateToString(selectedDate));
-            }
-            return false;
-        });
-        dialog.setDateArea(startDate, endDate, true);
-        dialog.updateSelectedDate(new Date());
-        return dialog;
-    }
 
     @OnClick(R.id.iv_less)
     public void onIvLessClicked() {

@@ -1,12 +1,24 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,6 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.adapter.FullCutRuleAdapter;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
@@ -67,6 +80,7 @@ public class AddFullReductionActivity extends BaseActivity {
     EditText etName;
     private List<FullCutPostBean.RuleBean> rule;
     FullCutRuleAdapter fullCutRuleAdapter;
+    int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +98,16 @@ public class AddFullReductionActivity extends BaseActivity {
             }
         });
         tvTitle.setText("添加活动");
+        type = 0;
+        initTimePicker();
+        tvStartTime.setOnClickListener(v -> {
+            type = 0;
+            pvTime.show(v);
+        });
+        tvEndTime.setOnClickListener(v -> {
+            type = 1;
+            pvTime.show(v);
+        });
     }
 
     @OnClick(R.id.iv_back)
@@ -91,47 +115,46 @@ public class AddFullReductionActivity extends BaseActivity {
         finish();
     }
 
-    @OnClick(R.id.tv_start_time)
-    public void onTvStartTimeClicked() {
-        createDialog(0).show();
-    }
 
-    @OnClick(R.id.tv_end_time)
-    public void onTvEndTimeClicked() {
-        createDialog(1).show();
-    }
+    private TimePickerView pvTime;
 
-    private DateTimeWheelDialog createDialog(int type) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2010);
-        calendar.set(Calendar.MONTH, 4);
-        calendar.set(Calendar.DAY_OF_MONTH, 1);
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
-        Date startDate = calendar.getTime();
-        calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, 2035);
-        Date endDate = calendar.getTime();
-
-        DateTimeWheelDialog dialog = new DateTimeWheelDialog(this);
-        dialog.show();
-        dialog.setTitle("选择时间");
-        int config = DateTimeWheelDialog.SHOW_YEAR_MONTH_DAY_HOUR_MINUTE;
-        dialog.configShowUI(config);
-        dialog.setCancelButton("取消", null);
-        dialog.setOKButton("确定", (v, selectedDate) -> {
+    private void initTimePicker() {
+        pvTime = new TimePickerBuilder(this, (date, v) -> {
             if (type == 0) {
-                tvStartTime.setText(DateUtil.getDateToString(selectedDate));
+                tvStartTime.setText(DateUtil.getDateToString(date));
             } else {
-                tvEndTime.setText(DateUtil.getDateToString(selectedDate));
+                tvEndTime.setText(DateUtil.getDateToString(date));
             }
-            return false;
-        });
-        dialog.setDateArea(startDate, endDate, true);
-        dialog.updateSelectedDate(new Date());
-        return dialog;
-    }
 
+        })
+                .setTimeSelectChangeListener(date -> {
+                })
+                .setType(new boolean[]{true, true, true, true, true, true})
+                .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+                .addOnCancelClickListener(view -> {
+                })
+                .build();
+
+        Dialog mDialog = pvTime.getDialog();
+        if (mDialog != null) {
+
+            FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.BOTTOM);
+
+            params.leftMargin = 0;
+            params.rightMargin = 0;
+            pvTime.getDialogContainerLayout().setLayoutParams(params);
+
+            Window dialogWindow = mDialog.getWindow();
+            if (dialogWindow != null) {
+                dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);
+                dialogWindow.setGravity(Gravity.BOTTOM);
+                dialogWindow.setDimAmount(0.1f);
+            }
+        }
+    }
 
     @OnClick(R.id.ll_add)
     public void onLlAddClicked() {
@@ -161,7 +184,7 @@ public class AddFullReductionActivity extends BaseActivity {
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
-        if (checkContent()){
+        if (checkContent()) {
             setLoadingMessageIndicator(true);
             FullCutPostBean fullCutPostBean = new FullCutPostBean();
             fullCutPostBean.setMansong_name(etName.getText().toString().trim());
@@ -169,7 +192,7 @@ public class AddFullReductionActivity extends BaseActivity {
             fullCutPostBean.setEnd_time(tvEndTime.getText().toString());
             fullCutPostBean.setRules(rule);
             fullCutPostBean.setRemark(etRemark.getText().toString().trim());
-            fullCutPostBean.setStore_id(UserLogic.getUser().getStore_id()+"");
+            fullCutPostBean.setStore_id(UserLogic.getUser().getStore_id() + "");
             RetrofitAPIManager.create(OperationService.class).mamsongEditOrAdd(fullCutPostBean)
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Observer>(true) {
                 @Override
@@ -179,7 +202,7 @@ public class AddFullReductionActivity extends BaseActivity {
 
                 @Override
                 protected void onSuccees(BaseEntity<Observer> t) throws Exception {
-                    ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                    ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                     finish();
                 }
             });
