@@ -68,7 +68,7 @@ public class FullCutAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.tvTitle.setText(fullCutBeans.get(position).getMansong_name());
-        viewHolder.tvTime.setText(DateUtil.getLongToString(fullCutBeans.get(position).getStart_time())+"-"+DateUtil.getLongToString(fullCutBeans.get(position).getEnd_time()));
+        viewHolder.tvTime.setText(DateUtil.getLongToString(fullCutBeans.get(position).getStart_time())+"至"+DateUtil.getLongToString(fullCutBeans.get(position).getEnd_time()));
         if (fullCutBeans.get(position).getState() == 2) {
             viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_mlj);
             viewHolder.ivStateRight.setVisibility(View.INVISIBLE);
