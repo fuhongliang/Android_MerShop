@@ -62,8 +62,8 @@ public class AddDiscountPackageActivity extends BaseActivity {
     Switch swhStatus;
     @BindView(R.id.tv_package_price)
     TextView tvPackagePrice;
-    @BindView(R.id.btn_save)
-    Button btnSave;
+    @BindView(R.id.tv_save)
+    TextView tvSave;
 
     String bundling_id;
     DiscountPackageGoodsAdapter discountPackageGoodsAdapter;
@@ -89,6 +89,7 @@ public class AddDiscountPackageActivity extends BaseActivity {
             public void deleteGoods(int position) {
                 mDataList.remove(position);
                 discountPackageGoodsAdapter.setmDataList(mDataList);
+                setTvPackagePrice(mDataList);
             }
         });
         listView.setAdapter(discountPackageGoodsAdapter);
@@ -130,7 +131,7 @@ public class AddDiscountPackageActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.btn_save)
+    @OnClick(R.id.tv_save)
     public void onBtnSaveClicked() {
         if (checkContent()) {
             setLoadingMessageIndicator(true);
@@ -197,6 +198,7 @@ public class AddDiscountPackageActivity extends BaseActivity {
 
 
     public void setTvPackagePrice(List<ProductManageBean.GoodsListBean> mDataList){
+        price = 0;
         if (mDataList != null && mDataList.size()>0){
             for (ProductManageBean.GoodsListBean goodsListBean :mDataList){
                 price = price + Integer.parseInt(goodsListBean.getGoods_dicountprice());

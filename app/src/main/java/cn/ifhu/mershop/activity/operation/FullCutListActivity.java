@@ -20,9 +20,11 @@ import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.FullCutBean;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -47,12 +49,16 @@ public class FullCutListActivity extends BaseActivity {
         ButterKnife.bind(this);
         tvTitle.setText("满立减");
         fullCutAdapter = new FullCutAdapter(fullCutBeanList, this);
-        fullCutAdapter.setOnClickItem(new FullCutAdapter.OnClickItem() {
+        fullCutAdapter.setOnClickItem(position -> DialogUtils.showConfirmDialog("温馨提示","是否确认删除此促销活动？", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
             @Override
-            public void deleteDiscount(int position) {
+            public void cancel() {
+            }
+
+            @Override
+            public void ok() {
                 delFullCutData(position);
             }
-        });
+        }));
         lvDiscount.setAdapter(fullCutAdapter);
     }
 

@@ -6,13 +6,14 @@ import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 
 
 /**
  * Created by liuguirong on 8/1/17.
  */
-public  class BluetoothActivity extends Activity implements BtInterface {
+public  class BluetoothActivity extends AppCompatActivity implements BtInterface {
 
 
     /**

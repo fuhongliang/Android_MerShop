@@ -146,6 +146,7 @@ public class SearchBleAdapter extends BaseAdapter {
         String dAddress = bluetoothDevice.getAddress() == null ? "未知地址" : bluetoothDevice.getAddress();
 
         if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+            holder.state.setVisibility(View.VISIBLE);
             if (dAddress.equals(mConnectedDeviceAddress)) {
                 holder.state.setText("已连接");
             } else {
@@ -153,6 +154,7 @@ public class SearchBleAdapter extends BaseAdapter {
             }
         } else {
             holder.state.setText("未配对");
+            holder.state.setVisibility(View.GONE);
         }
         if (position == getCount() - 1) {
             holder.line.setVisibility(View.GONE);

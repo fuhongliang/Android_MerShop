@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -29,8 +30,10 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.bt.BluetoothActivity;
 import cn.ifhu.mershop.bt.BtUtil;
 import cn.ifhu.mershop.bt.SearchBleAdapter;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.print.PrintQueue;
 import cn.ifhu.mershop.print.PrintUtil;
+import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 
 /**
@@ -58,6 +61,10 @@ public class SearchBluetoothActivity extends BluetoothActivity implements Adapte
     ListView lvSearchBlt;
     @BindView(R.id.rl_research)
     RelativeLayout rlResearch;
+    @BindView(R.id.iv_search)
+    ImageView ivSearch;
+    @BindView(R.id.tv_search_text)
+    TextView tvSearchText;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -127,11 +134,19 @@ public class SearchBluetoothActivity extends BluetoothActivity implements Adapte
     @Override
     public void btStartDiscovery(Intent intent) {
         progressBar.setVisibility(View.VISIBLE);
+        ivSearch.setSelected(false);
+        ivSearch.setClickable(false);
+        tvSearchText.setClickable(false);
+        tvSearchText.setSelected(false);
     }
 
     @Override
     public void btFinishDiscovery(Intent intent) {
         progressBar.setVisibility(View.INVISIBLE);
+        ivSearch.setSelected(true);
+        ivSearch.setClickable(true);
+        tvSearchText.setClickable(true);
+        tvSearchText.setSelected(true);
     }
 
     @Override
@@ -169,30 +184,56 @@ public class SearchBluetoothActivity extends BluetoothActivity implements Adapte
         if (null == bluetoothDevice) {
             return;
         }
-        new AlertDialog.Builder(this)
-                .setTitle("绑定" + getPrinterName(bluetoothDevice.getName()) + "?")
-                .setMessage("点击确认绑定蓝牙设备")
-                .setNegativeButton("取消", (dialog, which) -> dialog.dismiss())
-                .setPositiveButton("确认", (dialog, which) -> {
-                    try {
-                        BtUtil.cancelDiscovery(bluetoothAdapter);
-                        if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
-                            connectBlt(bluetoothDevice);
-                        } else {
-                            Method createBondMethod = BluetoothDevice.class.getMethod("createBond");
-                            createBondMethod.invoke(bluetoothDevice);
-                        }
-                        PrintQueue.getQueue(getApplicationContext()).disconnect();
-                        searchBleAdapter.notifyDataSetChanged();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        PrintUtil.setDefaultBluetoothDeviceAddress(getApplicationContext(), "");
-                        PrintUtil.setDefaultBluetoothDeviceName(getApplicationContext(), "");
-                        ToastHelper.makeText("蓝牙绑定失败,请重试", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+        DialogUtils.showConfirmDialog("蓝牙配对请求","是否与"+getPrinterName(bluetoothDevice.getName())+"配对", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+            @Override
+            public void cancel() {
+            }
+
+            @Override
+            public void ok() {
+                try {
+                    BtUtil.cancelDiscovery(bluetoothAdapter);
+                    if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+                        connectBlt(bluetoothDevice);
+                    } else {
+                        Method createBondMethod = BluetoothDevice.class.getMethod("createBond");
+                        createBondMethod.invoke(bluetoothDevice);
                     }
-                })
-                .create()
-                .show();
+                    PrintQueue.getQueue(getApplicationContext()).disconnect();
+                    searchBleAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    PrintUtil.setDefaultBluetoothDeviceAddress(getApplicationContext(), "");
+                    PrintUtil.setDefaultBluetoothDeviceName(getApplicationContext(), "");
+                    ToastHelper.makeText("蓝牙绑定失败,请重试", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                }
+            }
+        });
+
+//        new AlertDialog.Builder(this)
+//                .setTitle("绑定" + getPrinterName(bluetoothDevice.getName()) + "?")
+//                .setMessage("点击确认绑定蓝牙设备")
+//                .setNegativeButton("取消", (dialog, which) -> dialog.dismiss())
+//                .setPositiveButton("确认", (dialog, which) -> {
+//                    try {
+//                        BtUtil.cancelDiscovery(bluetoothAdapter);
+//                        if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+//                            connectBlt(bluetoothDevice);
+//                        } else {
+//                            Method createBondMethod = BluetoothDevice.class.getMethod("createBond");
+//                            createBondMethod.invoke(bluetoothDevice);
+//                        }
+//                        PrintQueue.getQueue(getApplicationContext()).disconnect();
+//                        searchBleAdapter.notifyDataSetChanged();
+//                    } catch (Exception e) {
+//                        e.printStackTrace();
+//                        PrintUtil.setDefaultBluetoothDeviceAddress(getApplicationContext(), "");
+//                        PrintUtil.setDefaultBluetoothDeviceName(getApplicationContext(), "");
+//                        ToastHelper.makeText("蓝牙绑定失败,请重试", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+//                    }
+//                })
+//                .create()
+//                .show();
     }
 
     /***
