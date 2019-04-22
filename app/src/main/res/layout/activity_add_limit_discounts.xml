@@ -300,8 +300,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/bg_button_blue"
         android:stateListAnimator="@null"
+        android:background="@color/colorPrimary"
         android:text="提交"
         android:textColor="#ffffff"
         android:textSize="17sp" />
