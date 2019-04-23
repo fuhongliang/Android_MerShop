@@ -68,6 +68,7 @@ public class VouCherAdapter extends BaseAdapter {
         viewHolder.tvVoucherName.setText(vouCherBeanList.get(position).getVoucher_title());
         viewHolder.tvLimit.setText("每人限领"+vouCherBeanList.get(position).getVoucher_eachlimit()+"张");
         viewHolder.tvTime.setText(vouCherBeanList.get(position).getVoucher_end_date());
+
         viewHolder.tvLessNumber.setText(vouCherBeanList.get(position).getVoucher_surplus()+"");
         viewHolder.tvReceived.setText(vouCherBeanList.get(position).getVoucher_giveout()+"");
         viewHolder.tvUseed.setText(vouCherBeanList.get(position).getVoucher_used()+"");
@@ -77,10 +78,22 @@ public class VouCherAdapter extends BaseAdapter {
             viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_djq);
             viewHolder.ivStateRight.setVisibility(View.INVISIBLE);
             viewHolder.llEdit.setVisibility(View.VISIBLE);
+
+            viewHolder.tvLessNumber.setTextColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
+            viewHolder.tvReceived.setTextColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
+            viewHolder.tvUseed.setTextColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
+            viewHolder.tvTotalPrice.setTextColor(mContext.getResources().getColor(R.color.colorPrimaryDark));
+
         } else {
             viewHolder.ivStateRight.setVisibility(View.VISIBLE);
             viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_djq01);
             viewHolder.llEdit.setVisibility(View.INVISIBLE);
+
+            viewHolder.tvLessNumber.setTextColor(mContext.getResources().getColor(R.color.voucher_normal_color));
+            viewHolder.tvReceived.setTextColor(mContext.getResources().getColor(R.color.voucher_normal_color));
+            viewHolder.tvUseed.setTextColor(mContext.getResources().getColor(R.color.voucher_normal_color));
+            viewHolder.tvTotalPrice.setTextColor(mContext.getResources().getColor(R.color.voucher_normal_color));
+
         }
 
         if (onClickItem != null){

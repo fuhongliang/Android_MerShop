@@ -72,4 +72,7 @@
 
     <color name="full_cut_selected_color">#F77A27</color>
     <color name="full_cut_unselected_color">#999999</color>
+
+    <color name="voucher_normal_color">#333333</color>
+
 </resources>

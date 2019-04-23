@@ -155,7 +155,7 @@ public interface OperationService {
 
 
     @FormUrlEncoded
-    @POST("bundling_del")
+    @POST("voucher_del")
     public Observable<BaseEntity<Object>> delVouCher(@Field("voucher_id") String voucher_id, @Field("store_id") String store_id);
 
 
