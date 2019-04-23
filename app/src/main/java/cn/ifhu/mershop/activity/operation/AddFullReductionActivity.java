@@ -169,7 +169,7 @@ public class AddFullReductionActivity extends BaseActivity {
             return;
         }
 
-        if (Double.parseDouble(full)>Double.parseDouble(cut)) {
+        if (Double.parseDouble(cut)>=Double.parseDouble(full)) {
             ToastHelper.makeText("满减金额必须小于规则金额", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return;
         }
