@@ -109,6 +109,15 @@ public class DiscountInfoBean {
         private String img_name;
         private String goods_price;
         private String xianshi_price;
+        private String img_path;
+
+        public String getImg_path() {
+            return img_path;
+        }
+
+        public void setImg_path(String img_path) {
+            this.img_path = img_path;
+        }
 
         public String getGoods_price() {
             return goods_price;

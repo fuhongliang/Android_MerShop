@@ -115,7 +115,7 @@ public class AddVouCherActivity extends BaseActivity {
                     }
                 })
                 .setType(new boolean[]{true, true, true, true, true, true})
-                .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+                .isDialog(true)
                 .addOnCancelClickListener(view -> {
                 })
                 .build();
