@@ -72,9 +72,17 @@ public class FullCutAdapter extends BaseAdapter {
         if (fullCutBeans.get(position).getState() == 2) {
             viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_mlj);
             viewHolder.ivStateRight.setVisibility(View.INVISIBLE);
+            viewHolder.tvFullCut1.setSelected(true);
+            viewHolder.tvFullCut2.setSelected(true);
+            viewHolder.tvFullCut3.setSelected(true);
+            viewHolder.tvFullCut4.setSelected(true);
         } else {
             viewHolder.ivStateRight.setVisibility(View.VISIBLE);
             viewHolder.ivState.setBackgroundResource(R.drawable.yhq_bnt_xszk_mlj1);
+            viewHolder.tvFullCut1.setSelected(false);
+            viewHolder.tvFullCut2.setSelected(false);
+            viewHolder.tvFullCut3.setSelected(false);
+            viewHolder.tvFullCut4.setSelected(false);
         }
 
         if (onClickItem != null) {
@@ -88,7 +96,6 @@ public class FullCutAdapter extends BaseAdapter {
                 viewHolder.tvFullCut3.setVisibility(View.INVISIBLE);
                 viewHolder.tvFullCut4.setVisibility(View.INVISIBLE);
                 viewHolder.tvFullCut1.setText("满"+fullCutBeans.get(position).getRule().get(0).getPrice()+"减"+fullCutBeans.get(position).getRule().get(0).getDiscount());
-                viewHolder.tvFullCut1.setSelected(true);
                 break;
             case 2:
                 viewHolder.tvFullCut1.setVisibility(View.VISIBLE);
@@ -97,8 +104,6 @@ public class FullCutAdapter extends BaseAdapter {
                 viewHolder.tvFullCut4.setVisibility(View.INVISIBLE);
                 viewHolder.tvFullCut1.setText("满"+fullCutBeans.get(position).getRule().get(0).getPrice()+"减"+fullCutBeans.get(position).getRule().get(0).getDiscount());
                 viewHolder.tvFullCut2.setText("满"+fullCutBeans.get(position).getRule().get(1).getPrice()+"减"+fullCutBeans.get(position).getRule().get(1).getDiscount());
-                viewHolder.tvFullCut1.setSelected(true);
-                viewHolder.tvFullCut2.setSelected(true);
                 break;
             case 3:
                 viewHolder.tvFullCut1.setVisibility(View.VISIBLE);
@@ -108,9 +113,6 @@ public class FullCutAdapter extends BaseAdapter {
                 viewHolder.tvFullCut1.setText("满"+fullCutBeans.get(position).getRule().get(0).getPrice()+"减"+fullCutBeans.get(position).getRule().get(0).getDiscount());
                 viewHolder.tvFullCut2.setText("满"+fullCutBeans.get(position).getRule().get(1).getPrice()+"减"+fullCutBeans.get(position).getRule().get(1).getDiscount());
                 viewHolder.tvFullCut3.setText("满"+fullCutBeans.get(position).getRule().get(2).getPrice()+"减"+fullCutBeans.get(position).getRule().get(2).getDiscount());
-                viewHolder.tvFullCut1.setSelected(true);
-                viewHolder.tvFullCut2.setSelected(true);
-                viewHolder.tvFullCut3.setSelected(true);
                 break;
             case 4:
                 viewHolder.tvFullCut1.setVisibility(View.VISIBLE);
@@ -121,10 +123,6 @@ public class FullCutAdapter extends BaseAdapter {
                 viewHolder.tvFullCut2.setText("满"+fullCutBeans.get(position).getRule().get(1).getPrice()+"减"+fullCutBeans.get(position).getRule().get(1).getDiscount());
                 viewHolder.tvFullCut3.setText("满"+fullCutBeans.get(position).getRule().get(2).getPrice()+"减"+fullCutBeans.get(position).getRule().get(2).getDiscount());
                 viewHolder.tvFullCut4.setText("满"+fullCutBeans.get(position).getRule().get(3).getPrice()+"减"+fullCutBeans.get(position).getRule().get(3).getDiscount());
-                viewHolder.tvFullCut1.setSelected(true);
-                viewHolder.tvFullCut2.setSelected(true);
-                viewHolder.tvFullCut3.setSelected(true);
-                viewHolder.tvFullCut4.setSelected(true);
                 break;
             default:
                 viewHolder.tvFullCut1.setVisibility(View.INVISIBLE);
