@@ -154,5 +154,9 @@ public interface OperationService {
     public Observable<BaseEntity<VouCherInfoBean>> getVoucherInfo(@Field("voucher_id") String voucher_id, @Field("store_id") String store_id);
 
 
+    @FormUrlEncoded
+    @POST("bundling_del")
+    public Observable<BaseEntity<Object>> delVouCher(@Field("voucher_id") String voucher_id, @Field("store_id") String store_id);
+
 
 }

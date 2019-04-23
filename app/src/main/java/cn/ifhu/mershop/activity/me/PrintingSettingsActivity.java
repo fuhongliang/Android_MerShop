@@ -5,6 +5,7 @@ import android.os.Bundle;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.WebViewActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 
 /**
@@ -21,7 +22,12 @@ public class PrintingSettingsActivity extends BaseActivity {
 
 
     @OnClick(R.id.iv_back)
-    public void onViewClicked() {
+    public void onIvBackClicked() {
         finish();
+    }
+
+    @OnClick(R.id.tv_help)
+    public void onTvHelpClicked() {
+        WebViewActivity.startLoadAssetsHtml(PrintingSettingsActivity.this, "bluetooth_help.html", "帮助");
     }
 }

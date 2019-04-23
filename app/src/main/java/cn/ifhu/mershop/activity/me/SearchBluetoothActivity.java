@@ -25,6 +25,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.WebViewActivity;
 import cn.ifhu.mershop.bt.BluetoothActivity;
 import cn.ifhu.mershop.bt.BtUtil;
 import cn.ifhu.mershop.bt.SearchBleAdapter;
@@ -256,8 +257,13 @@ public class SearchBluetoothActivity extends BluetoothActivity implements Adapte
         searchDeviceOrOpenBluetooth();
     }
 
+    @OnClick(R.id.tv_help)
+    public void onTvHelpClicked() {
+        WebViewActivity.startLoadAssetsHtml(SearchBluetoothActivity.this, "bluetooth_help.html", "帮助");
+    }
+
     @OnClick(R.id.iv_settings)
-    public void onViewClicked() {
-        startActivity(new Intent(SearchBluetoothActivity.this,PrintingSettingsActivity.class));
+    public void onIvSettingsClicked() {
+        startActivity(new Intent(SearchBluetoothActivity.this, PrintingSettingsActivity.class));
     }
 }

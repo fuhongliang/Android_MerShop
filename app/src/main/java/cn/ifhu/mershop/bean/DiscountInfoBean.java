@@ -102,16 +102,11 @@ public class DiscountInfoBean {
     }
 
     public static class GoodsListBean {
-        /**
-         * goods_id : 49
-         * goods_name : 春装 披肩式 超短款 针织 衫开衫 女装 青鸟 黑色
-         * goods_image : 1_04418240955916042.jpg
-         * xianshi_price : 100.00
-         */
+
 
         private int goods_id;
         private String goods_name;
-        private String goods_image;
+        private String img_name;
         private String goods_price;
         private String xianshi_price;
 
@@ -139,12 +134,12 @@ public class DiscountInfoBean {
             this.goods_name = goods_name;
         }
 
-        public String getGoods_image() {
-            return goods_image;
+        public String getImg_name() {
+            return img_name;
         }
 
-        public void setGoods_image(String goods_image) {
-            this.goods_image = goods_image;
+        public void setImg_name(String img_name) {
+            this.img_name = img_name;
         }
 
         public String getXianshi_price() {

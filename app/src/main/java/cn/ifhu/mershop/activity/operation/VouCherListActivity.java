@@ -97,7 +97,7 @@ public class VouCherListActivity extends BaseActivity {
 
     public void deleteItem(int position){
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).delDiscount(vouCherBeanList.get(position).getVoucher_id()+"",UserLogic.getUser().getStore_id()+"")
+        RetrofitAPIManager.create(OperationService.class).delVouCher(vouCherBeanList.get(position).getVoucher_id()+"",UserLogic.getUser().getStore_id()+"")
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {

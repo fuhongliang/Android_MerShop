@@ -68,7 +68,7 @@ public class AddDiscountPackageActivity extends BaseActivity {
     String bundling_id;
     DiscountPackageGoodsAdapter discountPackageGoodsAdapter;
     List<ProductManageBean.GoodsListBean> mDataList;
-    int price = 0;
+    double price = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +84,11 @@ public class AddDiscountPackageActivity extends BaseActivity {
         }
         mDataList = new ArrayList<>();
         discountPackageGoodsAdapter = new DiscountPackageGoodsAdapter(mDataList, this);
-        discountPackageGoodsAdapter.setOnClickItem(new DiscountPackageGoodsAdapter.onClickItem() {
-            @Override
-            public void deleteGoods(int position) {
-                mDataList.remove(position);
-                discountPackageGoodsAdapter.setmDataList(mDataList);
-                setTvPackagePrice(mDataList);
-            }
+        discountPackageGoodsAdapter.setOnClickItem(position -> {
+            mDataList.remove(position);
+            discountPackageGoodsAdapter.setmDataList(mDataList);
+            setTvPackagePrice(mDataList);
+            ProductLogic.saveDiscountGoods(mDataList);
         });
         listView.setAdapter(discountPackageGoodsAdapter);
 
@@ -198,10 +196,10 @@ public class AddDiscountPackageActivity extends BaseActivity {
 
 
     public void setTvPackagePrice(List<ProductManageBean.GoodsListBean> mDataList){
-        price = 0;
+        price = 0.0;
         if (mDataList != null && mDataList.size()>0){
             for (ProductManageBean.GoodsListBean goodsListBean :mDataList){
-                price = price + Integer.parseInt(goodsListBean.getGoods_dicountprice());
+                price = price + Double.parseDouble(goodsListBean.getGoods_dicountprice());
             }
         }
         tvPackagePrice.setText(""+price);

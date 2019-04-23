@@ -27,6 +27,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.adapter.FullCutRuleAdapter;
 import cn.ifhu.mershop.adapter.SelectedDiscountGoodsAdapter;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
@@ -91,14 +92,15 @@ public class AddLimitDiscountsActivity extends BaseActivity {
         setContentView(R.layout.activity_add_limit_discounts);
         ButterKnife.bind(this);
         xianshi_id = getIntent().getStringExtra("xianshi_id");
-        if (StringUtils.isEmpty(xianshi_id)){
+        if (StringUtils.isEmpty(xianshi_id)) {
             tvTitle.setText("添加活动");
-        }else {
+        } else {
             tvTitle.setText("编辑活动");
             getDiscountInfo();
         }
-        selectedDiscountGoodsAdapter  = new SelectedDiscountGoodsAdapter(listBeans,this);
+        selectedDiscountGoodsAdapter = new SelectedDiscountGoodsAdapter(listBeans, this);
         lvDiscountGoods.setAdapter(selectedDiscountGoodsAdapter);
+
         type = 0;
         initTimePicker();
         tvStartTime.setOnClickListener(v -> {
@@ -109,6 +111,20 @@ public class AddLimitDiscountsActivity extends BaseActivity {
             type = 1;
             pvTime.show(v);
         });
+
+        selectedDiscountGoodsAdapter.setOnClickItem(new SelectedDiscountGoodsAdapter.onClickItem() {
+            @Override
+            public void setDiscountPrice(int position) {
+
+            }
+
+            @Override
+            public void unselectedGoods(int position) {
+                listBeans.remove(position);
+                selectedDiscountGoodsAdapter.setmDataList(listBeans);
+                ProductLogic.saveDiscountGoods(listBeans);
+            }
+        });
     }
 
     private void initTimePicker() {
@@ -118,12 +134,11 @@ public class AddLimitDiscountsActivity extends BaseActivity {
             } else {
                 tvEndTime.setText(DateUtil.getDateToString(date));
             }
-
         })
                 .setTimeSelectChangeListener(date -> {
                 })
                 .setType(new boolean[]{true, true, true, true, true, true})
-                .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+                .isDialog(true)
                 .addOnCancelClickListener(view -> {
                 })
                 .build();
@@ -150,9 +165,9 @@ public class AddLimitDiscountsActivity extends BaseActivity {
     }
 
 
-    public void getDiscountInfo(){
+    public void getDiscountInfo() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).getDiscountInfo(xianshi_id,UserLogic.getUser().getStore_id()+"")
+        RetrofitAPIManager.create(OperationService.class).getDiscountInfo(xianshi_id, UserLogic.getUser().getStore_id() + "")
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<DiscountInfoBean>(true) {
             @Override
             protected void onApiComplete() {
@@ -166,21 +181,21 @@ public class AddLimitDiscountsActivity extends BaseActivity {
         });
     }
 
-    public void initData(DiscountInfoBean discountInfoBean){
+    public void initData(DiscountInfoBean discountInfoBean) {
         etDiscountName.setText(discountInfoBean.getXianshi_name());
         etTag.setText(discountInfoBean.getXianshi_title());
         etDescription.setText(discountInfoBean.getXianshi_explain());
         tvStartTime.setText(DateUtil.getLongToString(discountInfoBean.getStart_time()));
         tvEndTime.setText(DateUtil.getLongToString(discountInfoBean.getEnd_time()));
-        tvLimitLess.setText(discountInfoBean.getLower_limit()+"");
+        tvLimitLess.setText(discountInfoBean.getLower_limit() + "");
         limitNumber = discountInfoBean.getLower_limit();
-        for (DiscountInfoBean.GoodsListBean goodsListBean :discountInfoBean.getGoods_list()){
+        for (DiscountInfoBean.GoodsListBean goodsListBean : discountInfoBean.getGoods_list()) {
             ProductManageBean.GoodsListBean goodsbean = new ProductManageBean.GoodsListBean();
             goodsbean.setGoods_id(goodsListBean.getGoods_id());
             goodsbean.setGoods_name(goodsListBean.getGoods_name());
             goodsbean.setGoods_dicountprice(goodsListBean.getXianshi_price());
             goodsbean.setGoods_price(goodsListBean.getGoods_price());
-            goodsbean.setImg_name(goodsListBean.getGoods_image());
+            goodsbean.setImg_name(goodsListBean.getImg_name());
             goodsbean.setImg_path(discountInfoBean.getImg_path());
             listBeans.add(goodsbean);
         }
@@ -216,23 +231,23 @@ public class AddLimitDiscountsActivity extends BaseActivity {
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
-        if (checkContent()){
+        if (checkContent()) {
             setLoadingMessageIndicator(true);
             DiscountPostBean discountPostBean = new DiscountPostBean();
             discountPostBean.setXianshi_name(etDiscountName.getText().toString().trim());
             discountPostBean.setXianshi_title(etTag.getText().toString().trim());
-            discountPostBean.setStore_id(UserLogic.getUser().getStore_id()+"");
+            discountPostBean.setStore_id(UserLogic.getUser().getStore_id() + "");
             discountPostBean.setXianshi_explain(etDescription.getText().toString().trim());
             discountPostBean.setStart_time(tvStartTime.getText().toString());
             discountPostBean.setEnd_time(tvEndTime.getText().toString());
             discountPostBean.setLower_limit(tvLimitLess.getText().toString().trim());
-            if (!StringUtils.isEmpty(xianshi_id)){
+            if (!StringUtils.isEmpty(xianshi_id)) {
                 discountPostBean.setXianshi_id(xianshi_id);
             }
             List<DiscountGoods> goodsList = new ArrayList<>();
-            for (ProductManageBean.GoodsListBean bean:listBeans){
+            for (ProductManageBean.GoodsListBean bean : listBeans) {
                 DiscountGoods discountGoods = new DiscountGoods();
-                discountGoods.setGoods_id(bean.getGoods_id()+"");
+                discountGoods.setGoods_id(bean.getGoods_id() + "");
                 discountGoods.setXianshi_price(bean.getGoods_dicountprice());
                 goodsList.add(discountGoods);
             }
@@ -246,32 +261,32 @@ public class AddLimitDiscountsActivity extends BaseActivity {
 
                 @Override
                 protected void onSuccees(BaseEntity<Observer> t) throws Exception {
-                    ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                    ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                     ProductLogic.clearDiscountGoods();
                 }
             });
         }
     }
 
-    public boolean checkContent(){
-        if (StringUtils.isEmpty(etDiscountName.getText().toString().trim())){
-            ToastHelper.makeText("请输入活动名称", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+    public boolean checkContent() {
+        if (StringUtils.isEmpty(etDiscountName.getText().toString().trim())) {
+            ToastHelper.makeText("请输入活动名称", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return false;
         }
 
-        if (StringUtils.isEmpty(tvStartTime.getText().toString().trim())){
-            ToastHelper.makeText("请选择开始时间", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+        if (StringUtils.isEmpty(tvStartTime.getText().toString().trim())) {
+            ToastHelper.makeText("请选择开始时间", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return false;
         }
 
-        if (StringUtils.isEmpty(tvEndTime.getText().toString().trim())){
-            ToastHelper.makeText("请选择结束时间", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+        if (StringUtils.isEmpty(tvEndTime.getText().toString().trim())) {
+            ToastHelper.makeText("请选择结束时间", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return false;
         }
 
 
-        if (listBeans == null || listBeans.size()<1){
-            ToastHelper.makeText("请添加商品", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+        if (listBeans == null || listBeans.size() < 1) {
+            ToastHelper.makeText("请添加商品", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return false;
         }
         return true;
@@ -281,7 +296,7 @@ public class AddLimitDiscountsActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         try {
-            if (ProductLogic.getDiscountGoods() != null){
+            if (ProductLogic.getDiscountGoods() != null) {
                 listBeans = ProductLogic.getDiscountGoods();
             }
             selectedDiscountGoodsAdapter.setmDataList(listBeans);

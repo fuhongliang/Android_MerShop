@@ -42,6 +42,7 @@ public class WebViewActivity extends BaseActivity {
 
     public static final int PROGRESS_MAX_VALUE = 100;
     public static final String URL = "url";
+    public static final String FILE_NAME = "fileName";
     public static final String TITLE = "title";
     public static final String HTML_DATA = "html_data";
     public static final String ISNEEDTOKEN = "need_token";
@@ -52,6 +53,12 @@ public class WebViewActivity extends BaseActivity {
     @BindView(R.id.tv_title)
     TextView tvTitle;
 
+    public static void startLoadAssetsHtml(Context context, String fileName, String title) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra(FILE_NAME, fileName);
+        intent.putExtra(TITLE, title);
+        context.startActivity(intent);
+    }
 
     public static void start(Context context, String url, String title) {
         Intent intent = new Intent(context, WebViewActivity.class);
@@ -154,14 +161,19 @@ public class WebViewActivity extends BaseActivity {
     public void loadData() {
         loadError = false;
         String htmlData = getIntent().getStringExtra(HTML_DATA);
+        String fileName = getIntent().getStringExtra(FILE_NAME);
         if (StringUtils.isEmpty(htmlData)) {
-            if (getIntent().getBooleanExtra(ISNEEDTOKEN, false)) {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                String dataToken = UserLogic.getUser().getToken();
-                headers.put("token", dataToken);
-                mWvView.loadUrl(getIntent().getStringExtra(URL), headers);
-            } else {
-                mWvView.loadUrl(getIntent().getStringExtra(URL));
+            if (StringUtils.isEmpty(fileName)){
+                if (getIntent().getBooleanExtra(ISNEEDTOKEN, false)) {
+                    HashMap<String, String> headers = new HashMap<String, String>();
+                    String dataToken = UserLogic.getUser().getToken();
+                    headers.put("token", dataToken);
+                    mWvView.loadUrl(getIntent().getStringExtra(URL), headers);
+                } else {
+                    mWvView.loadUrl(getIntent().getStringExtra(URL));
+                }
+            }else {
+                mWvView.loadUrl("file:///android_asset/"+fileName);
             }
 
         } else {
