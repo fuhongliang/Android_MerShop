@@ -136,6 +136,9 @@ public class AddLimitDiscountsActivity extends BaseActivity {
             }
         })
                 .setTimeSelectChangeListener(date -> {
+                    if (date.before(Calendar.getInstance().getTime())) {
+                        pvTime.setDate(Calendar.getInstance());
+                    }
                 })
                 .setType(new boolean[]{true, true, true, true, true, true})
                 .isDialog(true)

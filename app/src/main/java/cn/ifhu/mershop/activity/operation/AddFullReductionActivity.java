@@ -128,6 +128,9 @@ public class AddFullReductionActivity extends BaseActivity {
 
         })
                 .setTimeSelectChangeListener(date -> {
+                    if (date.before(Calendar.getInstance().getTime())) {
+                        pvTime.setDate(Calendar.getInstance());
+                    }
                 })
                 .setType(new boolean[]{true, true, true, true, true, true})
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
@@ -192,7 +195,7 @@ public class AddFullReductionActivity extends BaseActivity {
     public void onBtnSaveClicked() {
         if (checkContent()) {
             setLoadingMessageIndicator(true);
-            FullCutPostBean fullCutPostBean = new FullCutPostBean();
+                FullCutPostBean fullCutPostBean = new FullCutPostBean();
             fullCutPostBean.setMansong_name(etName.getText().toString().trim());
             fullCutPostBean.setStart_time(tvStartTime.getText().toString());
             fullCutPostBean.setEnd_time(tvEndTime.getText().toString());
