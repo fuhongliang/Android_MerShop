@@ -64,7 +64,7 @@ public class DiscountListActivity extends BaseActivity {
 
             @Override
             public void deleteDiscount(int position) {
-                DialogUtils.showConfirmDialog("提示","是否删除该限时折扣", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+                DialogUtils.showConfirmDialog("温馨提示","是否删除该限时折扣", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
                     @Override
                     public void cancel() {
 
