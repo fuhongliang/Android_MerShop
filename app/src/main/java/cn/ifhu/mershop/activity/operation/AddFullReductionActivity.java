@@ -168,6 +168,12 @@ public class AddFullReductionActivity extends BaseActivity {
             ToastHelper.makeText("请输入减多少元", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return;
         }
+
+        if (Double.parseDouble(full)>Double.parseDouble(cut)) {
+            ToastHelper.makeText("满减金额必须小于规则金额", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            return;
+        }
+
         if (rule.size() > 3) {
             ToastHelper.makeText("最多只能添加4条规则", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
         } else {

@@ -86,10 +86,13 @@ public class DiscountAddProductActivity extends BaseActivity {
                     public void ok(String discount_price) {
                         if (!StringUtils.isEmpty(discount_price)) {
                             ProductManageBean.GoodsListBean goodsListBean = mProductArray.get(position);
-                            goodsListBean.setGoods_dicountprice(discount_price);
-                            addSelectedGoods(goodsListBean);
+                            if (Double.parseDouble(discount_price) > Double.parseDouble(goodsListBean.getGoods_price())){
+                                ToastHelper.makeText("优惠价格不能大于商品价格！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                            }else {
+                                goodsListBean.setGoods_dicountprice(discount_price);
+                                addSelectedGoods(goodsListBean);
+                            }
                         }
-
                         InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
                     }

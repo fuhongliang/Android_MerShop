@@ -97,7 +97,7 @@ public class FinishedOrderFragment extends BaseFragment {
 
 
     public void showPrintDialog(int position) {
-        DialogUtils.showConfirmDialog("提示", "确定打印小票？", getActivity().getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
+        DialogUtils.showConfirmDialog("温馨提示", "确定打印小票？", getActivity().getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
             @Override
             public void cancel() {
                 ToastHelper.makeText("点击了取消按钮", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
