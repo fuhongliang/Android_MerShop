@@ -15,14 +15,11 @@ public class LaunchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (UserLogic.isLogin()) {
-                    startActivity(new Intent(LaunchActivity.this,MainActivity.class));
-                } else {
-                    startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
-                }
+        new Handler().postDelayed(() -> {
+            if (UserLogic.isLogin()) {
+                startActivity(new Intent(LaunchActivity.this,MainActivity.class));
+            } else {
+                startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
             }
         },1000);
 
