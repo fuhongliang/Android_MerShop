@@ -3,22 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="cn.ifhu.mershop">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <!-- 允许程序连接到已配对的蓝牙设备 -->
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <!-- 允许程序发现和配对蓝牙设备 -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <!-- 允许程序发现和配对蓝牙设备 -->
-    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <!--地理位置-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 允许程序连接到已配对的蓝牙设备 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- 允许程序发现和配对蓝牙设备 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- 允许程序发现和配对蓝牙设备 -->
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 地理位置 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
         android:name=".MyApplication"
@@ -30,32 +23,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.LaunchActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activity.operation.ProductManageActivity" />
         <activity
             android:name=".activity.MainActivity"
             android:theme="@style/AppTheme_listDivider" />
-        <activity android:name=".activity.me.RingSettingsActivity"></activity>
+        <activity android:name=".activity.me.RingSettingsActivity" />
         <activity
             android:name=".activity.operation.AddProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activity.operation.EditProductActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity android:name=".activity.operation.ManageCategoryActivity" />
         <activity android:name=".activity.operation.SortCategoryActivity" />
         <activity
             android:name=".activity.login.LoginActivity"
-            android:theme="@style/LunchTheme"
             android:windowSoftInputMode="stateHidden|adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".activity.TestActivity" />
-
         <activity
             android:name=".activity.me.StoreSetUpActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -79,14 +72,12 @@
         <activity
             android:name=".activity.me.StoreNoticeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity
             android:name=".activity.operation.ReviewListActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".activity.operation.AddOrEditCategoryActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
         <activity
             android:name=".activity.operation.SellingTimeActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
@@ -97,8 +88,7 @@
             android:name=".activity.me.SearchBluetoothActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
 
-        <service android:name=".BtService" />
-        <!--剪切页面-->
+        <service android:name=".BtService" /> <!-- 剪切页面 -->
         <activity android:name="com.yalantis.ucrop.UCropActivity" />
 
         <provider
@@ -118,21 +108,15 @@
         <activity android:name=".activity.operation.FullCutListActivity" />
         <activity android:name=".activity.operation.VouCherListActivity" />
         <activity android:name=".activity.operation.AddVouCherActivity" />
-
         <activity
             android:name=".activity.operation.AddFullReductionActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
-
+        <activity android:name=".activity.operation.DiscountPackageListActivity" />
+        <activity android:name=".activity.operation.DiscountAddProductActivity" />
         <activity
-            android:name=".activity.operation.DiscountPackageListActivity"
-            />
-
-        <activity android:name=".activity.operation.DiscountAddProductActivity"/>
-
-        <activity android:name=".activity.operation.AddDiscountPackageActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-
-        <activity android:name=".activity.me.PrintingSettingsActivity"/>
+            android:name=".activity.operation.AddDiscountPackageActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".activity.me.PrintingSettingsActivity" />
     </application>
 
 </manifest>

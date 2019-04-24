@@ -138,13 +138,4 @@
         <item name="android:textColor">@color/typed_text_color</item>
     </style>
 
-
-    <style name="LunchTheme" parent="Theme.AppCompat">
-        <item name="android:windowNoTitle">false</item>
-        <item name="android:windowFullscreen">false</item>
-        <!--下面这句如果你加上觉得好看就加，不好看就不加咯-->
-        <!--<item name="android:navigationBarColor">@color/transparent</item>-->
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowBackground">@drawable/ic_launch</item>
-    </style>
 </resources>
