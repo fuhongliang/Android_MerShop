@@ -60,12 +60,12 @@ public class PrintOrderDataMaker implements PrintDataMaker {
 
             printer.printLineFeed();
             printer.setFontSize(0);
+            printer.setEmphasizedOff();
             printer.setAlignCenter();
             printer.print(UserLogic.getUser().getStore_name());
             printer.printLineFeed();
 
             printer.setAlignCenter();
-            printer.setEmphasizedOn();
             printer.setFontSize(1);
             printer.print("在线支付(已支付)");
             printer.printLineFeed();
