@@ -28,6 +28,7 @@ public class PrintingSettingsActivity extends BluetoothActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_printing_settings);
         ButterKnife.bind(this);
+
     }
 
 

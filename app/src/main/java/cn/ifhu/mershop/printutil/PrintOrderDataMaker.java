@@ -46,15 +46,7 @@ public class PrintOrderDataMaker implements PrintDataMaker {
             printer = type == PrinterWriter58mm.TYPE_58 ? new PrinterWriter58mm(height, width) : new PrinterWriter80mm(height, width);
             printer.setAlignCenter();
             data.add(printer.getDataAndReset());
-
-            ArrayList<byte[]> image1 = printer.getImageByte(btService.getResources(), R.drawable.demo);
-
-            data.addAll(image1);
-
-            printer.setAlignLeft();
-            printer.printLine();
             printer.printLineFeed();
-
             printer.print(new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
                     .format(new Date(System.currentTimeMillis())));
             printer.printLineFeed();

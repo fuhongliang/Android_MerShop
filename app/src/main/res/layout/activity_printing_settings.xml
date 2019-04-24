@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="DSHUA18SF设置"
+            android:text="蓝牙设置"
             android:textColor="@color/white"
             android:textSize="18dp" />
 
