@@ -10,11 +10,14 @@ import java.util.List;
 import java.util.Locale;
 
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.utils.UserLogic;
 
 
 /**
  * 测试数据生成器
- * Created by liuguirong on 8/1/17.
+ *
+ * @author liuguirong
+ * @date 8/1/17
  */
 
 public class PrintOrderDataMaker implements PrintDataMaker {
@@ -35,11 +38,9 @@ public class PrintOrderDataMaker implements PrintDataMaker {
     }
 
 
-
     @Override
     public List<byte[]> getPrintData(int type) {
         ArrayList<byte[]> data = new ArrayList<>();
-
         try {
             PrinterWriter printer;
             printer = type == PrinterWriter58mm.TYPE_58 ? new PrinterWriter58mm(height, width) : new PrinterWriter80mm(height, width);
@@ -54,90 +55,88 @@ public class PrintOrderDataMaker implements PrintDataMaker {
             printer.printLine();
             printer.printLineFeed();
 
-            printer.printLineFeed();
-            printer.setAlignCenter();
-            printer.setEmphasizedOn();
-            printer.setFontSize(1);
-            printer.print("好吃点你就多吃点");
-            printer.printLineFeed();
-            printer.setEmphasizedOff();
-            printer.printLineFeed();
-
-            printer.printLineFeed();
-            printer.setFontSize(0);
-            printer.setAlignCenter();
-            printer.print("订单编号：" + "546545645465456454");
-            printer.printLineFeed();
-
-            printer.setAlignCenter();
             printer.print(new SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
                     .format(new Date(System.currentTimeMillis())));
             printer.printLineFeed();
             printer.printLine();
 
             printer.printLineFeed();
+            printer.setAlignCenter();
+            printer.setEmphasizedOn();
+            printer.setFontSize(1);
+            printer.print("今日单号#" + "38");
+
+            printer.printLineFeed();
+            printer.setFontSize(0);
+            printer.setAlignCenter();
+            printer.print(UserLogic.getUser().getStore_name());
+            printer.printLineFeed();
+
+            printer.setAlignCenter();
+            printer.setEmphasizedOn();
+            printer.setFontSize(1);
+            printer.print("在线支付(已支付)");
+
+            printer.printLineFeed();
             printer.setAlignLeft();
-            printer.print("订单状态: " + "已接单");
+            printer.print("骑手电话: " + "188****0997");
             printer.printLineFeed();
-            printer.print("用户昵称: " +"周末先生");
+            printer.print("期望送达时间: " + "立即送达");
             printer.printLineFeed();
-            printer.print("用餐人数: " + "10人");
+            printer.print("下单时间：" + "2019-10-1 17：00");
             printer.printLineFeed();
-            printer.print("用餐桌号:" + "A3" + "号桌");
+            printer.print("订单号：20190504048484");
             printer.printLineFeed();
-            printer.print("预定时间：" + "2017-10-1 17：00");
-            printer.printLineFeed();
-            printer.print("预留时间：30分钟");
-            printer.printLineFeed();
-            printer.print("联系方式：" + "18094111545454");
-            printer.printLineFeed();
+//菜单
             printer.printLine();
             printer.printLineFeed();
 
-            printer.setAlignLeft();
-            printer.print("备注：" + "记得留位置");
-            printer.printLineFeed();
-            printer.printLine();
-
-            printer.printLineFeed();
-
-                printer.setAlignCenter();
-                printer.print("菜品信息");
-                printer.printLineFeed();
-                printer.setAlignCenter();
-                printer.printInOneLine("菜名", "数量", "单价", 0);
-                printer.printLineFeed();
-                for (int i = 0; i < 3; i++) {
-
-                    printer.printInOneLine("干锅包菜", "X" + 3, "￥" + 30, 0);
-                    printer.printLineFeed();
-                }
-                printer.printLineFeed();
-                printer.printLine();
-                printer.printLineFeed();
-                printer.setAlignLeft();
-                printer.printInOneLine("菜品总额：", "￥" + 100, 0);
-
-
-            printer.setAlignLeft();
-            printer.printInOneLine("优惠金额：", "￥" +"0.00"
-                    , 0);
-            printer.printLineFeed();
-
-            printer.setAlignLeft();
-            printer.printInOneLine("订金/退款：", "￥" + "0.00"
-                          , 0);
-            printer.printLineFeed();
-
-
-            printer.setAlignLeft();
-            printer.printInOneLine("总计金额：", "￥" +90, 0);
-            printer.printLineFeed();
-
-            printer.printLine();
+            printer.setAlignCenter();
+            printer.print("菜品信息");
             printer.printLineFeed();
             printer.setAlignCenter();
-            printer.print("谢谢惠顾，欢迎再次光临！");
+            printer.printInOneLine("菜名", "数量", "单价", 0);
+            printer.printLineFeed();
+            for (int i = 0; i < 3; i++) {
+                printer.printInOneLine("干锅包菜", "X" + 3, "￥" + 30, 0);
+                printer.printLineFeed();
+            }
+
+            printer.printLineFeed();
+            printer.printLine();
+
+            printer.setAlignCenter();
+            printer.print("其他");
+            printer.printLineFeed();
+            printer.setAlignLeft();
+            printer.print("配送费: " + "5.00");
+            printer.printLineFeed();
+            printer.print("包装费: " + "2.00");
+            printer.printLineFeed();
+            printer.printLine();
+//合计
+            printer.printLineFeed();
+            printer.setAlignRight();
+            printer.print("合计：￥100");
+            printer.printLineFeed();
+            printer.printLine();
+//地址
+            printer.printLineFeed();
+            printer.setAlignLeft();
+            printer.setEmphasizedOn();
+            printer.setFontSize(1);
+            printer.print("新安三路28号海关大厦1610");
+            printer.printLineFeed();
+            printer.print("188266660997");
+            printer.printLineFeed();
+            printer.print("张(先生)");
+            printer.printLineFeed();
+            printer.printLine();
+
+//底部
+            printer.printLineFeed();
+            printer.setAlignCenter();
+            printer.print("LINLINFA");
             printer.printLineFeed();
             printer.printLineFeed();
             printer.printLineFeed();

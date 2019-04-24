@@ -18,10 +18,9 @@ import cn.ifhu.mershop.printutil.PrintOrderDataMaker;
 import cn.ifhu.mershop.printutil.PrinterWriter;
 import cn.ifhu.mershop.printutil.PrinterWriter58mm;
 
+
 /**
- * Created by liuguirong on 8/1/17.
- * <p/>
- * print ticket service
+ * @author fuhongliang
  */
 public class BtService extends IntentService {
 
@@ -29,11 +28,6 @@ public class BtService extends IntentService {
         super("BtService");
     }
 
-    /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
-     *
-     * @param name Used to name the worker thread, important only for debugging.
-     */
     public BtService(String name) {
         super(name);
     }
@@ -47,24 +41,24 @@ public class BtService extends IntentService {
             printTest();
         } else if (intent.getAction().equals(PrintUtil.ACTION_PRINT_TEST_TWO)) {
             printTesttwo(3);
-        }else if (intent.getAction().equals(PrintUtil.ACTION_PRINT_BITMAP)) {
+        } else if (intent.getAction().equals(PrintUtil.ACTION_PRINT_BITMAP)) {
             printBitmapTest();
         }
 
     }
 
     private void printTest() {
-            PrintOrderDataMaker printOrderDataMaker = new PrintOrderDataMaker(this,"", PrinterWriter58mm.TYPE_58, PrinterWriter.HEIGHT_PARTING_DEFAULT);
-            ArrayList<byte[]> printData = (ArrayList<byte[]>) printOrderDataMaker.getPrintData(PrinterWriter58mm.TYPE_58);
-            PrintQueue.getQueue(getApplicationContext()).add(printData);
-
+        PrintOrderDataMaker printOrderDataMaker = new PrintOrderDataMaker(this, "", PrinterWriter58mm.TYPE_58, PrinterWriter.HEIGHT_PARTING_DEFAULT);
+        ArrayList<byte[]> printData = (ArrayList<byte[]>) printOrderDataMaker.getPrintData(PrinterWriter58mm.TYPE_58);
+        PrintQueue.getQueue(getApplicationContext()).add(printData);
     }
 
     /**
      * 打印几遍
+     *
      * @param num
      */
-  private void printTesttwo(int num) {
+    private void printTesttwo(int num) {
         try {
             ArrayList<byte[]> bytes = new ArrayList<byte[]>();
             for (int i = 0; i < num; i++) {
