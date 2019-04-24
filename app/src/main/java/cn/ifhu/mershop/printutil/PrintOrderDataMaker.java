@@ -76,7 +76,10 @@ public class PrintOrderDataMaker implements PrintDataMaker {
             printer.setEmphasizedOn();
             printer.setFontSize(1);
             printer.print("在线支付(已支付)");
+            printer.printLineFeed();
 
+            printer.setFontSize(0);
+            printer.printLine();
             printer.printLineFeed();
             printer.setAlignLeft();
             printer.print("骑手电话: " + "188****0997");
@@ -131,6 +134,7 @@ public class PrintOrderDataMaker implements PrintDataMaker {
             printer.printLineFeed();
             printer.print("张(先生)");
             printer.printLineFeed();
+            printer.setFontSize(0);
             printer.printLine();
 
 //底部

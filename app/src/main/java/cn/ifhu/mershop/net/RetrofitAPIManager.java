@@ -31,9 +31,9 @@ public class RetrofitAPIManager {
     private static final long TIMEOUT = 1000;
     private static Retrofit retrofit;
     public static String baseDevURL = "http://47.111.27.189:2000/v2/";//开发环境
-//    public static String baseDevURL = "http://192.168.5.15/api/public/index.php/v2/";
-//    public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v2/";//正式环境
-    public static String onLineBaseDevURL = "http://47.92.244.60:88/v1/";
+//  public static String baseDevURL = "http://192.168.5.15/api/public/index.php/v2/";
+//  public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v2/";//正式环境
+//    public static String onLineBaseDevURL = "http://47.92.244.60:88/v1/";
 
 
     private RetrofitAPIManager() {
