@@ -78,7 +78,6 @@ public class DiscountListActivity extends BaseActivity {
             }
         });
         lvDiscount.setAdapter(discountAdapter);
-        getDiscountListData();
         tvTitle.setText("限时折扣");
     }
 
@@ -130,5 +129,11 @@ public class DiscountListActivity extends BaseActivity {
     @OnClick(R.id.rl_add_discount)
     public void onRlAddDiscountClicked() {
         startActivity(new Intent(DiscountListActivity.this,AddLimitDiscountsActivity.class));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDiscountListData();
     }
 }
