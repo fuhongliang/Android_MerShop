@@ -18,6 +18,6 @@
 
     <string name="shop_reply"><Data><![CDATA[<font color="#1C98F6">商家回复：</font> %s]]></Data></string>
     <string name="file_provider_authorities">com.yalantis.ucrop.provider</string>
-    <string name="password"><![CDATA[密&&#8201；&&#8201；&&#8201；&&#8201；&&#8201；码]]></string>
+    <string name="password">密&#160;&#160;&#160;&#160;码</string>
 
 </resources>

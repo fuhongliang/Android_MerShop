@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -60,10 +61,9 @@
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_account_numbe"
             android:background="@null"
-            android:hint="请输入账号/手机号"
+            android:hint="请输入手机号码"
             android:inputType="text"
             android:maxLines="1"
-            android:text="test01"
             android:textColor="#999999" />
     </RelativeLayout>
 
@@ -93,14 +93,14 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="39dp"
+            android:layout_marginLeft="33dp"
             android:layout_toRightOf="@id/tv_password"
             android:background="@null"
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:text="111111"
             android:textColor="#999999" />
+
     </RelativeLayout>
 
     <ImageView
@@ -132,11 +132,18 @@
             android:layout_marginLeft="31dp"
             android:layout_toRightOf="@id/tv_verification"
             android:background="@null"
-            android:hint="请输入密码"
-            android:inputType="textPassword"
+            android:hint="请输入验证码"
             android:maxLines="1"
-            android:text="111111"
             android:textColor="#999999" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取验证码"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="15dp"
+            />
     </RelativeLayout>
 
     <ImageView
@@ -157,14 +164,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击登陆及表示"
+            android:text="点击注册即表示同意"
             android:textColor="#666666"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="同意商户端平台管理协会"
+            android:text="《邻邻发入驻协议》"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" />
     </LinearLayout>
@@ -175,23 +182,12 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/bu_button_blue"
         android:gravity="center"
         android:stateListAnimator="@null"
         android:text="登录"
         android:textColor="#ffffff"
-        android:textSize="17sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/bg_button_registered"
-        android:gravity="center"
-        android:stateListAnimator="@null"
-        android:text="注册开店"
-        android:textColor="@color/black"
         android:textSize="17sp" />
 </LinearLayout>

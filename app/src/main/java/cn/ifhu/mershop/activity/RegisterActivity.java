@@ -22,15 +22,11 @@ public class RegisterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_setup);
+        setContentView(R.layout.activity_registered);
         ButterKnife.bind(this);
     }
 
 
-    @OnClick(R.id.iv_back)
-    public void onViewClicked() {
-        finish();
-    }
 
 
     public void getVerifyCode(){
