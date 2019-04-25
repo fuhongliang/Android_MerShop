@@ -23,13 +23,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.LaunchActivity"
-            >
+        <activity android:name=".activity.RegisterActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.LaunchActivity"
+            >
+
         </activity>
         <activity android:name=".activity.operation.ProductManageActivity" />
         <activity
@@ -117,6 +121,7 @@
             android:name=".activity.operation.AddDiscountPackageActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.me.PrintingSettingsActivity" />
+
     </application>
 
 </manifest>

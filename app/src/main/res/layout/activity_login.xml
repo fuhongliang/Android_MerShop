@@ -158,4 +158,6 @@
         android:text="注册开店"
         android:textColor="@color/black"
         android:textSize="17sp" />
+
+
 </LinearLayout>
