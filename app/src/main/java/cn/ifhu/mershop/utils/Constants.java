@@ -29,4 +29,8 @@ public class Constants {
     public static final String UPDATESTOREDATA = "UPDATESTOREDATA";
 
     public static final int UNLIMITED = 99999999;
+
+
+    public static final String ORDERPRINTING = "ORDERPRINTING";
+
 }

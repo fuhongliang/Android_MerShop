@@ -1,25 +1,37 @@
 package cn.ifhu.mershop.adapter;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
+import cn.ifhu.mershop.BtService;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.me.PrintingSettingsActivity;
+import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
+import cn.ifhu.mershop.base.AppInfo;
 import cn.ifhu.mershop.bean.OrderBean;
+import cn.ifhu.mershop.print.PrintUtil;
+import cn.ifhu.mershop.utils.OrderLogic;
 import cn.ifhu.mershop.utils.StringUtils;
+import cn.ifhu.mershop.utils.ToastHelper;
 
 /**
  * @author fuhongliang
  */
 public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdapter.MyViewHolder> {
-
+    Pattern p = Pattern.compile("\\s*|\t|\r|\n");
     public static String unit = "￥";
     private List<OrderBean> mDatas;
     private Context mContext;
@@ -49,7 +61,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         holder.tvOrderNumber.setText("#" + orderBean.getOrder_id());
         holder.tvCustomerName.setText(orderBean.getExtend_order_common().getReciver_name() + "");
         holder.tvCustomerPhone.setText(orderBean.getExtend_order_common().getPhone() + "");
-        holder.tvCustomerAdd.setText(orderBean.getExtend_order_common().getAddress() + "");
+        holder.tvCustomerAdd.setText(p.matcher(orderBean.getExtend_order_common().getAddress()).replaceAll("") + "");
         holder.tvTotal.setText(unit+orderBean.getTotal_price() + "");
         holder.tvServiceFee.setText(unit+orderBean.getCommis_price() + "");
         holder.tvEarnMoney.setText(unit+orderBean.getGoods_pay_price() + "");
@@ -82,7 +94,28 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
 
         holder.tvOrderSn.setText("订单编号：" + orderBean.getOrder_sn() + "");
         holder.tvOrderTime.setText("下单时间：" + orderBean.getAdd_time() + "");
+        holder.tvPrint.setOnClickListener(v -> {
+            OrderLogic.savePrintingOrder(orderBean);
+            printingOrder();
+        });
+    }
 
+    public void printingOrder(){
+        if (TextUtils.isEmpty(AppInfo.btAddress)) {
+            ToastHelper.makeText("请连接蓝牙...", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            mContext.startActivity(new Intent(mContext, SearchBluetoothActivity.class));
+        } else {
+            if (BluetoothAdapter.getDefaultAdapter().getState() == BluetoothAdapter.STATE_OFF) {
+                //蓝牙被关闭时强制打开
+                BluetoothAdapter.getDefaultAdapter().enable();
+                ToastHelper.makeText("蓝牙被关闭请打开...", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            } else {
+                ToastHelper.makeText("打印中...", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                Intent intent = new Intent(mContext.getApplicationContext(), BtService.class);
+                intent.setAction(PrintUtil.ACTION_PRINT_TEST);
+                mContext.startService(intent);
+            }
+        }
     }
 
     @Override
@@ -99,6 +132,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         TextView tvServiceFee;
         TextView tvEarnMoney;
         TextView tvOrderState;
+        TextView tvPrint;
 
         TextView tvOrderTime;
         TextView tvOrderSn;
@@ -115,6 +149,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
             tvEarnMoney = view.findViewById(R.id.tv_earn_money);
             llContent = view.findViewById(R.id.ll_content);
             tvOrderState = view.findViewById(R.id.tv_order_state);
+            tvPrint = view.findViewById(R.id.tv_print);
 
             tvOrderTime = view.findViewById(R.id.tv_order_time);
             tvOrderSn = view.findViewById(R.id.tv_order_sn);
