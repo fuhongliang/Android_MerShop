@@ -8,24 +8,174 @@
 
     <include layout="@layout/layout_header" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:text="请绑定账户本人的银行卡"
+        android:textColor="#808080"
+        android:textSize="14sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:padding="15dp">
-
-        <ImageView
+        android:orientation="vertical">
+        <!--姓名-->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@drawable/bnt_tianjia_yhk" />
+            android:layout_height="44dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="姓名"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <include layout="@layout/layout_star" />
+
+            <EditText
+                style="@style/base_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:hint="请输入持卡人姓名"
+                android:textColor="@color/hint_text_color"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <ImageView style="@style/dividing_line" />
+
+        <!--卡号-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="卡号"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <include layout="@layout/layout_star" />
+
+            <EditText
+                style="@style/base_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:hint="请输入银行卡号"
+                android:textColor="@color/hint_text_color"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <ImageView style="@style/dividing_line" />
+
+        <!--开户银行-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="开户银行"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <include layout="@layout/layout_star" />
+
+            <EditText
+                style="@style/base_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:hint="请输入开户支行地址"
+                android:textColor="@color/hint_text_color"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+        <ImageView style="@style/dividing_line" />
+
+        <!--卡类型-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:text="卡类型"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <include layout="@layout/layout_star" />
+
+            <TextView
+                style="@style/base_edit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:background="@null"
+                android:gravity="end|center_vertical"
+                android:text="工商银行储蓄卡"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="11dp"
-            android:text="添加银行卡方便资产管理，享受余额提现"
-            android:textColor="@color/hint_text_color"
-            android:textSize="12sp" />
+            android:text="点击完成即表示同意"
+            android:textColor="#999999"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《用户协议》"
+            android:textColor="#24A1FF"
+            android:textSize="14sp" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_button_blue"
+        android:stateListAnimator="@null"
+        android:text="完成"
+        android:textColor="#ffffff"
+        android:textSize="17sp" />
 </LinearLayout>
