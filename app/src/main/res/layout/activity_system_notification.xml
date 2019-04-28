@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/line_bg"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_header" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="11dp"
+        android:text="今天"
+        android:textColor="#808080"
+        android:textSize="14sp" />
+    <!--新订单-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新订单"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="您有新的订单，请注意查收"
+            android:textColor="@color/hint_text_color"
+            android:textSize="14sp" />
+
+        <ImageView style="@style/v_line" />
+    </LinearLayout>
+    <!--打印机已连接-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="打印机已连接"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="您的打印机已连接，开始打印订单"
+            android:textColor="@color/hint_text_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+    <!--日期-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="11dp"
+        android:text="04月09日"
+        android:textColor="#808080"
+        android:textSize="14sp" />
+    <!--提现成功-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="提现成功"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="提现 780.88 已到账，请注意查收"
+            android:textColor="@color/hint_text_color"
+            android:textSize="14sp" />
+
+        <ImageView style="@style/v_line" />
+    </LinearLayout>
+    <!--开始营业-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="开始营业"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="店铺已开启营业，系统将实时派送新订单"
+            android:textColor="@color/hint_text_color"
+            android:textSize="14sp" />
+
+        <ImageView style="@style/v_line" />
+    </LinearLayout>
+    <!--停止营业-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止营业"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="店铺已停止营业，系统将不再派送订单"
+            android:textColor="@color/hint_text_color"
+            android:textSize="14sp" />
+
+        <ImageView style="@style/v_line" />
+    </LinearLayout>
+    <!--版本更新提醒-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="11dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="版本更新提醒"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <ImageView style="@style/im_tongyong_jinru" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="邻邻发商家端1.1.2已经更新"
+            android:textColor="@color/hint_text_color"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>
