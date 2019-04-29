@@ -35,8 +35,6 @@ public class FinanceActivity extends BaseActivity {
     RelativeLayout rlAddBank;
     @BindView(R.id.tv_not_settlement)
     TextView tvNotSettlement;
-    @BindView(R.id.tv_bill)
-    TextView tvBill;
     @BindView(R.id.rl_financial_bill)
     RelativeLayout rlFinancialBill;
 
@@ -56,14 +54,6 @@ public class FinanceActivity extends BaseActivity {
     }
 
 
-    @OnClick(R.id.rl_header)
-    public void onRlHeaderClicked() {
-    }
-
-    @OnClick(R.id.tv_settlement)
-    public void onTvSettlementClicked() {
-    }
-
     @OnClick(R.id.tv_withdraw)
     public void onTvWithdrawClicked() {
 
@@ -74,13 +64,6 @@ public class FinanceActivity extends BaseActivity {
         startActivity(new Intent(FinanceActivity.this,ManageBankActivity.class));
     }
 
-    @OnClick(R.id.tv_not_settlement)
-    public void onTvNotSettlementClicked() {
-    }
-
-    @OnClick(R.id.tv_bill)
-    public void onTvBillClicked() {
-    }
 
     @OnClick(R.id.rl_financial_bill)
     public void onRlFinancialBillClicked() {
