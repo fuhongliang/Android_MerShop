@@ -176,4 +176,8 @@ public interface OperationService {
     @POST("add_voucher_quota")
     public Observable<BaseEntity<Object>> buy_voucher_quota(@Field("month") int month, @Field("store_id") int store_id);
 
+    @FormUrlEncoded
+    @POST("add_bank_account")
+    public Observable<BaseEntity<Object>> add_bank_account(@Field("store_id") String store_id, @Field("account_name") String account_name,@Field("account_number") String account_number,@Field("bank_name") String bank_name,@Field("bank_type") String bank_type);
+
 }
