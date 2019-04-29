@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -26,6 +27,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/rl_marquee_view"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="#FDF6DB">
@@ -38,17 +40,26 @@
             android:layout_marginLeft="15dp"
             android:background="@drawable/home_xt_tzz" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+        <com.gongwen.marqueen.SimpleMarqueeView
+            android:id="@+id/simpleMarqueeView"
             android:layout_marginLeft="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:layout_toRightOf="@id/icon_tzz"
-            android:text="您有一笔新订单，系统已自动接单~"
-            android:textColor="#F16A11"
-            android:textSize="14sp" />
+            android:layout_toLeftOf="@+id/iv_close"
+            android:flipInterval="4500"
+            android:inAnimation="@anim/in_right"
+            android:outAnimation="@anim/out_left"
+            app:marqueeAnimDuration="2000"
+            app:smvTextColor="#F16A11"
+            app:smvTextEllipsize="end"
+            app:smvTextGravity="center_vertical"
+            app:smvTextSingleLine="true"
+            app:smvTextSize="14sp"
+            />
 
         <ImageView
+            android:id="@+id/iv_close"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_alignParentEnd="true"

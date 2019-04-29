@@ -101,4 +101,13 @@ dependencies {
     implementation 'org.greenrobot:greendao:3.2.2'
 
     implementation 'com.contrarywind:Android-PickerView:4.1.7'
+
+    //PushSDK必须依赖基础组件库，所以需要加入对应依赖
+    implementation 'com.umeng.umsdk:common:1.5.4'
+    //PushSDK必须依赖utdid库，所以需要加入对应依赖
+    implementation 'com.umeng.umsdk:utdid:1.1.5.3'
+    //PushSDK
+    implementation 'com.umeng.umsdk:push:5.0.2'
+    //跑马灯效果
+    implementation 'com.gongwen:marqueelibrary:1.1.3'
 }

@@ -160,5 +160,4 @@ public class OperationFragment extends BaseFragment {
 
     }
 
-
 }

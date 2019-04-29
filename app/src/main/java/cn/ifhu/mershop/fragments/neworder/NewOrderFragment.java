@@ -13,11 +13,16 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.gongwen.marqueen.SimpleMF;
+import com.gongwen.marqueen.SimpleMarqueeView;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.adapter.NewOrdersAdapter;
@@ -37,7 +42,8 @@ import cn.ifhu.mershop.utils.UserLogic;
  * @author fuhongliang
  */
 public class NewOrderFragment extends BaseFragment {
-
+    @BindView(R.id.simpleMarqueeView)
+    SimpleMarqueeView<String> simpleMarqueeView;
     @BindView(R.id.recycler_list)
     RecyclerView recyclerList;
     @BindView(R.id.layout_swipe_refresh)
@@ -47,6 +53,8 @@ public class NewOrderFragment extends BaseFragment {
     NewOrdersAdapter newOrdersAdapter;
     @BindView(R.id.rl_empty)
     RelativeLayout llEmpty;
+    @BindView(R.id.rl_marquee_view)
+    RelativeLayout rlMarqueeView;
     private List<OrderBean> mDatas;
     private ArrayList<String> reasonList;
 
@@ -163,6 +171,16 @@ public class NewOrderFragment extends BaseFragment {
         recyclerList.setAdapter(newOrdersAdapter);
         setRefreshLayout();
         getNewOrders();
+        setSimpleMarqueeView();
+    }
+
+    public void setSimpleMarqueeView() {
+        final List<String> datas = Arrays.asList("您有一笔新订单，系统已自动接单~", "您有一笔新订单，系统已自动接单~");
+        //SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
+        SimpleMF<String> marqueeFactory = new SimpleMF(getContext());
+        marqueeFactory.setData(datas);
+        simpleMarqueeView.setMarqueeFactory(marqueeFactory);
+        simpleMarqueeView.startFlipping();
     }
 
     @SuppressLint("ResourceAsColor")
@@ -190,5 +208,12 @@ public class NewOrderFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+
+    @OnClick(R.id.iv_close)
+    public void onViewClicked() {
+        simpleMarqueeView.stopFlipping();
+        rlMarqueeView.setVisibility(View.GONE);
     }
 }

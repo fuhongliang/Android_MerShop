@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.bugtags.library.Bugtags;
+import com.umeng.message.PushAgent;
 
 import cn.ifhu.mershop.dialog.loading.LoadingDialog;
 import cn.ifhu.mershop.utils.KeyBoardUtil;
@@ -22,6 +23,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {     //创建时的回调函数onCreate
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this);
+        PushAgent.getInstance(this).onAppStart();
     }
 
     @Override
