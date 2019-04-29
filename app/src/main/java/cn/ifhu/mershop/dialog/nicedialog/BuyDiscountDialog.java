@@ -48,11 +48,15 @@ public class BuyDiscountDialog extends BaseNiceDialog {
 
         holder.setOnClickListener(R.id.tv_cancel, v -> {
             dialog.dismiss();
+            if (buttonOnclick != null){
+                buttonOnclick.cancel();
+            }
         });
     }
 
 
     public interface ButtonOnclick{
         void ok(String amount);
+        void cancel();
     }
 }

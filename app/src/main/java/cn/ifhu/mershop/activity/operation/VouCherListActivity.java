@@ -1,8 +1,10 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,11 +25,13 @@ import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
 import cn.ifhu.mershop.bean.VouCherBean;
+import cn.ifhu.mershop.dialog.nicedialog.BuyDiscountDialog;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.utils.DialogUtils;
+import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -58,19 +62,19 @@ public class VouCherListActivity extends BaseActivity {
         ButterKnife.bind(this);
         tvTitle.setText("代金券管理");
         vouCherBeanList = new ArrayList<>();
-        vouCherAdapter = new VouCherAdapter(vouCherBeanList,this);
+        vouCherAdapter = new VouCherAdapter(vouCherBeanList, this);
         lvVoucher.setAdapter(vouCherAdapter);
         vouCherAdapter.setOnClickItem(new VouCherAdapter.OnClickItem() {
             @Override
             public void editDiscount(int position) {
-                Intent intent = new Intent(VouCherListActivity.this,AddVouCherActivity.class);
-                intent.putExtra("voucher_id",vouCherBeanList.get(position).getVoucher_id()+"");
+                Intent intent = new Intent(VouCherListActivity.this, AddVouCherActivity.class);
+                intent.putExtra("voucher_id", vouCherBeanList.get(position).getVoucher_id() + "");
                 startActivity(intent);
             }
 
             @Override
             public void deleteDiscount(int position) {
-                DialogUtils.showConfirmDialog("温馨提示","是否删除该代金券", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+                DialogUtils.showConfirmDialog("温馨提示", "是否删除该代金券", getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
                     @Override
                     public void cancel() {
 
@@ -85,10 +89,10 @@ public class VouCherListActivity extends BaseActivity {
         });
     }
 
-    public void getData(){
+    public void getData() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).getVoucherList(UserLogic.getUser().getStore_id()+"")
-                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<List<VouCherBean>>(true) {
+        RetrofitAPIManager.create(OperationService.class).getVoucherList(UserLogic.getUser().getStore_id() + "")
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<List<VouCherBean>>(false) {
             @Override
             protected void onApiComplete() {
                 setLoadingMessageIndicator(false);
@@ -98,18 +102,61 @@ public class VouCherListActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<List<VouCherBean>> t) throws Exception {
                 vouCherBeanList = t.getData();
                 vouCherAdapter.setvouCherBeanList(vouCherBeanList);
-                if (vouCherAdapter.getCount()>0){
+                if (vouCherAdapter.getCount() > 0) {
                     llEmpty.setVisibility(View.GONE);
-                }else {
+                } else {
                     llEmpty.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            protected void onCodeError(BaseEntity<List<VouCherBean>> t) throws Exception {
+                super.onCodeError(t);
+                if (t.getCode() == 2000) {
+                    showBuyVoucherQuanxianDialog();
                 }
             }
         });
     }
 
-    public void deleteDiscountItem(int position){
+    public void showBuyVoucherQuanxianDialog() {
+        View view = getLayoutInflater().inflate(R.layout.buy_discount_dialog, null);
+        DialogUtils.showBuyDiscountDialog(getSupportFragmentManager(), new BuyDiscountDialog.ButtonOnclick() {
+            @Override
+            public void ok(String amount) {
+                if (!StringUtils.isEmpty(amount)) {
+                    buyVoucherQuanxian(amount);
+                }
+                InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+            }
+
+            @Override
+            public void cancel() {
+                finish();
+            }
+        });
+    }
+
+    public void buyVoucherQuanxian(String month) {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).delVouCher(vouCherBeanList.get(position).getVoucher_id()+"",UserLogic.getUser().getStore_id()+"")
+        RetrofitAPIManager.create(OperationService.class).buy_voucher_quota(Integer.parseInt(month), UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage()).show();
+            }
+        });
+    }
+
+    public void deleteDiscountItem(int position) {
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).delVouCher(vouCherBeanList.get(position).getVoucher_id() + "", UserLogic.getUser().getStore_id() + "")
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -118,7 +165,7 @@ public class VouCherListActivity extends BaseActivity {
 
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
-                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                 vouCherBeanList.remove(position);
                 vouCherAdapter.setvouCherBeanList(vouCherBeanList);
             }

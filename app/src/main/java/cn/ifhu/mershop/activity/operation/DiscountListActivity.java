@@ -54,23 +54,24 @@ public class DiscountListActivity extends BaseActivity {
     RelativeLayout rlAddDiscount;
     DiscountAdapter discountAdapter;
     List<DiscountBean> discountBeanList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discount_list);
         ButterKnife.bind(this);
-        discountAdapter = new DiscountAdapter(discountBeanList,this);
+        discountAdapter = new DiscountAdapter(discountBeanList, this);
         discountAdapter.setOnClickItem(new DiscountAdapter.OnClickItem() {
             @Override
             public void editDiscount(int position) {
-                Intent intent = new Intent(DiscountListActivity.this,AddLimitDiscountsActivity.class);
-                intent.putExtra("xianshi_id",discountBeanList.get(position).getXianshi_id()+"");
+                Intent intent = new Intent(DiscountListActivity.this, AddLimitDiscountsActivity.class);
+                intent.putExtra("xianshi_id", discountBeanList.get(position).getXianshi_id() + "");
                 startActivity(intent);
             }
 
             @Override
             public void deleteDiscount(int position) {
-                DialogUtils.showConfirmDialog("温馨提示","是否删除该限时折扣", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+                DialogUtils.showConfirmDialog("温馨提示", "是否删除该限时折扣", getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
                     @Override
                     public void cancel() {
 
@@ -87,9 +88,9 @@ public class DiscountListActivity extends BaseActivity {
         tvTitle.setText("限时折扣");
     }
 
-    public void deleteDiscountItem(int position){
+    public void deleteDiscountItem(int position) {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).delDiscount(discountBeanList.get(position).getXianshi_id()+"",UserLogic.getUser().getStore_id()+"")
+        RetrofitAPIManager.create(OperationService.class).delDiscount(discountBeanList.get(position).getXianshi_id() + "", UserLogic.getUser().getStore_id() + "")
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -98,14 +99,14 @@ public class DiscountListActivity extends BaseActivity {
 
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
-                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+                ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
                 discountBeanList.remove(position);
                 discountAdapter.setDiscountBeanList(discountBeanList);
             }
         });
     }
 
-    public void getDiscountListData(){
+    public void getDiscountListData() {
         setLoadingMessageIndicator(true);
         RetrofitAPIManager.create(OperationService.class).getDiscountList(UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<List<DiscountBean>>(true) {
@@ -118,10 +119,18 @@ public class DiscountListActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<List<DiscountBean>> t) throws Exception {
                 discountBeanList = t.getData();
                 discountAdapter.setDiscountBeanList(discountBeanList);
-                if (discountAdapter.getCount()>0){
+                if (discountAdapter.getCount() > 0) {
                     llEmpty.setVisibility(View.GONE);
-                }else {
+                } else {
                     llEmpty.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            protected void onCodeError(BaseEntity<List<DiscountBean>> t) throws Exception {
+                super.onCodeError(t);
+                if (t.getCode() == 2000) {
+                    showBuyDiscountDialog();
                 }
             }
         });
@@ -134,24 +143,31 @@ public class DiscountListActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_discount)
     public void onRlAddDiscountClicked() {
-//        startActivity(new Intent(DiscountListActivity.this,AddLimitDiscountsActivity.class));
-        showBuyDiscountDialog();
+        startActivity(new Intent(DiscountListActivity.this,AddLimitDiscountsActivity.class));
     }
 
-    public void showBuyDiscountDialog(){
+    public void showBuyDiscountDialog() {
         View view = getLayoutInflater().inflate(R.layout.buy_discount_dialog, null);
-        DialogUtils.showBuyDiscountDialog(getSupportFragmentManager(), amount -> {
-            if (!StringUtils.isEmpty(amount)) {
-                buyDiscountQuanxian(amount);
+        DialogUtils.showBuyDiscountDialog(getSupportFragmentManager(), new BuyDiscountDialog.ButtonOnclick() {
+            @Override
+            public void ok(String amount) {
+                if (!StringUtils.isEmpty(amount)) {
+                    buyDiscountQuanxian(amount);
+                }
+                InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
             }
-            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-            mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
+            @Override
+            public void cancel() {
+                finish();
+            }
         });
     }
 
-    public void buyDiscountQuanxian(String month){
+    public void buyDiscountQuanxian(String month) {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).buyDiscount_quota(Integer.parseInt(month),UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OperationService.class).buyDiscount_quota(Integer.parseInt(month), UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {

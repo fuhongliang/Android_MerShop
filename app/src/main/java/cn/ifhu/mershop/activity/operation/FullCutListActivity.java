@@ -1,8 +1,10 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,11 +22,13 @@ import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.FullCutBean;
+import cn.ifhu.mershop.dialog.nicedialog.BuyDiscountDialog;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.utils.DialogUtils;
+import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -93,8 +97,53 @@ public class FullCutListActivity extends BaseActivity {
                     llEmpty.setVisibility(View.VISIBLE);
                 }
             }
+
+            @Override
+            protected void onCodeError(BaseEntity<List<FullCutBean>> t) throws Exception {
+                super.onCodeError(t);
+                if (t.getCode() == 2000) {
+                    showBuyFullCutQuanxianDialog();
+                }
+            }
         });
     }
+
+    public void showBuyFullCutQuanxianDialog() {
+        View view = getLayoutInflater().inflate(R.layout.buy_discount_dialog, null);
+        DialogUtils.showBuyDiscountDialog(getSupportFragmentManager(), new BuyDiscountDialog.ButtonOnclick() {
+            @Override
+            public void ok(String amount) {
+                if (!StringUtils.isEmpty(amount)) {
+                    buyFullCutQuanxian(amount);
+                }
+                InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+            }
+
+            @Override
+            public void cancel() {
+                finish();
+            }
+        });
+    }
+
+    public void buyFullCutQuanxian(String month) {
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).buy_mansong_quota(Integer.parseInt(month), UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage()).show();
+            }
+        });
+    }
+
+
 
     @Override
     protected void onResume() {
