@@ -20,6 +20,7 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.WebViewActivity;
 import cn.ifhu.mershop.activity.operation.DiscountListActivity;
 import cn.ifhu.mershop.activity.operation.DiscountPackageListActivity;
+import cn.ifhu.mershop.activity.operation.FinanceActivity;
 import cn.ifhu.mershop.activity.operation.FullCutListActivity;
 import cn.ifhu.mershop.activity.operation.ProductManageActivity;
 import cn.ifhu.mershop.activity.operation.ReviewListActivity;
@@ -66,6 +67,8 @@ public class OperationFragment extends BaseFragment {
     @BindView(R.id.tv_30_orderamount)
     TextView tv30Orderamount;
     OperationBean operationBean;
+    @BindView(R.id.ll_finance)
+    LinearLayout llFinance;
 
     public static OperationFragment newInstance() {
         return new OperationFragment();
@@ -160,5 +163,8 @@ public class OperationFragment extends BaseFragment {
 
     }
 
-
+    @OnClick(R.id.ll_finance)
+    public void onLlFinanceClicked() {
+        startActivity(new Intent(getContext(), FinanceActivity.class));
+    }
 }

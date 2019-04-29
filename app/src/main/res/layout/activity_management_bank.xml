@@ -15,12 +15,36 @@
         android:orientation="vertical"
         android:padding="15dp">
 
-        <ImageView
+        <RelativeLayout
+            android:id="@+id/rl_add_bank"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@drawable/bnt_tianjia_yhk" />
+            android:layout_height="170dp"
+            android:background="@drawable/bg_button_bank_border">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/icon_add_tj" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="65dp"
+                    android:text="添加银行卡"
+                    android:textColor="@color/colorPrimaryDark" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+
 
         <TextView
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
