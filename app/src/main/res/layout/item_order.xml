@@ -389,7 +389,7 @@
         android:background="@color/white">
 
         <TextView
-            android:id="@+id/btn_print"
+            android:id="@+id/tv_print"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"

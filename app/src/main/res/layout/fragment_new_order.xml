@@ -18,12 +18,14 @@
             android:textSize="20dp" />
 
         <ImageView
-            android:layout_width="17dp"
-            android:layout_height="17dp"
+            android:id="@+id/iv_notice"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:padding="15dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="18dp"
-            android:background="@drawable/home_xt_ts" />
+            android:layout_marginRight="3dp"
+            android:src="@drawable/home_xt_ts" />
     </RelativeLayout>
 
     <RelativeLayout

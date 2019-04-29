@@ -2,6 +2,7 @@ package cn.ifhu.mershop.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -9,6 +10,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.MainActivity;
+import cn.ifhu.mershop.activity.RegisterActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -45,9 +47,16 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         });
 
-        if (UserLogic.isLogin()){
+        if (UserLogic.isLogin()) {
             loginSuccess();
         }
+        TextView register = findViewById(R.id.tv_register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
     }
 
 

@@ -1,6 +1,7 @@
 package cn.ifhu.mershop.fragments.orders;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.notice.NoticeListActivity;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.view.RVPIndicator;
 
@@ -123,8 +125,13 @@ public class OrdersFragment extends BaseFragment {
         simpleMarqueeView.stopFlipping();
     }
 
+    @OnClick(R.id.iv_notice)
+    public void onIvNoticeClicked() {
+        startActivity(new Intent(getContext(), NoticeListActivity.class));
+    }
+
     @OnClick(R.id.iv_close)
-    public void onViewClicked() {
+    public void onIvCloseClicked() {
         simpleMarqueeView.stopFlipping();
         rlMarqueeView.setVisibility(View.GONE);
     }

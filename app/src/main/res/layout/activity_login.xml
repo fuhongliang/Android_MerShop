@@ -127,6 +127,7 @@
         android:textSize="17sp" />
 
     <TextView
+        android:id="@+id/tv_register"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_margin="15dp"

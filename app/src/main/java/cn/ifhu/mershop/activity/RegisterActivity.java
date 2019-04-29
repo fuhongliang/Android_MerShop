@@ -1,7 +1,6 @@
 package cn.ifhu.mershop.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +16,7 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.net.MeService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UserService;
@@ -48,7 +48,7 @@ public class RegisterActivity extends BaseActivity {
 
     public void getVerifyCode() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(UserService.class).checkMobile(etPhone.getText().toString().replaceAll(" ",""))
+        RetrofitAPIManager.create(MeService.class).getSms(etPhone.getText().toString().replaceAll(" ", ""))
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -91,7 +91,7 @@ public class RegisterActivity extends BaseActivity {
 
     public void memberRegister() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ",""), etPassword.getText().toString(), etVerification.getText().toString())
+        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
@@ -133,10 +133,15 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.btn_login)
+    @OnClick(R.id.tv_register)
     public void onBtnLoginClicked() {
         if (checkContent(true)) {
             memberRegister();
         }
+    }
+
+    @OnClick(R.id.iv_back)
+    public void onViewClicked() {
+        finish();
     }
 }
