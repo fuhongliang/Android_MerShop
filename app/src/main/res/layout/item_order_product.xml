@@ -25,6 +25,7 @@
             android:layout_marginTop="8dp"
             android:gravity="right"
             android:text="¥10.5"
+            android:layout_marginRight="15dp"
             android:textColor="#333333"
             android:textSize="16sp"
             />

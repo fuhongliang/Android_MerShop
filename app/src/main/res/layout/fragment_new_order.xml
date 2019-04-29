@@ -3,70 +3,115 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center"
-        android:text="新订单"
-        android:textColor="#ffffff"
-        android:background="@color/colorPrimaryDark"
-        android:textSize="18sp" />
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:text="新订单"
+            android:textColor="#ffffff"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="18dp"
+            android:background="@drawable/home_xt_ts" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#FDF6DB">
+
+        <ImageView
+            android:id="@+id/icon_tzz"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/home_xt_tzz" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="11dp"
+            android:layout_toRightOf="@id/icon_tzz"
+            android:text="您有一笔新订单，系统已自动接单~"
+            android:textColor="#F16A11"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/home_xt_gb" />
+    </RelativeLayout>
 
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/layout_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/line_bg"
-                />
+                android:background="@color/line_bg" />
+
             <RelativeLayout
+                android:id="@+id/rl_empty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#ffffff"
-                android:orientation="vertical"
                 android:layout_centerInParent="true"
-                android:id="@+id/rl_empty"
-                >
+                android:background="#ffffff"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_centerInParent="true"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
                     <ImageView
                         android:layout_width="125dp"
                         android:layout_height="129dp"
-                        android:background="@drawable/image_loding"
                         android:layout_gravity="center_horizontal"
-                        />
+                        android:background="@drawable/image_loding" />
+
                     <TextView
                         android:id="@+id/order"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="暂无订单"
-                        android:gravity="center_horizontal"
                         android:layout_marginTop="16dp"
-                        android:textSize="16dp"
+                        android:gravity="center_horizontal"
+                        android:text="暂无订单"
                         android:textColor="#333333"
-                        />
+                        android:textSize="16dp" />
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="想要获取更多的订单，快去看看促销管理吧～"
                         android:layout_below="@+id/order"
-                        android:gravity="center_horizontal"
                         android:layout_marginTop="5dp"
-                        android:textSize="13dp"
+                        android:gravity="center_horizontal"
+                        android:text="想要获取更多的订单，快去看看促销管理吧～"
                         android:textColor="#999999"
-                        />
+                        android:textSize="13dp" />
                 </LinearLayout>
             </RelativeLayout>
 
