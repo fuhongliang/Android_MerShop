@@ -32,7 +32,8 @@
             android:layout_width="wrap_content"
             android:layout_height="44dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="15dp">
+            android:layout_marginRight="15dp"
+            android:visibility="invisible">
 
             <TextView
                 android:id="@+id/rule"
@@ -75,6 +76,7 @@
                 android:textSize="13sp" />
 
             <TextView
+                android:id="@+id/tv_settlement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
@@ -83,6 +85,7 @@
                 android:textSize="26sp" />
 
             <TextView
+                android:id="@+id/tv_withdraw"
                 android:layout_width="60dp"
                 android:layout_height="33dp"
                 android:layout_alignParentEnd="true"
@@ -118,6 +121,7 @@
         </RelativeLayout>
         <!--银行卡-->
         <RelativeLayout
+            android:id="@+id/rl_add_bank"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_alignParentBottom="true"
@@ -128,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:text="中国工商银行（尾号8998）"
+                android:text="请添加银行卡"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -158,6 +162,7 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/tv_not_settlement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -176,6 +181,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
+            android:id="@+id/rl_financial_bill"
             android:layout_width="match_parent"
             android:layout_height="44dp">
 
@@ -192,15 +198,16 @@
             <ImageView style="@style/im_tongyong_jinru" />
 
         </RelativeLayout>
-        <ImageView
-            style="@style/dividing_line" />
+
+        <ImageView style="@style/dividing_line" />
+
         <ListView
+            android:id="@+id/lv_finance"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:divider="@null"
             android:dividerHeight="0dp"
-            tools:listitem="@layout/item_finance_bill"
-            />
+            tools:listitem="@layout/item_finance_bill" />
 
 
     </LinearLayout>
