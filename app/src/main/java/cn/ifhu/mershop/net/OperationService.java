@@ -159,4 +159,21 @@ public interface OperationService {
     public Observable<BaseEntity<Object>> delVouCher(@Field("voucher_id") String voucher_id, @Field("store_id") String store_id);
 
 
+    @FormUrlEncoded
+    @POST("add_xianshi_quota")
+    public Observable<BaseEntity<Object>> buyDiscount_quota(@Field("month") int month, @Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("add_mansong_quota")
+    public Observable<BaseEntity<Object>> buy_mansong_quota(@Field("month") int month, @Field("store_id") int store_id);
+
+
+    @FormUrlEncoded
+    @POST("add_bundling_quota")
+    public Observable<BaseEntity<Object>> buy_bundling_quota(@Field("month") int month, @Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("add_voucher_quota")
+    public Observable<BaseEntity<Object>> buy_voucher_quota(@Field("month") int month, @Field("store_id") int store_id);
+
 }

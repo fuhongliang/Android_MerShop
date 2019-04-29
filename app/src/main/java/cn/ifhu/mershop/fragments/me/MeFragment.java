@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.me.AboutUsActivity;
 import cn.ifhu.mershop.activity.me.AccountAndSafeActivity;
 import cn.ifhu.mershop.activity.me.FeedBackActivity;
 import cn.ifhu.mershop.activity.MainActivity;
@@ -162,7 +163,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.ll_about_us)
     public void onLlAboutUsClicked() {
-
+        startActivity(new Intent(getActivity(), AboutUsActivity.class));
     }
 
     @OnClick(R.id.btn_logout)

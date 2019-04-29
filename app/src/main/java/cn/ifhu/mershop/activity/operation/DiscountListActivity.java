@@ -1,9 +1,11 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,11 +25,15 @@ import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
+import cn.ifhu.mershop.bean.ProductManageBean;
+import cn.ifhu.mershop.dialog.nicedialog.BuyDiscountDialog;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmInputDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.utils.DialogUtils;
+import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -78,7 +84,6 @@ public class DiscountListActivity extends BaseActivity {
             }
         });
         lvDiscount.setAdapter(discountAdapter);
-        getDiscountListData();
         tvTitle.setText("限时折扣");
     }
 
@@ -129,6 +134,42 @@ public class DiscountListActivity extends BaseActivity {
 
     @OnClick(R.id.rl_add_discount)
     public void onRlAddDiscountClicked() {
-        startActivity(new Intent(DiscountListActivity.this,AddLimitDiscountsActivity.class));
+//        startActivity(new Intent(DiscountListActivity.this,AddLimitDiscountsActivity.class));
+        showBuyDiscountDialog();
+    }
+
+    public void showBuyDiscountDialog(){
+        View view = getLayoutInflater().inflate(R.layout.buy_discount_dialog, null);
+        DialogUtils.showBuyDiscountDialog(getSupportFragmentManager(), amount -> {
+            if (!StringUtils.isEmpty(amount)) {
+                buyDiscountQuanxian(amount);
+            }
+            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        });
+    }
+
+    public void buyDiscountQuanxian(String month){
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(OperationService.class).buyDiscount_quota(Integer.parseInt(month),UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage()).show();
+            }
+
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDiscountListData();
     }
 }

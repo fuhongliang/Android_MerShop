@@ -164,6 +164,7 @@ public class AddVouCherActivity extends BaseActivity {
         tvDate.setText(vouCherInfoBean.getVoucher_end_date() + "");
         etNumber.setText(vouCherInfoBean.getVoucher_total() + "");
         tvLimit.setText(vouCherInfoBean.getVoucher_eachlimit() + "");
+        limit = vouCherInfoBean.getVoucher_eachlimit();
         etDescription.setText(vouCherInfoBean.getVoucher_desc());
     }
 
@@ -252,8 +253,8 @@ public class AddVouCherActivity extends BaseActivity {
         }
 
 
-        if (StringUtils.isEmpty(etNumber.getText().toString().trim())) {
-            ToastHelper.makeText("请输入发放数量", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+        if (StringUtils.isEmpty(etNumber.getText().toString().trim()) || Integer.parseInt(etNumber.getText().toString().trim()) <= 0) {
+            ToastHelper.makeText("请输入大于0的发放数量", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
         }
 
