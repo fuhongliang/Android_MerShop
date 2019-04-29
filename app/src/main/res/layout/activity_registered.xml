@@ -5,17 +5,28 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="13dp"
+            android:background="@drawable/icon_fanhui" />
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="108dp"
-        android:text="欢迎您！"
+        android:layout_marginTop="80dp"
+        android:text="快速注册"
         android:textColor="#000000"
         android:textSize="28sp"
         android:typeface="normal" />
-
+    <!--手机号-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -28,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="账号"
+            android:text="手机号"
             android:textSize="17sp" />
 
         <EditText
@@ -38,10 +49,9 @@
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_account_numbe"
             android:background="@null"
-            android:hint="请输入账号/手机号"
-            android:inputType="text"
+            android:hint="请输入手机号码"
+            android:inputType="phone"
             android:maxLines="1"
-            android:text="test01"
             android:textColor="#999999" />
     </RelativeLayout>
 
@@ -51,7 +61,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="#CCCCCC" />
-
+    <!--密码-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -63,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="密码"
+            android:text="@string/password"
             android:textColor="#000000"
             android:textSize="17sp" />
 
@@ -71,14 +81,61 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="31dp"
+            android:layout_marginLeft="33dp"
             android:layout_toRightOf="@id/tv_password"
             android:background="@null"
             android:hint="请输入密码"
             android:inputType="textPassword"
             android:maxLines="1"
-            android:text="111111"
             android:textColor="#999999" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#CCCCCC" />
+    <!--验证码-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_verification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:text="验证码"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <EditText
+            android:id="@+id/et_verification"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="31dp"
+            android:layout_toLeftOf="@+id/tv_get_code"
+            android:layout_toRightOf="@id/tv_verification"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:maxLines="1"
+            android:textColor="#999999" />
+
+        <TextView
+            android:id="@+id/tv_get_code"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="获取验证码"
+            android:textColor="@color/colorPrimaryDark" />
     </RelativeLayout>
 
     <ImageView
@@ -99,14 +156,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="点击登陆及表示"
+            android:text="点击注册即表示同意"
             android:textColor="#666666"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="同意商户端平台管理协会"
+            android:text="《邻邻发入驻协议》"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="14sp" />
     </LinearLayout>
@@ -117,7 +174,7 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="51dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/bu_button_blue"
         android:gravity="center"
@@ -125,17 +182,4 @@
         android:text="登录"
         android:textColor="#ffffff"
         android:textSize="17sp" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_margin="15dp"
-        android:background="@drawable/bg_button_registered"
-        android:gravity="center"
-        android:stateListAnimator="@null"
-        android:text="注册开店"
-        android:textColor="@color/black"
-        android:textSize="17sp" />
-
-
 </LinearLayout>

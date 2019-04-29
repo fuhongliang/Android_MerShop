@@ -21,6 +21,7 @@ public class LaunchActivity extends AppCompatActivity {
             } else {
                 startActivity(new Intent(LaunchActivity.this, LoginActivity.class));
             }
+            LaunchActivity.this.finish();
         },1000);
 
     }

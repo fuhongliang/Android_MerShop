@@ -16,7 +16,9 @@
         <item>Ten</item>
     </array>
 
-    <string name="shop_reply"><Data><![CDATA[<font color="#1C98F6">商家回复：</font> %s]]></Data></string>
-    <string name="file_provider_authorities">com.yalantis.ucrop.provider</string>
+    <string name="shop_reply" translatable="false"><Data><![CDATA[<font color="#1C98F6">商家回复：</font> %s]]></Data></string>
+    <string name="file_provider_authorities" translatable="false">com.yalantis.ucrop.provider</string>
+    <string name="password" translatable="false">密&#160;&#160;&#160;&#160;码</string>
+    <string name="get_code_again" translatable="false">%d s后重新获取</string>
 
 </resources>

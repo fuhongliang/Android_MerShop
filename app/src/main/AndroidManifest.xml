@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activity.RegisterActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" >
+        </activity>
         <activity android:name=".activity.LaunchActivity"
             >
             <intent-filter>
@@ -117,6 +120,7 @@
             android:name=".activity.operation.AddDiscountPackageActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.me.PrintingSettingsActivity" />
+
     </application>
 
 </manifest>
