@@ -15,7 +15,7 @@ public class AboutUsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_setup);
+        setContentView(R.layout.activity_about_me);
         ButterKnife.bind(this);
     }
 
