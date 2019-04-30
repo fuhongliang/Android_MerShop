@@ -123,6 +123,7 @@
         <activity android:name=".activity.operation.AddBankActivity" />
         <activity android:name=".activity.notice.NoticeListActivity" />
         <activity android:name=".activity.financial.BillsListActivity"/>
+        <activity android:name=".activity.operation.BindingSuccessActivity"/>
     </application>
 
 </manifest>

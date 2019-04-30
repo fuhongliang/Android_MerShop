@@ -79,6 +79,7 @@
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请输入银行卡号"
+                android:maxLength="19"
                 android:inputType="number"
                 android:textColor="@color/hint_text_color"
                 android:textSize="17sp" />
@@ -103,7 +104,7 @@
             <include layout="@layout/layout_star" />
 
             <EditText
-                android:id="@+id/et_bank_account"
+                android:id="@+id/et_bank_address"
                 style="@style/base_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -134,6 +135,7 @@
             <include layout="@layout/layout_star" />
 
             <TextView
+                android:id="@+id/tv_bank_name"
                 style="@style/base_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -170,15 +172,16 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_save"
+    <TextView
+        android:id="@+id/tv_save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/bg_button_blue"
         android:stateListAnimator="@null"
+        android:gravity="center"
         android:text="完成"
         android:textColor="#ffffff"
         android:textSize="17sp" />

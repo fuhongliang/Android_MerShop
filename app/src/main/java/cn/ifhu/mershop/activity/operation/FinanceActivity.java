@@ -3,6 +3,7 @@ package cn.ifhu.mershop.activity.operation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import cn.ifhu.mershop.base.BaseActivity;
  * @author fuhongliang
  */
 public class FinanceActivity extends BaseActivity {
+
 
     @BindView(R.id.iv_back)
     ImageView ivBack;
@@ -36,10 +38,10 @@ public class FinanceActivity extends BaseActivity {
     RelativeLayout rlAddBank;
     @BindView(R.id.tv_not_settlement)
     TextView tvNotSettlement;
-    @BindView(R.id.tv_bill)
-    TextView tvBill;
     @BindView(R.id.rl_financial_bill)
     RelativeLayout rlFinancialBill;
+    @BindView(R.id.lv_finance)
+    ListView lvFinance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +49,6 @@ public class FinanceActivity extends BaseActivity {
         setContentView(R.layout.activity_finance_settlement);
         ButterKnife.bind(this);
         tvTitle.setText("财务结算");
-
     }
 
     @OnClick(R.id.iv_back)
@@ -60,13 +61,10 @@ public class FinanceActivity extends BaseActivity {
     public void onTvSettlementClicked() {
     }
 
-
     @OnClick(R.id.rl_add_bank)
     public void onRlAddBankClicked() {
         startActivity(new Intent(FinanceActivity.this,ManageBankActivity.class));
     }
-
-
     @OnClick(R.id.rl_financial_bill)
     public void onRlFinancialBillClicked() {
         startActivity(new Intent(FinanceActivity.this, BillsListActivity.class));
