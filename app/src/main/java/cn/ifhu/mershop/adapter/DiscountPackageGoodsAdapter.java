@@ -75,7 +75,7 @@ public class DiscountPackageGoodsAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.ivProductImage.load(mDataList.get(position).getImg_path() + "/" + mDataList.get(position).getImg_name());
+        viewHolder.ivProductImage.load(Constants.IMGPATH + mDataList.get(position).getImg_name());
         viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
 
         viewHolder.tvPrice.setText("原价:￥" + mDataList.get(position).getGoods_price());

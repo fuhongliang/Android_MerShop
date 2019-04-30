@@ -19,17 +19,27 @@ import java.util.TimeZone;
  */
 
 public class DateUtil {
-
+    public static final String YEAR_MONTH_FORMAT = "yyyy-MM";
     public static final String YEAR_MONTH_DAY_FORMAT = "yyyy-MM-dd";
     public static final String YEAR_MONTH_DAY_MINUTE = "yyyy-MM-dd hh:mm";
 
-    public static String getDateToString(Date date){
+    public static String getCurDateMonth() {
+        DateTime dateTime = new DateTime(new Date());
+        return dateTime.toString(YEAR_MONTH_FORMAT);
+    }
+
+    public static String getCurDateMonth(Date date) {
+        DateTime dateTime = new DateTime(date);
+        return dateTime.toString(YEAR_MONTH_FORMAT);
+    }
+
+    public static String getDateToString(Date date) {
         DateTime dateTime = new DateTime(date);
         return dateTime.toString(YEAR_MONTH_DAY_MINUTE);
     }
 
-    public static String getLongToString(Long date){
-        DateTime dateTime = new DateTime(date*1000L);
+    public static String getLongToString(Long date) {
+        DateTime dateTime = new DateTime(date * 1000L);
         return dateTime.toString(YEAR_MONTH_DAY_FORMAT);
     }
 
@@ -47,5 +57,6 @@ public class DateUtil {
             return false;
         }
     }
+
 
 }

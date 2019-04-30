@@ -21,7 +21,6 @@ public interface UserService {
 
     @FormUrlEncoded
     @POST("member_register")
-    public Observable<BaseEntity<Object>> memberRegister(@Field("mobile") String  mobile,@Field("password") String  password,@Field("verify_code") String  verify_code);
-
+    public Observable<BaseEntity<Object>> memberRegister(@Field("mobile") String  mobile,@Field("password") String  password,@Field("verify_code") String  verify_code,String app_type,String device_tokens);
 
 }

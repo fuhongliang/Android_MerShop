@@ -13,6 +13,7 @@
         android:layout_marginRight="15dp">
 
         <TextView
+            android:id="@+id/tv_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4月份"
@@ -20,6 +21,7 @@
             android:textSize="17sp" />
 
         <TextView
+            android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -34,6 +36,7 @@
         android:layout_marginBottom="15dp">
 
         <TextView
+            android:id="@+id/tv_card_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="结算尾号：1885"
@@ -41,6 +44,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:id="@+id/tv_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"

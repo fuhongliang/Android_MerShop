@@ -20,8 +20,11 @@ import cn.ifhu.mershop.net.MeService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UserService;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
+
+import static cn.ifhu.mershop.utils.Constants.DEVICETOKEN;
 
 /**
  * @author fuhongliang
@@ -91,7 +94,7 @@ public class RegisterActivity extends BaseActivity {
 
     public void memberRegister() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString())
+        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString(),"安卓", IrReference.getInstance().getString(DEVICETOKEN,""))
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {

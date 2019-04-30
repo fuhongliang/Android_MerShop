@@ -30,7 +30,11 @@ public class Constants {
 
     public static final int UNLIMITED = 99999999;
 
+    public static final String DEVICETOKEN = "deviceToken";
+
 
     public static final String ORDERPRINTING = "ORDERPRINTING";
+
+    public static final String IMGPATH = "http://pqk40fvkr.bkt.clouddn.com/";
 
 }
