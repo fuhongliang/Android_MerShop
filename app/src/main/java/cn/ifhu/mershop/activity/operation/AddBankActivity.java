@@ -1,5 +1,6 @@
 package cn.ifhu.mershop.activity.operation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,7 +49,7 @@ public class AddBankActivity extends BaseActivity {
 
     public boolean checkEmpty() {                                       //public为公开的 void是没有返回数据 方法名称(){}
         if (StringUtils.isEmpty(etName.getText().toString())) {         //判断输入框是否为空、StingUtils是封装好了的.isEmpty(控件的命名.get类型().toString装换为字符串)
-            ToastHelper.makeText("请输入姓名").show();                    //为空的话提示用户ToastHelper.amkeText("提示").显示
+            ToastHelper.makeText("请输入姓名").show();                    //为空的话提示用户ToastHelper.makeText("提示").显示
             return false;                                                //返回值
         }
 
@@ -66,7 +67,7 @@ public class AddBankActivity extends BaseActivity {
 
     public void addBankAccount() {                                        //调用方法
         if (checkEmpty()) {                                               //如果方法
-            setLoadingMessageIndicator(true);
+            setLoadingMessageIndicator(true);           //加载(真)
             //                         接口字段的文件.class        接口名称(自定义)       从用户登录时保存用户的店铺id。ID为int型需要转换为string型
             RetrofitAPIManager.create(OperationService.class).add_bank_account(UserLogic.getUser().getStore_id() + "",
                     etName.getText().toString(),                            //控件命名.get文本框().to类型，
@@ -83,10 +84,9 @@ public class AddBankActivity extends BaseActivity {
                         @Override
                         protected void onSuccees(BaseEntity t) throws Exception {   //protected void  自动生成(command N)
                             ToastHelper.makeText(t.getMessage()).show();      //提示.makeText(t.getMessage()封装好了).show();
-                            finish();
+                            startActivity(new Intent(AddBankActivity.this,BindingSuccessActivity.class));
                         }
                     });
-
         }
     }
 

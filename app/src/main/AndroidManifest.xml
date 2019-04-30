@@ -122,6 +122,7 @@
         <activity android:name=".activity.operation.ManageBankActivity"/>
         <activity android:name=".activity.operation.AddBankActivity"/>
         <activity android:name=".activity.notice.NoticeListActivity" />
+        <activity android:name=".activity.operation.BindingSuccessActivity"/>
     </application>
 
 </manifest>
