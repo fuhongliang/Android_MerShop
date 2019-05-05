@@ -149,7 +149,7 @@ public class DiscountAddProductActivity extends BaseActivity {
 
     public void getData(int class_id) {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(OperationService.class).goodsList(UserLogic.getUser().getStore_id(), class_id)
+        RetrofitAPIManager.create(OperationService.class).getXianshiGoodsList(UserLogic.getUser().getStore_id(), class_id)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ProductManageBean>(true) {
 
             @Override

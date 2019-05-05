@@ -26,7 +26,7 @@ public class BindingSuccessActivity extends BaseActivity {
     @BindView(R.id.btn_save)
     Button btnSave;
 
- int count = 3;
+    int count = 3;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -34,15 +34,16 @@ public class BindingSuccessActivity extends BaseActivity {
             count--;
 
             if (count == 0) {
-                startActivity(new Intent(BindingSuccessActivity.this,FinanceActivity.class));
+                startActivity(new Intent(BindingSuccessActivity.this, FinanceActivity.class));
             } else {
                 handler.sendEmptyMessageDelayed(1, 1000);
-                btnSave.setText("返回(" + count +")");
+                btnSave.setText("返回(" + count + ")");
             }
 
         }
     };
     private Button btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +59,7 @@ public class BindingSuccessActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(BindingSuccessActivity.this,FinanceActivity.class));
+                startActivity(new Intent(BindingSuccessActivity.this, FinanceActivity.class));
 
                 handler.removeMessages(1);
             }
@@ -66,6 +67,7 @@ public class BindingSuccessActivity extends BaseActivity {
 
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

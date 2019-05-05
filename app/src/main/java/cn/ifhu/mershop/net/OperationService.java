@@ -177,6 +177,17 @@ public interface OperationService {
     public Observable<BaseEntity<Object>> buy_voucher_quota(@Field("month") int month, @Field("store_id") int store_id);
 
     @FormUrlEncoded
+    @POST("pd_cash_list")
+    public Observable<BaseEntity<Object>> pdCashList(@Field("keyword") String keyword, @Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("all_store_jiesuan")
+    public Observable<BaseEntity<Object>> allStoreJiesuan(@Field("keyword") String keyword, @Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("xianshi_goods_list")
+    public Observable<BaseEntity<ProductManageBean>> getXianshiGoodsList(@Field("store_id") int store_id, @Field("class_id") int class_id);
+
     @POST("add_bank_account")
     public Observable<BaseEntity<Object>> add_bank_account(@Field("store_id") String store_id, @Field("account_name") String account_name,@Field("account_number") String account_number,@Field("bank_name") String bank_name,@Field("bank_type") String bank_type);
 

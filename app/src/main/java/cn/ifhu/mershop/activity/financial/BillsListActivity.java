@@ -1,22 +1,71 @@
 package cn.ifhu.mershop.activity.financial;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
+import cn.ifhu.mershop.fragments.operation.SettledFragment;
+import cn.ifhu.mershop.fragments.operation.WithdrawFragment;
+import cn.ifhu.mershop.fragments.reviews.AllReviewFragment;
+import cn.ifhu.mershop.fragments.reviews.NeedReplyReviewFragment;
+import cn.ifhu.mershop.view.RVPIndicator;
 
 /**
  * @author fuhongliang
  */
 public class BillsListActivity extends BaseActivity {
 
+    @BindView(R.id.tv_title)
+    TextView tvTitle;
+    @BindView(R.id.rvp_indicator)
+    RVPIndicator rvpIndicator;
+    @BindView(R.id.indicator)
+    LinearLayout indicator;
+    @BindView(R.id.vp_content)
+    ViewPager vpContent;
+    private List<String> mList = Arrays.asList("已结算", "已提现");
+    FragmentPagerAdapter mAdapter;
+    private List<Fragment> mFragmentArrayList = new ArrayList<Fragment>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_me);
+        setContentView(R.layout.activity_bills_list);
         ButterKnife.bind(this);
+        tvTitle.setText("全部账单");
+        mFragmentArrayList.add(SettledFragment.newInstance());
+        mFragmentArrayList.add(WithdrawFragment.newInstance());
+        initViewPager();
+    }
+
+    public void initViewPager() {
+        mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @Override
+            public int getCount() {
+                return mFragmentArrayList.size();
+            }
+
+            @Override
+            public Fragment getItem(int position) {
+                return mFragmentArrayList.get(position);
+            }
+        };
+        rvpIndicator.setTitleList(mList);
+        vpContent.setOffscreenPageLimit(3);
+        vpContent.setAdapter(mAdapter);
+        rvpIndicator.setViewPager(vpContent, 0);
     }
 
 

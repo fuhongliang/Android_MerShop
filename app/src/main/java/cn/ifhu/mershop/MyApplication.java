@@ -14,7 +14,9 @@ import cn.ifhu.mershop.base.AppInfo;
 import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.ProductLogic;
 
+import static cn.ifhu.mershop.utils.Constants.DEVICETOKEN;
 import static cn.ifhu.mershop.utils.Constants.TAGBUGKEY;
+import static cn.ifhu.mershop.utils.Constants.USER;
 
 
 /**
@@ -59,6 +61,8 @@ public class MyApplication extends Application {
             public void onSuccess(String deviceToken) {
                 //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
                 Log.i("mPushAgent", "注册成功：deviceToken：-------->  " + deviceToken);
+                IrReference.getInstance().saveString(DEVICETOKEN, deviceToken);
+
             }
 
             @Override

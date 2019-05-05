@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.financial.BillsListActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
@@ -82,22 +83,23 @@ public class FinanceActivity extends BaseActivity {
         });
     }
 
-
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
+    public void onViewClicked() {
         finish();
     }
 
-    @OnClick(R.id.tv_withdraw)
-    public void onTvWithdrawClicked() {
+
+    @OnClick(R.id.tv_settlement)
+    public void onTvSettlementClicked() {
     }
 
     @OnClick(R.id.rl_add_bank)
     public void onRlAddBankClicked() {
         startActivity(new Intent(FinanceActivity.this, ManageBankActivity.class));
     }
-
     @OnClick(R.id.rl_financial_bill)
     public void onRlFinancialBillClicked() {
+        startActivity(new Intent(FinanceActivity.this, BillsListActivity.class));
     }
 }

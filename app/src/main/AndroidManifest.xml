@@ -125,6 +125,14 @@
         <activity android:name=".activity.operation.BindingSuccessActivity" />
         <activity android:name=".activity.operation.ReleaseBankActivity" />
         <activity android:name=".activity.operation.AccoutInformationActivity" />
+        <activity
+            android:name=".activity.operation.FinanceActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".activity.operation.ManageBankActivity" />
+        <activity android:name=".activity.operation.AddBankActivity" />
+        <activity android:name=".activity.notice.NoticeListActivity" />
+        <activity android:name=".activity.financial.BillsListActivity" />
+        <activity android:name=".activity.operation.BindingSuccessActivity" />
     </application>
 
 </manifest>

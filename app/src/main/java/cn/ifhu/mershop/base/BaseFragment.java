@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cn.ifhu.mershop.dialog.loading.LoadingDialog;
 import cn.ifhu.mershop.utils.Utils;
 
 /**
@@ -108,6 +109,18 @@ public abstract class BaseFragment extends Fragment {
      */
     protected void popFragment() {
         getHoldingActivity().popFragment();
+    }
+
+    /**
+     * 是否显示加载提示
+     * @param active 是否激活
+     */
+    public void setLoadingMessageIndicator(boolean active) {
+        if (active) {
+            LoadingDialog.progressShow(getHoldingActivity());
+        } else {
+            LoadingDialog.progressCancel();
+        }
     }
 
 }
