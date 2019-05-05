@@ -215,7 +215,7 @@ public interface OperationService {
 
     @FormUrlEncoded
     @POST("pd_cash_add")
-    public Observable<BaseEntity<Object>>pdCashAdd(@Field("store_id") String store_id,@Field("money") String money);
+    public Observable<BaseEntity<Object>> pdCashAdd(@Field("store_id") String store_id,@Field("money") String money);
 
 
 }

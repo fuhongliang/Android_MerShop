@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.umeng.commonsdk.debug.W;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -28,6 +30,31 @@ public class WithdrawSuccessActivity extends BaseActivity {
     Button btnSave;
 
     int count = 3;
+
+    private Button btn;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_withdraw_successk);
+        ButterKnife.bind(this);
+        tvTitle.setText("提现详情");
+        btn = (Button) findViewById(R.id.btn_save);
+
+
+        handler.sendEmptyMessage(1);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(WithdrawSuccessActivity.this, FinanceActivity.class));
+
+                handler.sendEmptyMessage(1);
+            }
+        });
+
+    }
+
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -43,15 +70,6 @@ public class WithdrawSuccessActivity extends BaseActivity {
 
         }
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_withdraw_successk);
-        ButterKnife.bind(this);
-        tvTitle.setText("提现详情");
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -72,6 +90,5 @@ public class WithdrawSuccessActivity extends BaseActivity {
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
         startActivity(new Intent(WithdrawSuccessActivity.this, FinanceActivity.class));
-
     }
 }
