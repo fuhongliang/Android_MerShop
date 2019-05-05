@@ -13,12 +13,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.financial.BillsListActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 
 /**
  * @author fuhongliang
  */
-public class BindingSuccessActivity extends BaseActivity {
+public class WithdrawSuccessActivity extends BaseActivity {
     @BindView(R.id.iv_back)
     ImageView ivBack;
     @BindView(R.id.tv_title)
@@ -27,32 +28,6 @@ public class BindingSuccessActivity extends BaseActivity {
     Button btnSave;
 
     int count = 3;
-
-    private Button btn;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_binding_successk);
-        ButterKnife.bind(this);
-        tvTitle.setText("绑定成功");
-        btn = (Button) findViewById(R.id.btn_save);
-
-
-        handler.sendEmptyMessage(1);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                startActivity(new Intent(BindingSuccessActivity.this, FinanceActivity.class));
-
-                handler.sendEmptyMessage(1);
-            }
-        });
-
-    }
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -60,7 +35,7 @@ public class BindingSuccessActivity extends BaseActivity {
             count--;
 
             if (count == 0) {
-                startActivity(new Intent(BindingSuccessActivity.this, FinanceActivity.class));
+                startActivity(new Intent(WithdrawSuccessActivity.this, FinanceActivity.class));
             } else {
                 handler.sendEmptyMessageDelayed(1, 1000);
                 btnSave.setText("返回(" + count + ")");
@@ -68,6 +43,15 @@ public class BindingSuccessActivity extends BaseActivity {
 
         }
     };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_withdraw_successk);
+        ButterKnife.bind(this);
+        tvTitle.setText("提现详情");
+
+    }
 
     @Override
     protected void onDestroy() {
@@ -87,6 +71,7 @@ public class BindingSuccessActivity extends BaseActivity {
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
+        startActivity(new Intent(WithdrawSuccessActivity.this, FinanceActivity.class));
 
     }
 }

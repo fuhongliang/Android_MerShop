@@ -41,8 +41,7 @@ public class ManageBankActivity extends BaseActivity {
 
 
     @OnClick(R.id.rl_add_bank)
-    public void onRlAddBankwClicked() {
+    public void onlAddBankClicked() {
         startActivity(new Intent(ManageBankActivity.this,AddBankActivity.class));
-
     }
 }
