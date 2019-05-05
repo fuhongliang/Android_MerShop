@@ -69,7 +69,7 @@ public class AddBankActivity extends BaseActivity {
         if (checkEmpty()) {                                               //如果方法
             setLoadingMessageIndicator(true);           //加载(真)
             //                         接口字段的文件.class        接口名称(自定义)       从用户登录时保存用户的店铺id。ID为int型需要转换为string型
-            RetrofitAPIManager.create(OperationService.class).add_bank_account(UserLogic.getUser().getStore_id() + "",
+            RetrofitAPIManager.create(OperationService.class).add_bank_account(UserLogic.getUser().getStore_id() + "",      //上传数据到后台
                     etName.getText().toString(),                            //控件命名.get文本框().to类型，
                     etBankNumber.getText().toString(),
                     etBankAddress.getText().toString(),
@@ -81,7 +81,7 @@ public class AddBankActivity extends BaseActivity {
                             setLoadingMessageIndicator(false);
                         }
 
-                        @Override
+                        @Override //从后台获取数据的方法(成功之后)
                         protected void onSuccees(BaseEntity t) throws Exception {   //protected void  自动生成(command N)
                             ToastHelper.makeText(t.getMessage()).show();      //提示.makeText(t.getMessage()封装好了).show();
                             startActivity(new Intent(AddBankActivity.this,BindingSuccessActivity.class));

@@ -25,7 +25,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".activity.RegisterActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.LaunchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +48,7 @@
         <activity android:name=".activity.operation.SortCategoryActivity" />
         <activity
             android:name=".activity.login.LoginActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.TestActivity" />
         <activity
             android:name=".activity.me.StoreSetUpActivity"
@@ -118,11 +118,13 @@
             android:name=".activity.operation.AddDiscountPackageActivity"
             android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity android:name=".activity.me.PrintingSettingsActivity" />
-        <activity android:name=".activity.operation.FinanceActivity"/>
-        <activity android:name=".activity.operation.ManageBankActivity"/>
-        <activity android:name=".activity.operation.AddBankActivity"/>
+        <activity android:name=".activity.operation.FinanceActivity" />
+        <activity android:name=".activity.operation.ManageBankActivity" />
+        <activity android:name=".activity.operation.AddBankActivity" />
         <activity android:name=".activity.notice.NoticeListActivity" />
-        <activity android:name=".activity.operation.BindingSuccessActivity"/>
+        <activity android:name=".activity.operation.BindingSuccessActivity" />
+        <activity android:name=".activity.operation.ReleaseBankActivity" />
+        <activity android:name=".activity.operation.AccoutInformationActivity" />
     </application>
 
 </manifest>

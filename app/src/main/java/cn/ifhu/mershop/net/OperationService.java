@@ -180,4 +180,21 @@ public interface OperationService {
     @POST("add_bank_account")
     public Observable<BaseEntity<Object>> add_bank_account(@Field("store_id") String store_id, @Field("account_name") String account_name,@Field("account_number") String account_number,@Field("bank_name") String bank_name,@Field("bank_type") String bank_type);
 
+    @FormUrlEncoded
+    @POST("bank_account_list")
+    public Observable<BaseEntity<Object>> bankAccountList(@Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("del_bank_account")
+    public Observable<BaseEntity<Object>> delBankAccount(@Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("store_jiesuan")
+    public Observable<BaseEntity<Object>> storeJiesuan(@Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("bank_account_info")
+    public Observable<BaseEntity<Object>> bankAccountInfo(@Field("store_id") int store_id);
+
+
 }
