@@ -63,30 +63,29 @@ public class SettledAdapter extends BaseAdapter {
         viewHolder.tvMonth.setText(mDataList.get(position).getOs_month() + "月份");
         viewHolder.tvCardNo.setText("结算尾号：" + mDataList.get(position).getOb_no());
         viewHolder.tvMoney.setText("￥" + mDataList.get(position).getAmount());
-        viewHolder.tvState.setText(getState(mDataList.get(position).getState()));
-        return convertView;
-    }
-
-    public String getState(String state) {
-        String stateString;
-        switch (state) {
+        switch (mDataList.get(position).getState()) {
             case "1":
-                stateString = "已出账";
+                viewHolder.tvState.setText("已出账");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.peisongzhong_text_color));
                 break;
             case "2":
-                stateString = "已确认";
-            break;
+                viewHolder.tvState.setText("已确认");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.yiwangcheng_text_color));
+                break;
             case "3":
-                stateString = "已审核";
-            break;
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.yiwangcheng_text_color));
+                viewHolder.tvState.setText("已审核");
+                break;
             case "4":
-                stateString = "已完成";
-            break;
+                viewHolder.tvState.setText("已完成");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.yiquxiao_text_color));
+                break;
             default:
-                stateString = "已出账";
-            break;
+                viewHolder.tvState.setText("已出账");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.peisongzhong_text_color));
+                break;
         }
-        return stateString;
+        return convertView;
     }
 
     static class ViewHolder {
