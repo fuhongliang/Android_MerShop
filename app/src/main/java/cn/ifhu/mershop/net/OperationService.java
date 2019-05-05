@@ -15,6 +15,7 @@ import cn.ifhu.mershop.bean.EditGoodsBean;
 import cn.ifhu.mershop.bean.FinanceBean;
 import cn.ifhu.mershop.bean.FullCutBean;
 import cn.ifhu.mershop.bean.FullCutPostBean;
+import cn.ifhu.mershop.bean.JSBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.ReleaseBankBean;
@@ -23,6 +24,7 @@ import cn.ifhu.mershop.bean.ValueBean;
 import cn.ifhu.mershop.bean.ValuePostBean;
 import cn.ifhu.mershop.bean.VouCherBean;
 import cn.ifhu.mershop.bean.VouCherInfoBean;
+import cn.ifhu.mershop.bean.WithDrawBean;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
@@ -181,11 +183,11 @@ public interface OperationService {
 
     @FormUrlEncoded
     @POST("pd_cash_list")
-    public Observable<BaseEntity<Object>> pdCashList(@Field("keyword") String keyword, @Field("store_id") int store_id);
+    public Observable<BaseEntity<WithDrawBean>> pdCashList(@Field("keyword") String keyword, @Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("all_store_jiesuan")
-    public Observable<BaseEntity<Object>> allStoreJiesuan(@Field("keyword") String keyword, @Field("store_id") int store_id);
+    public Observable<BaseEntity<JSBean>> allStoreJiesuan(@Field("keyword") String keyword, @Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("xianshi_goods_list")
