@@ -3,7 +3,7 @@ package cn.ifhu.mershop.bean;
 /**
  * @author fuhongliang
  */
-public class BaseEntity<T> {
+public class BaseReponse {
 
     public static int SUCCESS_CODE = 200;
     public static int TOKENMISSION_CODE = 3001;
@@ -12,7 +12,7 @@ public class BaseEntity<T> {
 
     public int code = 0;
     public String msg;
-    public T data;
+
 
 
 
@@ -44,14 +44,6 @@ public class BaseEntity<T> {
 
     public void setMessage(String message) {
         this.msg = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }
 

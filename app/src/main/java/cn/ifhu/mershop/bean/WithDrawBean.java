@@ -3,51 +3,47 @@ package cn.ifhu.mershop.bean;
 import java.util.List;
 
 /**
+ * 提现
  * @author fuhongliang
  */
 public class WithDrawBean {
     /**
-     * list : []
+     * data : []
      * balance : 0.00
      * total_amount : 0
      */
 
-//    private String balance;
-//    private int total_amount;
-    private List<ListBean> list;
+    public String balance;
+    public int total_amount;
+    public List<ListBean> data;
 
-//    public String getBalance() {
-//        return balance;
-//    }
-//
-//    public void setBalance(String balance) {
-//        this.balance = balance;
-//    }
-//
-//    public int getTotal_amount() {
-//        return total_amount;
-//    }
-//
-//    public void setTotal_amount(int total_amount) {
-//        this.total_amount = total_amount;
-//    }
 
-    public List<ListBean> getList() {
-        return list;
+
+    public String getBalance() {
+        return balance;
     }
 
-    public void setList(List<ListBean> list) {
-        this.list = list;
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 
-    /**
-     * list : [{"amount":"6.00","payment_state":"0","add_time":1556249270,"bank_no":"123456"}]
-     * balance : 9993.00
-     * total_amount : 6.00
-     */
+    public int getTotal_amount() {
+        return total_amount;
+    }
 
+    public void setTotal_amount(int total_amount) {
+        this.total_amount = total_amount;
+    }
 
-    public class ListBean{
+    public List<ListBean> getData() {
+        return data;
+    }
+
+    public void setData(List<ListBean> data) {
+        this.data = data;
+    }
+
+    public static class ListBean{
         String amount;
         String payment_state;
         long add_time;

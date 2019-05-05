@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ import cn.ifhu.mershop.adapter.SettledAdapter;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.JSBean;
 import cn.ifhu.mershop.bean.WithDrawBean;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
@@ -52,7 +54,7 @@ public class SettledFragment extends BaseFragment {
     ListView listView;
     Unbinder unbinder;
     SettledAdapter settledAdapter;
-    List<WithDrawBean.ListBean> listBeans = new ArrayList<>();
+    List<JSBean.ListBean> listBeans = new ArrayList<>();
     private TimePickerView pvTime;
 
     public static SettledFragment newInstance() {
@@ -67,23 +69,22 @@ public class SettledFragment extends BaseFragment {
     public void getAllSettledData(String date) {
         if (!StringUtils.isEmpty(date)) {
             setLoadingMessageIndicator(true);
-            RetrofitAPIManager.create(OperationService.class).pdCashList("", UserLogic.getUser().getStore_id())
-                    .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<WithDrawBean>(true) {
+            RetrofitAPIManager.create(OperationService.class).allStoreJiesuan("", UserLogic.getUser().getStore_id())
+                    .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<JSBean>(true) {
                 @Override
                 protected void onApiComplete() {
                     setLoadingMessageIndicator(false);
                 }
 
                 @Override
-                protected void onSuccees(BaseEntity<WithDrawBean> t) throws Exception {
-//                    if (t.getData().getList() !=null && t.getData().getList().size()>0){
-//                        settledAdapter.setmDataList(t.getData().getList());
-//                    }
-//                    initData(t.getData());
+                protected void onSuccees(BaseEntity<JSBean> t) throws Exception {
+                    if (t.getData().getList() !=null && t.getData().getList().size()>0){
+                        settledAdapter.setmDataList(t.getData().getList());
+                    }
+                    initData(t.getData());
                 }
             });
         }
-
     }
 
     @Override
@@ -140,8 +141,8 @@ public class SettledFragment extends BaseFragment {
     }
 
 
-    public void initData(WithDrawBean withDrawBean) {
-//        tvSettled.setText(withDrawBean.getTotal_amount()+"");
+    public void initData(JSBean withDrawBean) {
+        tvSettled.setText(withDrawBean.getTotal_amount()+"");
 //        tvUnsettled.setText(withDrawBean.getBalance()+"");
     }
 

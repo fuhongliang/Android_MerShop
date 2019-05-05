@@ -12,24 +12,22 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.mershop.R;
-import cn.ifhu.mershop.bean.JSBean;
 import cn.ifhu.mershop.bean.WithDrawBean;
-import cn.ifhu.mershop.utils.DateUtil;
 
 /**
  * @author fuhongliang
  */
-public class SettledAdapter extends BaseAdapter {
-    public List<JSBean.ListBean> mDataList;
+public class WithdrawAdapter extends BaseAdapter {
+    public List<WithDrawBean.ListBean> mDataList;
     public Context mContext;
     public int mCurPosition = 0;
 
-    public SettledAdapter(List<JSBean.ListBean> mDataList, Context mContext) {
+    public WithdrawAdapter(List<WithDrawBean.ListBean> mDataList, Context mContext) {
         this.mDataList = mDataList;
         this.mContext = mContext;
     }
 
-    public void setmDataList(List<JSBean.ListBean> mDataList) {
+    public void setmDataList(List<WithDrawBean.ListBean> mDataList) {
         this.mDataList = mDataList;
         notifyDataSetChanged();
     }
@@ -54,49 +52,27 @@ public class SettledAdapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         ViewHolder viewHolder;
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_settled, null);
+            convertView = inflater.inflate(R.layout.item_withdraw, null);
             viewHolder = new ViewHolder(convertView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tvMonth.setText(mDataList.get(position).getOs_month() + "月份");
-        viewHolder.tvCardNo.setText("结算尾号：" + mDataList.get(position).getOb_no());
-        viewHolder.tvMoney.setText("￥" + mDataList.get(position).getAmount());
-        viewHolder.tvState.setText(getState(mDataList.get(position).getState()));
+        viewHolder.tvDate.setText(mDataList.get(position).getAdd_time()+"");
+        viewHolder.tvAccountNumbe.setText(mDataList.get(position).getBank_no());
+        viewHolder.tvMoney.setText("￥"+mDataList.get(position).getAmount());
+        viewHolder.tvState.setText(mDataList.get(position).getPayment_state());
         return convertView;
     }
 
-    public String getState(String state) {
-        String stateString;
-        switch (state) {
-            case "1":
-                stateString = "已出账";
-                break;
-            case "2":
-                stateString = "已确认";
-            break;
-            case "3":
-                stateString = "已审核";
-            break;
-            case "4":
-                stateString = "已完成";
-            break;
-            default:
-                stateString = "已出账";
-            break;
-        }
-        return stateString;
-    }
 
     static class ViewHolder {
-
-        @BindView(R.id.tv_month)
-        TextView tvMonth;
+        @BindView(R.id.tv_account_numbe)
+        TextView tvAccountNumbe;
         @BindView(R.id.tv_money)
         TextView tvMoney;
-        @BindView(R.id.tv_card_no)
-        TextView tvCardNo;
+        @BindView(R.id.tv_date)
+        TextView tvDate;
         @BindView(R.id.tv_state)
         TextView tvState;
 
@@ -104,5 +80,4 @@ public class SettledAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
     }
-
 }

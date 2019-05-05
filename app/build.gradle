@@ -64,7 +64,6 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     implementation 'com.facebook.stetho:stetho:1.4.1'
     implementation 'com.facebook.stetho:stetho-urlconnection:1.4.1'
-
     implementation 'com.facebook.stetho:stetho-okhttp3:1.4.1'
     /**
      * 图片加载
