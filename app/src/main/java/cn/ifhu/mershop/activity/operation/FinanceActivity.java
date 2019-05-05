@@ -85,7 +85,6 @@ public class FinanceActivity extends BaseActivity {
 
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
-    public void onViewClicked() {
         finish();
     }
 
