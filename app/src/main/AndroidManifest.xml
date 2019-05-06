@@ -128,7 +128,8 @@
         <activity android:name=".activity.notice.NoticeListActivity" />
         <activity android:name=".activity.financial.BillsListActivity" />
         <activity android:name=".activity.operation.BindingSuccessActivity" />
-
+        <activity android:name=".activity.operation.WithdrawActivity"/>
+        <activity android:name=".activity.operation.WithdrawSuccessActivity"/>
     </application>
 
 </manifest>

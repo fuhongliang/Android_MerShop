@@ -2,6 +2,7 @@ package cn.ifhu.mershop.net;
 
 import java.util.List;
 
+import cn.ifhu.mershop.bean.AccoutInformationBean;
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
@@ -11,11 +12,13 @@ import cn.ifhu.mershop.bean.DiscountPackageInfoBean;
 import cn.ifhu.mershop.bean.DiscountPackagePostBean;
 import cn.ifhu.mershop.bean.DiscountPostBean;
 import cn.ifhu.mershop.bean.EditGoodsBean;
+import cn.ifhu.mershop.bean.FinanceBean;
 import cn.ifhu.mershop.bean.FullCutBean;
 import cn.ifhu.mershop.bean.FullCutPostBean;
 import cn.ifhu.mershop.bean.JSBean;
 import cn.ifhu.mershop.bean.OperationBean;
 import cn.ifhu.mershop.bean.ProductManageBean;
+import cn.ifhu.mershop.bean.ReleaseBankBean;
 import cn.ifhu.mershop.bean.ReviewBean;
 import cn.ifhu.mershop.bean.ValueBean;
 import cn.ifhu.mershop.bean.ValuePostBean;
@@ -190,12 +193,13 @@ public interface OperationService {
     @POST("xianshi_goods_list")
     public Observable<BaseEntity<ProductManageBean>> getXianshiGoodsList(@Field("store_id") int store_id, @Field("class_id") int class_id);
 
+    @FormUrlEncoded
     @POST("add_bank_account")
-    public Observable<BaseEntity<Object>> add_bank_account(@Field("store_id") String store_id, @Field("account_name") String account_name,@Field("account_number") String account_number,@Field("bank_name") String bank_name,@Field("bank_type") String bank_type);
+    public Observable<BaseEntity<Object>> addBankAccount(@Field("store_id") String store_id, @Field("account_name") String account_name,@Field("account_number") String account_number,@Field("bank_name") String bank_name,@Field("bank_type") String bank_type);
 
     @FormUrlEncoded
     @POST("bank_account_list")
-    public Observable<BaseEntity<Object>> bankAccountList(@Field("store_id") int store_id);
+    public Observable<BaseEntity<ReleaseBankBean>> bankAccountList(@Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("del_bank_account")
@@ -203,11 +207,15 @@ public interface OperationService {
 
     @FormUrlEncoded
     @POST("store_jiesuan")
-    public Observable<BaseEntity<Object>> storeJiesuan(@Field("store_id") int store_id);
+    public Observable<BaseEntity<FinanceBean>> storeJiesuan(@Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("bank_account_info")
-    public Observable<BaseEntity<Object>> bankAccountInfo(@Field("store_id") int store_id);
+    public Observable<BaseEntity<AccoutInformationBean>> bankAccountInfo(@Field("store_id") int store_id);
+
+    @FormUrlEncoded
+    @POST("pd_cash_add")
+    public Observable<BaseEntity<Object>> pdCashAdd(@Field("store_id") String store_id,@Field("money") String money);
 
 
 }

@@ -7,6 +7,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import anet.channel.util.StringUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -63,11 +67,15 @@ public class ReleaseBankActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity<ReleaseBankBean> t) throws Exception {
                 tvBank.setText(t.getData().getBank_type());
-                tvBankNumber.setText(t.getData().getAccount_number().replaceAll("\\d{4}(?!$)", "$0 "));
                 tvName.setText(t.getData().getAccount_name());
+                tvBankNumber.setText(t.getData().getAccount_number().replaceAll("\\d{4}(?!$)", "$0 "));
+
             }
         });
     }
+
+
+
 
     //解除绑定银行卡
     public void UntiedBank() {

@@ -31,8 +31,7 @@ public class AccoutInformationActivity extends BaseActivity {
     TextView tvBankNumber;
     @BindView(R.id.tv_bank_type)
     TextView tvBankType;
-    @BindView(R.id.tv_area)
-    TextView tvArea;
+
     @BindView(R.id.tv_branch)
     TextView tvBranch;
     @BindView(R.id.tv_account_name)
@@ -44,6 +43,7 @@ public class AccoutInformationActivity extends BaseActivity {
         setContentView(R.layout.activity_account_information);
         ButterKnife.bind(this);
         tvTitle.setText("账户信息");
+        bankInInformation();
     }
 
     public void bankInInformation() {
@@ -60,7 +60,6 @@ public class AccoutInformationActivity extends BaseActivity {
                 ToastHelper.makeText(t.getMessage()).show();
                 tvAccountName.setText(t.getData().getAccount_name());
                 tvBankNumber.setText(t.getData().getAccount_number());
-                tvArea.setText(t.getData().getBank_address());
                 tvBankType.setText(t.getData().getBank_type());
                 tvBranch.setText(t.getData().getBank_name());
             }

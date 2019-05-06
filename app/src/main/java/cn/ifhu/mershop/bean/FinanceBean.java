@@ -1,19 +1,22 @@
 package cn.ifhu.mershop.bean;
 
+import java.util.List;
+
 public class FinanceBean {
 
 
     /**
      * y_jiesuan : 0
      * d_jiesuan : 0
-     * list : {"amount":0,"state":"1","ob_no":2019024,"os_month":201902}
-     * account : {"bank_type":null,"account_number":"13121454125"}
+     * list : [{"amount":-240,"state":"1","ob_no":2019042,"os_month":201904},{"amount":0,"state":"1","ob_no":2019032,"os_month":201903},{"amount":0,"state":"1","ob_no":2019022,"os_month":201902}]
+     * account : {"bank_type":"工商银行储蓄卡","account_number":"28"}
      */
 
     private int y_jiesuan;
     private int d_jiesuan;
-    private ListBean list;
     private AccountBean account;
+    private List<ListBean> list;
+
     public int getY_jiesuan() {
         return y_jiesuan;
     }
@@ -30,14 +33,6 @@ public class FinanceBean {
         this.d_jiesuan = d_jiesuan;
     }
 
-    public ListBean getList() {
-        return list;
-    }
-
-    public void setList(ListBean list) {
-        this.list = list;
-    }
-
     public AccountBean getAccount() {
         return account;
     }
@@ -46,12 +41,46 @@ public class FinanceBean {
         this.account = account;
     }
 
+    public List<ListBean> getList() {
+        return list;
+    }
+
+    public void setList(List<ListBean> list) {
+        this.list = list;
+    }
+
+    public static class AccountBean {
+        /**
+         * bank_type : 工商银行储蓄卡
+         * account_number : 28
+         */
+
+        private String bank_type;
+        private String account_number;
+
+        public String getBank_type() {
+            return bank_type;
+        }
+
+        public void setBank_type(String bank_type) {
+            this.bank_type = bank_type;
+        }
+
+        public String getAccount_number() {
+            return account_number;
+        }
+
+        public void setAccount_number(String account_number) {
+            this.account_number = account_number;
+        }
+    }
+
     public static class ListBean {
         /**
-         * amount : 0
+         * amount : -240
          * state : 1
-         * ob_no : 2019024
-         * os_month : 201902
+         * ob_no : 2019042
+         * os_month : 201904
          */
 
         private int amount;
@@ -89,32 +118,6 @@ public class FinanceBean {
 
         public void setOs_month(int os_month) {
             this.os_month = os_month;
-        }
-    }
-
-    public static class AccountBean {
-        /**
-         * bank_type : null
-         * account_number : 13121454125
-         */
-
-        private Object bank_type;
-        private String account_number;
-
-        public Object getBank_type() {
-            return bank_type;
-        }
-
-        public void setBank_type(Object bank_type) {
-            this.bank_type = bank_type;
-        }
-
-        public String getAccount_number() {
-            return account_number;
-        }
-
-        public void setAccount_number(String account_number) {
-            this.account_number = account_number;
         }
     }
 }
