@@ -134,15 +134,15 @@
 
             <include layout="@layout/layout_star" />
 
-            <TextView
-                android:id="@+id/tv_bank_name"
+            <EditText
+                android:id="@+id/et_bank_name"
                 style="@style/base_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="15dp"
                 android:background="@null"
                 android:gravity="end|center_vertical"
-                android:text="工商银行储蓄卡"
+                android:hint="请输入银行卡卡号类型"
                 android:textColor="@color/black"
                 android:textSize="17sp" />
         </LinearLayout>

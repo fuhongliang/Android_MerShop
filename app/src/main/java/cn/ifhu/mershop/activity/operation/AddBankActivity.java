@@ -35,8 +35,12 @@ public class AddBankActivity extends BaseActivity {
     EditText etBankNumber;
     @BindView(R.id.et_bank_address)
     EditText etBankAddress;
-    @BindView(R.id.tv_bank_name)
-    TextView tvBankName;
+    @BindView(R.id.et_bank_name)
+    EditText etBankName;
+    @BindView(R.id.tv_save)
+    TextView tvSave;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +77,7 @@ public class AddBankActivity extends BaseActivity {
                     etName.getText().toString(),                            //控件命名.get文本框().to类型，
                     etBankNumber.getText().toString(),
                     etBankAddress.getText().toString(),
-                    tvBankName.getText().toString())
+                    etBankName.getText().toString())
                     .compose(SchedulerUtils.ioMainScheduler())    //这个是固定的。可复制
                     .subscribe(new BaseObserver<Object>(true) {   //固定的、已封装好了<对象>(布尔值为true)
                         @Override
@@ -84,7 +88,7 @@ public class AddBankActivity extends BaseActivity {
                         @Override //从后台获取数据的方法(成功之后)
                         protected void onSuccees(BaseEntity t) throws Exception {        //protected void  自动生成(command N)
                             ToastHelper.makeText(t.getMessage()).show();                 //提示.makeText(t.getMessage()封装好了).show();
-                            startActivity(new Intent(AddBankActivity.this,BindingSuccessActivity.class));
+                            startActivity(new Intent(AddBankActivity.this, BindingSuccessActivity.class));
                         }
                     });
         }
