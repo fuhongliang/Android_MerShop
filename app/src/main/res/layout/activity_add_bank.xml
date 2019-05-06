@@ -48,7 +48,6 @@
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请输入持卡人姓名"
-                android:textColor="@color/hint_text_color"
                 android:textSize="17sp" />
         </LinearLayout>
 
@@ -81,7 +80,6 @@
                 android:hint="请输入银行卡号"
                 android:maxLength="19"
                 android:inputType="number"
-                android:textColor="@color/hint_text_color"
                 android:textSize="17sp" />
         </LinearLayout>
 
@@ -112,7 +110,6 @@
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请输入开户支行地址"
-                android:textColor="@color/hint_text_color"
                 android:textSize="17sp" />
         </LinearLayout>
 
@@ -143,7 +140,6 @@
                 android:background="@null"
                 android:gravity="end|center_vertical"
                 android:hint="请输入银行卡卡号类型"
-                android:textColor="@color/black"
                 android:textSize="17sp" />
         </LinearLayout>
 

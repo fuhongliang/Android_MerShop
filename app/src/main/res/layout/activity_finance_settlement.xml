@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:visibility="invisible">
+            >
 
             <ImageView
                 android:id="@+id/iv_tongzhi"
@@ -111,11 +111,12 @@
                 android:background="@drawable/tx_ic_tongzhi" />
 
             <TextView
+                android:id="@+id/tv_add_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/iv_tongzhi"
-                android:text="12 月 26 日提现 780.50 已到账"
+                android:text="12 月 26 日提现 78000.50 已到账"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
@@ -134,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="15dp"
-                android:text="中国工商银行"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -144,7 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/tv_bank_type"
-                android:text="（尾号8998）"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 

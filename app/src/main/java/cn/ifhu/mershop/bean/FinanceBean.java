@@ -16,6 +16,13 @@ public class FinanceBean {
     private int d_jiesuan;
     private AccountBean account;
     private List<ListBean> list;
+    /**
+     * addtime : 2019-05-06 11:52:37
+     * msg : 可为免费空位欺负你委屈而烦恼为妇女
+     */
+
+    private String addtime;
+    private String msg;
 
     public int getY_jiesuan() {
         return y_jiesuan;
@@ -47,6 +54,22 @@ public class FinanceBean {
 
     public void setList(List<ListBean> list) {
         this.list = list;
+    }
+
+    public String getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(String addtime) {
+        this.addtime = addtime;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public static class AccountBean {
@@ -120,4 +143,6 @@ public class FinanceBean {
             this.os_month = os_month;
         }
     }
+
+
 }
