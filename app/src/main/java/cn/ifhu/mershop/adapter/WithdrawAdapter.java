@@ -59,9 +59,30 @@ public class WithdrawAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.tvDate.setText(mDataList.get(position).getAdd_time()+"");
-        viewHolder.tvAccountNumbe.setText(mDataList.get(position).getBank_no());
+        viewHolder.tvAccountNumbe.setText("转至"+mDataList.get(position).getBank_no()+"账户");
         viewHolder.tvMoney.setText("￥"+mDataList.get(position).getAmount());
-        viewHolder.tvState.setText(mDataList.get(position).getPayment_state());
+        switch (mDataList.get(position).getPayment_state()) {
+            case "1":
+                viewHolder.tvState.setText("已出账");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.peisongzhong_text_color));
+                break;
+            case "2":
+                viewHolder.tvState.setText("已确认");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.yiwangcheng_text_color));
+                break;
+            case "3":
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.yiwangcheng_text_color));
+                viewHolder.tvState.setText("已审核");
+                break;
+            case "4":
+                viewHolder.tvState.setText("已完成");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.yiquxiao_text_color));
+                break;
+            default:
+                viewHolder.tvState.setText("已出账");
+                viewHolder.tvState.setTextColor(mContext.getResources().getColor(R.color.peisongzhong_text_color));
+                break;
+        }
         return convertView;
     }
 

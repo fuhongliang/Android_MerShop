@@ -38,6 +38,7 @@ import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
 
 /**
+ * 已提现
  * @author fuhongliang
  */
 public class WithdrawFragment extends BaseFragment {

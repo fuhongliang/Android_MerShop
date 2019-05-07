@@ -40,6 +40,7 @@ import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
 
 /**
+ * 已结算
  * @author fuhongliang
  */
 public class SettledFragment extends BaseFragment {
