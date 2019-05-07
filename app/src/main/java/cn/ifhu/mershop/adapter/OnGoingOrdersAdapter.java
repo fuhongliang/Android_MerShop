@@ -66,16 +66,33 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         holder.tvServiceFee.setText(unit+orderBean.getCommis_price() + "");
         holder.tvEarnMoney.setText(unit+orderBean.getGoods_pay_price() + "");
         holder.llContent.removeAllViews();
-        for (OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean : orderBean.getExtend_order_goods()) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
-            TextView mProductName = view.findViewById(R.id.tv_product_name);
-            TextView mPrice = view.findViewById(R.id.tv_price);
-            TextView mNumber = view.findViewById(R.id.tv_number);
-            mProductName.setText(extendOrderGoodsBean.getGoods_name());
-            mPrice.setText(unit+extendOrderGoodsBean.getGoods_price());
-            mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
-            holder.llContent.addView(view);
+        if (orderBean.isExpendOrder()){
+            for (OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean : orderBean.getExtend_order_goods()) {
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
+                TextView mProductName = view.findViewById(R.id.tv_product_name);
+                TextView mPrice = view.findViewById(R.id.tv_price);
+                TextView mNumber = view.findViewById(R.id.tv_number);
+                mProductName.setText(extendOrderGoodsBean.getGoods_name());
+                mPrice.setText(unit+extendOrderGoodsBean.getGoods_price());
+                mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
+                holder.llContent.addView(view);
+            }
+            holder.tvExpend.setText("收起");
+        }else {
+            if (orderBean.getExtend_order_goods() != null&&orderBean.getExtend_order_goods().size()>0){
+                OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean = orderBean.getExtend_order_goods().get(0);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_order_product, null);
+                TextView mProductName = view.findViewById(R.id.tv_product_name);
+                TextView mPrice = view.findViewById(R.id.tv_price);
+                TextView mNumber = view.findViewById(R.id.tv_number);
+                mProductName.setText(extendOrderGoodsBean.getGoods_name());
+                mPrice.setText(unit+extendOrderGoodsBean.getGoods_price());
+                mNumber.setText("x " + extendOrderGoodsBean.getGoods_num());
+                holder.llContent.addView(view);
+            }
+            holder.tvExpend.setText("展开");
         }
+
         if (StringUtils.isEmpty(orderBean.getOrder_state())){
             holder.tvOrderState.setVisibility(View.GONE);
         }else {
@@ -97,6 +114,11 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         holder.tvPrint.setOnClickListener(v -> {
             OrderLogic.savePrintingOrder(orderBean);
             printingOrder();
+        });
+
+        holder.tvExpend.setOnClickListener(v -> {
+            mDatas.get(position).setExpendOrder(!mDatas.get(position).isExpendOrder());
+            notifyDataSetChanged();
         });
     }
 
@@ -133,7 +155,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         TextView tvEarnMoney;
         TextView tvOrderState;
         TextView tvPrint;
-
+        TextView tvExpend;
         TextView tvOrderTime;
         TextView tvOrderSn;
         LinearLayout llContent;
@@ -150,6 +172,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
             llContent = view.findViewById(R.id.ll_content);
             tvOrderState = view.findViewById(R.id.tv_order_state);
             tvPrint = view.findViewById(R.id.tv_print);
+            tvExpend = view.findViewById(R.id.tv_expend);
 
             tvOrderTime = view.findViewById(R.id.tv_order_time);
             tvOrderSn = view.findViewById(R.id.tv_order_sn);
