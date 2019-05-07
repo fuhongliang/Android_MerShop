@@ -249,9 +249,11 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:id="@+id/tv_expend"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
+                android:gravity="right"
                 android:layout_toLeftOf="@id/iv_ic_zhankai"
                 android:text="展开"
                 android:textColor="#666666"

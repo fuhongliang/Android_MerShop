@@ -22,13 +22,20 @@ public class OrderBean {
     private int buyer_id;
     private String add_time;
     private String order_state;
-
+    public boolean isExpendOrder = false;
     private ExtendOrderCommonBean extend_order_common;
     private double total_price;
     private double commis_price;
     private double goods_pay_price;
     private List<ExtendOrderGoodsBean> extend_order_goods;
 
+    public boolean isExpendOrder() {
+        return isExpendOrder;
+    }
+
+    public void setExpendOrder(boolean expendOrder) {
+        isExpendOrder = expendOrder;
+    }
 
     public String getOrder_state() {
         return order_state;

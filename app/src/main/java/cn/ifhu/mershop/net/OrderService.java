@@ -3,6 +3,7 @@ package cn.ifhu.mershop.net;
 import java.util.ArrayList;
 
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -15,7 +16,7 @@ import retrofit2.http.POST;
 public interface OrderService {
     @FormUrlEncoded
     @POST("get_neworder")
-    public Observable<BaseEntity<ArrayList<OrderBean>>> getNewOrder(@Field("store_id") int store_id);
+    public Observable<BaseEntity<NewOrderBean>> getNewOrder(@Field("store_id") int store_id);
 
     @FormUrlEncoded
     @POST("receive_order")

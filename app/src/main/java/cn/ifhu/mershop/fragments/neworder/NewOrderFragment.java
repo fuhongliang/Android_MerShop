@@ -31,6 +31,7 @@ import cn.ifhu.mershop.adapter.NewOrdersAdapter;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
 import cn.ifhu.mershop.dialog.DialogListFragment;
 import cn.ifhu.mershop.net.OrderService;
@@ -57,7 +58,7 @@ public class NewOrderFragment extends BaseFragment {
     RelativeLayout llEmpty;
     @BindView(R.id.rl_marquee_view)
     RelativeLayout rlMarqueeView;
-    private List<OrderBean> mDatas;
+    private List<NewOrderBean.ListBean> mDatas;
     private ArrayList<String> reasonList;
 
     public static NewOrderFragment newInstance() {
@@ -80,7 +81,7 @@ public class NewOrderFragment extends BaseFragment {
     public void getNewOrders() {
         layoutSwipeRefresh.setRefreshing(true);
         RetrofitAPIManager.create(OrderService.class).getNewOrder(UserLogic.getUser().getStore_id())
-                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<NewOrderBean>(true) {
 
             @Override
             protected void onApiComplete() {
@@ -88,14 +89,14 @@ public class NewOrderFragment extends BaseFragment {
             }
 
             @Override
-            protected void onSuccees(BaseEntity<ArrayList<OrderBean>> t) throws Exception {
+            protected void onSuccees(BaseEntity<NewOrderBean> t) throws Exception {
 
-                if (t.getData() == null || t.getData().isEmpty()) {
+                if (t.getData() == null || t.getData().getList().isEmpty()) {
                     llEmpty.setVisibility(View.VISIBLE);
                 } else {
                     llEmpty.setVisibility(View.GONE);
                     mDatas.clear();
-                    mDatas.addAll(t.getData());
+                    mDatas.addAll(t.getData().getList());
                     newOrdersAdapter.updateData(mDatas);
                 }
                 ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();

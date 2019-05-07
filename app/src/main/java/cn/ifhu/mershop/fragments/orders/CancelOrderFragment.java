@@ -51,7 +51,7 @@ public class CancelOrderFragment extends BaseFragment {
     OnGoingOrdersAdapter mOrdersAdapter;
     @BindView(R.id.rl_empty)
     RelativeLayout llEmpty;
-    private List<OrderBean> mDatas = new ArrayList<OrderBean>();
+    private List<OrderBean> mDatas = new ArrayList<>();
     private ArrayList<String> reasonList;
 
     public static CancelOrderFragment newInstance() {
