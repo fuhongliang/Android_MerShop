@@ -86,7 +86,8 @@ public class FinanceActivity extends BaseActivity {
 
                 tvSettlement.setText(t.getData().getY_jiesuan() + "");
                 tvNotSettlement.setText(t.getData().getD_jiesuan() + "");
-                tvBankNumber.setText(t.getData().getAccount().getAccount_number());
+                String BankNumber = "(";
+                tvBankNumber.setText(BankNumber+getStringLastFourLetters(t.getData().getAccount().getAccount_number())+")");
                 tvBankType.setText(t.getData().getAccount().getBank_type());
                 tvAddTime.setText(t.getData().getAddtime());
                 y_jiesuan = t.getData().getY_jiesuan();//上面声明类型、这里就需要去调用它的接口、获取数据赋值给ing类型数据
@@ -100,6 +101,13 @@ public class FinanceActivity extends BaseActivity {
                 }
             }
         });
+    }
+    public String getStringLastFourLetters(String bankNumber){
+        if (StringUtils.isEmpty(bankNumber) || bankNumber.length()<4){
+            return "";
+        }else {
+            return bankNumber.substring(bankNumber.length()-4,bankNumber.length());
+        }
     }
 
     @OnClick(R.id.iv_back)
