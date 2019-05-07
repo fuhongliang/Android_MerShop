@@ -212,7 +212,8 @@
 
         </RelativeLayout>
 
-        <ImageView style="@style/dividing_line" />
+        <ImageView style="@style/dividing_line"
+            android:visibility="gone"/>
 
         <ListView
             android:id="@+id/lv_finance"
