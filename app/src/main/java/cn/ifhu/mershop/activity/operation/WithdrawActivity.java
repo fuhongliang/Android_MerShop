@@ -2,9 +2,11 @@ package cn.ifhu.mershop.activity.operation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -17,6 +19,7 @@ import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -41,6 +44,11 @@ public class WithdrawActivity extends BaseActivity {
     int y_jiesuan = 0;//int类型数据返回(从上一个页面抛出、这个页面首先就得接收)
     String bank_type;//string类型
     String account_number;
+    boolean withdraw = false;
+    @BindView(R.id.rl_bank)
+    RelativeLayout rlBank;
+    @BindView(R.id.iv_arrow_right)
+    ImageView ivArrowRight;
 
 
     @Override
@@ -60,6 +68,15 @@ public class WithdrawActivity extends BaseActivity {
         tvYJiesuan.setText(y_jiesuan + "");//设置它显示出来、强制转换为String类型
         tvBankType.setText(bank_type);
         tvBankNumber.setText(account_number);
+        if (bank_type == null || StringUtils.isEmpty(bank_type)) {
+            withdraw = false;
+            tvBankType.setVisibility(View.GONE);
+            tvBankNumber.setText("请添加银行卡");
+            ivArrowRight.setVisibility(View.VISIBLE);
+        } else {
+            withdraw = true;
+            ivArrowRight.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void withdrawMoney() {
@@ -96,4 +113,12 @@ public class WithdrawActivity extends BaseActivity {
         etMoney.setText(y_jiesuan + "");
     }
 
+    @OnClick(R.id.rl_bank)
+    public void onRlBankClicked() {
+        if (withdraw) {
+
+        } else {
+            startActivity(new Intent(WithdrawActivity.this, ManageBankActivity.class));
+        }
+    }
 }

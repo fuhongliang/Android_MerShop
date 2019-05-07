@@ -68,7 +68,7 @@ public class ReleaseBankActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<ReleaseBankBean> t) throws Exception {
                 tvBank.setText(t.getData().getBank_type());
                 tvName.setText(t.getData().getAccount_name());
-                String bankNumber = "**** **** **** ****";
+                String bankNumber = "**** **** **** **** ";
                 tvBankNumber.setText(bankNumber+getStringLastFourLetters(t.getData().getAccount_number()));
 
             }
