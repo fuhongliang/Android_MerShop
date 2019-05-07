@@ -8,6 +8,7 @@
     <include layout="@layout/layout_header" />
     <!--银行卡-->
     <RelativeLayout
+        android:id="@+id/rl_bank"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/white">
@@ -40,6 +41,8 @@
             android:text="尾号8896储蓄卡"
             android:textColor="@color/hint_text_color"
             android:textSize="14sp" />
+
+        <ImageView style="@style/im_tongyong_jinru" />
     </RelativeLayout>
 
     <ImageView
@@ -82,8 +85,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:inputType="number"
-                android:background="@null" />
+                android:background="@null"
+                android:inputType="number" />
 
             <TextView
                 android:id="@+id/tv_money"

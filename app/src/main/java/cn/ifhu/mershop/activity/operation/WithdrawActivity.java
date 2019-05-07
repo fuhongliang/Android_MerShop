@@ -57,7 +57,7 @@ public class WithdrawActivity extends BaseActivity {
         y_jiesuan = getIntent().getIntExtra("jiesuan", 0);//接口命名 = getIngent().getingExtra(ing类型)("自定义名称",默认为0)
         bank_type = getIntent().getStringExtra("bank_type");//接口命名 = getIntent().getStringExtra("自定义名称")
         account_number = getIntent().getStringExtra("account_number");
-        tvYJiesuan.setText(y_jiesuan+"");//设置它显示出来、强制转换为String类型
+        tvYJiesuan.setText(y_jiesuan + "");//设置它显示出来、强制转换为String类型
         tvBankType.setText(bank_type);
         tvBankNumber.setText(account_number);
     }
@@ -93,6 +93,7 @@ public class WithdrawActivity extends BaseActivity {
 
     @OnClick(R.id.tv_money)
     public void onTvMoneyClicked() {
-        etMoney.setText(y_jiesuan+"");
+        etMoney.setText(y_jiesuan + "");
     }
+
 }
