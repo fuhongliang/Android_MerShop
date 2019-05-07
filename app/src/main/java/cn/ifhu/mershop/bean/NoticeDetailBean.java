@@ -2,15 +2,18 @@ package cn.ifhu.mershop.bean;
 
 public class NoticeDetailBean {
 
+
     /**
-     * sm_id : 70
-     * sm_content : 您有一条新的店铺消费记录，金额：5，操作人：yali，备注：购买满即送。
-     * sm_addtime : 2019-04-25 15:58:56
+     * sm_id : 15
+     * sm_content : 您有订单需要处理，订单编号：2000000000004201。
+     * sm_addtime : 2019-04-01 19:03:08
+     * sm_title : 这是标题
      */
 
     private int sm_id;
     private String sm_content;
     private String sm_addtime;
+    private String sm_title;
 
     public int getSm_id() {
         return sm_id;
@@ -34,5 +37,13 @@ public class NoticeDetailBean {
 
     public void setSm_addtime(String sm_addtime) {
         this.sm_addtime = sm_addtime;
+    }
+
+    public String getSm_title() {
+        return sm_title;
+    }
+
+    public void setSm_title(String sm_title) {
+        this.sm_title = sm_title;
     }
 }
