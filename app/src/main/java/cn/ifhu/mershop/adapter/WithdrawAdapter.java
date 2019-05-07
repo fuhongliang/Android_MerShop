@@ -13,6 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.bean.WithDrawBean;
+import cn.ifhu.mershop.utils.DateUtil;
 
 /**
  * @author fuhongliang
@@ -58,7 +59,7 @@ public class WithdrawAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.tvDate.setText(mDataList.get(position).getAdd_time()+"");
+        viewHolder.tvDate.setText(DateUtil.getLongToString(mDataList.get(position).getAdd_time()));
         viewHolder.tvAccountNumbe.setText("转至"+mDataList.get(position).getBank_no()+"账户");
         viewHolder.tvMoney.setText("￥"+mDataList.get(position).getAmount());
         switch (mDataList.get(position).getPayment_state()) {
