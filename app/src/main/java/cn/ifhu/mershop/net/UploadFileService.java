@@ -18,6 +18,6 @@ public interface UploadFileService {
 
     @Multipart
     @POST("image_upload")
-    public Observable<BaseEntity<FileModel>> imageUpload(@Part() MultipartBody.Part file );
+    public Observable<BaseEntity<String>> imageUpload(@Part() MultipartBody.Part file );
 
 }

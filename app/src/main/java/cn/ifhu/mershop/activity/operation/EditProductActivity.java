@@ -215,14 +215,14 @@ public class EditProductActivity extends BaseActivity {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         RetrofitAPIManager.createUpload(UploadFileService.class).imageUpload(body)
-                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<FileModel>(true) {
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<String>(true) {
             @Override
             protected void onApiComplete() {
             }
 
             @Override
-            protected void onSuccees(BaseEntity<FileModel> t) throws Exception {
-                postProduct(t.getData().getImg_name());
+            protected void onSuccees(BaseEntity<String> t) throws Exception {
+                postProduct(t.getData());
             }
 
             @Override
