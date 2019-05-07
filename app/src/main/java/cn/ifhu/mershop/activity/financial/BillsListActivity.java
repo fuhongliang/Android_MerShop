@@ -23,6 +23,7 @@ import cn.ifhu.mershop.fragments.reviews.NeedReplyReviewFragment;
 import cn.ifhu.mershop.view.RVPIndicator;
 
 /**
+ * 全部账单
  * @author fuhongliang
  */
 public class BillsListActivity extends BaseActivity {
