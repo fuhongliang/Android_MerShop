@@ -10,7 +10,6 @@ import android.widget.TextView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import anet.channel.util.StringUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -22,6 +21,7 @@ import cn.ifhu.mershop.bean.ReleaseBankBean;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 import io.reactivex.Observer;
@@ -68,7 +68,8 @@ public class ReleaseBankActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<ReleaseBankBean> t) throws Exception {
                 tvBank.setText(t.getData().getBank_type());
                 tvName.setText(t.getData().getAccount_name());
-                tvBankNumber.setText(t.getData().getAccount_number().replaceAll("\\d{4}(?!$)", "$0 "));
+                String bankNumber = "**** **** **** ****";
+                tvBankNumber.setText(bankNumber+getStringLastFourLetters(t.getData().getAccount_number()));
 
             }
         });
@@ -76,6 +77,13 @@ public class ReleaseBankActivity extends BaseActivity {
 
 
 
+    public String getStringLastFourLetters(String bankNumber){
+        if (StringUtils.isEmpty(bankNumber) || bankNumber.length()<4){
+            return "****";
+        }else {
+            return bankNumber.substring(bankNumber.length()-4,bankNumber.length());
+        }
+    }
 
     //解除绑定银行卡
     public void UntiedBank() {

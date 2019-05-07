@@ -46,7 +46,6 @@
                 android:id="@+id/tv_bank_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1111222233334444"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
