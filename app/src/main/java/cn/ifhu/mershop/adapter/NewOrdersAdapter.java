@@ -104,6 +104,14 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             holder.ivExpend.setBackgroundResource(R.drawable.icon_zhankai);
         }
 
+        if (orderBean.getExtend_order_goods() != null && orderBean.getExtend_order_goods().size() > 2) {
+          holder.tvExpend.setVisibility(View.VISIBLE);
+          holder.ivExpend.setVisibility(View.VISIBLE);
+        }else {
+            holder.tvExpend.setVisibility(View.INVISIBLE);
+            holder.ivExpend.setVisibility(View.INVISIBLE);
+        }
+
         holder.tvExpend.setOnClickListener(v -> {
             mDatas.get(position).setExpendOrder(!mDatas.get(position).isExpendOrder());
             notifyDataSetChanged();
