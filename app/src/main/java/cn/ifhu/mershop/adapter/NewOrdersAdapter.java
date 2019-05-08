@@ -16,6 +16,7 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
 import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.StringUtils;
 
 /**
  * @author fuhongliang
@@ -46,12 +47,22 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
         return holder;
     }
 
+    //电话中间4位数为星星
+    public String settingphone(String phoneNumber) {
+        if (StringUtils.isEmpty(phoneNumber) || phoneNumber.length() < 4) {
+            return "";
+        } else {
+            return phoneNumber.replaceAll("(\\d{3})\\d{4}(\\d{4})", "$1****$2");
+        }
+    }
+
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         NewOrderBean.ListBean orderBean = mDatas.get(position);
         holder.tvOrderNumber.setText("#" + orderBean.getOrder_id());
         holder.tvCustomerName.setText(orderBean.getExtend_order_common().getReciver_name() + "");
-        holder.tvCustomerPhone.setText(orderBean.getExtend_order_common().getPhone() + "");
+        String phoneNumber = "";
+        holder.tvCustomerPhone.setText(phoneNumber + settingphone(orderBean.getExtend_order_common().getPhone() + ""));
         holder.tvCustomerAdd.setText(orderBean.getExtend_order_common().getAddress() + "");
         holder.tvTotal.setText(Constants.unit + orderBean.getTotal_price() + "");
         holder.tvServiceFee.setText(Constants.unit + orderBean.getCommis_price() + "");
