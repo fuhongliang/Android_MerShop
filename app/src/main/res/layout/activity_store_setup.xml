@@ -93,6 +93,7 @@
         android:orientation="vertical">
         <!--店铺头像-->
         <RelativeLayout
+            android:id="@+id/rl_logo"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="#ffffff">

@@ -23,10 +23,12 @@ import cn.ifhu.mershop.dialog.DialogWheelFragment;
 import cn.ifhu.mershop.net.MeService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.net.UploadFileService;
 import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
+import okhttp3.MultipartBody;
 
 /**
  * @author fuhongliang
@@ -64,6 +66,8 @@ public class StoreSetUpActivity extends BaseActivity {
     Switch swhAutoAccess;
     @BindView(R.id.swh_auto_print)
     Switch swhAutoPrint;
+    @BindView(R.id.rl_logo)
+    RelativeLayout rlLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -175,4 +179,5 @@ public class StoreSetUpActivity extends BaseActivity {
         super.onResume();
         initData();
     }
+
 }
