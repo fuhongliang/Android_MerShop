@@ -76,7 +76,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
                 holder.llContent.addView(view);
             }
             holder.tvExpend.setText("收起");
-            holder.ivExpend.setBackgroundResource(R.drawable.icon_zhankai);
+            holder.ivExpend.setBackgroundResource(R.drawable.icon_shouqi);
         } else {
             if (orderBean.getExtend_order_goods() != null && orderBean.getExtend_order_goods().size() > 0) {
                 NewOrderBean.ListBean.ExtendOrderGoodsBean extendOrderGoodsBean = orderBean.getExtend_order_goods().get(0);
