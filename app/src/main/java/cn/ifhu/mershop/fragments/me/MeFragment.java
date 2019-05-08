@@ -31,6 +31,7 @@ import cn.ifhu.mershop.activity.me.StoreStateActivity;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.bt.BluetoothActivity;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -88,7 +89,6 @@ public class MeFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ivStoreLogo.loadCircle(UserLogic.getUser().getStore_avatar());
     }
 
     @Override
@@ -149,6 +149,7 @@ public class MeFragment extends BaseFragment {
         tvStoreName.setText(UserLogic.getUser().getStore_name());
         tvStoreAdd.setText(UserLogic.getUser().getStore_address());
         setBtnChangeState(UserLogic.getUser().getStore_state());
+        ivStoreLogo.loadCircle(Constants.IMGPATH+UserLogic.getUser().getStore_avatar());
     }
 
     public void setBtnChangeState(int state) {

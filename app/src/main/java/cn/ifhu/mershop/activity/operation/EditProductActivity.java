@@ -41,6 +41,7 @@ import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UploadFileService;
+import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.ProductLogic;
 import cn.ifhu.mershop.utils.StringUtils;

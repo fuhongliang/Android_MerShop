@@ -40,6 +40,7 @@ import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UploadFileService;
+import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.ProductLogic;
 import cn.ifhu.mershop.utils.StringUtils;
@@ -197,14 +198,14 @@ public class AddProductActivity extends BaseActivity {
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
         MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         RetrofitAPIManager.createUpload(UploadFileService.class).imageUpload(body)
-                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<FileModel>(true) {
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<String>(true) {
             @Override
             protected void onApiComplete() {
             }
 
             @Override
-            protected void onSuccees(BaseEntity<FileModel> t) throws Exception {
-                postProduct(t.getData().getImg_name());
+            protected void onSuccees(BaseEntity<String> t) throws Exception {
+                postProduct(t.getData());
             }
 
             @Override
@@ -301,9 +302,6 @@ public class AddProductActivity extends BaseActivity {
             switch (requestCode) {
                 case ImageChooseUtil.REQUEST_CODE:
                     List<Uri> stringList = Matisse.obtainResult(data);
-                    if (stringList != null && stringList.size() > 0) {
-                        Glide.with(this).load(stringList.get(0)).into(ivProductImage);
-                    }
                     startCrop(stringList.get(0));
                     break;
                 case UCrop.REQUEST_CROP:

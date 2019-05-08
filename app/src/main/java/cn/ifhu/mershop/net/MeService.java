@@ -1,6 +1,7 @@
 package cn.ifhu.mershop.net;
 
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.UserServiceBean;
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -45,5 +46,11 @@ public interface MeService {
     @FormUrlEncoded
     @POST("store_set_desc")
     public Observable<BaseEntity<Object>> storeSetSesc(@Field("store_id") String store_id,@Field("store_desc") String store_desc);
+
+    @FormUrlEncoded
+    @POST("change_avator")
+    public Observable<BaseEntity<UserServiceBean.LoginResponse>> changeAvator(@Field("store_id") String store_id, @Field("avator") String avator);
+
+
 
 }
