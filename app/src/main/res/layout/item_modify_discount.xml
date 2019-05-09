@@ -33,6 +33,9 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="2dp"
                 android:text="三文鱼寿司"
+                android:layout_marginRight="35dp"
+                android:ellipsize="end"
+                android:singleLine="true"
                 android:textColor="#ff000000"
                 android:textSize="14sp" />
 
