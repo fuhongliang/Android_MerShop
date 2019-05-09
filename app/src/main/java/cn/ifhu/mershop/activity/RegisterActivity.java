@@ -1,6 +1,8 @@
 package cn.ifhu.mershop.activity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,15 +41,81 @@ public class RegisterActivity extends BaseActivity {
     EditText etVerification;
     @BindView(R.id.tv_get_code)
     TextView tvGetCode;
-    private int mCurSecond = 10;
+    @BindView(R.id.tv_register)
+    TextView tvRegister;
+    private int mCurSecond = 60;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registered);
         ButterKnife.bind(this);
-    }
 
+        //判断输入是否填写、填写完成才能点击按钮
+        etPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tvRegister.setEnabled(checkPhoneNumber());
+            }
+        });
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tvRegister.setEnabled(checkPhoneNumber());
+            }
+        });
+        etVerification.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                tvRegister.setEnabled(checkPhoneNumber());
+            }
+        });
+
+    }
+    //判断是否空
+    public boolean checkPhoneNumber() {
+        if (StringUtils.isEmpty(etPhone.getText().toString())) {
+            return false;
+        }
+        if (StringUtils.isEmpty(etPassword.getText().toString())) {
+            return false;
+        }
+        if (StringUtils.isEmpty(etVerification.getText().toString())) {
+            return false;
+        }
+
+        return true;
+    }
 
     public void getVerifyCode() {
         setLoadingMessageIndicator(true);
@@ -66,6 +134,7 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
+
     private void showCountDown() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleWithFixedDelay(
@@ -77,7 +146,7 @@ public class RegisterActivity extends BaseActivity {
                             tvGetCode.setClickable(true);
                             executor.shutdown();
                         });
-                        mCurSecond = 10;
+                        mCurSecond = 60;
                     } else {
                         String sencond = getString(R.string.get_code_again, mCurSecond);
                         runOnUiThread(() -> {
@@ -94,7 +163,7 @@ public class RegisterActivity extends BaseActivity {
 
     public void memberRegister() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString(),"安卓", IrReference.getInstance().getString(DEVICETOKEN,""))
+        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString(), "安卓", IrReference.getInstance().getString(DEVICETOKEN, ""))
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {

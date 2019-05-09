@@ -43,6 +43,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="三文鱼寿司"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:textColor="#ff000000"
                 android:textSize="16dp" />
             <LinearLayout

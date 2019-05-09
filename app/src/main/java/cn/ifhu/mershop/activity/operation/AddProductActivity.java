@@ -94,6 +94,7 @@ public class AddProductActivity extends BaseActivity {
         setContentView(R.layout.activity_add_product);
         ButterKnife.bind(this);
         int position = getIntent().getIntExtra("position", 0);
+        tvTitle.setText("新增商品");
         setTvCategory(position);
         swhShock.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -158,6 +159,7 @@ public class AddProductActivity extends BaseActivity {
     public void onBtnSaveClicked() {
         if (!checkContentEmpty()) {
             upLoadImage();
+            startActivity(new Intent(AddProductActivity.this,ProductManageActivity.class));
         }
     }
 

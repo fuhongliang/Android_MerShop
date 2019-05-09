@@ -102,7 +102,7 @@ public class AddOrEditCategoryActivity extends BaseActivity {
 
     public boolean checkContent() {
         if (StringUtils.isEmpty(etSort.getText().toString().trim())) {
-            ToastHelper.makeText("标题不能为空", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
+            ToastHelper.makeText("分类名称不能为空", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
             return false;
         }
         return true;

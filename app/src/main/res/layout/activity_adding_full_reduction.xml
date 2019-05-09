@@ -167,7 +167,7 @@
 
                     <EditText
                         android:id="@+id/et_input_full"
-                        style="@style/base_edit"
+                        style="@style/blue_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
@@ -195,7 +195,7 @@
 
                     <EditText
                         android:id="@+id/et_input_cut"
-                        style="@style/base_edit"
+                        style="@style/blue_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"

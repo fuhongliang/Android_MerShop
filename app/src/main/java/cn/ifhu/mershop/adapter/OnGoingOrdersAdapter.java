@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.me.PrintingSettingsActivity;
 import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
 import cn.ifhu.mershop.base.AppInfo;
+import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
 import cn.ifhu.mershop.print.PrintUtil;
 import cn.ifhu.mershop.utils.OrderLogic;
@@ -101,6 +103,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
             holder.tvExpend.setText("展开");
         }
 
+
         if (StringUtils.isEmpty(orderBean.getOrder_state())){
             holder.tvOrderState.setVisibility(View.GONE);
         }else {
@@ -167,6 +170,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         TextView tvOrderTime;
         TextView tvOrderSn;
         LinearLayout llContent;
+        ImageView ivExpend;
 
         public MyViewHolder(View view) {
             super(view);

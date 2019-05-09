@@ -266,7 +266,6 @@ public class AddLimitDiscountsActivity extends BaseActivity {
                 @Override
                 protected void onSuccees(BaseEntity<Observer> t) throws Exception {
                     ToastHelper.makeText(t.getMessage(), Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                    ProductLogic.clearDiscountGoods();
                     finish();
                 }
             });

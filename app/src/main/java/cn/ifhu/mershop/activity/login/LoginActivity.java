@@ -2,6 +2,8 @@ package cn.ifhu.mershop.activity.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -12,6 +14,7 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.RegisterActivity;
 import cn.ifhu.mershop.base.BaseActivity;
+import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
 
 /**
@@ -57,6 +60,51 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
+
+        etPhone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                btnLogin.setEnabled(checkPhoneNumber());
+            }
+        });
+        etPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                btnLogin.setEnabled(checkPhoneNumber());
+            }
+        });
+
+    }
+
+    public boolean checkPhoneNumber() {
+        if (StringUtils.isEmpty(etPhone.getText().toString())) {
+            return false;
+        }
+        if (StringUtils.isEmpty(etPassword.getText().toString())) {
+            return false;
+        }
+
+        return true;
     }
 
 

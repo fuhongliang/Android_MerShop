@@ -137,6 +137,12 @@
         <item name="android:textColorHint">@color/hint_text_color</item>
         <item name="android:textColor">@color/typed_text_color</item>
     </style>
+
+    <style name="blue_edit">
+        <item name="android:textColorHint">@color/hint_text_color</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="dividing_line">
         <item name="android:background">#E5E5E5</item>
         <item name="android:layout_width">match_parent</item>
