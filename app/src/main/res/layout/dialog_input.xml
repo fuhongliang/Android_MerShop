@@ -55,6 +55,7 @@
         <EditText
             android:id="@+id/dialog_edit"
             android:layout_width="80dp"
+            style="@style/base_edit"
             android:layout_height="50dp"
             android:inputType="numberDecimal"/>
 
