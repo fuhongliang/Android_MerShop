@@ -53,13 +53,9 @@ public class FeedBackActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 ToastHelper.makeText(t.getMessage()+"", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
-                clearEdit();
+                finish();
             }
         });
-    }
-
-    public void clearEdit(){
-        etFeedback.setText("");
     }
 
     @OnClick(R.id.iv_back)

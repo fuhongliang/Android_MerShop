@@ -78,7 +78,16 @@ public class ProductManageActivity extends BaseActivity {
         mProductAdapter.setOnClickItem(new ProductAdapter.onClickItem() {
             @Override
             public void changeState(int position) {
-                changeProductState(position);
+                DialogUtils.showConfirmDialog("温馨提示","是否确认对该商品下架？", getSupportFragmentManager(),new ConfirmDialog.ButtonOnclick() {
+                    @Override
+                    public void cancel() {
+                    }
+
+                    @Override
+                    public void ok() {
+                        changeProductState(position);
+                    }
+                });
             }
 
             @Override

@@ -91,7 +91,6 @@ public class OperationFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getOperationData();
     }
 
 
@@ -112,11 +111,12 @@ public class OperationFragment extends BaseFragment {
     }
 
     public void getOperationData() {
+        setLoadingMessageIndicator(true);
         RetrofitAPIManager.create(OperationService.class).storeYunying(UserLogic.getUser().getStore_id())
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<OperationBean>(false) {
             @Override
             protected void onApiComplete() {
-
+                setLoadingMessageIndicator(false);
             }
 
             @Override
@@ -166,5 +166,11 @@ public class OperationFragment extends BaseFragment {
     @OnClick(R.id.ll_finance)
     public void onLlFinanceClicked() {
         startActivity(new Intent(getContext(), FinanceActivity.class));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getOperationData();
     }
 }

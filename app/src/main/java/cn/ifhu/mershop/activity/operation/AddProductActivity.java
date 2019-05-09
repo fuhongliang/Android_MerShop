@@ -76,6 +76,7 @@ public class AddProductActivity extends BaseActivity {
     @BindView(R.id.btn_save)
     Button btnSave;
     ColumnWheelDialog dialog = null;
+
     int categoryId;
     @BindView(R.id.swh_shock)
     Switch swhShock;
@@ -189,7 +190,7 @@ public class AddProductActivity extends BaseActivity {
             @Override
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                clearContent();
+                finish();
             }
         });
     }

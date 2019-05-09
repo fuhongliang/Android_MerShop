@@ -140,7 +140,7 @@ public class AddLimitDiscountsActivity extends BaseActivity {
                         pvTime.setDate(Calendar.getInstance());
                     }
                 })
-                .setType(new boolean[]{true, true, true, true, true, true})
+                .setType(new boolean[]{true, true, true, true, true, false})
                 .isDialog(true)
                 .addOnCancelClickListener(view -> {
                 })
@@ -188,8 +188,8 @@ public class AddLimitDiscountsActivity extends BaseActivity {
         etDiscountName.setText(discountInfoBean.getXianshi_name());
         etTag.setText(discountInfoBean.getXianshi_title());
         etDescription.setText(discountInfoBean.getXianshi_explain());
-        tvStartTime.setText(DateUtil.getLongToString(discountInfoBean.getStart_time()));
-        tvEndTime.setText(DateUtil.getLongToString(discountInfoBean.getEnd_time()));
+        tvStartTime.setText(DateUtil.getLongToStringMinute(discountInfoBean.getStart_time()));
+        tvEndTime.setText(DateUtil.getLongToStringMinute(discountInfoBean.getEnd_time()));
         tvLimitLess.setText(discountInfoBean.getLower_limit() + "");
         limitNumber = discountInfoBean.getLower_limit();
         listBeans.clear();

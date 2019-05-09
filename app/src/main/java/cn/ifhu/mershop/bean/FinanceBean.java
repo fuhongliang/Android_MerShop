@@ -106,16 +106,16 @@ public class FinanceBean {
          * os_month : 201904
          */
 
-        private int amount;
+        private double amount;
         private String state;
         private int ob_no;
         private int os_month;
 
-        public int getAmount() {
+        public double getAmount() {
             return amount;
         }
 
-        public void setAmount(int amount) {
+        public void setAmount(double amount) {
             this.amount = amount;
         }
 
