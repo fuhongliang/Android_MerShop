@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,10 +9,10 @@
         layout="@layout/layout_header" />
 
     <ScrollView
-        android:layout_below="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btn_save">
+        android:layout_above="@id/btn_save"
+        android:layout_below="@+id/header">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -166,15 +167,15 @@
 
                     <EditText
                         android:id="@+id/et_input_full"
+                        style="@style/base_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:background="@null"
                         android:gravity="center"
                         android:hint="输入金额"
-                        android:maxLength="4"
                         android:inputType="number"
-                        android:textColor="#999999"
+                        android:maxLength="4"
                         android:textSize="17sp" />
 
                     <TextView
@@ -194,15 +195,15 @@
 
                     <EditText
                         android:id="@+id/et_input_cut"
+                        style="@style/base_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:layout_marginLeft="7dp"
                         android:background="@null"
+                        android:gravity="center"
                         android:hint="输入金额"
-                        android:maxLength="4"
                         android:inputType="number"
-                        android:textColor="#999999"
+                        android:maxLength="4"
                         android:textSize="17sp" />
 
                     <TextView
@@ -246,8 +247,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@color/white"
-                android:orientation="vertical"
-                android:minHeight="90dp">
+                android:minHeight="90dp"
+                android:orientation="vertical">
 
 
                 <!--备注-->

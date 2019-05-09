@@ -145,6 +145,7 @@ public class CancelOrderFragment extends BaseFragment {
                     mDatas.addAll(t.getData());
                     mOrdersAdapter.updateData(mDatas);
                 }
+                ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
     }

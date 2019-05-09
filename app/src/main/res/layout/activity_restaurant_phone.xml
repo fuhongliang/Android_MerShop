@@ -5,7 +5,7 @@
     android:background="#F5F5F5"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_header"/>
+    <include layout="@layout/layout_header" />
 
     <ImageView
         android:layout_width="match_parent"
@@ -19,6 +19,7 @@
 
         <EditText
             android:id="@+id/et_phone"
+            style="@style/base_edit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
@@ -27,7 +28,6 @@
             android:gravity="center_vertical"
             android:hint="请输入餐厅电话"
             android:inputType="phone"
-            style="@style/base_edit"
             android:textSize="17sp" />
     </LinearLayout>
 
@@ -43,9 +43,9 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/bg_button_blue"
+        android:stateListAnimator="@null"
         android:text="保存"
         android:textColor="#ffffff"
-        android:textSize="17sp"
-        android:stateListAnimator="@null"/>
+        android:textSize="17sp" />
 
 </LinearLayout>

@@ -47,6 +47,7 @@
                 android:layout_width="94dp"
                 android:layout_height="30dp"
                 android:background="@drawable/bg_bg_white"
+                style="@style/base_edit"
                 android:hint="请输入"
                 android:paddingLeft="10dp"
                 android:textSize="15sp"
