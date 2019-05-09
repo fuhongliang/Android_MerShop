@@ -40,10 +40,11 @@
         <activity android:name=".activity.me.RingSettingsActivity" />
         <activity
             android:name=".activity.operation.AddProductActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity
             android:name=".activity.operation.EditProductActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
+            />
         <activity android:name=".activity.operation.ManageCategoryActivity" />
         <activity android:name=".activity.operation.SortCategoryActivity" />
         <activity

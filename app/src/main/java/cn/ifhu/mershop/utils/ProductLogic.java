@@ -27,6 +27,19 @@ public class ProductLogic {
         }
     }
 
+    public static List<String> getBankList() throws Exception {
+        String json = "[\"工商银行\",\n" +
+                "\t\"中国银行\",\n" +
+                "\t\"建设银行\",\n" +
+                "\t\"农业银行\",\n" +
+                "\t\"交通银行\",\n" +
+                "\t\"邮政银行\",\n" +
+                "\t\"招商银行\",\n" +
+                "\t\"平安银行\"\n" +
+                "]";
+            ArrayList<String> stringArrayList = GsonUtils.fromJsonArrayToArrayList(json,String.class);
+            return stringArrayList;
+    }
 
     public static List<ProductManageBean.ClassListBean> getClassList() throws Exception {
         String json = IrReference.getInstance().getString(CLASSLIST, "");

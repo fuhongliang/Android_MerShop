@@ -131,6 +131,7 @@
     </LinearLayout>
     <!--骑手信息-->
     <LinearLayout
+        android:id="@+id/ll_delivery_man"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"

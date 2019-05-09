@@ -6,6 +6,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -13,12 +15,16 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.CategoryWheelItem;
+import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.utils.ProductLogic;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
+import jsc.kit.wheel.dialog.ColumnWheelDialog;
 
 /**
  * @author fuhongliang
@@ -35,11 +41,11 @@ public class AddBankActivity extends BaseActivity {
     EditText etBankNumber;
     @BindView(R.id.et_bank_address)
     EditText etBankAddress;
-    @BindView(R.id.et_bank_name)
-    EditText etBankName;
+    @BindView(R.id.tv_bank_name)
+    TextView tvBankName;
     @BindView(R.id.tv_save)
     TextView tvSave;
-
+    ColumnWheelDialog dialog = null;
 
 
     @Override
@@ -77,7 +83,7 @@ public class AddBankActivity extends BaseActivity {
                     etName.getText().toString(),                            //控件命名.get文本框().to类型，
                     etBankNumber.getText().toString(),
                     etBankAddress.getText().toString(),
-                    etBankName.getText().toString())
+                    tvBankName.getText().toString())
                     .compose(SchedulerUtils.ioMainScheduler())    //这个是固定的。可复制
                     .subscribe(new BaseObserver<Object>(true) {   //固定的、已封装好了<对象>(布尔值为true)
                         @Override
@@ -103,5 +109,48 @@ public class AddBankActivity extends BaseActivity {
     @OnClick(R.id.tv_save)
     public void onTvSaveClicked() {
         addBankAccount();
+    }
+
+    @OnClick(R.id.tv_bank_name)
+    public void onTvBankNameClicked() {
+        if (dialog == null) {
+            dialog = createDialog();
+        } else {
+            dialog.show();
+        }
+    }
+
+    private ColumnWheelDialog createDialog() {
+        ColumnWheelDialog<CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem> dialog = new ColumnWheelDialog<>(this);
+        dialog.show();
+        dialog.setTitle("");
+        dialog.setCancelButton("取消", null);
+        dialog.setOKButton("确定", (v, item0, item1, item2, item3, item4) -> {
+            String result = "";
+            if (item0 != null) {
+                result += item0.getShowText();
+            }
+            tvBankName.setText(result);
+            return false;
+        });
+        dialog.setItems(initItems(), null, null, null, null);
+        dialog.setSelected(0, 0, 0, 0, 0);
+        return dialog;
+    }
+
+    private CategoryWheelItem[] initItems() {
+        final CategoryWheelItem[] items;
+        try {
+            List<String> stringList = ProductLogic.getBankList();
+            items = new CategoryWheelItem[stringList.size()];
+            for (int i = 0; i < stringList.size(); i++) {
+                items[i] = new CategoryWheelItem(stringList.get(i), 0);
+            }
+            return items;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new CategoryWheelItem[1];
     }
 }

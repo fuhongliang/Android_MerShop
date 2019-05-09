@@ -136,12 +136,16 @@
                 android:background="#E5E5E5" />
 
             <LinearLayout
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:background="#ffffff"
@@ -178,6 +182,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="44dp"
                     android:background="#ffffff"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -198,7 +204,8 @@
                         android:gravity="end|center_vertical"
                         android:hint="请填写价格"
                         android:inputType="numberDecimal"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        />
                 </LinearLayout>
 
                 <ImageView
@@ -309,6 +316,8 @@
 
 
                 <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#ffffff"

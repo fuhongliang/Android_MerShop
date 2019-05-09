@@ -72,10 +72,10 @@ public class AddOrEditCategoryActivity extends BaseActivity {
                     @Override
                     protected void onSuccees(BaseEntity<List<ProductManageBean.ClassListBean>> t) throws Exception {
                         ToastHelper.makeText(t.getMessage()+"", Toast.LENGTH_SHORT,ToastHelper.NORMALTOAST).show();
-                        etSort.setText("");
                         if (t.getData().size()>0){
                             ProductLogic.saveClass(t.getData());
                         }
+                        finish();
                     }
                 });
             }else {

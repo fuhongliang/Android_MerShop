@@ -114,7 +114,11 @@ public class EditProductActivity extends BaseActivity {
             etPrice.setText(goodsListBean.getGoods_price());
             etOriginalPrice.setText(goodsListBean.getGoods_marketprice());
             etProductDesr.setText(goodsListBean.getGoods_desc());
-            ivProductImage.load(goodsListBean.getImg_path()+"/"+goodsListBean.getImg_name());
+            ivProductImage.load(Constants.IMGPATH+goodsListBean.getImg_name());
+            tvTitle.setFocusable(true);
+            tvTitle.setFocusableInTouchMode(true);
+            tvTitle.requestFocus();
+            tvTitle.requestFocusFromTouch();
         }
     }
 

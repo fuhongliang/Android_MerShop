@@ -38,6 +38,11 @@ public class DateUtil {
         return dateTime.toString(YEAR_MONTH_DAY_MINUTE);
     }
 
+    public static String getLongToStringMinute(Long date) {
+        DateTime dateTime = new DateTime(date * 1000L);
+        return dateTime.toString(YEAR_MONTH_DAY_MINUTE);
+    }
+
     public static String getLongToString(Long date) {
         DateTime dateTime = new DateTime(date * 1000L);
         return dateTime.toString(YEAR_MONTH_DAY_FORMAT);

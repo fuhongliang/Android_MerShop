@@ -92,16 +92,20 @@ public class NewOrderFragment extends BaseFragment {
             protected void onSuccees(BaseEntity<NewOrderBean> t) throws Exception {
 
                 if (t.getData() == null || t.getData().getList().isEmpty()) {
-                    llEmpty.setVisibility(View.VISIBLE);
+
                 } else {
-                    llEmpty.setVisibility(View.GONE);
                     mDatas.clear();
                     mDatas.addAll(t.getData().getList());
                     newOrdersAdapter.updateData(mDatas);
                 }
+                updateEmptyView();
                 ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
+    }
+
+    public void updateEmptyView(){
+        llEmpty.setVisibility(newOrdersAdapter.getItemCount()>0?View.GONE:View.VISIBLE);
     }
 
     public void receiveOrder(String orderId, int position) {
@@ -118,6 +122,7 @@ public class NewOrderFragment extends BaseFragment {
             protected void onSuccees(BaseEntity<Object> t) throws Exception {
                 mDatas.remove(position);
                 newOrdersAdapter.updateData(mDatas);
+                updateEmptyView();
                 ToastHelper.makeText("接单成功", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
@@ -138,6 +143,7 @@ public class NewOrderFragment extends BaseFragment {
                 mDatas.remove(position);
                 newOrdersAdapter.updateData(mDatas);
                 ToastHelper.makeText("已拒绝！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                updateEmptyView();
             }
         });
     }

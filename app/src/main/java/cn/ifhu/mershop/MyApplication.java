@@ -62,7 +62,6 @@ public class MyApplication extends Application {
                 //注册成功会返回deviceToken deviceToken是推送消息的唯一标志
                 Log.i("mPushAgent", "注册成功：deviceToken：-------->  " + deviceToken);
                 IrReference.getInstance().saveString(DEVICETOKEN, deviceToken);
-
             }
 
             @Override

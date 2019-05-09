@@ -120,7 +120,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return mDatas.size();
+        return mDatas == null ?0:mDatas.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
