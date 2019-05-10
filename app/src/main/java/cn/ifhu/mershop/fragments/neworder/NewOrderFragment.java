@@ -236,7 +236,7 @@ public class NewOrderFragment extends BaseFragment {
     }
 
     public void stopFlipping(boolean stop) {
-        if (stop && simpleMarqueeView.isFlipping()){
+        if (stop){
             simpleMarqueeView.stopFlipping();
             rlMarqueeView.setVisibility(View.GONE);
         }else {

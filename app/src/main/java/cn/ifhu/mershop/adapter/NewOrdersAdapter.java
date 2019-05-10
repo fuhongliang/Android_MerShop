@@ -109,10 +109,10 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             holder.ivExpend.setBackgroundResource(R.drawable.icon_zhankai);
         }
 
-        if (orderBean.getExtend_order_goods() != null && orderBean.getExtend_order_goods().size() > 2) {
-          holder.tvExpend.setVisibility(View.VISIBLE);
-          holder.ivExpend.setVisibility(View.VISIBLE);
-        }else {
+        if (orderBean.getExtend_order_goods() != null && orderBean.getExtend_order_goods().size() > 1) {
+            holder.tvExpend.setVisibility(View.VISIBLE);
+            holder.ivExpend.setVisibility(View.VISIBLE);
+        } else {
             holder.tvExpend.setVisibility(View.INVISIBLE);
             holder.ivExpend.setVisibility(View.INVISIBLE);
         }
@@ -130,7 +130,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
         holder.ivCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogUtils.showConfirmDialog("温馨提示", "是否拨打客户电话", "取消", "确定", ((MainActivity)mContext).getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
+                DialogUtils.showConfirmDialog("温馨提示", "是否拨打客户电话", "取消", "确定", ((MainActivity) mContext).getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
                     @Override
                     public void cancel() {
                     }

@@ -45,7 +45,6 @@ public abstract class BaseObserver<T> implements Observer<BaseEntity<T>> {
         if (tLinkBaseEntity.isSuccess()) {
             try {
                 onSuccees(tLinkBaseEntity);
-                Logger.d(tLinkBaseEntity.getData());
             } catch (Exception e) {
                 e.printStackTrace();
             }

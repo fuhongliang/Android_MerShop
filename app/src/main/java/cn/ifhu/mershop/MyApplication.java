@@ -8,6 +8,7 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.MsgConstant;
 import com.umeng.message.PushAgent;
 
 import cn.ifhu.mershop.base.AppInfo;
@@ -54,6 +55,9 @@ public class MyApplication extends Application {
 
         //获取消息推送代理示例
         PushAgent mPushAgent = PushAgent.getInstance(this);
+        //服务端控制声音
+        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SERVER);
+        mPushAgent.setNotificationPlayVibrate(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
         //注册推送服务，每次调用register方法都会回调该接口
         mPushAgent.register(new IUmengRegisterCallback() {
 
@@ -69,5 +73,6 @@ public class MyApplication extends Application {
                 Log.e("mPushAgent", "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
             }
         });
+
     }
 }

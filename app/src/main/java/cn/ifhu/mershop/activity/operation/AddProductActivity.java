@@ -41,6 +41,7 @@ import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UploadFileService;
 import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.DeviceUtil;
 import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.ProductLogic;
 import cn.ifhu.mershop.utils.StringUtils;
@@ -124,6 +125,7 @@ public class AddProductActivity extends BaseActivity {
     private ColumnWheelDialog createDialog() {
         ColumnWheelDialog<CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem, CategoryWheelItem> dialog = new ColumnWheelDialog<>(this);
         dialog.show();
+        dialog.setTextSize(DeviceUtil.dip2px(18));
         dialog.setTitle("");
         dialog.setCancelButton("取消", null);
         dialog.setOKButton("确定", (v, item0, item1, item2, item3, item4) -> {

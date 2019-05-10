@@ -37,4 +37,8 @@ public class Constants {
 
     public static final String IMGPATH = "http://pqk40fvkr.bkt.clouddn.com/";
 
+    public static final String ORDERGOING = "ORDERGOING";
+    public static final String ORDERFINISH = "ORDERFINISHED";
+    public static final String ORDERCANCELED = "ORDERCANCEL";
+
 }

@@ -95,6 +95,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
                 holder.llContent.addView(view);
             }
             holder.tvExpend.setText("收起");
+            holder.ivExpend.setBackgroundResource(R.drawable.icon_shouqi);
         } else {
             if (orderBean.getExtend_order_goods() != null && orderBean.getExtend_order_goods().size() > 0) {
                 OrderBean.ExtendOrderGoodsBean extendOrderGoodsBean = orderBean.getExtend_order_goods().get(0);
@@ -108,7 +109,17 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
                 holder.llContent.addView(view);
             }
             holder.tvExpend.setText("展开");
+            holder.ivExpend.setBackgroundResource(R.drawable.icon_zhankai);
         }
+
+        if (orderBean.getExtend_order_goods() != null && orderBean.getExtend_order_goods().size() > 1) {
+            holder.tvExpend.setVisibility(View.VISIBLE);
+            holder.ivExpend.setVisibility(View.VISIBLE);
+        } else {
+            holder.tvExpend.setVisibility(View.INVISIBLE);
+            holder.ivExpend.setVisibility(View.INVISIBLE);
+        }
+
 
 
         if (StringUtils.isEmpty(orderBean.getOrder_state())){
@@ -221,6 +232,7 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         LinearLayout llDeliveryMan;
         ImageView ivCallCustomer;
         ImageView ivCallDeliver;
+        ImageView ivExpend;
 
         public MyViewHolder(View view) {
             super(view);
@@ -242,6 +254,8 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
 
             ivCallCustomer = view.findViewById(R.id.iv_call_customer);
             ivCallDeliver = view.findViewById(R.id.iv_call_deliver);
+            ivExpend = view.findViewById(R.id.iv_ic_zhankai);
+
         }
     }
 
