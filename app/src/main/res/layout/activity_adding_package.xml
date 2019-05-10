@@ -42,6 +42,7 @@
                     android:gravity="end|center_vertical"
                     android:hint="最多可输入20个字"
                     android:maxLines="1"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:textSize="16sp" />
             </LinearLayout>

@@ -162,7 +162,6 @@ public class AddProductActivity extends BaseActivity {
     public void onBtnSaveClicked() {
         if (!checkContentEmpty()) {
             upLoadImage();
-            startActivity(new Intent(AddProductActivity.this,ProductManageActivity.class));
         }
     }
 
