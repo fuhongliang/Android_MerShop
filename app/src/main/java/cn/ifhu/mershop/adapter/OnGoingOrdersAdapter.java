@@ -3,6 +3,7 @@ package cn.ifhu.mershop.adapter;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,12 +20,15 @@ import java.util.regex.Pattern;
 
 import cn.ifhu.mershop.BtService;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.me.PrintingSettingsActivity;
 import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
 import cn.ifhu.mershop.base.AppInfo;
 import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.print.PrintUtil;
+import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.OrderLogic;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
@@ -146,6 +150,35 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
             mDatas.get(position).setExpendOrder(!mDatas.get(position).isExpendOrder());
             notifyDataSetChanged();
         });
+
+        holder.ivCallCustomer.setOnClickListener(v -> DialogUtils.showConfirmDialog("温馨提示", "是否拨打客户电话", "取消", "确定", ((MainActivity)mContext).getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
+            @Override
+            public void cancel() {
+            }
+
+            @Override
+            public void ok() {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + orderBean.getExtend_order_common().getPhone());
+                intent.setData(data);
+                mContext.startActivity(intent);
+            }
+        }));
+        holder.ivCallDeliver.setOnClickListener(v -> DialogUtils.showConfirmDialog("温馨提示", "是否拨打配送员电话", "取消", "确定", ((MainActivity)mContext).getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
+            @Override
+            public void cancel() {
+            }
+
+            @Override
+            public void ok() {
+//                        Intent intent = new Intent(Intent.ACTION_DIAL);
+//                        Uri data = Uri.parse("tel:" + orderBean.getExtend_order_common().getPhone());
+//                        intent.setData(data);
+//                        mContext.startActivity(intent);
+            }
+        }));
+
+
     }
 
     public void printingOrder() {
@@ -186,6 +219,8 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
         TextView tvOrderSn;
         LinearLayout llContent;
         LinearLayout llDeliveryMan;
+        ImageView ivCallCustomer;
+        ImageView ivCallDeliver;
 
         public MyViewHolder(View view) {
             super(view);
@@ -204,6 +239,9 @@ public class OnGoingOrdersAdapter extends RecyclerView.Adapter<OnGoingOrdersAdap
 
             tvOrderTime = view.findViewById(R.id.tv_order_time);
             tvOrderSn = view.findViewById(R.id.tv_order_sn);
+
+            ivCallCustomer = view.findViewById(R.id.iv_call_customer);
+            ivCallDeliver = view.findViewById(R.id.iv_call_deliver);
         }
     }
 

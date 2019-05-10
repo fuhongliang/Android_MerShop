@@ -90,12 +90,13 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="17dp"
-                android:layout_height="17dp"
+                android:id="@+id/iv_call_customer"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/icon_dianhua" />
+                android:padding="15dp"
+                android:src="@drawable/icon_dianhua" />
 
         </RelativeLayout>
 
@@ -174,12 +175,13 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="17dp"
-                android:layout_height="17dp"
+                android:id="@+id/iv_call_deliver"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/icon_dianhua" />
+                android:padding="15dp"
+                android:src="@drawable/icon_dianhua" />
 
         </RelativeLayout>
 

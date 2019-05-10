@@ -77,7 +77,7 @@ public class DiscountProductAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.ivProductImage.load(Constants.IMGPATH + mDataList.get(position).getImg_name());
+        viewHolder.ivProductImage.load(Constants.IMGPATH + mDataList.get(position).getImg_name(),R.drawable.bnt_photo_moren);
         viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
 
         if (isSelected(mDataList.get(position))) {

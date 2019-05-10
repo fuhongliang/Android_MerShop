@@ -156,7 +156,12 @@ public class StoreSetUpActivity extends BaseActivity {
             Bundle bundle = new Bundle();
             bundle.putString("startTime", loginResponse.getWork_start_time());
             bundle.putString("endTime", loginResponse.getWork_end_time());
-            DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundle, (beginTime, endTime) -> setStoreTime(beginTime, endTime));
+            DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundle, new DialogWheelFragment.OperateDialogConfirmListner() {
+                @Override
+                public void onClickTextView(String beginTime, String endTime) {
+                  setStoreTime(beginTime, endTime);
+                }
+            });
         }
     }
 
@@ -167,24 +172,36 @@ public class StoreSetUpActivity extends BaseActivity {
 
 
     public void setStoreTime(String beginTime, String endTime) {
-        tvStoreTime.setText(beginTime + "~" + endTime);
-        setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(), beginTime, endTime)
-                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
-            @Override
-            protected void onApiComplete() {
-                setLoadingMessageIndicator(false);
-            }
+        String[] start = beginTime.split(":");
+        String[] end = endTime.split(":");
 
-            @Override
-            protected void onSuccees(BaseEntity t) throws Exception {
-                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
-                loginResponse.setWork_start_time(beginTime);
-                loginResponse.setWork_end_time(endTime);
-                UserLogic.saveUser(loginResponse);
-            }
-        });
+        int startHour = Integer.parseInt(start[0]);
+        int startMins = Integer.parseInt(start[1]);
+
+        int endHour = Integer.parseInt(end[0]);
+        int endMins = Integer.parseInt(end[1]);
+        if ((startHour*60+startMins)>(endHour*60+endMins)){
+            ToastHelper.makeText("开始时间不可大于结束时间").show();
+        }else {
+            tvStoreTime.setText(beginTime + "~" + endTime);
+            setLoadingMessageIndicator(true);
+            RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(), beginTime, endTime)
+                    .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+                @Override
+                protected void onApiComplete() {
+                    setLoadingMessageIndicator(false);
+                }
+
+                @Override
+                protected void onSuccees(BaseEntity t) throws Exception {
+                    ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                    UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
+                    loginResponse.setWork_start_time(beginTime);
+                    loginResponse.setWork_end_time(endTime);
+                    UserLogic.saveUser(loginResponse);
+                }
+            });
+        }
     }
 
     @Override

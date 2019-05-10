@@ -91,7 +91,7 @@ public class ProductAdapter extends BaseAdapter {
             viewHolder.tvChangeState.setText("下架");
             viewHolder.tvStateTip.setVisibility(View.INVISIBLE);
         }
-      viewHolder.ivProductImage.load(Constants.IMGPATH+mDataList.get(position).getImg_name());
+      viewHolder.ivProductImage.load(Constants.IMGPATH+mDataList.get(position).getImg_name(),R.drawable.bnt_photo_moren);
         if (onClickItem != null){
             viewHolder.tvChangeState.setOnClickListener(v -> onClickItem.changeState(position));
 

@@ -230,7 +230,9 @@ public class AddLimitDiscountsActivity extends BaseActivity {
 
     @OnClick(R.id.ll_add_goods)
     public void onLlAddGoodsClicked() {
-        startActivity(new Intent(AddLimitDiscountsActivity.this, DiscountAddProductActivity.class));
+        Intent intent = new Intent(AddLimitDiscountsActivity.this, DiscountAddProductActivity.class);
+        intent.putExtra("isFromLimitDiscount",true);
+        startActivity(intent);
     }
 
     @OnClick(R.id.btn_save)

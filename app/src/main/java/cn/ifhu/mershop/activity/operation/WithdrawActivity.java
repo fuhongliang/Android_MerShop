@@ -41,7 +41,7 @@ public class WithdrawActivity extends BaseActivity {
     TextView tvBankNumber;
     @BindView(R.id.tv_y_jiesuan)
     TextView tvYJiesuan;
-    int y_jiesuan = 0;//int类型数据返回(从上一个页面抛出、这个页面首先就得接收)
+    double y_jiesuan = 0;//int类型数据返回(从上一个页面抛出、这个页面首先就得接收)
     String bank_type;//string类型
     String account_number;
     boolean withdraw = false;
@@ -62,10 +62,13 @@ public class WithdrawActivity extends BaseActivity {
 
 
     public void initData() {
-        y_jiesuan = getIntent().getIntExtra("jiesuan", 0);//接口命名 = getIngent().getingExtra(ing类型)("自定义名称",默认为0)
-        bank_type = getIntent().getStringExtra("bank_type");//接口命名 = getIntent().getStringExtra("自定义名称")
+        y_jiesuan = getIntent().getDoubleExtra("jiesuan", 0);
+        //接口命名 = getIngent().getingExtra(ing类型)("自定义名称",默认为0)
+        bank_type = getIntent().getStringExtra("bank_type");
+        //接口命名 = getIntent().getStringExtra("自定义名称")
         account_number = getIntent().getStringExtra("account_number");
-        tvYJiesuan.setText(y_jiesuan + "");//设置它显示出来、强制转换为String类型
+        tvYJiesuan.setText(y_jiesuan + "");
+        //设置它显示出来、强制转换为String类型
         tvBankType.setText(bank_type);
         tvBankNumber.setText(account_number);
         if (bank_type == null || StringUtils.isEmpty(bank_type)) {
@@ -105,9 +108,23 @@ public class WithdrawActivity extends BaseActivity {
 
     @OnClick(R.id.btn_save)
     public void onBtnSaveClicked() {
-        withdrawMoney();
+        if (withdraw){
+           checkContent();
+        }else {
+            ToastHelper.makeText("请添加银卡").show();
+        }
+
     }
 
+    public void checkContent(){
+        if (StringUtils.isEmpty(etMoney.getText().toString())) {
+            ToastHelper.makeText("请输入提现金额").show();
+        } else if (Double.parseDouble(etMoney.getText().toString()) > y_jiesuan){
+            ToastHelper.makeText("输入金额不可大于可提现金额").show();
+        }else {
+            withdrawMoney();
+        }
+    }
     @OnClick(R.id.tv_money)
     public void onTvMoneyClicked() {
         etMoney.setText(y_jiesuan + "");

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import cn.ifhu.mershop.dialog.nicedialog.BuyDiscountDialog;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmInputDialog;
+import cn.ifhu.mershop.dialog.nicedialog.DiscountInputDialog;
 
 public class DialogUtils {
 
@@ -22,6 +23,14 @@ public class DialogUtils {
 
     public static void showInputConfirmDialog(String title, String message, FragmentManager manager, ConfirmInputDialog.ButtonOnclick buttonOnclick) {
         ConfirmInputDialog confirmDialog = ConfirmInputDialog.newInstance(title, message);
+        confirmDialog.setMargin(48);
+        confirmDialog.setOutCancel(false);
+        confirmDialog.setButtonOnclick(buttonOnclick);
+        confirmDialog.show(manager);
+    }
+
+    public static void showDiscountConfirmDialog(String title, String message, FragmentManager manager, DiscountInputDialog.ButtonOnclick buttonOnclick) {
+        DiscountInputDialog confirmDialog = DiscountInputDialog.newInstance(title, message);
         confirmDialog.setMargin(48);
         confirmDialog.setOutCancel(false);
         confirmDialog.setButtonOnclick(buttonOnclick);

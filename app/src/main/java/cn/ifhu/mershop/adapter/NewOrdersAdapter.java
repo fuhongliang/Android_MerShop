@@ -1,6 +1,8 @@
 package cn.ifhu.mershop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,9 +15,12 @@ import android.widget.TextView;
 import java.util.List;
 
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.StringUtils;
 
 /**
@@ -112,9 +117,33 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
             holder.ivExpend.setVisibility(View.INVISIBLE);
         }
 
+        holder.ivExpend.setOnClickListener(v -> {
+            mDatas.get(position).setExpendOrder(!mDatas.get(position).isExpendOrder());
+            notifyDataSetChanged();
+        });
+
         holder.tvExpend.setOnClickListener(v -> {
             mDatas.get(position).setExpendOrder(!mDatas.get(position).isExpendOrder());
             notifyDataSetChanged();
+        });
+
+        holder.ivCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogUtils.showConfirmDialog("温馨提示", "是否拨打客户电话", "取消", "确定", ((MainActivity)mContext).getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
+                    @Override
+                    public void cancel() {
+                    }
+
+                    @Override
+                    public void ok() {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        Uri data = Uri.parse("tel:" + orderBean.getExtend_order_common().getPhone());
+                        intent.setData(data);
+                        mContext.startActivity(intent);
+                    }
+                });
+            }
         });
     }
 
@@ -135,6 +164,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
         TextView tvEarnMoney;
         TextView tvExpend;
         ImageView ivExpend;
+        ImageView ivCall;
 
         TextView tvOrderTime;
         TextView tvOrderSn;
@@ -158,6 +188,7 @@ public class NewOrdersAdapter extends RecyclerView.Adapter<NewOrdersAdapter.MyVi
 
             btn_refuse = view.findViewById(R.id.btn_refuse);
             btn_accept = view.findViewById(R.id.btn_accept);
+            ivCall = view.findViewById(R.id.iv_call);
         }
     }
 

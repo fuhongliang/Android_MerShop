@@ -29,6 +29,7 @@ import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmInputDialog;
+import cn.ifhu.mershop.dialog.nicedialog.DiscountInputDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
@@ -60,6 +61,7 @@ public class DiscountAddProductActivity extends BaseActivity {
     public int classPosition = 0;
     List<ProductManageBean.GoodsListBean> mSelectedGoodsBeans;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,23 +82,44 @@ public class DiscountAddProductActivity extends BaseActivity {
         mProductAdapter.setOnClickItem(new DiscountProductAdapter.onClickItem() {
             @Override
             public void setDiscountPrice(int position) {
-                View view = getLayoutInflater().inflate(R.layout.confirm_input_layout, null);
-                DialogUtils.showInputConfirmDialog("修改价格",mProductArray.get(position).getGoods_price(), getSupportFragmentManager(),new ConfirmInputDialog.ButtonOnclick() {
-                    @Override
-                    public void ok(String discount_price) {
-                        if (!StringUtils.isEmpty(discount_price)) {
-                            ProductManageBean.GoodsListBean goodsListBean = mProductArray.get(position);
-                            if (Double.parseDouble(discount_price) > Double.parseDouble(goodsListBean.getGoods_price())){
-                                ToastHelper.makeText("优惠价格不能大于商品价格！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                            }else {
-                                goodsListBean.setGoods_dicountprice(discount_price);
-                                addSelectedGoods(goodsListBean);
+                if (getIntent().getBooleanExtra("isFromLimitDiscount",false)){
+                    View view = getLayoutInflater().inflate(R.layout.discount_input_dialog, null);
+                    DialogUtils.showDiscountConfirmDialog("修改价格",mProductArray.get(position).getGoods_price(), getSupportFragmentManager(),new DiscountInputDialog.ButtonOnclick() {
+                        @Override
+                        public void ok(String discount_price) {
+                            if (!StringUtils.isEmpty(discount_price)) {
+                                ProductManageBean.GoodsListBean goodsListBean = mProductArray.get(position);
+                                if (Double.parseDouble(discount_price) > Double.parseDouble(goodsListBean.getGoods_price())){
+                                    ToastHelper.makeText("折扣价格不能大于商品价格！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                                }else {
+                                    goodsListBean.setGoods_dicountprice(discount_price);
+                                    addSelectedGoods(goodsListBean);
+                                }
                             }
+                            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
                         }
-                        InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
-                    }
-                });
+                    });
+                }else {
+                    View view = getLayoutInflater().inflate(R.layout.confirm_input_layout, null);
+                    DialogUtils.showInputConfirmDialog("修改价格",mProductArray.get(position).getGoods_price(), getSupportFragmentManager(),new ConfirmInputDialog.ButtonOnclick() {
+                        @Override
+                        public void ok(String discount_price) {
+                            if (!StringUtils.isEmpty(discount_price)) {
+                                ProductManageBean.GoodsListBean goodsListBean = mProductArray.get(position);
+                                if (Double.parseDouble(discount_price) > Double.parseDouble(goodsListBean.getGoods_price())){
+                                    ToastHelper.makeText("优惠价格不能大于商品价格！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                                }else {
+                                    goodsListBean.setGoods_dicountprice(discount_price);
+                                    addSelectedGoods(goodsListBean);
+                                }
+                            }
+                            InputMethodManager mInputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                            mInputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+                        }
+                    });
+                }
+
             }
 
             @Override

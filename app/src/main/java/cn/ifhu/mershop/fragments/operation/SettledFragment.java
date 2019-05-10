@@ -114,7 +114,7 @@ public class SettledFragment extends BaseFragment {
                 .setTimeSelectChangeListener(date -> {
 
                 })
-                .setType(new boolean[]{true, true, false, false, false, false})
+                .setType(new boolean[]{true, false, false, false, false, false})
                 .isDialog(true)
                 .addOnCancelClickListener(view -> {
                 })

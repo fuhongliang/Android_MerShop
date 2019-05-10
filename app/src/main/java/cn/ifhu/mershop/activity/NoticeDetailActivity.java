@@ -1,7 +1,6 @@
 package cn.ifhu.mershop.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,8 +17,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -58,16 +55,18 @@ public class NoticeDetailActivity extends BaseActivity {
     ImageView ivBack;
     @BindView(R.id.tv_title)
     TextView tvTitle;
+    @BindView(R.id.tv_time)
+    TextView tvTime;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_notice_detail);
         ButterKnife.bind(this);
         showWebTitle("");
         initWebView();
-        getNoticeDetail(getIntent().getIntExtra("smId",0));
+        getNoticeDetail(getIntent().getIntExtra("smId", 0));
     }
 
     public void getNoticeDetail(int smId) {
@@ -83,6 +82,7 @@ public class NoticeDetailActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<NoticeDetailBean> t) throws Exception {
                 loadData(t.getData().getSm_content());
                 showWebTitle(t.getData().getSm_title());
+                tvTime.setText(t.getData().getSm_addtime());
             }
         });
 

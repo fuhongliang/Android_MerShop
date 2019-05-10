@@ -104,8 +104,14 @@ public class NewOrderFragment extends BaseFragment {
         });
     }
 
-    public void updateEmptyView(){
-        llEmpty.setVisibility(newOrdersAdapter.getItemCount()>0?View.GONE:View.VISIBLE);
+    public void updateEmptyView() {
+        if (newOrdersAdapter.getItemCount() > 0) {
+            llEmpty.setVisibility(View.GONE);
+        } else {
+            llEmpty.setVisibility(View.VISIBLE);
+            stopFlipping();
+        }
+
     }
 
     public void receiveOrder(String orderId, int position) {
@@ -185,7 +191,6 @@ public class NewOrderFragment extends BaseFragment {
 
     public void setSimpleMarqueeView() {
         final List<String> datas = Arrays.asList("您有一笔新订单，系统已自动接单~", "您有一笔新订单，系统已自动接单~");
-        //SimpleMarqueeView<T>，SimpleMF<T>：泛型T指定其填充的数据类型，比如String，Spanned等
         SimpleMF<String> marqueeFactory = new SimpleMF(getContext());
         marqueeFactory.setData(datas);
         simpleMarqueeView.setMarqueeFactory(marqueeFactory);
@@ -220,7 +225,6 @@ public class NewOrderFragment extends BaseFragment {
     }
 
 
-
     @OnClick(R.id.iv_notice)
     public void onIvNoticeClicked() {
         startActivity(new Intent(getContext(), NoticeListActivity.class));
@@ -228,7 +232,13 @@ public class NewOrderFragment extends BaseFragment {
 
     @OnClick(R.id.iv_close)
     public void onIvCloseClicked() {
-        simpleMarqueeView.stopFlipping();
-        rlMarqueeView.setVisibility(View.GONE);
+        stopFlipping();
+    }
+
+    public void stopFlipping() {
+        if (simpleMarqueeView.isFlipping()){
+            simpleMarqueeView.stopFlipping();
+            rlMarqueeView.setVisibility(View.GONE);
+        }
     }
 }

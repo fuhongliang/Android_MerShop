@@ -57,7 +57,7 @@ public class FinanceActivity extends BaseActivity {
     @BindView(R.id.tv_add_time)
     TextView tvAddTime;
 
-    private int y_jiesuan = 0;//声明一个int类型(数据需要跳转到其他页面)
+    private double y_jiesuan = 0;//声明一个int类型(数据需要跳转到其他页面)
     private String bank_type;//声明一个string类型
     private String account_number;
 

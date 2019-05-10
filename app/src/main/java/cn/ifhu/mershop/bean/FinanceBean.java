@@ -12,8 +12,8 @@ public class FinanceBean {
      * account : {"bank_type":"工商银行储蓄卡","account_number":"28"}
      */
 
-    private int y_jiesuan;
-    private int d_jiesuan;
+    private double y_jiesuan;
+    private double d_jiesuan;
     private AccountBean account;
     private List<ListBean> list;
     /**
@@ -24,7 +24,7 @@ public class FinanceBean {
     private String addtime;
     private String msg;
 
-    public int getY_jiesuan() {
+    public double getY_jiesuan() {
         return y_jiesuan;
     }
 
@@ -32,7 +32,7 @@ public class FinanceBean {
         this.y_jiesuan = y_jiesuan;
     }
 
-    public int getD_jiesuan() {
+    public double getD_jiesuan() {
         return d_jiesuan;
     }
 
