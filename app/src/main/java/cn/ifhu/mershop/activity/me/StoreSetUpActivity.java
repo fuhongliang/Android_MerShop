@@ -14,11 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baba.GlideImageView;
-import com.bumptech.glide.Glide;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
 
 import java.io.File;
+import java.nio.file.OpenOption;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,7 +28,6 @@ import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
-import cn.ifhu.mershop.bean.FileModel;
 import cn.ifhu.mershop.bean.UserServiceBean;
 import cn.ifhu.mershop.dialog.DialogWheelFragment;
 import cn.ifhu.mershop.net.MeService;
@@ -40,8 +39,8 @@ import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
-import okhttp3.MultipartBody;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -86,6 +85,7 @@ public class StoreSetUpActivity extends BaseActivity {
     @BindView(R.id.ll_store_time)
     LinearLayout llStoreTime;
     String cardPath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +101,7 @@ public class StoreSetUpActivity extends BaseActivity {
         if (loginResponse != null) {
             tvStoreState.setText(loginResponse.getStore_state() == 0 ? "已停止营业" : "正常营业中");
             tvStoreNotice.setText(loginResponse.getStore_description());
-            ivLogo.loadCircle(Constants.IMGPATH+loginResponse.getStore_avatar());
+            ivLogo.loadCircle(Constants.IMGPATH + loginResponse.getStore_avatar());
             tvStorePhone.setText(loginResponse.getStore_phone());
             tvStoreAdd.setText(loginResponse.getStore_address());
             tvStoreTime.setText(loginResponse.getWork_start_time() + "~" + loginResponse.getWork_end_time());
@@ -115,8 +115,10 @@ public class StoreSetUpActivity extends BaseActivity {
         swhAutoAccess.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 IrReference.getInstance().setBoolean(Constants.AUTOACCESS, true);
+                automaticOrder(1);
             } else {
                 IrReference.getInstance().setBoolean(Constants.AUTOACCESS, false);
+                automaticOrder(2);
             }
         });
 
@@ -127,8 +129,25 @@ public class StoreSetUpActivity extends BaseActivity {
                 IrReference.getInstance().setBoolean(Constants.AUTOPRINT, false);
             }
         });
+
     }
 
+    public void automaticOrder(int isOpen) {
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(MeService.class).autoReceiveOrder(UserLogic.getUser().getStore_id(), isOpen)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage()).show();
+            }
+
+        });
+    }
 
     @OnClick(R.id.iv_back)
     public void onIvBackClicked() {
@@ -159,7 +178,7 @@ public class StoreSetUpActivity extends BaseActivity {
             DialogWheelFragment.showOperateDialog(getSupportFragmentManager(), bundle, new DialogWheelFragment.OperateDialogConfirmListner() {
                 @Override
                 public void onClickTextView(String beginTime, String endTime) {
-                  setStoreTime(beginTime, endTime);
+                    setStoreTime(beginTime, endTime);
                 }
             });
         }
@@ -180,9 +199,9 @@ public class StoreSetUpActivity extends BaseActivity {
 
         int endHour = Integer.parseInt(end[0]);
         int endMins = Integer.parseInt(end[1]);
-        if ((startHour*60+startMins)>(endHour*60+endMins)){
+        if ((startHour * 60 + startMins) > (endHour * 60 + endMins)) {
             ToastHelper.makeText("开始时间不可大于结束时间").show();
-        }else {
+        } else {
             tvStoreTime.setText(beginTime + "~" + endTime);
             setLoadingMessageIndicator(true);
             RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(), beginTime, endTime)
@@ -271,7 +290,7 @@ public class StoreSetUpActivity extends BaseActivity {
         }
     }
 
-    public void upLoadImage(){
+    public void upLoadImage() {
         setLoadingMessageIndicator(true);
         File file = new File(cardPath);
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
@@ -296,9 +315,9 @@ public class StoreSetUpActivity extends BaseActivity {
         });
     }
 
-    public void updateLogo(String url){
+    public void updateLogo(String url) {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(MeService.class).changeAvator(UserLogic.getUser().getStore_id()+"",url)
+        RetrofitAPIManager.create(MeService.class).changeAvator(UserLogic.getUser().getStore_id() + "", url)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<UserServiceBean.LoginResponse>(true) {
             @Override
             protected void onApiComplete() {
@@ -309,7 +328,7 @@ public class StoreSetUpActivity extends BaseActivity {
             protected void onSuccees(BaseEntity<UserServiceBean.LoginResponse> t) throws Exception {
                 UserLogic.saveUser(t.getData());
                 loginResponse = UserLogic.getUser();
-                ivLogo.loadCircle(Constants.IMGPATH+loginResponse.getStore_avatar());
+                ivLogo.loadCircle(Constants.IMGPATH + loginResponse.getStore_avatar());
             }
 
         });

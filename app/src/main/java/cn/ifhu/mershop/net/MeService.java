@@ -51,6 +51,9 @@ public interface MeService {
     @POST("change_avator")
     public Observable<BaseEntity<UserServiceBean.LoginResponse>> changeAvator(@Field("store_id") String store_id, @Field("avator") String avator);
 
+    @FormUrlEncoded
+    @POST("auto_receive_order")
+    public Observable<BaseEntity<Object>> autoReceiveOrder(@Field("store_id") int store_id, @Field("is_open") int is_open);
 
 
 }
