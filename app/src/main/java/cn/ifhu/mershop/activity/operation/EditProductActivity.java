@@ -254,10 +254,10 @@ public class EditProductActivity extends BaseActivity {
             ToastHelper.makeText("请输入商品原价", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
         }
-//        if (Integer.parseInt(etOriginalPrice.getText().toString().trim()) < Integer.parseInt(etPrice.getText().toString().trim())) {
-//            ToastHelper.makeText("商品原价不能小于商品价格", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-//            return true;
-//        }
+        if (Double.parseDouble(etOriginalPrice.getText().toString().trim()) < Double.parseDouble(etPrice.getText().toString().trim())) {
+            ToastHelper.makeText("商品原价不能小于商品价格", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            return true;
+        }
         return false;
     }
 
