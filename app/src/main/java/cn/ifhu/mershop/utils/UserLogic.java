@@ -22,7 +22,6 @@ public class UserLogic {
 
     public static UserServiceBean.LoginResponse getUser() {
         String json = IrReference.getInstance().getString(USER, "");
-        Logger.d("getUser"+json);
         if (!TextUtils.isEmpty(json)) {
             Gson gson = new Gson();
             UserServiceBean.LoginResponse mUser = gson.fromJson(json, UserServiceBean.LoginResponse.class);

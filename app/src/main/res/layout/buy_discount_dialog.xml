@@ -44,7 +44,7 @@
 
             <EditText
                 android:id="@+id/dialog_edit"
-                android:layout_width="94dp"
+                android:layout_width="80dp"
                 android:layout_height="30dp"
                 android:background="@drawable/bg_bg_white"
                 style="@style/base_edit"

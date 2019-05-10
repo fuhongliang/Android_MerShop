@@ -128,12 +128,7 @@ public class RetrofitAPIManager {
                 })
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
-                    @Override
-                    public void log(String message) {
-                        Logger.d(message);
-                    }
-                }).setLevel(HttpLoggingInterceptor.Level.BODY));
+                .addInterceptor(new HttpLoggingInterceptor(message -> Logger.d(message)).setLevel(HttpLoggingInterceptor.Level.BODY));
 
         OkHttpClient httpClient = builder.build();
         return httpClient;
