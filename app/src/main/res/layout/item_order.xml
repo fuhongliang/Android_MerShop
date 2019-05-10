@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/line_bg"
-    android:orientation="vertical"
     android:layout_marginTop="15dp"
-    >
+    android:background="@color/line_bg"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -71,6 +70,7 @@
                 android:id="@+id/tv_customer_name"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="8dp"
                 android:layout_toRightOf="@id/icon_shou"
                 android:text="张先生"
@@ -82,6 +82,7 @@
                 android:id="@+id/tv_customer_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="17dp"
                 android:layout_toRightOf="@id/tv_customer_name"
                 android:text="158****4488"
@@ -160,6 +161,7 @@
                 android:layout_toRightOf="@id/tv_qishou"
                 android:text="李海波"
                 android:textColor="#000000"
+                android:layout_centerVertical="true"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
@@ -168,6 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="17dp"
+                android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/tv_rider_name"
                 android:text="132****8897"
                 android:textColor="#1C98F6"
@@ -256,8 +259,8 @@
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="6dp"
-                android:gravity="right"
                 android:layout_toLeftOf="@id/iv_ic_zhankai"
+                android:gravity="right"
                 android:text="展开"
                 android:textColor="#666666"
                 android:textSize="14sp" />

@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="17dp"
-                android:text="4258.44"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="26sp" />
 
@@ -181,7 +181,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="15dp"
-            android:text="1258.88"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="21sp" />
     </RelativeLayout>

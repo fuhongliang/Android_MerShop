@@ -7,6 +7,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.WebViewActivity;
+import cn.ifhu.mershop.activity.operation.WithdrawActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 
 /**
@@ -27,7 +29,13 @@ public class AboutUsActivity extends BaseActivity {
 
 
     @OnClick(R.id.iv_back)
-    public void onViewClicked() {
+    public void onIvBackClicked() {
         finish();
+    }
+
+    @OnClick(R.id.tv_protocol)
+    public void onTvProtocolClicked() {
+        WebViewActivity.startLoadAssetsHtml(AboutUsActivity.this, "protocol.html", "邻邻發软件许可及服务协议");
+
     }
 }

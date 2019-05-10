@@ -10,9 +10,12 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.RegisterActivity;
+import cn.ifhu.mershop.activity.WebViewActivity;
+import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
@@ -136,4 +139,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     }
 
 
+    @OnClick(R.id.ll_agreement)
+    public void onLlAgreementClicked() {
+        WebViewActivity.startLoadAssetsHtml(LoginActivity.this, "protocol.html", "服务协议");
+    }
 }
