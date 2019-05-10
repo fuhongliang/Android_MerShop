@@ -32,6 +32,7 @@
         android:id="@+id/rl_marquee_view"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:visibility="gone"
         android:background="#FDF6DB">
 
         <ImageView

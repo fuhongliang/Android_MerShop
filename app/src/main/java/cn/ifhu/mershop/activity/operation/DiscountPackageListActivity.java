@@ -25,6 +25,7 @@ import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.DiscountBean;
 import cn.ifhu.mershop.bean.DiscountPackageBean;
 import cn.ifhu.mershop.dialog.nicedialog.BuyDiscountDialog;
+import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
@@ -70,7 +71,17 @@ public class DiscountPackageListActivity extends BaseActivity {
 
             @Override
             public void deleteDiscountPackage(int position) {
-                deleteDiscountItem(position);
+                DialogUtils.showConfirmDialog("温馨提示", "是否删除该优惠套餐", getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
+                    @Override
+                    public void cancel() {
+
+                    }
+
+                    @Override
+                    public void ok() {
+                        deleteDiscountItem(position);
+                    }
+                });
             }
         });
         lvDiscountPackage.setAdapter(discountPackageAdapter);

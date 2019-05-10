@@ -44,9 +44,10 @@ public class WheelView extends View implements IWheelViewSetting {
     private int textColor = 0xFF000000;
     /**
      * The size of showing text.
-     * Default value is 14dp.
+     * Default value is 18dp.
      */
-    private float textSize = 20.0f;
+    private float textSize = 26.0f;
+
     /**
      * The offset pixel from x coordination.
      * <br>text align {@code right} with a positive value

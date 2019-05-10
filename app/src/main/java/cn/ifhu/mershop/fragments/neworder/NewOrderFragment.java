@@ -107,11 +107,11 @@ public class NewOrderFragment extends BaseFragment {
     public void updateEmptyView() {
         if (newOrdersAdapter.getItemCount() > 0) {
             llEmpty.setVisibility(View.GONE);
+            stopFlipping(false);
         } else {
             llEmpty.setVisibility(View.VISIBLE);
-            stopFlipping();
+            stopFlipping(true);
         }
-
     }
 
     public void receiveOrder(String orderId, int position) {
@@ -232,13 +232,16 @@ public class NewOrderFragment extends BaseFragment {
 
     @OnClick(R.id.iv_close)
     public void onIvCloseClicked() {
-        stopFlipping();
+        stopFlipping(true);
     }
 
-    public void stopFlipping() {
-        if (simpleMarqueeView.isFlipping()){
+    public void stopFlipping(boolean stop) {
+        if (stop){
             simpleMarqueeView.stopFlipping();
             rlMarqueeView.setVisibility(View.GONE);
+        }else {
+            simpleMarqueeView.startFlipping();
+            rlMarqueeView.setVisibility(View.VISIBLE);
         }
     }
 }

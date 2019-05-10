@@ -14,6 +14,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +29,7 @@ import cn.ifhu.mershop.adapter.OnGoingOrdersAdapter;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.MessageEvent;
 import cn.ifhu.mershop.bean.OrderBean;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.OrderService;
@@ -35,6 +40,8 @@ import cn.ifhu.mershop.utils.DividerItemDecoration;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
+import static cn.ifhu.mershop.utils.Constants.LOGOUT;
+import static cn.ifhu.mershop.utils.Constants.ORDERGOING;
 import static cn.ifhu.mershop.utils.Constants.ORDERONGOING;
 
 /**
@@ -82,6 +89,7 @@ public class OngoingOrderFragment extends BaseFragment {
         recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerList.setAdapter(mOrdersAdapter);
         setRefreshLayout();
+        EventBus.getDefault().register(this);
     }
 
     @SuppressLint("ResourceAsColor")
@@ -114,6 +122,7 @@ public class OngoingOrderFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
 
 
@@ -148,5 +157,12 @@ public class OngoingOrderFragment extends BaseFragment {
                 ToastHelper.makeText("刷新成功！", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             }
         });
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+        if (ORDERGOING.equals(messageEvent.getMessage())) {
+           getData();
+        }
     }
 }

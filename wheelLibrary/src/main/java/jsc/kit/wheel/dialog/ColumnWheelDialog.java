@@ -45,7 +45,7 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
     private OnClickCallBack<T0, T1, T2, T3, T4> okCallBack = null;
 
     private boolean isViewInitialized = false;
-    private float textSize = 36;
+    private float textSize = 0f;
     private int itemVerticalSpace;
 
     public ColumnWheelDialog(@NonNull Context context) {
@@ -66,7 +66,6 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
             getWindow().getDecorView().setBackgroundColor(Color.TRANSPARENT);
         }
         setContentView(R.layout.wheel_dialog_base);
-        initView();
     }
 
     private void initView() {
@@ -83,7 +82,7 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
         lyPickerContainer.addView(wheelItemView3, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
         wheelItemView4 = new WheelItemView(lyPickerContainer.getContext());
         lyPickerContainer.addView(wheelItemView4, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1));
-        if (textSize > 0) {
+        if (textSize > 0.0f) {
             wheelItemView0.setTextSize(textSize);
             wheelItemView1.setTextSize(textSize);
             wheelItemView2.setTextSize(textSize);
@@ -164,6 +163,7 @@ public class ColumnWheelDialog<T0 extends IWheel, T1 extends IWheel, T2 extends 
 
     public void setTextSize(float textSize) {
         this.textSize = textSize;
+        initView();
     }
 
     public void setItemVerticalSpace(int itemVerticalSpace) {

@@ -17,6 +17,8 @@ import android.widget.RelativeLayout;
 import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,7 +30,11 @@ import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.notice.NoticeListActivity;
 import cn.ifhu.mershop.base.BaseFragment;
+import cn.ifhu.mershop.bean.MessageEvent;
+import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.view.RVPIndicator;
+
+import static cn.ifhu.mershop.utils.Constants.LOGOUT;
 
 /**
  * @author tony
@@ -105,6 +111,36 @@ public class OrdersFragment extends BaseFragment {
         vpContent.setOffscreenPageLimit(5);
         vpContent.setAdapter(mAdapter);
         rvpIndicator.setViewPager(vpContent, 0);
+        vpContent.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                //发通知更新对应的页面
+                switch (i) {
+                    case 0:
+                        EventBus.getDefault().post(new MessageEvent(Constants.ORDERGOING));
+                        break;
+                    case 1:
+                        EventBus.getDefault().post(new MessageEvent(Constants.ORDERFINISH));
+                        break;
+                    case 2:
+                        EventBus.getDefault().post(new MessageEvent(Constants.ORDERCANCELED));
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     @Override

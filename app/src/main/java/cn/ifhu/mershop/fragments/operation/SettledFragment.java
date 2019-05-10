@@ -103,12 +103,12 @@ public class SettledFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         settledAdapter = new SettledAdapter(listBeans, getContext());
         listView.setAdapter(settledAdapter);
-        getAllSettledData(DateUtil.getCurDateMonth());
+        getAllSettledData(DateUtil.getCurDateYear());
         initTimePicker();
     }
     private void initTimePicker() {
         pvTime = new TimePickerBuilder(getContext(), (date, v) -> {
-            tvYear.setText(DateUtil.getCurDateMonth(date));
+            tvYear.setText(DateUtil.getCurDateYear(date));
             getAllSettledData(DateUtil.getCurDateMonth(date));
         })
                 .setTimeSelectChangeListener(date -> {

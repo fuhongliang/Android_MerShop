@@ -20,6 +20,7 @@ import cn.ifhu.mershop.MyApplication;
 /**
  * author: tommy
  * date:   On 2018/8/9
+ * @author fuhongliang
  */
 public class DeviceUtil {
 
