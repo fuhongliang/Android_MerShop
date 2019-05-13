@@ -165,7 +165,7 @@ public class AddProductActivity extends BaseActivity {
         }
     }
 
-    public void postProduct(String url){
+    public void postProduct(String url) {
         AddGoodsBean addGoodsBean = new AddGoodsBean();
         addGoodsBean.setGoods_name(etProductName.getText().toString());
         addGoodsBean.setGoods_price(Double.parseDouble(etPrice.getText().toString().trim()));
@@ -196,7 +196,8 @@ public class AddProductActivity extends BaseActivity {
         });
     }
 
-    public void upLoadImage(){
+    //图片
+    public void upLoadImage() {
         setLoadingMessageIndicator(true);
         File file = new File(cardPath);
         RequestBody requestFile = RequestBody.create(MediaType.parse("image/png"), file);
@@ -221,7 +222,7 @@ public class AddProductActivity extends BaseActivity {
     }
 
     public boolean checkContentEmpty() {
-        if (StringUtils.isEmpty(cardPath)){
+        if (StringUtils.isEmpty(cardPath)) {
             ToastHelper.makeText("请选择商品图片", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
         }
