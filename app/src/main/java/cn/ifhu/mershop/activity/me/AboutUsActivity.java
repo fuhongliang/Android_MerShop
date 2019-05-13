@@ -35,7 +35,7 @@ public class AboutUsActivity extends BaseActivity {
 
     @OnClick(R.id.tv_protocol)
     public void onTvProtocolClicked() {
-        WebViewActivity.startLoadAssetsHtml(AboutUsActivity.this, "protocol.html", "邻邻發软件许可及服务协议");
+        WebViewActivity.startLoadAssetsHtml(AboutUsActivity.this, "protocol.html", "服务协议");
 
     }
 }

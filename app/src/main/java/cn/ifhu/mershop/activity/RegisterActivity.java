@@ -102,6 +102,7 @@ public class RegisterActivity extends BaseActivity {
         });
 
     }
+
     //判断是否空
     public boolean checkPhoneNumber() {
         if (StringUtils.isEmpty(etPhone.getText().toString())) {
@@ -213,7 +214,12 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_back)
-    public void onViewClicked() {
+    public void onIvBackClicked() {
         finish();
+    }
+
+    @OnClick(R.id.ll_agreement)
+    public void onLlAgreementClicked() {
+        WebViewActivity.startLoadAssetsHtml(RegisterActivity.this,"protocol.html","服务协议");
     }
 }
