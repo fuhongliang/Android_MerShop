@@ -199,28 +199,26 @@ public class StoreSetUpActivity extends BaseActivity {
 
         int endHour = Integer.parseInt(end[0]);
         int endMins = Integer.parseInt(end[1]);
-        if ((startHour * 60 + startMins) > (endHour * 60 + endMins)) {
-            ToastHelper.makeText("开始时间不可大于结束时间").show();
-        } else {
-            tvStoreTime.setText(beginTime + "~" + endTime);
-            setLoadingMessageIndicator(true);
-            RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(), beginTime, endTime)
-                    .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
-                @Override
-                protected void onApiComplete() {
-                    setLoadingMessageIndicator(false);
-                }
 
-                @Override
-                protected void onSuccees(BaseEntity t) throws Exception {
-                    ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
-                    UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
-                    loginResponse.setWork_start_time(beginTime);
-                    loginResponse.setWork_end_time(endTime);
-                    UserLogic.saveUser(loginResponse);
-                }
-            });
-        }
+        tvStoreTime.setText(beginTime + "~" + endTime);
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(MeService.class).storeSetWorktime(UserLogic.getUser().getStore_id(), beginTime, endTime)
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage() + "", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                UserServiceBean.LoginResponse loginResponse = UserLogic.getUser();
+                loginResponse.setWork_start_time(beginTime);
+                loginResponse.setWork_end_time(endTime);
+                UserLogic.saveUser(loginResponse);
+            }
+        });
+
     }
 
     @Override
