@@ -140,6 +140,9 @@
         <activity android:name=".activity.operation.WithdrawSuccessActivity"/>
         <activity android:name=".activity.NoticeDetailActivity"/>
 
+        <activity android:name=".activity.FilechooserActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            />
         <receiver
             android:name="com.umeng.message.NotificationProxyBroadcastReceiver"
             android:exported="false" >
@@ -165,6 +168,7 @@
         <service
             android:name=".notificaitons.NotificationService"
             android:exported="false" />
+
     </application>
 
 </manifest>

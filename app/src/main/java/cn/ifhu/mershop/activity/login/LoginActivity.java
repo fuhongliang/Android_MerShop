@@ -22,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.FilechooserActivity;
 import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.RegisterActivity;
 import cn.ifhu.mershop.activity.WebViewActivity;
@@ -148,7 +149,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }else {
-            WebViewActivity.startJoin(LoginActivity.this,UserLogic.getUser().getJoinin_url(),true);
+            Intent intent = new Intent(LoginActivity.this, FilechooserActivity.class);
+            intent.putExtra(FilechooserActivity.URL,UserLogic.getUser().getJoinin_url());
+            startActivity(intent);
         }
     }
 

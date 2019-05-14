@@ -71,9 +71,10 @@ public class WebViewActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
-    public static void startJoin(Context context, String url,boolean isNeedPermission) {
+    public static void startJoin(Context context, String url,String title,boolean isNeedPermission) {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra(ISNEEDPermission, isNeedPermission);
+        intent.putExtra(TITLE, title);
         intent.putExtra(URL, url);
         context.startActivity(intent);
     }
@@ -148,7 +149,6 @@ public class WebViewActivity extends BaseActivity {
                 } else {
                     view.loadUrl(url);
                 }
-
                 return true;
             }
 
@@ -168,6 +168,7 @@ public class WebViewActivity extends BaseActivity {
         setting.setDomStorageEnabled(true);
         setting.setAllowFileAccess(true);
         setting.setAppCacheEnabled(true);
+        setting.setSupportMultipleWindows(false);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mWvView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
