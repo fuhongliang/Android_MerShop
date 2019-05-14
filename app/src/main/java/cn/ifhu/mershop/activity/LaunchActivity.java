@@ -7,6 +7,9 @@ import android.os.Bundle;
 
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.login.LoginActivity;
+import cn.ifhu.mershop.utils.AudioUtil;
+import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.UserLogic;
 
 public class LaunchActivity extends AppCompatActivity {
@@ -24,5 +27,10 @@ public class LaunchActivity extends AppCompatActivity {
             LaunchActivity.this.finish();
         },1000);
 
+        boolean isRingMost = IrReference.getInstance().getBoolean(Constants.RINGMOST, false);
+        if (isRingMost){
+            AudioUtil.getInstance(LaunchActivity.this).setMediaVolume(100);
+        }
     }
+
 }

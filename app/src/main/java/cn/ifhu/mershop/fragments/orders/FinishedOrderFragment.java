@@ -39,6 +39,7 @@ import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.DividerItemDecoration;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
+import zlc.season.practicalrecyclerview.PracticalRecyclerView;
 
 import static cn.ifhu.mershop.utils.Constants.ORDERFINISH;
 import static cn.ifhu.mershop.utils.Constants.ORDERFINISHED;
@@ -49,10 +50,9 @@ import static cn.ifhu.mershop.utils.Constants.ORDERGOING;
  */
 public class FinishedOrderFragment extends BaseFragment {
 
-    @BindView(R.id.recycler_list)
-    RecyclerView recyclerList;
-    @BindView(R.id.layout_swipe_refresh)
-    SwipeRefreshLayout layoutSwipeRefresh;
+    @BindView(R.id.recycler)
+    PracticalRecyclerView recyclerList;
+
     Unbinder unbinder;
 
     OnGoingOrdersAdapter mOrdersAdapter;
@@ -60,6 +60,8 @@ public class FinishedOrderFragment extends BaseFragment {
     RelativeLayout llEmpty;
     private List<OrderBean> mDatas = new ArrayList<OrderBean>();
     private ArrayList<String> reasonList;
+
+    int curPage = 1;
 
     public static FinishedOrderFragment newInstance() {
         return new FinishedOrderFragment();
@@ -88,21 +90,20 @@ public class FinishedOrderFragment extends BaseFragment {
         mOrdersAdapter = new OnGoingOrdersAdapter(mDatas, getContext());
         recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerList.setAdapter(mOrdersAdapter);
-        setRefreshLayout();
         EventBus.getDefault().register(this);
     }
 
-    @SuppressLint("ResourceAsColor")
-    public void setRefreshLayout() {
-        layoutSwipeRefresh.setColorSchemeColors(R.color.colorPrimaryDark,
-                R.color.colorPrimaryDark,
-                R.color.colorPrimaryDark,
-                R.color.colorPrimaryDark);
-        layoutSwipeRefresh.setOnRefreshListener(() -> {
-            getData();
-        });
-    }
-
+//    @SuppressLint("ResourceAsColor")
+//    public void setRefreshLayout() {
+//        layoutSwipeRefresh.setColorSchemeColors(R.color.colorPrimaryDark,
+//                R.color.colorPrimaryDark,
+//                R.color.colorPrimaryDark,
+//                R.color.colorPrimaryDark);
+//        layoutSwipeRefresh.setOnRefreshListener(() -> {
+//            getData();
+//        });
+//    }
+//
 
     public void showPrintDialog(int position) {
         DialogUtils.showConfirmDialog("温馨提示", "确定打印小票？", getActivity().getSupportFragmentManager(), new ConfirmDialog.ButtonOnclick() {
@@ -134,13 +135,11 @@ public class FinishedOrderFragment extends BaseFragment {
     }
 
     public void getData() {
-        layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERFINISHED, UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERFINISHED, UserLogic.getUser().getStore_id(),curPage)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
 
             @Override
             protected void onApiComplete() {
-                layoutSwipeRefresh.setRefreshing(false);
             }
 
             @Override

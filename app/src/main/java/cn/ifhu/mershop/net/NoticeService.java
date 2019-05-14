@@ -17,7 +17,7 @@ public interface NoticeService {
 
     @FormUrlEncoded
     @POST("msg_list")
-    public Observable<BaseEntity<List<NoticeBean>>> getMsgList(@Field("store_id") int store_id);
+    public Observable<BaseEntity<List<NoticeBean>>> getMsgList(@Field("store_id") int store_id,@Field("page") int page);
 
     @FormUrlEncoded
     @POST("msg_info")

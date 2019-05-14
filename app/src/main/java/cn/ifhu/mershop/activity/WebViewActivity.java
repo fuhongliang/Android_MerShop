@@ -3,6 +3,7 @@ package cn.ifhu.mershop.activity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,13 +20,22 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.zhihu.matisse.Matisse;
+import com.zhihu.matisse.MimeType;
+import com.zhihu.matisse.internal.entity.CaptureStrategy;
+
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
+import cn.ifhu.mershop.utils.ImageGildeEngine;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -46,6 +56,7 @@ public class WebViewActivity extends BaseActivity {
     public static final String TITLE = "title";
     public static final String HTML_DATA = "html_data";
     public static final String ISNEEDTOKEN = "need_token";
+    public static final String ISNEEDPermission = "ISNEEDPermission";
     @BindView(R.id.ll_web_content)
     LinearLayout mLlWebContent;
     @BindView(R.id.iv_back)
@@ -57,6 +68,13 @@ public class WebViewActivity extends BaseActivity {
         Intent intent = new Intent(context, WebViewActivity.class);
         intent.putExtra(FILE_NAME, fileName);
         intent.putExtra(TITLE, title);
+        context.startActivity(intent);
+    }
+
+    public static void startJoin(Context context, String url,boolean isNeedPermission) {
+        Intent intent = new Intent(context, WebViewActivity.class);
+        intent.putExtra(ISNEEDPermission, isNeedPermission);
+        intent.putExtra(URL, url);
         context.startActivity(intent);
     }
 
@@ -96,6 +114,26 @@ public class WebViewActivity extends BaseActivity {
         showWebTitle();
         initWebView();
         loadData();
+    }
+
+    public void requestPermission(){
+        AndPermission.with(WebViewActivity.this)
+                .permission(Permission.READ_EXTERNAL_STORAGE, Permission.CAMERA)
+                .onGranted(new Action() {
+                    @Override
+                    public void onAction(List<String> permissions) {
+                        if (getIntent().getBooleanExtra(ISNEEDTOKEN, false)) {
+                            loadURL(true);
+                        } else {
+                            loadURL(false);
+                        }
+                    }
+                }).onDenied(new Action() {
+            @Override
+            public void onAction(List<String> permissions) {
+
+            }
+        }).start();
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -164,14 +202,16 @@ public class WebViewActivity extends BaseActivity {
         String fileName = getIntent().getStringExtra(FILE_NAME);
         if (StringUtils.isEmpty(htmlData)) {
             if (StringUtils.isEmpty(fileName)){
-                if (getIntent().getBooleanExtra(ISNEEDTOKEN, false)) {
-                    HashMap<String, String> headers = new HashMap<String, String>();
-                    String dataToken = UserLogic.getUser().getToken();
-                    headers.put("token", dataToken);
-                    mWvView.loadUrl(getIntent().getStringExtra(URL), headers);
-                } else {
-                    mWvView.loadUrl(getIntent().getStringExtra(URL));
+                if (getIntent().getBooleanExtra(ISNEEDPermission, false)){
+                    requestPermission();
+                }else {
+                    if (getIntent().getBooleanExtra(ISNEEDTOKEN, false)) {
+                        loadURL(true);
+                    } else {
+                        loadURL(false);
+                    }
                 }
+
             }else {
                 mWvView.loadUrl("file:///android_asset/"+fileName);
             }
@@ -181,6 +221,17 @@ public class WebViewActivity extends BaseActivity {
         }
     }
 
+
+    public void loadURL(boolean needToken){
+        if (needToken) {
+            HashMap<String, String> headers = new HashMap<String, String>();
+            String dataToken = UserLogic.getUser().getToken();
+            headers.put("token", dataToken);
+            mWvView.loadUrl(getIntent().getStringExtra(URL), headers);
+        } else {
+            mWvView.loadUrl(getIntent().getStringExtra(URL));
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

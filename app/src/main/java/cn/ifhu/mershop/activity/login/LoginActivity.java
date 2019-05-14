@@ -1,5 +1,7 @@
 package cn.ifhu.mershop.activity.login;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,6 +9,14 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.umeng.message.entity.UMessage;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,8 +27,13 @@ import cn.ifhu.mershop.activity.RegisterActivity;
 import cn.ifhu.mershop.activity.WebViewActivity;
 import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
 import cn.ifhu.mershop.base.BaseActivity;
+import cn.ifhu.mershop.bean.MessageEvent;
+import cn.ifhu.mershop.notificaitons.Notificaitons;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
+
+import static cn.ifhu.mershop.utils.Constants.LOGOUT;
+import static cn.ifhu.mershop.utils.Constants.ORDERCOMING;
 
 /**
  * @author fuhongliang
@@ -129,8 +144,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     public void loginSuccess() {
-        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        finish();
+        if (StringUtils.isEmpty(UserLogic.getUser().getJoinin_url())){
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }else {
+            WebViewActivity.startJoin(LoginActivity.this,UserLogic.getUser().getJoinin_url(),true);
+        }
     }
 
     @Override

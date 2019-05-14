@@ -28,6 +28,6 @@ public interface OrderService {
 
     @FormUrlEncoded
     @POST("order_list")
-    public Observable<BaseEntity<ArrayList<OrderBean>>> getOrder(@Field("order_state") int order_state ,@Field("store_id") int store_id);
+    public Observable<BaseEntity<ArrayList<OrderBean>>> getOrder(@Field("order_state") int order_state ,@Field("store_id") int store_id,@Field("page") int page);
 
 }

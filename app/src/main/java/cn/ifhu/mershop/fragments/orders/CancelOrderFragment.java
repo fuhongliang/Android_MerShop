@@ -39,6 +39,7 @@ import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.DividerItemDecoration;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
+import zlc.season.practicalrecyclerview.PracticalRecyclerView;
 
 import static cn.ifhu.mershop.utils.Constants.ORDERCANCEL;
 import static cn.ifhu.mershop.utils.Constants.ORDERCANCELED;
@@ -49,10 +50,9 @@ import static cn.ifhu.mershop.utils.Constants.ORDERGOING;
  */
 public class CancelOrderFragment extends BaseFragment {
 
-    @BindView(R.id.recycler_list)
-    RecyclerView recyclerList;
-    @BindView(R.id.layout_swipe_refresh)
-    SwipeRefreshLayout layoutSwipeRefresh;
+    @BindView(R.id.recycler)
+    PracticalRecyclerView recyclerList;
+
     Unbinder unbinder;
 
     OnGoingOrdersAdapter mOrdersAdapter;
@@ -60,6 +60,7 @@ public class CancelOrderFragment extends BaseFragment {
     RelativeLayout llEmpty;
     private List<OrderBean> mDatas = new ArrayList<>();
     private ArrayList<String> reasonList;
+    int curPage = 1;
 
     public static CancelOrderFragment newInstance() {
         return new CancelOrderFragment();
@@ -88,20 +89,33 @@ public class CancelOrderFragment extends BaseFragment {
         mOrdersAdapter = new OnGoingOrdersAdapter(mDatas, getContext());
         recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         recyclerList.setAdapter(mOrdersAdapter);
-        setRefreshLayout();
+
+        recyclerList.setRefreshListener(new PracticalRecyclerView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData();
+            }
+        });
+        recyclerList.setLoadMoreListener(new PracticalRecyclerView.OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                getData();
+            }
+        });
+
         EventBus.getDefault().register(this);
     }
 
-    @SuppressLint("ResourceAsColor")
-    public void setRefreshLayout() {
-        layoutSwipeRefresh.setColorSchemeColors(R.color.colorPrimaryDark,
-                R.color.colorPrimaryDark,
-                R.color.colorPrimaryDark,
-                R.color.colorPrimaryDark);
-        layoutSwipeRefresh.setOnRefreshListener(() -> {
-            getData();
-        });
-    }
+//    @SuppressLint("ResourceAsColor")
+//    public void setRefreshLayout() {
+//        layoutSwipeRefresh.setColorSchemeColors(R.color.colorPrimaryDark,
+//                R.color.colorPrimaryDark,
+//                R.color.colorPrimaryDark,
+//                R.color.colorPrimaryDark);
+//        layoutSwipeRefresh.setOnRefreshListener(() -> {
+//            getData();
+//        });
+//    }
 
 
     public void showPrintDialog(int position) {
@@ -134,13 +148,11 @@ public class CancelOrderFragment extends BaseFragment {
     }
 
     public void getData() {
-        layoutSwipeRefresh.setRefreshing(true);
-        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERCANCEL, UserLogic.getUser().getStore_id())
+        RetrofitAPIManager.create(OrderService.class).getOrder(ORDERCANCEL, UserLogic.getUser().getStore_id(),curPage)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<ArrayList<OrderBean>>(true) {
 
             @Override
             protected void onApiComplete() {
-                layoutSwipeRefresh.setRefreshing(false);
             }
 
             @Override

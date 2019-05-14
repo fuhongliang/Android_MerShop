@@ -2,67 +2,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/layout_swipe_refresh"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/line_bg" />
+        <zlc.season.practicalrecyclerview.PracticalRecyclerView
+            android:id="@+id/recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:loading_layout="@layout/default_loading_layout"
+            app:empty_layout="@layout/default_empty_layout"
+            app:error_layout="@layout/default_error_layout"
+            app:load_more_layout="@layout/default_load_more_layout"
+            app:no_more_layout="@layout/default_no_more_layout"
+            app:load_more_failed_layout="@layout/default_load_more_failed_layout"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/line_bg" />
+        <RelativeLayout
+            android:id="@+id/rl_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="#ffffff"
+            android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/rl_empty"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:background="#ffffff"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="125dp"
+                    android:layout_height="129dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/image_loding" />
+
+                <TextView
+                    android:id="@+id/order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:orientation="vertical">
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="暂无订单"
+                    android:textSize="16dp"
+                    android:textColor="#333333"/>
 
-                    <ImageView
-                        android:layout_width="125dp"
-                        android:layout_height="129dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/image_loding" />
-
-                    <TextView
-                        android:id="@+id/order"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:gravity="center_horizontal"
-                        android:text="暂无订单"
-                        android:textSize="16dp"
-                        android:textColor="#333333"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/order"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center_horizontal"
-                        android:text="想要获取更多的订单，快去看看促销管理吧～"
-                        android:textSize="13dp"
-                        android:textColor="#999999"/>
-                </LinearLayout>
-            </RelativeLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/order"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_horizontal"
+                    android:text="想要获取更多的订单，快去看看促销管理吧～"
+                    android:textSize="13dp"
+                    android:textColor="#999999"/>
+            </LinearLayout>
         </RelativeLayout>
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
 
 </LinearLayout>
