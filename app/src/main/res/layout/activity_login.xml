@@ -39,11 +39,12 @@
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_account_numbe"
             android:background="@null"
+            android:maxLength="11"
             android:hint="请输入账号/手机号"
             android:inputType="text"
             android:text="test01"
             android:maxLines="1"
-            android:textColor="#999999" />
+            />
     </RelativeLayout>
 
     <ImageView
@@ -80,7 +81,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:text="111111"
-            android:textColor="#999999" />
+            />
     </RelativeLayout>
 
     <ImageView
