@@ -1,7 +1,13 @@
 package cn.ifhu.mershop;
 
 import android.app.Application;
+import android.app.Notification;
+import android.content.Context;
+import android.os.Handler;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.bugtags.library.Bugtags;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -10,8 +16,12 @@ import com.umeng.commonsdk.UMConfigure;
 import com.umeng.message.IUmengRegisterCallback;
 import com.umeng.message.MsgConstant;
 import com.umeng.message.PushAgent;
+import com.umeng.message.UTrack;
+import com.umeng.message.UmengMessageHandler;
+import com.umeng.message.entity.UMessage;
 
 import cn.ifhu.mershop.base.AppInfo;
+import cn.ifhu.mershop.service.MyPushIntentService;
 import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.ProductLogic;
 
@@ -53,11 +63,11 @@ public class MyApplication extends Application {
         // 参数五：Push推送业务的secret 填充Umeng Message Secret对应信息（需替换）
         UMConfigure.init(this, "5cc026e64ca357afec000039", "Umeng", UMConfigure.DEVICE_TYPE_PHONE, "c3ec2468e9b0f55a1c49a92d73cbb31d");
 
-        //获取消息推送代理示例
         PushAgent mPushAgent = PushAgent.getInstance(this);
-        //服务端控制声音
-        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SERVER);
+        mPushAgent.setNotificationPlayLights(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
         mPushAgent.setNotificationPlayVibrate(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+        mPushAgent.setPushIntentServiceClass(MyPushIntentService.class);
+
         //注册推送服务，每次调用register方法都会回调该接口
         mPushAgent.register(new IUmengRegisterCallback() {
 
@@ -73,6 +83,6 @@ public class MyApplication extends Application {
                 Log.e("mPushAgent", "注册失败：-------->  " + "s:" + s + ",s1:" + s1);
             }
         });
-
+        mPushAgent.setPushCheck(true);
     }
 }

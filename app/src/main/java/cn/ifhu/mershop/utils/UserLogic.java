@@ -31,7 +31,7 @@ public class UserLogic {
     }
 
     public static boolean isLogin() {
-        if (getUser() == null) {
+        if (getUser() == null || getUser().getStore_id() == 0) {
             return false;
         } else {
             return true;

@@ -21,4 +21,10 @@
     <string name="password" translatable="false">密&#160;&#160;&#160;&#160;码</string>
     <string name="get_code_again" translatable="false">%d s后重新获取</string>
 
+    <string name="channel_critical" translatable="false">Critical events</string>
+    <string name="channel_importance" translatable="false">Importance events</string>
+    <string name="channel_default" translatable="false">Default events</string>
+    <string name="channel_low" translatable="false">Low events</string>
+    <string name="channel_media" translatable="false">Media events</string>
+
 </resources>

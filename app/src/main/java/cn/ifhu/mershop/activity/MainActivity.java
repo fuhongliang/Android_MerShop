@@ -1,19 +1,30 @@
 package cn.ifhu.mershop.activity;
 
+import android.app.NotificationManager;
+import android.bluetooth.BluetoothAdapter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MenuItem;
+
+import com.umeng.message.entity.UMessage;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
+import cn.ifhu.mershop.MyApplication;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.login.LoginActivity;
 import cn.ifhu.mershop.adapter.FragmentAdapter;
@@ -26,9 +37,14 @@ import cn.ifhu.mershop.fragments.me.MeFragment;
 import cn.ifhu.mershop.fragments.neworder.NewOrderFragment;
 import cn.ifhu.mershop.fragments.operation.OperationFragment;
 import cn.ifhu.mershop.fragments.orders.OrdersFragment;
+import cn.ifhu.mershop.notificaitons.Notificaitons;
+import cn.ifhu.mershop.utils.AudioUtil;
+import cn.ifhu.mershop.utils.Constants;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.UserLogic;
 
 import static cn.ifhu.mershop.utils.Constants.LOGOUT;
+import static cn.ifhu.mershop.utils.Constants.ORDERCOMING;
 
 /**
  * @author fuhongliang
@@ -83,6 +99,8 @@ public class MainActivity extends BaseActivity {
         Resources resource = getBaseContext().getResources();
         ColorStateList csl = resource.getColorStateList(R.color.bottom_navigation_color);
         navigation.setItemTextColor(csl);
+        //注册监听蓝牙
+        registerReceiver(mReceiver, makeFilter());
     }
 
 
@@ -137,6 +155,7 @@ public class MainActivity extends BaseActivity {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        unregisterReceiver(mReceiver);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -145,7 +164,58 @@ public class MainActivity extends BaseActivity {
             case LOGOUT:
                 logout();
                 break;
+            case ORDERCOMING:
+                try {
+                    UMessage msg = new UMessage(new JSONObject(messageEvent.getMessage()));
+                    sendNotification(MainActivity.this,msg.title,msg.text,msg.title);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
             default:
         }
     }
+
+    public void sendNotification(Context context,String title,String text,String contentTitle){
+        NotificationManager mNM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        Notificaitons.getInstance().sendOrderComingNotification(context,mNM,title,text,contentTitle);
+    }
+
+    private IntentFilter makeFilter() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+        return filter;
+    }
+
+    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            switch (intent.getAction()) {
+                case BluetoothAdapter.ACTION_STATE_CHANGED:
+                    int blueState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, 0);
+                    switch (blueState) {
+                        case BluetoothAdapter.STATE_TURNING_ON:
+                            Log.e("TAG", "TURNING_ON");
+                            break;
+                        case BluetoothAdapter.STATE_ON:
+                            AudioUtil.getInstance(MainActivity.this).openRawMusicS(MainActivity.this,false,R.raw.ring);
+                            Log.e("TAG", "STATE_ON");
+                            break;
+                        case BluetoothAdapter.STATE_TURNING_OFF:
+                            Log.e("TAG", "STATE_TURNING_OFF");
+                            break;
+                        case BluetoothAdapter.STATE_OFF:
+                            AudioUtil.getInstance(MainActivity.this).openRawMusicS(MainActivity.this,false,R.raw.ring);
+                            Log.e("TAG", "STATE_OFF");
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
 }

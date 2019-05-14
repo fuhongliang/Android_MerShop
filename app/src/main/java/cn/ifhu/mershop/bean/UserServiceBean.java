@@ -64,6 +64,15 @@ public interface UserServiceBean {
         private String member_mobile;
         private String member_name;
         private String token;
+        private String joinin_url;
+
+        public String getJoinin_url() {
+            return joinin_url;
+        }
+
+        public void setJoinin_url(String joinin_url) {
+            this.joinin_url = joinin_url;
+        }
 
         public int getStore_id() {
             return store_id;
