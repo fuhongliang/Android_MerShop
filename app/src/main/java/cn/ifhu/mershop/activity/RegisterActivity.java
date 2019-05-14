@@ -1,5 +1,6 @@
 package cn.ifhu.mershop.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -15,6 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.login.LoginActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
@@ -102,6 +104,7 @@ public class RegisterActivity extends BaseActivity {
         });
 
     }
+
     //判断是否空
     public boolean checkPhoneNumber() {
         if (StringUtils.isEmpty(etPhone.getText().toString())) {
@@ -213,7 +216,12 @@ public class RegisterActivity extends BaseActivity {
     }
 
     @OnClick(R.id.iv_back)
-    public void onViewClicked() {
+    public void onIvBackClicked() {
         finish();
+    }
+
+    @OnClick(R.id.ll_agreement)
+    public void onLlAgreementClicked() {
+        WebViewActivity.startLoadAssetsHtml(RegisterActivity.this,"protocol.html","服务协议");
     }
 }

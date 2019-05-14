@@ -48,8 +48,8 @@
             android:background="@null"
             android:hint="请输入手机号码"
             android:inputType="phone"
-            android:maxLines="1"
-            android:textColor="#999999" />
+            android:maxLength="11"
+            android:maxLines="1" />
     </RelativeLayout>
 
     <ImageView
@@ -84,8 +84,7 @@
             android:background="@null"
             android:hint="请输入密码"
             android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColor="#999999" />
+            android:maxLines="1" />
 
     </RelativeLayout>
 
@@ -122,8 +121,8 @@
             android:background="@null"
             android:hint="请输入验证码"
             android:inputType="number"
-            android:maxLines="1"
-            android:textColor="#999999" />
+            android:maxLength="4"
+            android:maxLines="1" />
 
         <TextView
             android:id="@+id/tv_get_code"
@@ -175,8 +174,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="15dp"
-        android:enabled="false"
         android:background="@drawable/bg_login_selector"
+        android:enabled="false"
         android:gravity="center"
         android:stateListAnimator="@null"
         android:text="注册"

@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="账号"
+            android:text="手机号"
             android:textSize="17sp" />
 
         <EditText
@@ -39,11 +39,12 @@
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/tv_account_numbe"
             android:background="@null"
-            android:hint="请输入账号/手机号"
-            android:inputType="text"
+            android:maxLength="11"
+            android:hint="请输入手机号"
+            android:inputType="phone"
             android:text="test01"
             android:maxLines="1"
-            android:textColor="#999999" />
+            />
     </RelativeLayout>
 
     <ImageView
@@ -64,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="15dp"
-            android:text="密码"
+            android:text="@string/password"
             android:textColor="#000000"
             android:textSize="17sp" />
 
@@ -80,7 +81,7 @@
             android:inputType="textPassword"
             android:maxLines="1"
             android:text="111111"
-            android:textColor="#999999" />
+            />
     </RelativeLayout>
 
     <ImageView

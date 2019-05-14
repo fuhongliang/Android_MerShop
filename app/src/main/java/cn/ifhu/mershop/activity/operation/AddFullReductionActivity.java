@@ -132,7 +132,7 @@ public class AddFullReductionActivity extends BaseActivity {
                         pvTime.setDate(Calendar.getInstance());
                     }
                 })
-                .setType(new boolean[]{true, true, true, true, true, true})
+                .setType(new boolean[]{true, true, true, true, true, false})
                 .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
                 .addOnCancelClickListener(view -> {
                 })

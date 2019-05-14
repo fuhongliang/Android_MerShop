@@ -148,7 +148,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }else {
-            WebViewActivity.start(LoginActivity.this,UserLogic.getUser().getJoinin_url(),"商家入驻");
+            WebViewActivity.startJoin(LoginActivity.this,UserLogic.getUser().getJoinin_url(),true);
         }
     }
 
