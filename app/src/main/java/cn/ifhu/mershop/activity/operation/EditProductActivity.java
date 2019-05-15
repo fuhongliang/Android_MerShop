@@ -30,11 +30,9 @@ import butterknife.OnClick;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
-import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.CategoryWheelItem;
 import cn.ifhu.mershop.bean.EditGoodsBean;
-import cn.ifhu.mershop.bean.FileModel;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.SellingTime;
 import cn.ifhu.mershop.net.OperationService;
@@ -90,6 +88,8 @@ public class EditProductActivity extends BaseActivity {
     @BindView(R.id.ll_reserve)
     LinearLayout llReserve;
     ProductManageBean.GoodsListBean goodsListBean;
+    @BindView(R.id.et_kucun)
+    EditText etKucun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,11 +115,16 @@ public class EditProductActivity extends BaseActivity {
             etPrice.setText(goodsListBean.getGoods_price());
             etOriginalPrice.setText(goodsListBean.getGoods_marketprice());
             etProductDesr.setText(goodsListBean.getGoods_desc());
-            ivProductImage.load(Constants.IMGPATH+goodsListBean.getImg_name());
+            ivProductImage.load(Constants.IMGPATH + goodsListBean.getImg_name());
             tvTitle.setFocusable(true);
             tvTitle.setFocusableInTouchMode(true);
             tvTitle.requestFocus();
             tvTitle.requestFocusFromTouch();
+            if (goodsListBean.getIs_much() == 2){
+                swhShock.setChecked(true);
+            }else {
+                swhShock.setChecked(false);
+            }
         }
     }
 
@@ -194,7 +199,15 @@ public class EditProductActivity extends BaseActivity {
         editGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
         editGoodsBean.setClass_id(categoryId);
         editGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
-        editGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
+        if (swhShock.isChecked()) {
+
+        } else {
+            try {
+                editGoodsBean.setGoods_storage(Integer.parseInt(etKucun.getText().toString()));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         SellingTime sellingTime = new SellingTime();
         sellingTime.setStart_time("00:00");
         sellingTime.setEnd_time("23:59");
