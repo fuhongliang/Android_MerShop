@@ -83,7 +83,11 @@ public class ProductAdapter extends BaseAdapter {
         viewHolder.tvOriginalPrice.setText(Constants.unit + mDataList.get(position).getGoods_marketprice());
         viewHolder.tvOriginalPrice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
         viewHolder.tvName.setText(mDataList.get(position).getGoods_name());
-        viewHolder.tvReserve.setText("当前库存：" + mDataList.get(position).getGoods_storage());
+        if (mDataList.get(position).getIs_much() == 2){
+            viewHolder.tvReserve.setText("库存无限");
+        }else {
+            viewHolder.tvReserve.setText("当前库存：" + mDataList.get(position).getGoods_storage());
+        }
         if (mDataList.get(position).getGoods_state() == 0) {
             viewHolder.tvChangeState.setText("上架");
             viewHolder.tvStateTip.setVisibility(View.VISIBLE);

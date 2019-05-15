@@ -70,7 +70,7 @@ public class SettledFragment extends BaseFragment {
     public void getAllSettledData(String date) {
         if (!StringUtils.isEmpty(date)) {
             setLoadingMessageIndicator(true);
-            RetrofitAPIManager.create(OperationService.class).allStoreJiesuan("", UserLogic.getUser().getStore_id())
+            RetrofitAPIManager.create(OperationService.class).allStoreJiesuan(date, UserLogic.getUser().getStore_id())
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<JSBean>(true) {
                 @Override
                 protected void onApiComplete() {
@@ -143,8 +143,8 @@ public class SettledFragment extends BaseFragment {
 
 
     public void initData(JSBean withDrawBean) {
-        tvSettled.setText(withDrawBean.getTotal_amount()+"");
-//        tvUnsettled.setText(withDrawBean.getBalance()+"");
+        tvSettled.setText(withDrawBean.getY_jiesuan()+"");
+        tvUnsettled.setText(withDrawBean.getD_jiesuan()+"");
     }
 
     @Override
