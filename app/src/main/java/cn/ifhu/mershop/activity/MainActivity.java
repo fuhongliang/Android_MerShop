@@ -166,7 +166,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case ORDERCOMING:
                 try {
-                    UMessage msg = new UMessage(new JSONObject(messageEvent.getMessage()));
+                    JSONObject jsonObject = new JSONObject(messageEvent.getData());
+                    UMessage msg = new UMessage(jsonObject);
                     sendNotification(MainActivity.this,msg.title,msg.text,msg.title);
                 } catch (JSONException e) {
                     e.printStackTrace();
