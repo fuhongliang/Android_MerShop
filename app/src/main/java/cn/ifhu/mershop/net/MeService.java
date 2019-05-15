@@ -55,6 +55,9 @@ public interface MeService {
     @POST("auto_receive_order")
     public Observable<BaseEntity<Object>> autoReceiveOrder(@Field("store_id") int store_id, @Field("is_open") int is_open);
 
+    @FormUrlEncoded
+    @POST("member_logout")
+    public Observable<BaseEntity<Object>> memberLogout(@Field("store_id") int store_id);
 
 
 }
