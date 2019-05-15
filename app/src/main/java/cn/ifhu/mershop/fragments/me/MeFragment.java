@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.baba.GlideImageView;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,6 +33,7 @@ import cn.ifhu.mershop.activity.me.StoreStateActivity;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.MessageEvent;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
 import cn.ifhu.mershop.net.MeService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
@@ -39,6 +42,8 @@ import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.DialogUtils;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
+
+import static cn.ifhu.mershop.utils.Constants.LOGOUT;
 
 /**
  * @author tony
@@ -174,7 +179,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.btn_logout)
     public void onBtnLogoutClicked() {
-        ((MainActivity) getActivity()).logout();
+        dropOut();
     }
 
     @OnClick(R.id.ll_store_state)
@@ -182,11 +187,25 @@ public class MeFragment extends BaseFragment {
         startActivity(new Intent(getActivity(), StoreStateActivity.class));
     }
 
+    public void dropOut(){
+        setLoadingMessageIndicator(true);
+        RetrofitAPIManager.create(MeService.class).memberLogout(UserLogic.getUser().getStore_id())
+                .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
+            @Override
+            protected void onApiComplete() {
+                setLoadingMessageIndicator(false);
+            }
+
+            @Override
+            protected void onSuccees(BaseEntity t) throws Exception {
+                ToastHelper.makeText(t.getMessage()).show();
+                EventBus.getDefault().post(new MessageEvent(LOGOUT));
+
+            }
 
 
-
-    @OnClick(R.id.ll_line3)
-    public void onLlLine3Clicked() {
+        });
     }
+
 
 }
