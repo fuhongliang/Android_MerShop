@@ -109,6 +109,7 @@
                     android:hint="用劵最低订单金额"
                     android:inputType="number"
                     android:maxLines="1"
+                    android:maxLength="6"
                     android:singleLine="true"
                     android:textSize="16sp" />
 
