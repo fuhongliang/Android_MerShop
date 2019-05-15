@@ -11,10 +11,12 @@ import cn.ifhu.mershop.bean.UserServiceBean;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UserService;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.StringUtils;
 import cn.ifhu.mershop.utils.UserLogic;
 
 import static android.support.v4.util.Preconditions.checkNotNull;
+import static cn.ifhu.mershop.utils.Constants.DEVICETOKEN;
 
 /**
  * @author fuhongliang
@@ -53,6 +55,9 @@ public class LoginPresenter implements LoginContract.Presenter {
         UserServiceBean.LoginForm loginForm = new UserServiceBean.LoginForm();
         loginForm.setMember_name(phone);
         loginForm.setMember_passwd(code);
+        loginForm.setApp_type("2");
+        loginForm.setDevice_tokens(IrReference.getInstance().getString(DEVICETOKEN, ""));
+
         RetrofitAPIManager.create(UserService.class).login(loginForm)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<UserServiceBean.LoginResponse>(true) {
 
