@@ -59,6 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:text="￥32.2"
+                    android:maxLength="7"
                     android:textColor="#ffec1818"
                     android:textSize="18dp" />
 
@@ -68,6 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="9dp"
                     android:text="￥48.8"
+                    android:maxLength="7"
                     android:textColor="#ff999999"
                     android:textSize="14sp" />
 
@@ -79,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginLeft="15dp"
-                android:text="当前库存：858"
+                android:text=""
                 android:textColor="#666666"
                 android:textSize="12sp" />
         </RelativeLayout>

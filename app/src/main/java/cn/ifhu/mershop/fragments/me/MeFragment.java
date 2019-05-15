@@ -20,19 +20,24 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.me.AboutUsActivity;
 import cn.ifhu.mershop.activity.me.AccountAndSafeActivity;
 import cn.ifhu.mershop.activity.me.FeedBackActivity;
-import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.me.RingSettingsActivity;
 import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
 import cn.ifhu.mershop.activity.me.StoreSetUpActivity;
 import cn.ifhu.mershop.activity.me.StoreStateActivity;
 import cn.ifhu.mershop.base.BaseFragment;
-import cn.ifhu.mershop.bt.BluetoothActivity;
+import cn.ifhu.mershop.base.BaseObserver;
+import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.dialog.nicedialog.ConfirmDialog;
+import cn.ifhu.mershop.net.MeService;
+import cn.ifhu.mershop.net.RetrofitAPIManager;
+import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.DialogUtils;
+import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
 /**
@@ -149,7 +154,7 @@ public class MeFragment extends BaseFragment {
         tvStoreName.setText(UserLogic.getUser().getStore_name());
         tvStoreAdd.setText(UserLogic.getUser().getStore_address());
         setBtnChangeState(UserLogic.getUser().getStore_state());
-        ivStoreLogo.loadCircle(Constants.IMGPATH+UserLogic.getUser().getStore_avatar());
+        ivStoreLogo.loadCircle(Constants.IMGPATH + UserLogic.getUser().getStore_avatar());
     }
 
     public void setBtnChangeState(int state) {
@@ -176,4 +181,12 @@ public class MeFragment extends BaseFragment {
     public void onViewClicked() {
         startActivity(new Intent(getActivity(), StoreStateActivity.class));
     }
+
+
+
+
+    @OnClick(R.id.ll_line3)
+    public void onLlLine3Clicked() {
+    }
+
 }
