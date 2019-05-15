@@ -30,7 +30,6 @@ public class MyPushIntentService extends UmengMessageService {
     public void onMessage(Context context, Intent intent) {
         try {
             String message = intent.getStringExtra("body");
-            UMessage msg = new UMessage(new JSONObject(message));
             Log.d(TAG, "message="+message);
             EventBus.getDefault().post(new MessageEvent(Constants.ORDERCOMING, message));
         } catch (Exception e) {
