@@ -87,7 +87,7 @@ public class WithdrawFragment extends BaseFragment {
     public void getAllSettledData(String date) {
         if (!StringUtils.isEmpty(date)) {
             setLoadingMessageIndicator(true);
-            RetrofitAPIManager.create(OperationService.class).pdCashList("", UserLogic.getUser().getStore_id())
+            RetrofitAPIManager.create(OperationService.class).pdCashList(date, UserLogic.getUser().getStore_id())
                     .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<WithDrawBean>(true) {
                 @Override
                 protected void onApiComplete() {

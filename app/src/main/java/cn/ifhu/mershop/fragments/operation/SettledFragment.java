@@ -108,8 +108,8 @@ public class SettledFragment extends BaseFragment {
     }
     private void initTimePicker() {
         pvTime = new TimePickerBuilder(getContext(), (date, v) -> {
-            tvYear.setText(DateUtil.getCurDateYear(date));
-            getAllSettledData(DateUtil.getCurDateMonth(date));
+            tvYear.setText(DateUtil.getCurDateYear(date)+"年");
+            getAllSettledData(DateUtil.getCurDateYear(date));
         })
                 .setTimeSelectChangeListener(date -> {
 
