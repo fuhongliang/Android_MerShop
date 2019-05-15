@@ -1,6 +1,8 @@
 package cn.ifhu.mershop.fragments.neworder;
 
 import android.annotation.SuppressLint;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +18,12 @@ import android.widget.Toast;
 
 import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
+import com.umeng.message.entity.UMessage;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,20 +34,27 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.MainActivity;
 import cn.ifhu.mershop.activity.notice.NoticeListActivity;
 import cn.ifhu.mershop.adapter.NewOrdersAdapter;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.MessageEvent;
 import cn.ifhu.mershop.bean.NewOrderBean;
 import cn.ifhu.mershop.bean.OrderBean;
 import cn.ifhu.mershop.dialog.DialogListFragment;
 import cn.ifhu.mershop.net.OrderService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
+import cn.ifhu.mershop.notificaitons.Notificaitons;
 import cn.ifhu.mershop.utils.DividerItemDecoration;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
+
+import static cn.ifhu.mershop.utils.Constants.LOGOUT;
+import static cn.ifhu.mershop.utils.Constants.ORDERCOMING;
+import static cn.ifhu.mershop.utils.Constants.ORDERGOING;
 
 /**
  * @author fuhongliang
@@ -179,7 +194,7 @@ public class NewOrderFragment extends BaseFragment {
 
             @Override
             public void accept(int position) {
-                receiveOrder(mDatas.get(position).getOrder_id() + "¥", position);
+                receiveOrder(mDatas.get(position).getOrder_id() + "", position);
             }
         });
         recyclerList.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
@@ -244,4 +259,27 @@ public class NewOrderFragment extends BaseFragment {
             rlMarqueeView.setVisibility(View.VISIBLE);
         }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void Event(MessageEvent messageEvent) {
+        switch (messageEvent.getMessage()) {
+            case ORDERCOMING:
+                try {
+                    JSONObject jsonObject = new JSONObject(messageEvent.getData());
+                    UMessage msg = new UMessage(jsonObject);
+                    sendNotification(getActivity(),msg.title,msg.text,msg.title);
+                    getNewOrders();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                break;
+            default:
+        }
+    }
+
+    public void sendNotification(Context context, String title, String text, String contentTitle){
+        NotificationManager mNM = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        Notificaitons.getInstance().sendOrderComingNotification(context,mNM,title,text,contentTitle);
+    }
+
 }

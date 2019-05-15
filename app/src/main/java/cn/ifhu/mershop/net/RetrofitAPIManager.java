@@ -32,9 +32,10 @@ public class RetrofitAPIManager {
     private static Retrofit retrofit;
 
     //开发环境
-    public static String baseDevURL = "http://47.111.27.189:2000/v3/";
-    //  public static String baseDevURL = "http://192.168.5.15/api/public/index.php/v3/";
-//  public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v3/";
+//    public static String baseDevURL = "http://47.111.27.189:2000/v3/";
+
+      public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v3/";
+//    public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v3/";
 //    public static String baseDevURL = " http://192.168.5.15/api/public/index.php/v3/";
 
 
