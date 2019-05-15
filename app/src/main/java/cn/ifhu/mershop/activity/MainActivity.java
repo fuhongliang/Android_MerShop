@@ -164,23 +164,10 @@ public class MainActivity extends BaseActivity {
             case LOGOUT:
                 logout();
                 break;
-            case ORDERCOMING:
-                try {
-                    JSONObject jsonObject = new JSONObject(messageEvent.getData());
-                    UMessage msg = new UMessage(jsonObject);
-                    sendNotification(MainActivity.this,msg.title,msg.text,msg.title);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                break;
             default:
         }
     }
 
-    public void sendNotification(Context context,String title,String text,String contentTitle){
-        NotificationManager mNM = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        Notificaitons.getInstance().sendOrderComingNotification(context,mNM,title,text,contentTitle);
-    }
 
     private IntentFilter makeFilter() {
         IntentFilter filter = new IntentFilter();

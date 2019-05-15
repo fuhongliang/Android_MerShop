@@ -88,6 +88,10 @@ public class AddProductActivity extends BaseActivity {
     LinearLayout llReserve;
     @BindView(R.id.et_kucun)
     EditText etKucun;
+    @BindView(R.id.iv_add_tip)
+    ImageView ivAddTip;
+    @BindView(R.id.tv_add_tip)
+    TextView tvAddTip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +181,7 @@ public class AddProductActivity extends BaseActivity {
         } else {
             try {
                 addGoodsBean.setGoods_storage(Integer.parseInt(etKucun.getText().toString()));
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -351,6 +355,8 @@ public class AddProductActivity extends BaseActivity {
         final Uri resultUri = UCrop.getOutput(result);
         if (resultUri != null) {
             ivProductImage.load(resultUri.getPath());
+            ivAddTip.setVisibility(View.INVISIBLE);
+            tvAddTip.setVisibility(View.INVISIBLE);
             cardPath = resultUri.getPath();
         } else {
             Toast.makeText(this, "剪切失败，请重新选择", Toast.LENGTH_SHORT).show();

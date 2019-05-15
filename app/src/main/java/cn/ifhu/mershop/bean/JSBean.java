@@ -9,15 +9,27 @@ public class JSBean {
      * total_amount : 0
      */
 
-    private int total_amount;
+    private int y_jiesuan;
+    private int d_jiesuan;
+
     private List<ListBean> list;
 
-    public int getTotal_amount() {
-        return total_amount;
+
+
+    public int getD_jiesuan() {
+        return d_jiesuan;
     }
 
-    public void setTotal_amount(int total_amount) {
-        this.total_amount = total_amount;
+    public void setD_jiesuan(int d_jiesuan) {
+        this.d_jiesuan = d_jiesuan;
+    }
+
+    public int getY_jiesuan() {
+        return y_jiesuan;
+    }
+
+    public void setY_jiesuan(int y_jiesuan) {
+        this.y_jiesuan = y_jiesuan;
     }
 
     public List<ListBean> getList() {

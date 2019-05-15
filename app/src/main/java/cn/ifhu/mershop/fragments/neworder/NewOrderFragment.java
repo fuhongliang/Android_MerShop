@@ -2,6 +2,7 @@ package cn.ifhu.mershop.fragments.neworder;
 
 import android.annotation.SuppressLint;
 import android.app.NotificationManager;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,7 @@ import com.gongwen.marqueen.SimpleMF;
 import com.gongwen.marqueen.SimpleMarqueeView;
 import com.umeng.message.entity.UMessage;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
@@ -33,10 +36,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.ifhu.mershop.BtService;
 import cn.ifhu.mershop.R;
 import cn.ifhu.mershop.activity.MainActivity;
+import cn.ifhu.mershop.activity.me.SearchBluetoothActivity;
 import cn.ifhu.mershop.activity.notice.NoticeListActivity;
 import cn.ifhu.mershop.adapter.NewOrdersAdapter;
+import cn.ifhu.mershop.base.AppInfo;
 import cn.ifhu.mershop.base.BaseFragment;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
@@ -48,7 +54,10 @@ import cn.ifhu.mershop.net.OrderService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.notificaitons.Notificaitons;
+import cn.ifhu.mershop.print.PrintUtil;
+import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.DividerItemDecoration;
+import cn.ifhu.mershop.utils.IrReference;
 import cn.ifhu.mershop.utils.ToastHelper;
 import cn.ifhu.mershop.utils.UserLogic;
 
@@ -130,13 +139,13 @@ public class NewOrderFragment extends BaseFragment {
     }
 
     public void receiveOrder(String orderId, int position) {
-
+        setLoadingMessageIndicator(true);
         RetrofitAPIManager.create(OrderService.class).receiveOrder(orderId)
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
 
             @Override
             protected void onApiComplete() {
-
+                setLoadingMessageIndicator(false);
             }
 
             @Override
@@ -145,9 +154,32 @@ public class NewOrderFragment extends BaseFragment {
                 newOrdersAdapter.updateData(mDatas);
                 updateEmptyView();
                 ToastHelper.makeText("接单成功", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                boolean autoPrinting = IrReference.getInstance().getBoolean(Constants.AUTOPRINT, false);
+                if (autoPrinting){
+                    printingOrder();
+                }
             }
         });
     }
+
+    public void printingOrder() {
+        if (TextUtils.isEmpty(AppInfo.btAddress)) {
+            ToastHelper.makeText("请连接蓝牙...", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            getActivity().startActivity(new Intent(getActivity(), SearchBluetoothActivity.class));
+        } else {
+            if (BluetoothAdapter.getDefaultAdapter().getState() == BluetoothAdapter.STATE_OFF) {
+                //蓝牙被关闭时强制打开
+                BluetoothAdapter.getDefaultAdapter().enable();
+                ToastHelper.makeText("蓝牙被关闭请打开...", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            } else {
+                ToastHelper.makeText("打印中...", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+                Intent intent = new Intent(getActivity().getApplicationContext(), BtService.class);
+                intent.setAction(PrintUtil.ACTION_PRINT_TEST);
+                getActivity().startService(intent);
+            }
+        }
+    }
+
 
     public void refuseOrder(int orderId, int position, String reason) {
 
@@ -202,6 +234,7 @@ public class NewOrderFragment extends BaseFragment {
         setRefreshLayout();
         getNewOrders();
         setSimpleMarqueeView();
+        EventBus.getDefault().register(this);
     }
 
     public void setSimpleMarqueeView() {
@@ -237,6 +270,7 @@ public class NewOrderFragment extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        EventBus.getDefault().unregister(this);
     }
 
 
