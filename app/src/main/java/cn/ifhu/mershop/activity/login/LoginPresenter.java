@@ -55,7 +55,7 @@ public class LoginPresenter implements LoginContract.Presenter {
         UserServiceBean.LoginForm loginForm = new UserServiceBean.LoginForm();
         loginForm.setMember_name(phone);
         loginForm.setMember_passwd(code);
-        loginForm.setApp_type("2");
+        loginForm.setApp_type("1");
         loginForm.setDevice_tokens(IrReference.getInstance().getString(DEVICETOKEN, ""));
 
         RetrofitAPIManager.create(UserService.class).login(loginForm)
