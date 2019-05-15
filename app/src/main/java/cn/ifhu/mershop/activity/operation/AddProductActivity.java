@@ -239,7 +239,7 @@ public class AddProductActivity extends BaseActivity {
             return true;
         }
         if (StringUtils.isEmpty(etPrice.getText().toString().trim())) {
-            ToastHelper.makeText("请输入商品价格", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            ToastHelper.makeText("请输入商品现价", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
         }
         if (StringUtils.isEmpty(etOriginalPrice.getText().toString().trim())) {
@@ -248,7 +248,7 @@ public class AddProductActivity extends BaseActivity {
         }
 
         if (Double.parseDouble(etOriginalPrice.getText().toString().trim()) < Double.parseDouble(etPrice.getText().toString().trim())) {
-            ToastHelper.makeText("商品原价不能小于商品价格", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
+            ToastHelper.makeText("商品原价不能小于商品现价", Toast.LENGTH_SHORT, ToastHelper.NORMALTOAST).show();
             return true;
         }
         return false;
