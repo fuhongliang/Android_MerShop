@@ -166,7 +166,7 @@ public class RegisterActivity extends BaseActivity {
 
     public void memberRegister() {
         setLoadingMessageIndicator(true);
-        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString(), "2", IrReference.getInstance().getString(DEVICETOKEN, ""))
+        RetrofitAPIManager.create(UserService.class).memberRegister(etPhone.getText().toString().replaceAll(" ", ""), etPassword.getText().toString(), etVerification.getText().toString(), "1", IrReference.getInstance().getString(DEVICETOKEN, ""))
                 .compose(SchedulerUtils.ioMainScheduler()).subscribe(new BaseObserver<Object>(true) {
             @Override
             protected void onApiComplete() {
