@@ -9,6 +9,24 @@ public interface UserServiceBean {
     class LoginForm {
         public String member_name;
         public String member_passwd;
+        public String app_type;
+        public String device_tokens;
+
+        public String getDevice_tokens() {
+            return device_tokens;
+        }
+
+        public void setDevice_tokens(String device_tokens) {
+            this.device_tokens = device_tokens;
+        }
+
+        public String getApp_type() {
+            return app_type;
+        }
+
+        public void setApp_type(String app_type) {
+            this.app_type = app_type;
+        }
 
         public String getMember_name() {
             return member_name;
