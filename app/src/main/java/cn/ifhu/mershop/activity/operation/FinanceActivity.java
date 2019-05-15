@@ -2,6 +2,7 @@ package cn.ifhu.mershop.activity.operation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -57,6 +58,8 @@ public class FinanceActivity extends BaseActivity {
     @BindView(R.id.tv_add_time)
     TextView tvAddTime;
 
+
+
     private double y_jiesuan = 0;//声明一个int类型(数据需要跳转到其他页面)
     private String bank_type;//声明一个string类型
     private String account_number;
@@ -87,9 +90,14 @@ public class FinanceActivity extends BaseActivity {
                 tvSettlement.setText(t.getData().getY_jiesuan() + "");
                 tvNotSettlement.setText(t.getData().getD_jiesuan() + "");
                 String BankNumber = "";
-                tvBankNumber.setText(BankNumber+getStringLastFourLetters(t.getData().getAccount().getAccount_number()));
+                tvBankNumber.setText(BankNumber + getStringLastFourLetters(t.getData().getAccount().getAccount_number()));
                 tvBankType.setText(t.getData().getAccount().getBank_type());
                 tvAddTime.setText(t.getData().getAddtime());
+                if (t.getData().getAddtime()== null || StringUtils.isEmpty(t.getData().getAddtime())) {
+                    ivTongzhi.setVisibility(View.INVISIBLE);
+                } else {
+                    ivTongzhi.setVisibility(View.VISIBLE);
+                }
                 y_jiesuan = t.getData().getY_jiesuan();//上面声明类型、这里就需要去调用它的接口、获取数据赋值给ing类型数据
                 bank_type = t.getData().getAccount().getBank_type();//String类型
                 account_number = t.getData().getAccount().getAccount_number();
@@ -102,11 +110,12 @@ public class FinanceActivity extends BaseActivity {
             }
         });
     }
-    public String getStringLastFourLetters(String bankNumber){
-        if (StringUtils.isEmpty(bankNumber) || bankNumber.length()<4){
+
+    public String getStringLastFourLetters(String bankNumber) {
+        if (StringUtils.isEmpty(bankNumber) || bankNumber.length() < 4) {
             return "";
-        }else {
-            return bankNumber.substring(bankNumber.length()-4,bankNumber.length());
+        } else {
+            return bankNumber.substring(bankNumber.length() - 4, bankNumber.length());
         }
     }
 
