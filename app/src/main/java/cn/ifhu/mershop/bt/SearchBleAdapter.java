@@ -140,7 +140,7 @@ public class SearchBleAdapter extends BaseAdapter {
         BluetoothDevice bluetoothDevice = mDevices.get(position);
         String dName = bluetoothDevice.getName() == null ? "未知设备" : bluetoothDevice.getName();
         if (TextUtils.isEmpty(dName)) {
-            dName = "未知设备";
+            dName = bluetoothDevice.getAddress();
         }
         holder.name.setText(dName);
         String dAddress = bluetoothDevice.getAddress() == null ? "未知地址" : bluetoothDevice.getAddress();

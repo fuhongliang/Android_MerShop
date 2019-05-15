@@ -16,7 +16,7 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="商品管理"
+        android:text=""
         android:textSize="18dp"
         android:layout_centerInParent="true"
         android:textColor="@color/white"

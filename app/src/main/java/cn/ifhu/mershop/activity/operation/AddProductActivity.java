@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baba.GlideImageView;
-import com.bumptech.glide.Glide;
 import com.yalantis.ucrop.UCrop;
 import com.zhihu.matisse.Matisse;
 
@@ -33,14 +32,12 @@ import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.AddGoodsBean;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.CategoryWheelItem;
-import cn.ifhu.mershop.bean.FileModel;
 import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.bean.SellingTime;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
 import cn.ifhu.mershop.net.UploadFileService;
-import cn.ifhu.mershop.utils.Constants;
 import cn.ifhu.mershop.utils.DeviceUtil;
 import cn.ifhu.mershop.utils.ImageChooseUtil;
 import cn.ifhu.mershop.utils.ProductLogic;
@@ -89,6 +86,8 @@ public class AddProductActivity extends BaseActivity {
     String cardPath = "";
     @BindView(R.id.ll_reserve)
     LinearLayout llReserve;
+    @BindView(R.id.et_kucun)
+    EditText etKucun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +172,15 @@ public class AddProductActivity extends BaseActivity {
         addGoodsBean.setStore_id(UserLogic.getUser().getStore_id());
         addGoodsBean.setClass_id(categoryId);
         addGoodsBean.setGoods_desc(etProductDesr.getText().toString().trim());
-        addGoodsBean.setGoods_storage(swhShock.isChecked() ? 999999999 : 10);
+        if (swhShock.isChecked()) {
+
+        } else {
+            try {
+                addGoodsBean.setGoods_storage(Integer.parseInt(etKucun.getText().toString()));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         SellingTime sellingTime = new SellingTime();
         sellingTime.setStart_time("00:00");
         sellingTime.setEnd_time("23:59");

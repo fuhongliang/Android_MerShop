@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -85,27 +88,28 @@ public class ChangePassWordActivity extends BaseActivity {
     }
 
     private void showCountDown() {
-        if (mTimer == null) {
-            mTimer = new Timer();
-        }
-        mTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                mCurSecond--;
-                if (mCurSecond < 1) {
-                    this.cancel();
-                    runOnUiThread(() -> {
-                        tvGetCode.setText("获取验证码");
-                    });
-                    mCurSecond = mOriSecond;
-                } else {
-                    String sencond = mCurSecond + "重新获取";
-                    runOnUiThread(() -> {
-                        tvGetCode.setText(sencond);
-                    });
-                }
-            }
-        }, 0, 1000);
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleWithFixedDelay(
+                () -> {
+                    mCurSecond--;
+                    if (mCurSecond < 1) {
+                        runOnUiThread(() -> {
+                            tvGetCode.setText("获取验证码");
+                            tvGetCode.setClickable(true);
+                            executor.shutdown();
+                        });
+                        mCurSecond = 60;
+                    } else {
+                        String sencond = getString(R.string.get_code_again, mCurSecond);
+                        runOnUiThread(() -> {
+                            tvGetCode.setText(sencond);
+                            tvGetCode.setClickable(false);
+                        });
+                    }
+                },
+                0,
+                1000,
+                TimeUnit.MILLISECONDS);
     }
 
     @OnClick(R.id.btn_ok)

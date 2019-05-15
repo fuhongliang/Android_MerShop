@@ -66,6 +66,15 @@ public class ProductManageBean {
         private int goods_storage;
         private String img_name;
         private String img_path;
+        private int is_much;
+
+        public int getIs_much() {
+            return is_much;
+        }
+
+        public void setIs_much(int is_much) {
+            this.is_much = is_much;
+        }
 
         public String getGoods_dicountprice() {
             return goods_dicountprice;

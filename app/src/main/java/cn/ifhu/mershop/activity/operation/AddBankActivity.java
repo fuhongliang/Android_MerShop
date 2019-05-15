@@ -12,11 +12,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ifhu.mershop.R;
+import cn.ifhu.mershop.activity.WebViewActivity;
+import cn.ifhu.mershop.activity.login.LoginActivity;
 import cn.ifhu.mershop.base.BaseActivity;
 import cn.ifhu.mershop.base.BaseObserver;
 import cn.ifhu.mershop.bean.BaseEntity;
 import cn.ifhu.mershop.bean.CategoryWheelItem;
-import cn.ifhu.mershop.bean.ProductManageBean;
 import cn.ifhu.mershop.net.OperationService;
 import cn.ifhu.mershop.net.RetrofitAPIManager;
 import cn.ifhu.mershop.net.SchedulerUtils;
@@ -154,5 +155,10 @@ public class AddBankActivity extends BaseActivity {
         }
 
         return new CategoryWheelItem[1];
+    }
+
+    @OnClick(R.id.tv_agreement)
+    public void onTvAgreementClicked() {
+        WebViewActivity.startLoadAssetsHtml(AddBankActivity.this, "protocol.html", "服务协议");
     }
 }
