@@ -195,7 +195,7 @@
 
                     <TextView
                         style="@style/tv_text"
-                        android:text="价格" />
+                        android:text="现价" />
 
                     <include layout="@layout/layout_star" />
 
