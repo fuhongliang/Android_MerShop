@@ -34,7 +34,9 @@ public class RetrofitAPIManager {
     //开发环境
 //    public static String baseDevURL = "http://47.111.27.189:2000/v3/";
 
-      public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v3/";
+//      public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v3/";
+public static String baseDevURL = "http://101.132.144.208:8446/";
+
 //    public static String baseDevURL = "http://47.92.244.60/api/public/index.php/v3/";
 //    public static String baseDevURL = " http://192.168.5.15/api/public/index.php/v3/";
 
@@ -126,6 +128,7 @@ public class RetrofitAPIManager {
                     }
                     Request request = chain.request()
                             .newBuilder()
+                            .addHeader("Content-Type", "application/json")
                             .addHeader("token", token)
                             .build();
                     return chain.proceed(request);

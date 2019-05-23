@@ -187,14 +187,14 @@ public class MainActivity extends BaseActivity {
                             Log.e("TAG", "TURNING_ON");
                             break;
                         case BluetoothAdapter.STATE_ON:
-                            AudioUtil.getInstance(MainActivity.this).openRawMusicS(MainActivity.this,false,R.raw.ring);
+//                            AudioUtil.getInstance(MainActivity.this).openRawMusicS(MainActivity.this,false,R.raw.ring);
                             Log.e("TAG", "STATE_ON");
                             break;
                         case BluetoothAdapter.STATE_TURNING_OFF:
                             Log.e("TAG", "STATE_TURNING_OFF");
                             break;
                         case BluetoothAdapter.STATE_OFF:
-                            AudioUtil.getInstance(MainActivity.this).openRawMusicS(MainActivity.this,false,R.raw.ring);
+//                            AudioUtil.getInstance(MainActivity.this).openRawMusicS(MainActivity.this,false,R.raw.ring);
                             Log.e("TAG", "STATE_OFF");
                             break;
                         default:

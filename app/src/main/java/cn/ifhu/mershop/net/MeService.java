@@ -1,8 +1,11 @@
 package cn.ifhu.mershop.net;
 
 import cn.ifhu.mershop.bean.BaseEntity;
+import cn.ifhu.mershop.bean.TestBean;
 import cn.ifhu.mershop.bean.UserServiceBean;
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -59,5 +62,7 @@ public interface MeService {
     @POST("member_logout")
     public Observable<BaseEntity<Object>> memberLogout(@Field("store_id") int store_id);
 
+    @POST("users/")
+    public Observable<BaseEntity<Object>> register(@Body RequestBody testBean );
 
 }
